@@ -1,0 +1,50 @@
+@import url('https://fonts.cdnfonts.com/css/nunito');
+@import url('https://fonts.cdnfonts.com/css/quicksand');
+
+:root {
+  --CL-neutral-white: #ffffff;
+  --CL-neutral-black: #000;
+
+  --FF-nunito: 'Nunito', sans-serif;
+  --FF-quicksan: 'Quicksand', sans-serif;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--FF-nunito);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--FF-nunito);
+}
+
+p,
+button,
+input,
+label,
+textarea {
+  font-family: var(--FF-quicksan);
+}
+
+img,
+picture,
+svg,
+iframe,
+video {
+  display: block;
+  max-width: 100%;
+}
