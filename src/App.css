@@ -6,6 +6,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--CL-primary-purple);
+  border-radius: 5px;
+}
+
 :root {
   --CL-primary-purple: #8f00ff;
   --CL-primary-cyan: #47e9ff;
@@ -14,6 +30,11 @@
   --FF-nunito: 'Nunito', sans-serif;
   --FF-quicksan: 'Quicksand', sans-serif;
   --FF-poppins: 'Poppins', sans-serif;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--CL-neutral-white);
 }
 
 *,
@@ -55,27 +76,6 @@ iframe,
 video {
   display: block;
   max-width: 100%;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--CL-primary-purple);
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--CL-neutral-white);
 }
 
 /* Display */

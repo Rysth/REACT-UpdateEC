@@ -4,6 +4,27 @@ import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './NavBar.css';
 
+const routes = [
+  {
+    id: 1,
+    to: '/',
+    text: 'Inicio',
+    icon: 'fa-solid fa-home w-7 md:hidden',
+  },
+  {
+    id: 2,
+    to: '/about',
+    text: 'Nosotros',
+    icon: 'fa-solid fa-user w-7 md:hidden',
+  },
+  {
+    id: 3,
+    to: '/products',
+    text: 'Productos',
+    icon: 'fa-solid fa-star w-7 md:hidden',
+  },
+];
+
 function NavBar({ classList, navClassList, handleNavigationBar }) {
   return (
     <motion.nav
@@ -12,18 +33,17 @@ function NavBar({ classList, navClassList, handleNavigationBar }) {
       transition={{ duration: 0.15 }}
       className={classList}
     >
-      <NavLink to="/" className={navClassList} onClick={handleNavigationBar}>
-        <i className="fa-solid fa-home w-7 md:hidden" />
-        Inicio
-      </NavLink>
-      <NavLink to="/about" className={navClassList} onClick={handleNavigationBar}>
-        <i className="fa-solid fa-user w-7 md:hidden" />
-        Nosotros
-      </NavLink>
-      <NavLink to="/products" className={navClassList} onClick={handleNavigationBar}>
-        <i className="fa-solid fa-star w-7 md:hidden" />
-        Productos
-      </NavLink>
+      {routes.map((route) => (
+        <NavLink
+          key={route.id}
+          to={route.to}
+          className={navClassList}
+          onClick={handleNavigationBar}
+        >
+          <i className={route.icon} />
+          {route.text}
+        </NavLink>
+      ))}
     </motion.nav>
   );
 }

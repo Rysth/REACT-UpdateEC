@@ -13,7 +13,7 @@ function Badge({ classList, imageClassList, imageSource }) {
       <img
         className={`mx-auto p-3 md:p-6 saturate-200 rounded rounded-2xl object-contain ${imageClassList}`}
         src={imageSource}
-        alt={`${imageSource}`}
+        alt={imageSource}
       />
     </motion.div>
   );
