@@ -57,14 +57,26 @@ video {
   max-width: 100%;
 }
 
-/* Container */
-
-/* .container {
-  width: 90%;
-  max-width: 1400px;
-  margin: 0 auto;
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
 }
- */
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--CL-primary-purple);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--CL-neutral-white);
+}
 
 /* Display */
 .d-none {

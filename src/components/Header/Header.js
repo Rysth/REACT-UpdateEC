@@ -9,6 +9,7 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNavigationBar = () => setIsOpen(!isOpen);
+  const closeNavigationBar = () => setIsOpen(false);
 
   return (
     <motion.header
@@ -28,6 +29,7 @@ function Header() {
           <NavBar
             classList="bg-white my-3 p-2 rounded rounded-lg flex flex-col basis-full md:hidden text-sm"
             navClassList=" text-black p-3"
+            handleNavigationBar={closeNavigationBar}
           />
         )}
         <ButtonPrimary text="Contactar" />
