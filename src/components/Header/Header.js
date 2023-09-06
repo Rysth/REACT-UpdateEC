@@ -27,14 +27,14 @@ function Header() {
         <NavLink to="/" className={logoClass}>
           <img src={Logo} alt="" />
         </NavLink>
-        <NavBar classList="hidden md:flex gap-8" />
+        <NavBar classList="hidden md:flex gap-8" navClassList="" />
         <button type="button" className={hamburgerButtonClass} onClick={handleNavigationBar}>
           <i className={hamburgerIconClass} />
         </button>
         {isOpen && (
           <NavBar
             classList="bg-white my-3 p-2 rounded rounded-lg flex flex-col basis-full md:hidden text-sm"
-            navClassList=" text-black p-3"
+            navClassList="text-black p-3"
             handleNavigationBar={closeNavigationBar}
           />
         )}
