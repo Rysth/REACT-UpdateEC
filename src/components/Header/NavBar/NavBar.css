@@ -4,6 +4,6 @@
 
 @media (min-width: 768px) {
   .active {
-    @apply text-[var(--CL-primary-cyan)] underline underline-offset-8;
+    @apply text-[var(--CL-primary-cyan)] underline underline-offset-8 transition duration-300;
   }
 }

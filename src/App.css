@@ -1,6 +1,7 @@
 @import url('https://fonts.cdnfonts.com/css/nunito');
 @import url('https://fonts.cdnfonts.com/css/quicksand');
 @import url('https://fonts.cdnfonts.com/css/poppins');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +9,6 @@
 :root {
   --CL-primary-purple: #8f00ff;
   --CL-primary-cyan: #47e9ff;
-
   --CL-neutral-white: #fff;
   --CL-neutral-black: #0d0d0d;
   --FF-nunito: 'Nunito', sans-serif;
@@ -58,6 +58,7 @@ video {
 }
 
 /* Container */
+
 /* .container {
   width: 90%;
   max-width: 1400px;

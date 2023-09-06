@@ -6,8 +6,13 @@ import './NavBar.css';
 
 function NavBar({ classList, navClassList }) {
   return (
-    <motion.nav initial={{ scale: 0 }} animate={{ scale: 1 }} className={classList}>
-      <NavLink to="/home" className={navClassList}>
+    <motion.nav
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.15 }}
+      className={classList}
+    >
+      <NavLink to="/" className={navClassList}>
         <i className="fa-solid fa-home w-7 md:hidden" />
         Inicio
       </NavLink>
