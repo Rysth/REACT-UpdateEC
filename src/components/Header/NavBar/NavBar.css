@@ -1,0 +1,9 @@
+.active {
+  @apply bg-[var(--CL-neutral-black)] text-white rounded rounded-lg;
+}
+
+@media (min-width: 768px) {
+  .active {
+    @apply text-[var(--CL-primary-cyan)] underline underline-offset-8 transition duration-300;
+  }
+}
