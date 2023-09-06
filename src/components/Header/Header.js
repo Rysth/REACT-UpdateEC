@@ -11,7 +11,11 @@ function Header() {
   const handleNavigationBar = () => setIsOpen(!isOpen);
 
   return (
-    <motion.header initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="sticky top-0 z-{20} w-full">
+    <motion.header
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="sticky top-0 z-[1000] w-full bg-[var(--CL-neutral-black)]"
+    >
       <div className="container md:container mx-auto flex flex-wrap items-center justify-between p-4 md:py-8 text-white">
         <NavLink to="/" className="w-20 md:w-40">
           <img src={Logo} alt="" />
@@ -22,7 +26,7 @@ function Header() {
         </button>
         {isOpen && (
           <NavBar
-            classList="bg-white my-3 p-2 rounded rounded-lg flex flex-col basis-full md:hidden  text-sm"
+            classList="bg-white my-3 p-2 rounded rounded-lg flex flex-col basis-full md:hidden text-sm"
             navClassList=" text-black p-3"
           />
         )}
