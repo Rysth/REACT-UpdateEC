@@ -1,16 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import AboutImage from '../../../assets/PNG/about/about.jpg';
 import Button from '../../../components/Buttons/Buttons';
 import { handleNavigation, contactURL } from '../../../utils/NavigationUtils';
+import Subheading from '../../../components/Subheading/Subheading';
 
 function AboutSection() {
   return (
     <div className="container md:container mx-auto grid p-4 py-20 md:py-32">
-      <header className="text-white text-center">
-        <p className="text-sm md:text-lg font-light">Acerca de Nosotros</p>
-        <h2 className="text-xl md:text-4xl my-1 font-bold">Nuestro Compromiso</h2>
-      </header>
+      <Subheading subtitle="Acerca de Nosotros" title="Nuestro Compromiso" />
       <div className="grid lg:grid-cols-2 items-center gap-5 lg:gap-28 py-5 lg:py-20">
         <motion.div
           className="overflow-hidden row-start-2 row-end-3 lg:row-start-1 lg:row-end-2 my-3"
@@ -18,31 +17,9 @@ function AboutSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 2, delay: 1 }}
         >
-          <motion.div
-            initial={{ x: '-30%', color: '#8f00ff' }}
-            animate={{ x: '100%', color: '#47e9ff' }}
-            transition={{ duration: 10, ease: 'easeInOut', repeat: Infinity }}
-            className="flex gap-5 text-xs"
-          >
-            <i className="fa-solid fa-circle" />
-            <i className="fa-solid fa-circle" />
-            <i className="fa-solid fa-circle" />
-            <i className="fa-solid fa-circle" />
-            <i className="fa-solid fa-circle" />
-          </motion.div>
-          <img className="rounded rounded-xl object-cover " src={AboutImage} alt="Hero" />
-          <motion.div
-            initial={{ x: '100%', color: '#47e9ff' }}
-            animate={{ x: '-30%', color: '#8f00ff' }}
-            transition={{ duration: 10, ease: 'easeInOut', repeat: Infinity }}
-            className="flex gap-5 text-xs"
-          >
-            <i className="fa-solid fa-circle" />
-            <i className="fa-solid fa-circle" />
-            <i className="fa-solid fa-circle" />
-            <i className="fa-solid fa-circle" />
-            <i className="fa-solid fa-circle" />
-          </motion.div>
+          <LoadingAnimation initialX="-30%" animateX="100%" />
+          <img className="rounded rounded-xl object-cover my-2" src={AboutImage} alt="Hero" />
+          <LoadingAnimation initialX="100%" animateX="-30%" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 300 }}
@@ -77,5 +54,27 @@ function AboutSection() {
     </div>
   );
 }
+
+function LoadingAnimation({ initialX, animateX }) {
+  return (
+    <motion.div
+      initial={{ x: initialX, color: '#8f00ff' }}
+      animate={{ x: animateX, color: '#47e9ff' }}
+      transition={{ duration: 10, ease: 'easeInOut', repeat: Infinity }}
+      className="flex gap-5 text-xs"
+    >
+      <i className="fa-solid fa-circle" />
+      <i className="fa-solid fa-circle" />
+      <i className="fa-solid fa-circle" />
+      <i className="fa-solid fa-circle" />
+      <i className="fa-solid fa-circle" />
+    </motion.div>
+  );
+}
+
+LoadingAnimation.propTypes = {
+  initialX: PropTypes.string.isRequired,
+  animateX: PropTypes.string.isRequired,
+};
 
 export default AboutSection;
