@@ -7,7 +7,7 @@ function Badge({ classList, imageClassList, imageSource }) {
     <motion.div
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
-      transition={{ duration: 1, delay: 0.5, type: 'spring' }}
+      transition={{ duration: 1, delay: 1.5, type: 'spring' }}
       className={`absolute rounded-xl backdrop-blur-2xl backdrop-brightness-200 ${classList}`}
     >
       <img
