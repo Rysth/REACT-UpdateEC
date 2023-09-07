@@ -6,11 +6,15 @@ import { motion } from 'framer-motion';
 const buttonVariants = {
   primary: {
     className:
-      'hidden md:block border-2 py-2 px-5 md:px-8 rounded-full md:hover:text-black md:hover:border-transparent md:hover:bg-[var(--CL-primary-cyan)] text-xs md:text-base',
+      'hidden text-white md:block border-2 py-2 px-8 rounded-full md:hover:text-black md:hover:border-transparent md:hover:bg-[var(--CL-primary-cyan)] text-xs md:text-base',
   },
   secondary: {
     className:
       'border-2 py-2 px-8 bg-[var(--CL-neutral-white)] text-black rounded-full md:hover:text-black md:hover:border-transparent md:hover:bg-[var(--CL-primary-cyan)] text-xs md:text-base',
+  },
+  light: {
+    className:
+      'text-white md:block border-2 py-2 px-8 rounded-full md:hover:text-white md:hover:border-transparent md:hover:bg-[var(--CL-primary-purple)] text-xs md:text-base',
   },
   // Add more variants here as needed
 };
