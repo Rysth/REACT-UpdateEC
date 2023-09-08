@@ -44,7 +44,7 @@ function HeroSection() {
           imageClassList={brandImageClass}
           imageSource={BrandImage}
         />
-        <img className="rounded rounded-xl w-full h-full object-cover" src={HeroImage} alt="Hero" />
+        <img className="rounded-xl w-full h-full object-cover" src={HeroImage} alt="Hero" />
         <Badge
           classList="-bottom-8 md:-bottom-16 -right-10 md:-right-24"
           imageClassList={productImageClass}
