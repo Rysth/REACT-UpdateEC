@@ -8,7 +8,7 @@ import Subheading from '../../../components/Subheading/Subheading';
 
 function AboutSection() {
   return (
-    <div className="container md:container mx-auto grid p-4 py-20 md:py-32">
+    <div className="container md:container mx-auto grid px-4 py-20 md:py-32">
       <Subheading subtitle="Acerca de Nosotros" title="Nuestro Compromiso" />
       <div className="grid lg:grid-cols-2 items-center gap-5 lg:gap-28 py-5 lg:py-20">
         <motion.div
@@ -18,16 +18,16 @@ function AboutSection() {
           transition={{ duration: 2, delay: 1 }}
         >
           <LoadingAnimation initialX="-30%" animateX="100%" />
-          <img className="rounded rounded-xl object-cover my-2" src={AboutImage} alt="Hero" />
+          <img className="rounded-xl object-cover my-2" src={AboutImage} alt="Hero" />
           <LoadingAnimation initialX="100%" animateX="-30%" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 300 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2, delay: 2 }}
+          transition={{ duration: 2, delay: 1.25 }}
           className="grid gap-3"
         >
-          <p className="text-slate-300 text-sm md:text-lg my-3 leading-5">
+          <p className="text-slate-400 text-sm md:text-lg my-3 leading-5">
             En UpdateEC, nuestra tienda en línea, contamos con un equipo apasionado por la
             tecnología. Estamos aquí para asesorarte y ofrecerte la mejor experiencia de compra
             posible. Nuestro conocimiento en periféricos y componentes informáticos está a tu
@@ -60,7 +60,7 @@ function LoadingAnimation({ initialX, animateX }) {
     <motion.div
       initial={{ x: initialX, color: '#8f00ff' }}
       animate={{ x: animateX, color: '#47e9ff' }}
-      transition={{ duration: 10, ease: 'easeInOut', repeat: Infinity }}
+      transition={{ duration: 10, repeat: Infinity, repeatType: 'mirror' }}
       className="flex gap-5 text-xs"
     >
       <i className="fa-solid fa-circle" />

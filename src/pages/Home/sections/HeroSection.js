@@ -18,9 +18,9 @@ function HeroSection() {
     <div className="container md:container mx-auto grid p-4 py-10 md:py-20">
       <div className="text-white mx-auto">
         <motion.h1
-          initial={{ translateY: -300, opacity: 0 }}
-          animate={{ translateY: 0, opacity: 1 }}
-          transition={{ duration: 2 }}
+          initial={{ y: -300, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.5, type: 'spring' }}
           className="text-center text-4xl md:text-5xl lg:w-3/4 mx-auto lg:text-8xl font-bold"
         >
           ¡Bienvenidos a UpdateEC!
@@ -44,7 +44,7 @@ function HeroSection() {
           imageClassList={brandImageClass}
           imageSource={BrandImage}
         />
-        <img className="rounded rounded-xl w-full h-full object-cover" src={HeroImage} alt="Hero" />
+        <img className="rounded-xl w-full h-full object-cover" src={HeroImage} alt="Hero" />
         <Badge
           classList="-bottom-8 md:-bottom-16 -right-10 md:-right-24"
           imageClassList={productImageClass}
