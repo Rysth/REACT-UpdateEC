@@ -5,6 +5,7 @@ import BannerOne from '../../../assets/PNG/banner/banner_1.jpg';
 import AboutImage from '../../../assets/PNG/about/about.jpg';
 import Subheading from '../../../components/Subheading/Subheading';
 import Button from '../../../components/Buttons/Buttons';
+import { handleNavigation, contactURL } from '../../../utils/NavigationUtils';
 
 const imagesArray = [BannerOne, AboutImage];
 
@@ -47,7 +48,13 @@ function BannerSection() {
         <p className="text-sm md:text-base text-slate-400 my-1 mb-6">
           ¡Aprovecha nuestras promociones y descuentos en productos seleccionados!
         </p>
-        <Button text="Catálogo" variant="light" />
+        <Button
+          text="Catálogo"
+          variant="light"
+          onClickFunc={() => {
+            handleNavigation(contactURL);
+          }}
+        />
       </div>
     </div>
   );
