@@ -1,11 +1,12 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import HeroImage from '../../../assets/PNG/hero/hero.jpg';
+import BannerOne from '../../../assets/PNG/banner/banner_1.jpg';
 import AboutImage from '../../../assets/PNG/about/about.jpg';
 import Subheading from '../../../components/Subheading/Subheading';
+import Button from '../../../components/Buttons/Buttons';
 
-const imagesArray = [HeroImage, AboutImage];
+const imagesArray = [BannerOne, AboutImage];
 
 const responsive = {
   desktop: {
@@ -30,21 +31,24 @@ function BannerSection() {
     <div className="container md:container mx-auto px-4 py-0 pb-4">
       <Subheading subtitle="Productos" title="Nuestras Promociones" />
       <Carousel
-        autoPlay
-        autoPlaySpeed={3500}
         arrows
         infinite
+        autoPlay
+        draggable={false}
         responsive={responsive}
-        containerClass="border-4 lg:border-6 border-violet-600 my-8 md:mt-16 mb-6 h-full block md:h-[32rem] "
-        className="md:h-[30rem]"
-        itemClass="w-100 object-fill h-full"
+        containerClass="border-4 lg:border-6 border-violet-600 my-8 md:mt-16 mb-6 h-full block md:max-w-[82%]  mx-auto rounded-2xl"
+        sliderClass="m-0 h-[100%] md:h-[100%]"
+        itemClass="h-full"
       >
-        <img className="object-cover" src={imagesArray[0]} alt="" />
-        <img className="object-cover" src={imagesArray[1]} alt="" />
+        <img className="object-contain d:object-cover w-full h-full" src={imagesArray[0]} alt="" />
+        <img className="object-contain d:object-cover w-full h-full" src={imagesArray[0]} alt="" />
       </Carousel>
-      <p className="text-center text-sm md:text-base text-slate-400 mb-12">
-        ¡Aprovecha nuestras promociones y descuentos en productos seleccionados!
-      </p>
+      <div className="flex flex-col items-center text-center">
+        <p className="text-sm md:text-base text-slate-400 my-1 mb-6">
+          ¡Aprovecha nuestras promociones y descuentos en productos seleccionados!
+        </p>
+        <Button text="Catálogo" variant="light" />
+      </div>
     </div>
   );
 }

@@ -23,7 +23,7 @@ function Header() {
       animate={{ opacity: 1 }}
       className="sticky top-0 z-[1000] w-full bg-[var(--CL-neutral-black)]"
     >
-      <div className="container md:container mx-auto flex flex-wrap items-center justify-between p-4 md:py-8 text-white">
+      <div className="container md:container mx-auto flex flex-wrap items-center justify-between p-4 md:py-6 text-white">
         <NavLink to="/" className={logoClass}>
           <img src={Logo} alt="" />
         </NavLink>
