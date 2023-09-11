@@ -11,7 +11,7 @@ function Footer() {
       transition={{ duration: 2, type: 'spring' }}
       className="footer bg-white"
     >
-      <div className="container md:container mx-auto mt-10 md:mt-20 p-4 py-8 md:py-32 flex flex-wrap gap-10 lg:gap-20 2xl:justify-between backdrop-blur-3xl">
+      <div className="container md:container mx-auto mt-10 md:mt-20 p-4 py-8 md:py-32 flex flex-wrap gap-10 lg:gap-20 2xl:justify-between">
         <div className="bg-gray-900 w-40 md:w-60 p-2 px-6 md:py-4 rounded-lg">
           <Link to="/" className="w">
             <img className="w-full h-full" src={Logo} alt="" />
