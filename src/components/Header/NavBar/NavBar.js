@@ -13,12 +13,6 @@ const routes = [
   },
   {
     id: 2,
-    to: '/about',
-    text: 'Nosotros',
-    icon: 'fa-solid fa-user w-7 md:hidden',
-  },
-  {
-    id: 3,
     to: '/products',
     text: 'Productos',
     icon: 'fa-solid fa-star w-7 md:hidden',
