@@ -21,7 +21,7 @@ function Header() {
     <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="sticky top-0 z-[1000] w-full bg-[var(--CL-neutral-black)]"
+      className="sticky top-0 z-[1001] w-full bg-black"
     >
       <div className="container md:container mx-auto flex flex-wrap items-center justify-between p-4 md:py-6 text-white">
         <NavLink to="/" className={logoClass}>

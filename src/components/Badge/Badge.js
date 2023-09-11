@@ -11,7 +11,7 @@ function Badge({ classList, imageClassList, imageSource }) {
       className={`absolute rounded-xl backdrop-blur-2xl backdrop-brightness-200 ${classList}`}
     >
       <img
-        className={`mx-auto p-3 md:p-6 saturate-200 rounded rounded-2xl object-contain ${imageClassList}`}
+        className={`mx-auto p-3 md:p-6 saturate-200 rounded-2xl object-contain ${imageClassList}`}
         src={imageSource}
         alt={imageSource}
       />
