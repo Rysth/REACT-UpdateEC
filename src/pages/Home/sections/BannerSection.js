@@ -1,13 +1,14 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
+import { motion } from 'framer-motion';
 import 'react-multi-carousel/lib/styles.css';
 import BannerOne from '../../../assets/PNG/banner/banner_1.jpg';
-import AboutImage from '../../../assets/PNG/about/about.jpg';
+import BannerTwo from '../../../assets/PNG/banner/banner_2.png';
 import Subheading from '../../../components/Subheading/Subheading';
 import Button from '../../../components/Buttons/Buttons';
 import { handleNavigation, contactURL } from '../../../utils/NavigationUtils';
 
-const imagesArray = [BannerOne, AboutImage];
+const imagesArray = [BannerOne, BannerTwo];
 
 const responsive = {
   desktop: {
@@ -29,7 +30,12 @@ const responsive = {
 
 function BannerSection() {
   return (
-    <div className="container md:container mx-auto px-4 py-0 pb-4">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2, delay: 1, type: 'linear' }}
+      className="container md:container mx-auto px-4 py-0 pb-4"
+    >
       <Subheading subtitle="Productos" title="Nuestras Promociones" />
       <Carousel
         arrows
@@ -42,7 +48,7 @@ function BannerSection() {
         itemClass="h-full"
       >
         <img className="object-contain d:object-cover w-full h-full" src={imagesArray[0]} alt="" />
-        <img className="object-contain d:object-cover w-full h-full" src={imagesArray[0]} alt="" />
+        <img className="object-contain d:object-cover w-full h-full" src={imagesArray[1]} alt="" />
       </Carousel>
       <div className="flex flex-col items-center text-center">
         <p className="text-sm md:text-base text-slate-400 my-1 mb-6">
@@ -56,7 +62,7 @@ function BannerSection() {
           }}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 
