@@ -7,7 +7,7 @@ import { handleNavigation, contactURL } from '../../../utils/NavigationUtils';
 
 import BrandImage from '../../../assets/SVG/logo.svg';
 import HeroImage from '../../../assets/PNG/hero/hero.jpg';
-import ProductImage from '../../../assets/PNG/products/product-1.png';
+import ProductImage from '../../../assets/PNG/products/product-1.jpg';
 
 // Define constants for class names and URLs
 const brandImageClass = 'w-28 h-18 md:w-40 md:h-24 lg:w-48 lg:h-32';
