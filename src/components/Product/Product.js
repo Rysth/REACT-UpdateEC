@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
+import { contactURL } from '../../utils/NavigationUtils';
 
 function Product(
   /* prettier-ignore */
@@ -12,11 +13,12 @@ function Product(
   },
 ) {
   return (
-    <motion.div
+    <motion.a
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, ease: 'easeInOut' }}
-      className="cursor-pointer"
+      href={contactURL}
+      target="_blank"
     >
       <picture className="rounded-lg p-2 bg-purple-600">
         <img
@@ -32,7 +34,7 @@ function Product(
           <p className="text-gray-500 line-through">{`$${discount}`}</p>
         </div>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
 

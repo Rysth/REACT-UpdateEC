@@ -1,10 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Product from '../../../components/Product/Product';
 
-function SearchSection() {
-  const { productsArray } = useSelector((store) => store.products);
-
+function SearchSection({ productsArray }) {
   return (
     productsArray && (
       <div className="">
@@ -39,5 +37,9 @@ function SearchSection() {
     )
   );
 }
+
+SearchSection.propTypes = {
+  productsArray: PropTypes.arrayOf.isRequired,
+};
 
 export default SearchSection;
