@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import BannerSection from '../Home/sections/BannerSection';
 import SearchSection from './sections/SearchSection';
+import BannerCarousel from '../../components/BannerCarousel/BannerCarousel';
 import { fetchCategories, fetchProducts } from '../../redux/products/productsSlice';
 
 function Products() {
@@ -15,8 +15,13 @@ function Products() {
   }, [dispatch]);
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
-      <BannerSection />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2 }}
+      className="container md:container mx-auto px-4 py-0 pb-4"
+    >
+      <BannerCarousel />
       <SearchSection filteredArray={filteredArray} categoriesArray={categoriesArray} />
     </motion.div>
   );

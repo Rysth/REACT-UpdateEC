@@ -57,6 +57,21 @@ const productsSlice = createSlice({
       state.categorySelected = state.categoriesArray.find((category) => category.id === ID);
       state.categorySelected = state.categorySelected.attributes.name;
     },
+    filterProductsByName(state, action) {
+      const name = action.payload;
+      state.categorySelected = 'Productos';
+      if (name === '') {
+        state.productsQuantity = state.productsArray.length;
+        state.filteredArray = state.productsArray;
+        return;
+      }
+      /* eslint-disable */
+      state.filteredArray = state.productsArray.filter((product) =>
+        product.attributes.name.toUpperCase().includes(name),
+      );
+      /* eslint-enable */
+      state.productsQuantity = state.filteredArray.length;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {

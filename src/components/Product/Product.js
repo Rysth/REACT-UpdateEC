@@ -20,7 +20,7 @@ function Product(
       href={contactURL}
       target="_blank"
     >
-      <picture className="rounded-lg p-2 bg-purple-700">
+      <picture className="rounded-lg p-1 md:p-2 bg-purple-700">
         <img
           className="rounded-lg object-contain"
           src={`http://localhost:1337${imageSource}`}

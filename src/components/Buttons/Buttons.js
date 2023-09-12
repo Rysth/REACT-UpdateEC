@@ -18,11 +18,11 @@ const buttonVariants = {
   },
   category: {
     className:
-      'bg-white md:block text-black py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-bold bg-cyan-400',
+      'bmd:block text-black py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-bold bg-cyan-400',
   },
   categoryActive: {
     className:
-      'bg-white md:block text-black py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-bold bg-violet-500',
+      'md:block text-black py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-bold bg-violet-500',
   },
 };
 

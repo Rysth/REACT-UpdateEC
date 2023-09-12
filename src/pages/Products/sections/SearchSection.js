@@ -13,15 +13,21 @@ function SearchSection({ filteredArray, categoriesArray }) {
     dispatch(productsActions.filterProductsByCategory(ID));
   };
 
+  const handleChange = (e) => {
+    const name = e.target.value.toUpperCase();
+    dispatch(productsActions.filterProductsByName(name));
+  };
+
   return (
     <div className="">
       <div className="container md:container mx-auto p-4 py-8">
-        <form action="/">
+        <form>
           <label htmlFor="search" className="grid gap-3">
             <span className="text-lg md:text-2xl lg:text-4xl text-center lg:text-left text-white">
               Buscar Productos:
             </span>
             <input
+              onChange={handleChange}
               placeholder="Escribir..."
               type="text"
               name="search"
