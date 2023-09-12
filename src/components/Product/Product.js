@@ -19,7 +19,11 @@ function Product(
       className="cursor-pointer"
     >
       <picture className="rounded-lg p-2 bg-purple-600">
-        <img className="rounded-lg object-contain" src={imageSource} alt="product" />
+        <img
+          className="rounded-lg object-contain"
+          src={`http://localhost:1337${imageSource}`}
+          alt="product"
+        />
       </picture>
       <div className="py-2">
         <h3 className="text-xs md:text-base text-white truncate font-bold">{title}</h3>

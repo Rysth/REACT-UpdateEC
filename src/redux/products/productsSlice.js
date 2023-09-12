@@ -1,16 +1,19 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-const fetchProducts = createAsyncThunk('fetch/fetchProducts', async (_, { rejectWithValue }) => {
-  try {
-    const response = await axios.get(
-      'http://localhost:1337/api/products?fields=name&fields=slug&fields=active&populate=values',
-    );
-    return response.data;
-  } catch (error) {
-    return rejectWithValue(error.message);
-  }
-});
+export const fetchProducts = createAsyncThunk(
+  'fetch/fetchProducts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        'http://localhost:1337/api/products?populate=values&populate=image&fields',
+      );
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
 const productsExists = JSON.parse(localStorage.getItem('productsArray'));
 
@@ -25,6 +28,7 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.productsArray = action.payload;
+      localStorage.setItem('producstArray', JSON.stringify(action.payload));
     });
   },
 });
