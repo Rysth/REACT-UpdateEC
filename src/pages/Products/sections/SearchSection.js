@@ -32,6 +32,7 @@ function SearchSection({ productsArray }) {
               />
             ))}
           </div>
+          z
         </div>
       </div>
     )
@@ -39,7 +40,7 @@ function SearchSection({ productsArray }) {
 }
 
 SearchSection.propTypes = {
-  productsArray: PropTypes.arrayOf.isRequired,
+  productsArray: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
 };
 
 export default SearchSection;

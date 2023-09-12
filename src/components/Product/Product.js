@@ -16,11 +16,11 @@ function Product(
     <motion.a
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: 'easeInOut' }}
+      whileHover={{ scale: 1.05 }}
       href={contactURL}
       target="_blank"
     >
-      <picture className="rounded-lg p-2 bg-purple-600">
+      <picture className="rounded-lg p-2 bg-purple-700">
         <img
           className="rounded-lg object-contain"
           src={`http://localhost:1337${imageSource}`}

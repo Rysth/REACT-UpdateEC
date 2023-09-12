@@ -28,7 +28,7 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.productsArray = action.payload;
-      localStorage.setItem('producstArray', JSON.stringify(action.payload));
+      localStorage.setItem('productsArray', JSON.stringify(action.payload));
     });
   },
 });
