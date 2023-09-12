@@ -30,7 +30,7 @@ function Product(
       <div className="py-2">
         <h3 className="text-xs md:text-base text-white truncate font-bold">{title}</h3>
         <div className="flex items-center gap-2 text-lg md:text-2xl">
-          <p className="text-white">{`$${price}`}</p>
+          <p className="text-white font-bold ff-nunito">{`$${price}`}</p>
           <p className="text-gray-500 line-through">{`$${discount}`}</p>
         </div>
       </div>

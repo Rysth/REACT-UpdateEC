@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Product from '../../../components/Product/Product';
+import Button from '../../../components/Buttons/Buttons';
 
-function SearchSection({ productsArray }) {
+function SearchSection({ productsArray, categoriesArray }) {
   return (
     productsArray && (
       <div className="">
@@ -17,11 +18,16 @@ function SearchSection({ productsArray }) {
                 type="text"
                 name="search"
                 id="search"
-                className="p-2 px-4 rounded-full lg:w-[40rem]"
+                className="p-2 px-4 rounded-full lg:w-[30rem] bg-white"
               />
             </label>
           </form>
-          <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 py-10 gap-5">
+          <div className="flex flex-wrap items-center gap-2 my-7 text-white">
+            {categoriesArray.map((category) => (
+              <Button key={category.id} text={category.attributes.name} variant="category" />
+            ))}
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 pb-10 gap-x-6 gap-y-1">
             {productsArray.map((product) => (
               <Product
                 key={product.id}
@@ -41,6 +47,7 @@ function SearchSection({ productsArray }) {
 
 SearchSection.propTypes = {
   productsArray: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
+  categoriesArray: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
 };
 
 export default SearchSection;

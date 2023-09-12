@@ -16,7 +16,10 @@ const buttonVariants = {
     className:
       'text-white md:block border-2 py-2 px-8 rounded-full md:hover:text-white md:hover:border-transparent md:hover:bg-[var(--CL-primary-purple)] text-xs md:text-base',
   },
-  // Add more variants here as needed
+  category: {
+    className:
+      'bg-white md:block text-black py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-bold bg-cyan-400',
+  },
 };
 
 function Button({ text, variant, onClickFunc }) {
@@ -26,7 +29,7 @@ function Button({ text, variant, onClickFunc }) {
   return (
     <motion.button
       initial={{ scale: 1 }}
-      whileHover={{ scale: 1.15 }}
+      whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       transition={{ ease: 'linear', type: 'spring', duration: 0.5 }}
       type="button"
