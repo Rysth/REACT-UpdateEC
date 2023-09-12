@@ -33,7 +33,7 @@ function BannerSection() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 2, delay: 1, type: 'linear' }}
+      transition={{ duration: 2, type: 'linear' }}
       className="container md:container mx-auto px-4 py-0 pb-4"
     >
       <Subheading subtitle="Productos" title="Nuestras Promociones" />

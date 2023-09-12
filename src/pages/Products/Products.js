@@ -6,18 +6,18 @@ import SearchSection from './sections/SearchSection';
 import { fetchCategories, fetchProducts } from '../../redux/products/productsSlice';
 
 function Products() {
-  const { productsArray, categoriesArray } = useSelector((store) => store.products);
+  const { categoriesArray, filteredArray } = useSelector((store) => store.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (productsArray.length === 0) dispatch(fetchProducts());
-    if (categoriesArray.length === 0) dispatch(fetchCategories());
-  }, [dispatch, productsArray.length, categoriesArray.length]);
+    dispatch(fetchProducts());
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
       <BannerSection />
-      <SearchSection productsArray={productsArray} categoriesArray={categoriesArray} />
+      <SearchSection filteredArray={filteredArray} categoriesArray={categoriesArray} />
     </motion.div>
   );
 }
