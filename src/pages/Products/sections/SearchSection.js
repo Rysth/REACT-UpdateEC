@@ -32,7 +32,7 @@ function SearchSection({ filteredArray, categoriesArray }) {
               type="text"
               name="search"
               id="search"
-              className="p-2 px-4 rounded-full lg:w-[45rem] bg-white"
+              className="p-2 px-4 rounded-full lg:w-[45rem] bg-white text-sm md:text-base"
             />
           </label>
         </form>
@@ -64,6 +64,7 @@ function SearchSection({ filteredArray, categoriesArray }) {
               title={product.attributes.name}
               price={product.attributes.values.price}
               discount={product.attributes.values.originalPrice}
+              link={product.attributes.values.link}
             />
           ))}
         </div>

@@ -79,11 +79,11 @@ const productsSlice = createSlice({
       state.filteredArray = action.payload;
       state.categorySelected = 'Productos';
       state.productsQuantity = state.productsArray.length;
-      localStorage.setItem('productsArray', JSON.stringify(action.payload));
+      /* localStorage.setItem('productsArray', JSON.stringify(action.payload)); */
     });
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
       state.categoriesArray = action.payload;
-      localStorage.setItem('categoriesArray', JSON.stringify(action.payload));
+      /* localStorage.setItem('categoriesArray', JSON.stringify(action.payload)); */
     });
   },
 });

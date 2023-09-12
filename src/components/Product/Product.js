@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import { contactURL } from '../../utils/NavigationUtils';
 
 function Product(
   /* prettier-ignore */
@@ -10,6 +9,7 @@ function Product(
     title,
     price,
     discount,
+    link,
   },
 ) {
   return (
@@ -17,7 +17,7 @@ function Product(
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.05 }}
-      href={contactURL}
+      href={link}
       target="_blank"
     >
       <picture className="rounded-lg p-1 md:p-2 bg-purple-700">
@@ -43,6 +43,7 @@ Product.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   discount: PropTypes.number.isRequired,
+  link: PropTypes.string.isRequired,
 };
 
 export default Product;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import BannerOne from '../../assets/PNG/banner/banner_1.jpg';
-import BannerTwo from '../../assets/PNG/banner/banner_2.png';
+import BannerTwo from '../../assets/PNG/banner/banner_2.jpg';
 
 const imagesArray = [BannerOne, BannerTwo];
 
