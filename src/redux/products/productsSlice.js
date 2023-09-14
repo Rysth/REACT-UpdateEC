@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { API_URL } from '../../utils/NavigationUtils';
 
 export const fetchProducts = createAsyncThunk(
   'fetch/fetchProducts',
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        'http://localhost:1337/api/products?populate=values&populate=image&populate=category',
+        `${API_URL}/api/products?populate=values&populate=image&populate=category`,
       );
       return response.data.data;
     } catch (error) {
@@ -19,16 +20,13 @@ export const fetchCategories = createAsyncThunk(
   'fetch/fetchCategories',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:1337/api/categories?fields=name');
+      const response = await axios.get(`${API_URL}/api/categories?fields=name`);
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   },
 );
-
-/* const productsExists = JSON.parse(localStorage.getItem('productsArray'));
-const categoriesExists = JSON.parse(localStorage.getItem('categoriesArray')); */
 
 const initialState = {
   productsArray: [],
@@ -79,11 +77,9 @@ const productsSlice = createSlice({
       state.filteredArray = action.payload;
       state.categorySelected = 'Productos';
       state.productsQuantity = state.productsArray.length;
-      /* localStorage.setItem('productsArray', JSON.stringify(action.payload)); */
     });
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
       state.categoriesArray = action.payload;
-      /* localStorage.setItem('categoriesArray', JSON.stringify(action.payload)); */
     });
   },
 });

@@ -21,11 +21,7 @@ function Product(
       target="_blank"
     >
       <picture className="rounded-lg p-1 md:p-2 bg-purple-700">
-        <img
-          className="rounded-lg object-contain"
-          src={`http://localhost:1337${imageSource}`}
-          alt="product"
-        />
+        <img className="rounded-lg object-contain" src={`${imageSource}`} alt="product" />
       </picture>
       <div className="py-2">
         <h3 className="text-xs md:text-base text-white truncate font-bold">{title}</h3>
