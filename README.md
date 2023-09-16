@@ -60,8 +60,11 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+
 ### 🚀 Live Demo <a name="live-demo"></a>
 
+![288shots_so](https://github.com/Rysth/REACT-UpdateEC/assets/115722896/659bd853-d80b-4a71-a387-c55f63207fb0)
 - [Live Demo](https://react-updateec.onrender.com/)
 
 ## 💻 Getting Started <a name="getting-started"></a>
