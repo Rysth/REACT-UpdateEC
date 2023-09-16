@@ -26,30 +26,43 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 REACT PROJECT NAME <a name="about-project"></a>
+# 📖 UpdateEC <a name="about-project"></a>
 
-- **REACT PROJECT NAME** ...
+- **UpdateEC** is a simple eCommerce website for a technologic unipersonal company, where we can know a more about them and also take a look at the products that they offer to the customers, search them by name and by category. Built with React, Redux Toolkit, Strapi, Tailwind CSS.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
+- FRONT END
+
 - ✅ [HTML](https://www.w3schools.com/html/)
 - ✅ [CSS](https://www.w3schools.com/css/)
 - ✅ [JavaScript](https://www.w3schools.com/js/)
 - ✅ [React](https://react.dev/)
+- ✅ [TailwindCSS](https://tailwindcss.com/)
+- ✅ [Framer Motion](https://www.framer.com/motion/)
+- ✅ [React Multi Carousel](https://www.npmjs.com/package/react-multi-carousel)
+
+- BACKEND
+
+- ✅ [Headless CMS | Strapi](https://strapi.io/)
+- ✅ [PaaS | Koyeb](https://www.koyeb.com/)
+- ✅ [PaaS | Fl0](https://fl0.com/)
 
 ### Key Features <a name="key-features"></a>
 
-- 🔰 Feature 1
-- 🔰 Feature 2
-- 🔰 Feature 3
+- 🔰 Beautiful Landing Page using TailwindCSS.
+- 🔰 Good-looking Animations using Framer Motion Library.
+- 🔰 Products Management using Redux Toolkit.
+- 🔰 Search and filter Products by Name or Category.
+- 🔰 Use Strapi Public's API to manage the Products information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo](https://react-bookstore-2060.onrender.com/)
+- [Live Demo](https://react-updateec.onrender.com/)
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
@@ -60,8 +73,8 @@ To get a local copy up and running, follow these steps.
 Clone this repository to your desired folder:
 
 ```
-git clone https://github.com/Rysth/REACT-Template.git
-cd REACT-Template
+git clone https://github.com/Rysth/REACT-UpdateEC.git
+cd REACT-UpdateEC
 code . (To open VS Code Editor)
 ```
 
@@ -109,9 +122,9 @@ _Use at the end '--fix' to help you out with any error._
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] Future Feature 1
-- [ ] Future Feature 2
-- [ ] Future Feature 3
+- [ ] Migrate the Strapi/Postgres Database to Railway.
+- [ ] Implement a better filter system for the Products Page.
+- [ ] Create a Details page to see a specific product information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -132,8 +145,7 @@ as well.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank the Microverse Team for reviewing my code and making me a better
-professional.
+I would like to thank the [Nait Creative](https://www.figma.com/@Naitcreative) for providing me with a landing page design to get inspiration for the design.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
