@@ -33,11 +33,11 @@ function SearchSection({ filteredArray, categoriesArray }) {
   };
 
   return (
-    <div className="">
-      <div className="container p-4 py-8 mx-auto md:container">
+    <div className="xl:h-[1400px] relative">
+      <div className="container h-full p-4 py-8 mx-auto md:container">
         <form>
           <label htmlFor="search" className="grid gap-3">
-            <span className="text-lg text-center text-white md:text-2xl lg:text-4xl lg:text-left">
+            <span className="text-xl font-bold text-center text-white md:text-2xl lg:text-4xl lg:text-left">
               Buscar Productos:
             </span>
             <input
@@ -46,31 +46,34 @@ function SearchSection({ filteredArray, categoriesArray }) {
               type="text"
               name="search"
               id="search"
-              className="p-2 px-4 rounded-full lg:w-[45rem] bg-white text-sm md:text-base"
+              className="p-2 px-4 text-sm bg-white rounded-full md:text-base"
             />
           </label>
         </form>
-        <div className="flex flex-wrap items-center gap-2 text-white my-7">
-          <Button
-            text="Todos"
-            variant="categoryActive"
-            onClickFunc={() => {
-              handleFilterByCategory(5);
-            }}
-          />
-          {categoriesArray.map((category) => (
+        <div className="flex flex-col items-center md:flex-row md:justify-between">
+          <div className="flex flex-wrap items-center gap-2 text-white my-7">
             <Button
-              key={category.id}
-              text={category.attributes.name}
-              variant="category"
+              text="Todos"
+              variant="categoryActive"
               onClickFunc={() => {
-                handleFilterByCategory(category.id);
+                handleFilterByCategory(5);
               }}
             />
-          ))}
+            {categoriesArray.map((category) => (
+              <Button
+                key={category.id}
+                text={category.attributes.name}
+                variant="category"
+                onClickFunc={() => {
+                  handleFilterByCategory(category.id);
+                }}
+              />
+            ))}
+          </div>
+          <h3 className="hidden text-xl text-center text-white">{`${categorySelected} (${productsQuantity})`}</h3>
         </div>
-        <h3 className="text-xl text-center text-white">{`${categorySelected} (${productsQuantity})`}</h3>
-        <div className="grid grid-cols-2 py-10 md:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-1">
+
+        <div className="grid grid-cols-2 py-10 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-1">
           {currentProducts.map((product) => (
             <Product
               key={product.id}

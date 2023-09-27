@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import SearchSection from './sections/SearchSection';
-import BannerCarousel from '../../components/BannerCarousel/BannerCarousel';
 import {
   fetchCategories,
   fetchProducts,
@@ -24,9 +23,8 @@ function Products() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
-      className="container px-4 py-0 pb-4 mx-auto md:container"
+      className="relative h-full"
     >
-      <BannerCarousel />
       <SearchSection
         filteredArray={filteredArray}
         categoriesArray={categoriesArray}

@@ -16,12 +16,19 @@ function Pagination({ quantity, total, handlePaginate }) {
   };
 
   return (
-    <div className="bg-white">
-      <p>{`Active Page: ${activePage}`}</p>
-      <ul className="flex justify-center">
+    <div className="absolute bottom-0 left-0 w-full">
+      <p className="hidden text-white text-end">{`Active Page: ${activePage}`}</p>
+      <ul className="flex justify-center gap-2">
         {pageNumbers.map((number) => (
-          <li key={number} className="w-10 h-10 bg-white">
-            <button type="button" onClick={() => handlePageClick(number)}>
+          <li
+            key={number}
+            className="grid rounded bg-violet-600 md:active:scale-90 md:hover:bg-white place-items-center"
+          >
+            <button
+              type="button"
+              className="w-10 h-10 font-bold"
+              onClick={() => handlePageClick(number)}
+            >
               {number}
             </button>
           </li>

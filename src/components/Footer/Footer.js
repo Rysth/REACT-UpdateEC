@@ -9,35 +9,35 @@ function Footer() {
       initial={{ opacity: 0, y: 500 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 2, type: 'spring' }}
-      className="footer bg-white"
+      className="bg-white footer"
     >
-      <div className="container md:container mx-auto mt-10 md:mt-20 p-4 py-8 md:py-32 md:pb-16">
+      <div className="container p-4 py-8 mx-auto mt-10 md:container md:py-32 md:pb-16">
         <div className="flex flex-wrap gap-10 lg:gap-20 2xl:justify-between">
-          <div className="bg-black w-40 md:w-60 p-2 px-6 md:py-4 rounded-lg">
+          <div className="w-40 p-2 px-6 bg-black rounded-lg md:w-60 md:py-4">
             <Link to="/" className="w">
               <img className="w-full h-full" src={Logo} alt="" />
             </Link>
           </div>
-          <ul className="flex flex-col p-0 gap-2">
-            <li className="text-sm md:text-base mb-2">
+          <ul className="flex flex-col gap-2 p-0">
+            <li className="mb-2 text-sm md:text-base">
               <h3 className="font-bold">Términos y Condiciones</h3>
             </li>
-            <li className="text-xs md:text-base text-gray-900">
+            <li className="text-xs text-gray-900 md:text-base">
               <a href="/" className="md:hover:underline">
                 Términos de Servicio
               </a>
             </li>
-            <li className="text-xs md:text-base text-gray-900">
+            <li className="text-xs text-gray-900 md:text-base">
               <a href="/" className="md:hover:underline">
                 Política de Privacidad
               </a>
             </li>
           </ul>
-          <ul className="flex flex-col p-0 gap-2">
-            <li className="text-sm md:text-base mb-2">
+          <ul className="flex flex-col gap-2 p-0">
+            <li className="mb-2 text-sm md:text-base">
               <h3 className="font-bold">Contactos</h3>
             </li>
-            <li className="text-xs md:text-base text-gray-900">
+            <li className="text-xs text-gray-900 md:text-base">
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -47,7 +47,7 @@ function Footer() {
                 (+593) 0984798317
               </a>
             </li>
-            <li className="text-xs md:text-base text-gray-900">
+            <li className="text-xs text-gray-900 md:text-base">
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -58,31 +58,31 @@ function Footer() {
               </a>
             </li>
           </ul>
-          <ul className="flex flex-col p-0 gap-2">
-            <li className="text-sm md:text-base mb-2">
+          <ul className="flex flex-col gap-2 p-0">
+            <li className="mb-2 text-sm md:text-base">
               <h3 className="font-bold">Compañia</h3>
             </li>
-            <li className="text-xs md:text-base text-gray-900">
+            <li className="text-xs text-gray-900 md:text-base">
               <a href="/" className="md:hover:underline">
                 Inicio
               </a>
             </li>
-            <li className="text-xs md:text-base text-gray-900">
+            <li className="text-xs text-gray-900 md:text-base">
               <a href="/" className="md:hover:underline">
                 Nosotros
               </a>
             </li>
-            <li className="text-xs md:text-base text-gray-900">
+            <li className="text-xs text-gray-900 md:text-base">
               <a href="/" className="md:hover:underline">
                 Contáctanos
               </a>
             </li>
           </ul>
-          <ul className="flex flex-col p-0 gap-2">
-            <li className="text-sm md:text-base mb-2">
+          <ul className="flex flex-col gap-2 p-0">
+            <li className="mb-2 text-sm md:text-base">
               <h3 className="font-bold">Redes Sociales</h3>
             </li>
-            <li className="text-xs md:text-base text-gray-900">
+            <li className="text-xs text-gray-900 md:text-base">
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -94,15 +94,15 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="text-xs md:text-sm text-black flex gap-2 mt-24 justify-center">
+        <div className="flex justify-center gap-2 mt-24 text-xs text-black md:text-sm">
           <a
             href="https://github.com/Rysth"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold md:hover:-translate-y-2 transition duration-300"
+            className="font-bold transition duration-300 md:hover:-translate-y-2"
           >
             RysthCraft
-            <i className="fa-brands fa-github ml-1" />
+            <i className="ml-1 fa-brands fa-github" />
           </a>
           <p>| Todos los Derechos Reservados</p>
         </div>
