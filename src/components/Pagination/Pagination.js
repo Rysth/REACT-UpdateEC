@@ -1,39 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import ReactPaginate from 'react-paginate';
 
 function Pagination({ quantity, total, handlePaginate }) {
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(total / quantity); i += 1) {
-    pageNumbers.push(i);
-  }
-
-  const [activePage, setActivePage] = useState(1);
-
-  const handlePageClick = (page) => {
-    setActivePage(page);
-    handlePaginate(page);
-  };
+  const totalPages = Math.ceil(total / quantity);
 
   return (
-    <div className="absolute bottom-0 left-0 w-full">
-      <p className="hidden text-white text-end">{`Active Page: ${activePage}`}</p>
-      <ul className="flex justify-center gap-2">
-        {pageNumbers.map((number) => (
-          <li
-            key={number}
-            className="grid rounded bg-violet-600 md:active:scale-90 md:hover:bg-white place-items-center"
-          >
-            <button
-              type="button"
-              className="w-10 h-10 font-bold"
-              onClick={() => handlePageClick(number)}
-            >
-              {number}
-            </button>
-          </li>
-        ))}
-      </ul>
+    <div className="absolute bottom-0 left-0 w-full ">
+      <ReactPaginate
+        pageCount={totalPages}
+        onPageChange={(data) => handlePaginate(data.selected + 1)}
+        className="container flex items-center justify-center max-w-screen-lg gap-1 mx-auto text-white"
+        previousLabel=""
+        nextLabel=""
+        pageLinkClassName="w-10 h-10 grid place-items-center outline outline-1 outline-gray-500 font-semibold"
+        activeClassName="  bg-violet-600 outline-transparent"
+      />
     </div>
   );
 }

@@ -2,13 +2,18 @@ import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { API_URL } from '../../utils/NavigationUtils';
 
+// Define async thunks
 export const fetchProducts = createAsyncThunk(
   'fetch/fetchProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/products?fields=name&populate=values&populate=image&populate=category&filters[active][$eq]=true`,
-      );
+      const response = await axios.get(`${API_URL}/api/products`, {
+        params: {
+          fields: 'name',
+          populate: 'values,image,category',
+          'filters[active][$eq]': true,
+        },
+      });
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -20,16 +25,18 @@ export const fetchCategories = createAsyncThunk(
   'fetch/fetchCategories',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/categories?fields=name&filters[active][$eq]=true`,
-      );
+      const response = await axios.get(`${API_URL}/api/categories`, {
+        params: {
+          fields: ['id', 'name'],
+          'filters[active][$eq]': true,
+        },
+      });
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   },
 );
-
 const initialState = {
   productsArray: [],
   productsQuantity: 0,

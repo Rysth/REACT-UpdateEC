@@ -9,13 +9,13 @@ import {
 
 function Products() {
   const { categoriesArray, filteredArray } = useSelector(
-    (store) => store.products,
+    (state) => state.products,
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts());
-    dispatch(fetchCategories());
+    // Fetch products and categories in parallel using Promise.all
+    Promise.all([dispatch(fetchProducts()), dispatch(fetchCategories())]);
   }, [dispatch]);
 
   return (

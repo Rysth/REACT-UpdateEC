@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 
 function Product(
@@ -12,12 +11,11 @@ function Product(
   },
 ) {
   return (
-    <motion.a
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.05 }}
+    <a
       href={link}
       target="_blank"
+      rel="noreferrer"
+      className="transition-transform duration-100 lg:hover:scale-105"
     >
       <picture className="p-1 bg-purple-700 rounded-lg md:p-2">
         <img
@@ -34,7 +32,7 @@ function Product(
           <p className="font-bold text-white ff-nunito">{`$${price}`}</p>
         </div>
       </div>
-    </motion.a>
+    </a>
   );
 }
 

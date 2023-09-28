@@ -9,18 +9,38 @@ function Footer() {
       transition={{ duration: 2, type: 'spring' }}
       className="bg-white footer"
     >
-      <div className="container max-w-screen-xl p-4 py-8 mx-auto mt-10 md:py-28 md:pb-16">
+      <div className="container max-w-screen-xl p-4 py-8 mx-auto mt-10 md:py-24 md:pb-16">
         <div className="flex flex-wrap gap-10 lg:gap-20 2xl:justify-between">
+          <ul className="flex flex-col gap-2 p-0">
+            <li className="mb-2 text-sm md:text-base">
+              <h3 className="font-bold">Compañia</h3>
+            </li>
+            <li className="text-xs text-gray-900 md:text-sm">
+              <a href="/" className="md:hover:underline">
+                Inicio
+              </a>
+            </li>
+            <li className="text-xs text-gray-900 md:text-sm">
+              <a href="/" className="md:hover:underline">
+                Nosotros
+              </a>
+            </li>
+            <li className="text-xs text-gray-900 md:text-sm">
+              <a href="/" className="md:hover:underline">
+                Contáctanos
+              </a>
+            </li>
+          </ul>
           <ul className="flex flex-col gap-2 p-0">
             <li className="mb-2 text-sm md:text-base">
               <h3 className="font-bold">Términos y Condiciones</h3>
             </li>
-            <li className="text-xs text-gray-900 md:text-base">
+            <li className="text-xs text-gray-900 md:text-sm">
               <a href="/" className="md:hover:underline">
                 Términos de Servicio
               </a>
             </li>
-            <li className="text-xs text-gray-900 md:text-base">
+            <li className="text-xs text-gray-900 md:text-sm">
               <a href="/" className="md:hover:underline">
                 Política de Privacidad
               </a>
@@ -30,7 +50,7 @@ function Footer() {
             <li className="mb-2 text-sm md:text-base">
               <h3 className="font-bold">Contactos</h3>
             </li>
-            <li className="text-xs text-gray-900 md:text-base">
+            <li className="text-xs text-gray-900 md:text-sm">
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -40,7 +60,7 @@ function Footer() {
                 (+593) 0984798317
               </a>
             </li>
-            <li className="text-xs text-gray-900 md:text-base">
+            <li className="text-xs text-gray-900 md:text-sm">
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -51,31 +71,12 @@ function Footer() {
               </a>
             </li>
           </ul>
-          <ul className="flex flex-col gap-2 p-0">
-            <li className="mb-2 text-sm md:text-base">
-              <h3 className="font-bold">Compañia</h3>
-            </li>
-            <li className="text-xs text-gray-900 md:text-base">
-              <a href="/" className="md:hover:underline">
-                Inicio
-              </a>
-            </li>
-            <li className="text-xs text-gray-900 md:text-base">
-              <a href="/" className="md:hover:underline">
-                Nosotros
-              </a>
-            </li>
-            <li className="text-xs text-gray-900 md:text-base">
-              <a href="/" className="md:hover:underline">
-                Contáctanos
-              </a>
-            </li>
-          </ul>
+
           <ul className="flex flex-col gap-2 p-0">
             <li className="mb-2 text-sm md:text-base">
               <h3 className="font-bold">Redes Sociales</h3>
             </li>
-            <li className="text-xs text-gray-900 md:text-base">
+            <li className="text-xs text-gray-900 md:text-sm">
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -87,7 +88,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="flex justify-center gap-2 mt-24 text-xs text-black md:text-sm">
+        <div className="flex justify-center gap-2 mt-16 text-xs text-black md:text-sm">
           <a
             href="https://github.com/Rysth"
             target="_blank"

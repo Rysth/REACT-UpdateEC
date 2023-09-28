@@ -33,7 +33,7 @@ function SearchSection({ filteredArray, categoriesArray }) {
   };
 
   return (
-    <div className="xl:h-[1250px] relative">
+    <div className="min-h-[1250px]  relative">
       <div className="container h-full max-w-screen-xl p-4 py-8 mx-auto">
         <form>
           <label htmlFor="search" className="grid gap-3">
@@ -55,18 +55,14 @@ function SearchSection({ filteredArray, categoriesArray }) {
             <Button
               text="Todos"
               variant="categoryActive"
-              onClickFunc={() => {
-                handleFilterByCategory(5);
-              }}
+              onClickFunc={() => handleFilterByCategory(5)}
             />
             {categoriesArray.map((category) => (
               <Button
                 key={category.id}
                 text={category.attributes.name}
                 variant="category"
-                onClickFunc={() => {
-                  handleFilterByCategory(category.id);
-                }}
+                onClickFunc={() => handleFilterByCategory(category.id)}
               />
             ))}
           </div>
