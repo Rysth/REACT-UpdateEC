@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Logo from '../../assets/SVG/logo.svg';
 
 function Footer() {
   return (
@@ -11,13 +9,8 @@ function Footer() {
       transition={{ duration: 2, type: 'spring' }}
       className="bg-white footer"
     >
-      <div className="container p-4 py-8 mx-auto mt-10 md:container md:py-32 md:pb-16">
+      <div className="container max-w-screen-xl p-4 py-8 mx-auto mt-10 md:py-28 md:pb-16">
         <div className="flex flex-wrap gap-10 lg:gap-20 2xl:justify-between">
-          <div className="w-40 p-2 px-6 bg-black rounded-lg md:w-60 md:py-4">
-            <Link to="/" className="w">
-              <img className="w-full h-full" src={Logo} alt="" />
-            </Link>
-          </div>
           <ul className="flex flex-col gap-2 p-0">
             <li className="mb-2 text-sm md:text-base">
               <h3 className="font-bold">Términos y Condiciones</h3>
