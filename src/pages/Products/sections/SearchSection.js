@@ -33,8 +33,8 @@ function SearchSection({ filteredArray, categoriesArray }) {
   };
 
   return (
-    <div className="xl:h-[1400px] relative">
-      <div className="container h-full p-4 py-8 mx-auto md:container">
+    <div className="xl:h-[1250px] relative">
+      <div className="container h-full max-w-screen-xl p-4 py-8 mx-auto">
         <form>
           <label htmlFor="search" className="grid gap-3">
             <span className="text-xl font-bold text-center text-white md:text-2xl lg:text-4xl lg:text-left">
@@ -82,7 +82,6 @@ function SearchSection({ filteredArray, categoriesArray }) {
               }
               title={product.attributes.name}
               price={product.attributes.values.price}
-              discount={product.attributes.values.originalPrice}
               link={product.attributes.values.link}
             />
           ))}

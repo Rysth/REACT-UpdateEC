@@ -7,7 +7,7 @@ export const fetchProducts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${API_URL}/api/products?populate=values&populate=image&populate=category&filters[active][$eq]=true`,
+        `${API_URL}/api/products?fields=name&populate=values&populate=image&populate=category&filters[active][$eq]=true`,
       );
       return response.data.data;
     } catch (error) {
@@ -54,7 +54,9 @@ const productsSlice = createSlice({
         (product) => product.attributes.category.data.id === ID,
       );
       state.productsQuantity = state.filteredArray.length;
-      state.categorySelected = state.categoriesArray.find((category) => category.id === ID);
+      state.categorySelected = state.categoriesArray.find(
+        (category) => category.id === ID,
+      );
       state.categorySelected = state.categorySelected.attributes.name;
     },
     filterProductsByName(state, action) {
