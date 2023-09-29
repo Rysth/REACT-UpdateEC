@@ -26,7 +26,7 @@
   --CL-primary-purple: #8f00ff;
   --CL-primary-cyan: #47e9ff;
   --CL-neutral-white: #fff;
-  --CL-neutral-black: #0d0d0d;
+  --CL-neutral-black: #0a0a0a;
   --FF-nunito: 'Nunito', sans-serif;
   --FF-quicksan: 'Quicksand', sans-serif;
   --FF-poppins: 'Poppins', sans-serif;
@@ -50,7 +50,7 @@ body {
 
 body {
   font-family: var(--FF-poppins);
-  background-color: #000;
+  background-color: var(--CL-neutral-black);
 }
 
 h1,

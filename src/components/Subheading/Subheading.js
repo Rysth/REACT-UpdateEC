@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 function Subheading({ subtitle, title }) {
   return (
-    <header className="text-white text-center">
-      <p className="text-sm md:text-lg font-light">{subtitle}</p>
-      <h2 className="text-xl md:text-4xl my-1 font-bold">{title}</h2>
+    <header className="text-center text-white">
+      <p className="text-base font-light md:text-2xl">{subtitle}</p>
+      <h2 className="my-1 text-2xl font-bold md:text-5xl">{title}</h2>
     </header>
   );
 }

@@ -6,23 +6,23 @@ import { motion } from 'framer-motion';
 const buttonVariants = {
   primary: {
     className:
-      'hidden text-white md:block border-2 py-2 px-8 rounded-full md:hover:text-black md:hover:border-transparent md:hover:bg-[var(--CL-primary-cyan)] text-xs md:text-base',
+      'hidden text-white md:block border-2 py-2 px-7 rounded-full md:hover:text-black md:hover:border-transparent md:hover:bg-[var(--CL-primary-cyan)] text-xs md:text-sm',
   },
   secondary: {
     className:
-      'border-2 py-2 px-8 bg-[var(--CL-neutral-white)] text-black rounded-full md:hover:text-black md:hover:border-transparent md:hover:bg-[var(--CL-primary-cyan)] text-xs md:text-base',
+      'border-2 py-2 px-7 bg-[var(--CL-neutral-white)] text-black rounded-full md:hover:text-black md:hover:border-transparent md:hover:bg-[var(--CL-primary-cyan)] text-xs md:text-sm',
   },
   light: {
     className:
-      'text-white md:block border-2 py-2 px-8 rounded-full md:hover:text-white md:hover:border-transparent md:hover:bg-[var(--CL-primary-purple)] text-xs md:text-base',
+      'text-white md:block border-2 py-2 px-7 rounded-full md:hover:text-white md:hover:border-transparent md:hover:bg-[var(--CL-primary-purple)] text-xs md:text-sm',
   },
   category: {
     className:
-      'bmd:block text-black py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-bold bg-cyan-400',
+      'bmd:block text-black py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-semibold bg-cyan-400',
   },
   categoryActive: {
     className:
-      'md:block text-black py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-bold bg-violet-500',
+      'md:block  py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-semibold text-white bg-purple-600 md:hover:text-black',
   },
 };
 

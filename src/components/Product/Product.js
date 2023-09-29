@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 
 function Product(
@@ -8,29 +7,32 @@ function Product(
     imageSource,
     title,
     price,
-    discount,
     link,
   },
 ) {
   return (
-    <motion.a
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.05 }}
+    <a
       href={link}
       target="_blank"
+      rel="noreferrer"
+      className="transition-transform duration-100 lg:hover:scale-105"
     >
-      <picture className="rounded-lg p-1 md:p-2 bg-purple-700">
-        <img className="rounded-lg object-contain" src={`${imageSource}`} alt="product" />
+      <picture className="p-1 bg-purple-700 rounded-lg md:p-2">
+        <img
+          className="object-contain rounded-lg"
+          src={`${imageSource}`}
+          alt="product"
+        />
       </picture>
       <div className="py-2">
-        <h3 className="text-xs md:text-base text-white truncate font-bold">{title}</h3>
-        <div className="flex items-center gap-2 text-lg md:text-2xl">
-          <p className="text-white font-bold ff-nunito">{`$${price}`}</p>
-          <p className="text-gray-500 line-through">{`$${discount}`}</p>
+        <h3 className="text-xs font-bold text-white truncate md:text-sm">
+          {title}
+        </h3>
+        <div className="flex items-center gap-2 text-lg md:text-xl">
+          <p className="font-bold text-white ff-nunito">{`$${price}`}</p>
         </div>
       </div>
-    </motion.a>
+    </a>
   );
 }
 
@@ -38,7 +40,6 @@ Product.propTypes = {
   imageSource: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  discount: PropTypes.number.isRequired,
   link: PropTypes.string.isRequired,
 };
 

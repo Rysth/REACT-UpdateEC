@@ -1,17 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
+import { Carousel } from '@material-tailwind/react';
+import BannerImageOne from '../../assets/PNG/banner/banner_1.jpg';
+import BannerImageTwo from '../../assets/PNG/banner/banner_2.jpg';
 import SearchSection from './sections/SearchSection';
-import BannerCarousel from '../../components/BannerCarousel/BannerCarousel';
-import { fetchCategories, fetchProducts } from '../../redux/products/productsSlice';
+import {
+  fetchCategories,
+  fetchProducts,
+} from '../../redux/products/productsSlice';
 
 function Products() {
-  const { categoriesArray, filteredArray } = useSelector((store) => store.products);
+  const { categoriesArray, filteredArray } = useSelector(
+    (state) => state.products,
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts());
-    dispatch(fetchCategories());
+    // Fetch products and categories in parallel using Promise.all
+    Promise.all([dispatch(fetchProducts()), dispatch(fetchCategories())]);
   }, [dispatch]);
 
   return (
@@ -19,10 +26,28 @@ function Products() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
-      className="container md:container mx-auto px-4 py-0 pb-4"
     >
-      <BannerCarousel />
-      <SearchSection filteredArray={filteredArray} categoriesArray={categoriesArray} />
+      <Carousel
+        className="max-w-screen-xl lg:h-[570px] mx-auto backdrop-blur-xl"
+        autoplayDelay={5000}
+        autoplay
+        loop
+      >
+        <img
+          src={BannerImageOne}
+          alt=" 1"
+          className="object-contain w-full h-full lg:object-fill"
+        />
+        <img
+          src={BannerImageTwo}
+          alt=" 3"
+          className="object-contain w-full h-full lg:object-fill"
+        />
+      </Carousel>
+      <SearchSection
+        filteredArray={filteredArray}
+        categoriesArray={categoriesArray}
+      />
     </motion.div>
   );
 }
