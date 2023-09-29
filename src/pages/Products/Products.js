@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { Carousel } from '@material-tailwind/react';
-import ProductImage from '../../assets/PNG/banner/banner_1.jpg';
+import BannerImageOne from '../../assets/PNG/banner/banner_1.jpg';
+import BannerImageTwo from '../../assets/PNG/banner/banner_2.jpg';
 import SearchSection from './sections/SearchSection';
 import {
   fetchCategories,
@@ -33,12 +34,12 @@ function Products() {
         loop
       >
         <img
-          src={ProductImage}
+          src={BannerImageOne}
           alt=" 1"
           className="object-contain w-full h-full lg:object-fill"
         />
         <img
-          src={ProductImage}
+          src={BannerImageTwo}
           alt=" 3"
           className="object-contain w-full h-full lg:object-fill"
         />

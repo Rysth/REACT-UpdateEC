@@ -9,8 +9,8 @@ function Footer() {
       transition={{ duration: 2, type: 'spring' }}
       className="bg-white footer"
     >
-      <div className="container max-w-screen-xl p-4 py-8 mx-auto mt-10 md:py-24 md:pb-16">
-        <div className="flex flex-wrap gap-10 lg:gap-20 2xl:justify-between">
+      <div className="container max-w-screen-xl px-4 py-8 mx-auto mt-10 md:py-24 md:pb-16">
+        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4 ">
           <ul className="flex flex-col gap-2 p-0">
             <li className="mb-2 text-sm md:text-base">
               <h3 className="font-bold">Compañia</h3>
@@ -57,7 +57,8 @@ function Footer() {
                 href="tel:+593984798317"
                 className="md:hover:underline"
               >
-                (+593) 0984798317
+                <i className="mr-1 fa-brands fa-whatsapp" />
+                0984798317
               </a>
             </li>
             <li className="text-xs text-gray-900 md:text-sm">
@@ -67,6 +68,7 @@ function Footer() {
                 href="mailto:update.ec.gye@gmail.com"
                 className="md:hover:underline"
               >
+                <i className="mr-1 fa-regular fa-envelope" />
                 update.ec.gye@gmail.com
               </a>
             </li>
