@@ -25,7 +25,7 @@ function HeroSection() {
         >
           ¡Bienvenidos a UpdateEC!
         </motion.h1>
-        <p className="mx-auto my-5 text-sm text-center text-slate-300 md:my-6 md:mt-8 md:text-base md:w-full lg:w-3/4">
+        <p className="mx-auto my-5 text-sm text-center text-gray-400 md:my-6 md:mt-8 md:text-base md:w-full lg:w-3/4">
           El mejor lugar para comprar tus periféricos y componentes para tu PC.
         </p>
         <div className="w-full text-center">

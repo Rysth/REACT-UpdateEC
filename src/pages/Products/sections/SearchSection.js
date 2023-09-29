@@ -33,7 +33,7 @@ function SearchSection({ filteredArray, categoriesArray }) {
   };
 
   return (
-    <div className="min-h-[1250px]  relative">
+    <div className="min-h-[1150px]  relative">
       <div className="container h-full max-w-screen-xl p-4 py-8 mx-auto">
         <form>
           <label htmlFor="search" className="grid gap-3">

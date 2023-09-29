@@ -31,7 +31,7 @@ function AboutSection() {
           transition={{ duration: 2, delay: 1.25 }}
           className="grid gap-3"
         >
-          <p className="max-w-lg mx-auto my-3 text-sm leading-5 text-center lg:max-w-full lg:text-left text-slate-300 md:text-base">
+          <p className="max-w-lg mx-auto my-3 text-sm leading-5 text-center text-gray-400 lg:max-w-full lg:text-left md:text-base">
             En UpdateEC, nuestra tienda en línea, contamos con un equipo
             apasionado por la tecnología. Estamos aquí para asesorarte y
             ofrecerte la mejor experiencia de compra posible. Nuestro

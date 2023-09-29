@@ -22,7 +22,7 @@ const buttonVariants = {
   },
   categoryActive: {
     className:
-      'md:block text-black py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-semibold bg-purple-600',
+      'md:block  py-1.5 px-4 rounded-md md:hover:bg-white text-xs md:text-sm font-semibold text-white bg-purple-600 md:hover:text-black',
   },
 };
 
