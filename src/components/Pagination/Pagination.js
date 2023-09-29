@@ -14,7 +14,7 @@ function Pagination({ quantity, total, handlePaginate }) {
         previousLabel=""
         nextLabel=""
         pageLinkClassName="w-10 h-10 grid place-items-center outline outline-1 outline-gray-500 font-semibold"
-        activeClassName="  bg-purple-700 outline-transparent"
+        activeClassName="bg-purple-700 outline-transparent"
       />
     </div>
   );

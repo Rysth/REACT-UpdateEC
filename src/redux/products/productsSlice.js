@@ -11,6 +11,7 @@ export const fetchProducts = createAsyncThunk(
         params: {
           fields: 'name',
           populate: 'values,image,category',
+          'pagination[limit]': 60,
           'filters[active][$eq]': true,
         },
       });
@@ -57,9 +58,11 @@ const productsSlice = createSlice({
         state.productsQuantity = state.productsArray.length;
         return;
       }
+
       state.filteredArray = state.productsArray.filter(
-        (product) => product.attributes.category.data.id === ID,
+        (product) => product && product.attributes.category.data.id === ID,
       );
+
       state.productsQuantity = state.filteredArray.length;
       state.categorySelected = state.categoriesArray.find(
         (category) => category.id === ID,
