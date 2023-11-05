@@ -9,13 +9,13 @@ const routes = [
     id: 1,
     to: '/',
     text: 'Inicio',
-    icon: 'fa-solid fa-home w-7 md:hidden',
+    icon: 'fa-solid fa-home w-7 sm:hidden',
   },
   {
     id: 2,
     to: '/products',
     text: 'Productos',
-    icon: 'fa-solid fa-star w-7 md:hidden',
+    icon: 'fa-solid fa-star w-7 sm:hidden',
   },
 ];
 

@@ -1,8 +1,8 @@
 .active {
-  @apply bg-[var(--CL-neutral-black)] md:bg-transparent text-white rounded rounded-lg;
+  @apply bg-[var(--CL-neutral-black)] md:bg-transparent text-white rounded-md;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 540px) {
   .active {
     @apply text-[var(--CL-primary-cyan)] underline underline-offset-8 transition duration-300;
   }

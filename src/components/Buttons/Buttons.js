@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const buttonVariants = {
   primary: {
     className:
-      'hidden text-white md:block border-2 py-2 px-7 rounded-full md:hover:text-black md:hover:border-transparent md:hover:bg-[var(--CL-primary-cyan)] text-xs md:text-sm',
+      'hidden text-white sm:block border-2 py-2 px-7 rounded-full md:hover:text-black md:hover:border-transparent md:hover:bg-[var(--CL-primary-cyan)] text-xs sm:text-sm',
   },
   secondary: {
     className:
@@ -14,7 +14,7 @@ const buttonVariants = {
   },
   light: {
     className:
-      'text-white md:block border-2 py-2 px-7 rounded-full md:hover:text-white md:hover:border-transparent md:hover:bg-[var(--CL-primary-purple)] text-xs md:text-sm',
+      'text-white sm:block border-2 py-2 px-7 rounded-full md:hover:text-white md:hover:border-transparent md:hover:bg-[var(--CL-primary-purple)] text-xs md:text-sm',
   },
   category: {
     className:
