@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { productsActions } from '../../../redux/products/productsSlice';
 import Product from '../../../components/Product/Product';
-import Button from '../../../components/Buttons/Buttons';
 import Pagination from '../../../components/Pagination/Pagination';
 
 function SearchSection({ filteredArray, categoriesArray }) {
@@ -36,6 +35,11 @@ function SearchSection({ filteredArray, categoriesArray }) {
     setCurrentPage(pageNumber);
   };
 
+  useEffect(() => {
+    console.log(categoriesArray);
+    console.log(handleFilterByCategory());
+  });
+
   return (
     <div className="min-h-[1150px]  relative">
       <div className="container h-full max-w-screen-xl p-4 py-8 mx-auto">
@@ -56,7 +60,7 @@ function SearchSection({ filteredArray, categoriesArray }) {
         </form>
         <div className="flex flex-col items-center md:flex-row md:justify-between">
           <div className="flex flex-wrap items-center gap-2 text-white my-7">
-            <Button
+            {/*  <Button
               text="Todos"
               variant="categoryActive"
               onClickFunc={() => handleFilterByCategory(5)}
@@ -68,7 +72,7 @@ function SearchSection({ filteredArray, categoriesArray }) {
                 variant="category"
                 onClickFunc={() => handleFilterByCategory(category.id)}
               />
-            ))}
+            ))} */}
           </div>
           <h3 className="hidden text-xl text-center text-white">{`${categorySelected} (${productsQuantity})`}</h3>
         </div>
