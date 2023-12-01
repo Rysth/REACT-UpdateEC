@@ -15,13 +15,17 @@ function SearchSection({ filteredArray, categoriesArray }) {
     (store) => store.products,
   );
 
+  const returnToFirstPage = () => setCurrentPage(1);
+
   const handleFilterByCategory = (ID) => {
     dispatch(productsActions.filterProductsByCategory(ID));
+    returnToFirstPage();
   };
 
   const handleChange = (e) => {
     const name = e.target.value.toUpperCase();
     dispatch(productsActions.filterProductsByName(name));
+    returnToFirstPage();
   };
 
   const lastIndex = currentPage * productsPerPage;
