@@ -71,8 +71,8 @@ const productsSlice = createSlice({
     },
     filterProductsByName(state, action) {
       const name = action.payload;
-      state.categorySelected = 'Productos';
       if (name === '') {
+        state.categorySelected = 'Productos';
         state.productsQuantity = state.productsArray.length;
         state.filteredArray = state.productsArray;
         return;

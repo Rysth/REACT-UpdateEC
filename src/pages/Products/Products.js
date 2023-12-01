@@ -29,19 +29,19 @@ function Products() {
     >
       <Carousel
         className="max-w-screen-xl lg:h-[570px] mx-auto backdrop-blur-xl"
-        autoplayDelay={5000}
+        transition={{ type: 'tween', duration: 1.5 }}
         autoplay
         loop
       >
         <img
           src={BannerImageOne}
           alt=" 1"
-          className="object-contain w-full h-full lg:object-fill"
+          className="object-contain w-full h-full"
         />
         <img
           src={BannerImageTwo}
-          alt=" 3"
-          className="object-contain w-full h-full lg:object-fill"
+          alt="2"
+          className="object-contain w-full h-full"
         />
       </Carousel>
       <SearchSection
