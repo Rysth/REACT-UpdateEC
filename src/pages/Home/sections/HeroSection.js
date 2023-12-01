@@ -1,12 +1,18 @@
-import HeroImage from '../../../assets/PNG/hero/hero.jpg';
+import HeroImage from '../../../assets/PNG/hero/hero_1.png';
+import CharacterImage from '../../../assets/PNG/characters/character_2.png';
 
 function HeroSection() {
   return (
-    <section className="relative text-white ">
+    <section className="relative overflow-hidden text-white">
       <img
-        className="absolute inset-0 object-cover object-center w-full h-full brightness-[25%]"
+        className="absolute inset-0 object-cover h-full w-full brightness-[25%] z-[1] grayscale"
         alt="hero"
         src={HeroImage}
+      />
+      <img
+        className="absolute right-0 object-cover bottom-0 brightness-[25%] z-[1] h-3/4 animate__animated  animate__fadeInUp "
+        alt="hero"
+        src={CharacterImage}
       />
       <div className="relative z-50 flex flex-col items-center justify-center h-screen max-w-screen-xl px-4 py-16 mx-auto">
         <div className="w-full text-center lg:w-2/3">

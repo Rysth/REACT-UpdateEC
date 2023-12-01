@@ -1,7 +1,7 @@
 function FeatureSection() {
   return (
-    <section className="text-white">
-      <div className="px-4 py-24 mx-auto max-w-screen-2xl">
+    <section className="relative text-white">
+      <div className="relative z-10 px-4 py-24 mx-auto max-w-screen-2xl">
         <header className="mb-16 text-center">
           <h2 className="text-3xl font-bold sm:text-4xl">
             Nuestras Características
