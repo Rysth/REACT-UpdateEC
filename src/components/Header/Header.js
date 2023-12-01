@@ -5,11 +5,6 @@ import Logo from '../../assets/SVG/logo.svg';
 import NavBar from './NavBar/NavBar';
 import Button from '../Buttons/Buttons';
 
-// Define constants for class names
-const logoClass = 'w-20 sm:w-32';
-const hamburgerButtonClass = 'sm:hidden';
-const hamburgerIconClass = 'fa-solid fa-bars w-full h-full text-2xl';
-
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,7 +18,12 @@ function Header() {
       className="sticky top-0 z-[1001] w-full backdrop-blur-3xl backdrop-brightness-75"
     >
       <div className="container flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto text-white md:py-5">
-        <a href="/" rel="nonopenner" className={logoClass}>
+        <a
+          href="/"
+          rel="nonopenner"
+          className="w-20 sm:w-32"
+          aria-label="Home page"
+        >
           <img src={Logo} alt="" className="bg-transparent" />
         </a>
         <NavBar
@@ -32,10 +32,11 @@ function Header() {
         />
         <button
           type="button"
-          className={hamburgerButtonClass}
+          className="sm:hidden"
           onClick={handleNavigationBar}
+          aria-label="toggleButton"
         >
-          <i className={hamburgerIconClass} />
+          <i className="w-full h-full text-2xl fa-solid fa-bars" />
         </button>
         {isOpen && (
           <NavBar
