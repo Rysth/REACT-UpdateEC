@@ -45,7 +45,7 @@ function Header() {
             />
             <div className="flex items-center justify-end w-full gap-2 sm:hidden">
               <button
-                className="p-2 px-4 text-xs text-white rounded-full md:transition md:hover:scale-105 md:active:scale-95"
+                className="p-2 px-4 text-xs text-white underline rounded-full md:transition md:hover:scale-105 md:active:scale-95"
                 onClick={handleNavigationBar}
                 type="button"
               >

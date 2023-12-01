@@ -8,9 +8,9 @@ function HeroSection() {
         alt="hero"
         src={HeroImage}
       />
-      <div className="flex flex-col items-center justify-center max-w-screen-xl px-5 py-16 mx-auto h-96 sm:h-[35rem] md:h-[42rem] relative z-50">
+      <div className="flex flex-col items-center justify-center max-w-screen-xl px-4 py-16 mx-auto h-[35rem] sm:h-[42.5rem] relative z-50">
         <div className="w-full text-center lg:w-2/3">
-          <h1 className="mb-4 text-4xl font-bold title-font sm:text-6xl md:text-8xl">
+          <h1 className="mb-4 text-5xl font-bold title-font sm:text-6xl md:text-8xl">
             Bienvenidos a UpdateEC
           </h1>
           <p className="mx-auto my-5 text-xs font-light leading-5 sm:my-10 sm:max-w-md sm:text-base">
