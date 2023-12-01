@@ -63,14 +63,14 @@ function Header() {
         )}
         <div className="items-center hidden gap-1 sm:flex">
           <button
-            className="p-2 px-4 text-xs text-white rounded-full md:transition md:hover:scale-105 md:active:scale-95"
+            className="p-2 px-4 text-xs text-white border border-transparent rounded-full md:transition md:hover:scale-105 md:active:scale-95"
             onClick={handleNavigationBar}
             type="button"
           >
             Iniciar Sesión
           </button>
           <button
-            className="p-2 px-4 text-xs bg-[var(--CL-primary-purple)] text-white rounded-full md:transition md:hover:scale-105 md:active:scale-95"
+            className="p-2 px-4 text-xs bg-[var(--CL-primary-purple)] text-white rounded-full md:transition md:hover:scale-105 md:active:scale-95 border border-transparent"
             onClick={handleNavigationBar}
             type="button"
           >
