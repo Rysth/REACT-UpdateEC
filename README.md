@@ -1,9 +1,9 @@
 <a name="readme-top"></a>
 
+# John Palacios - RysthCraft
+
 <div align="center">
-  <img src="https://rysthcraft.netlify.app/img/LOGO-ONLY.svg" alt="logo" width="140"  height="auto" />
-  <br/>
-  <h3><b>John Palacios - RysthCraft</b></h3>
+  <img src="./banner.png" alt="logo" height="auto" />
 </div>
 
 # 📗 Table of Contents
@@ -34,37 +34,36 @@
 
 ### Tech Stack <a name="tech-stack"></a>
 
-- FRONT END
+FRONT END
 
-- ✅ [HTML](https://www.w3schools.com/html/)
-- ✅ [CSS](https://www.w3schools.com/css/)
-- ✅ [JavaScript](https://www.w3schools.com/js/)
-- ✅ [React](https://react.dev/)
-- ✅ [TailwindCSS](https://tailwindcss.com/)
-- ✅ [Framer Motion](https://www.framer.com/motion/)
-- ✅ [React Multi Carousel](https://www.npmjs.com/package/react-multi-carousel)
+- [HTML](https://www.w3schools.com/html/)
+- [CSS](https://www.w3schools.com/css/)
+- [JavaScript](https://www.w3schools.com/js/)
+- [React](https://react.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [React Multi Carousel](https://www.npmjs.com/package/react-multi-carousel)
+- [React Notifications](https://www.npmjs.com/package/react-notifications)
+- [FormSpree](https://formspr.ee/react-help)
 
 - BACKEND
 
-- ✅ [Headless CMS | Strapi](https://strapi.io/)
-- ✅ [PaaS | Koyeb](https://www.koyeb.com/)
-- ✅ [PaaS | Fl0](https://fl0.com/)
+- [Headless CMS | Strapi](https://strapi.io/)
+- [PaaS | Koyeb](https://www.koyeb.com/)
+- [PaaS | Fl0](https://fl0.com/)
 
 ### Key Features <a name="key-features"></a>
 
 - 🔰 Beautiful Landing Page using TailwindCSS.
-- 🔰 Good-looking Animations using Framer Motion Library.
+- 🔰 Good-looking Animations using Framer Motion Library and AnimateCSS.
 - 🔰 Products Management using Redux Toolkit.
 - 🔰 Search and filter Products by Name or Category.
 - 🔰 Use Strapi Public's API to manage the Products information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### 🚀 Live Demo <a name="live-demo"></a>
 
-![288shots_so](https://github.com/Rysth/REACT-UpdateEC/assets/115722896/659bd853-d80b-4a71-a387-c55f63207fb0)
 - [Live Demo](https://react-updateec.onrender.com/)
 
 ## 💻 Getting Started <a name="getting-started"></a>
@@ -101,16 +100,14 @@ In order to follow the Linters you could check them using this:
 - CSS Checker:
 
 ```
-npx stylelint "**/*.{css,scss}"
+npx stylelint "**/*.{css,scss}" --fix
 ```
 
 - ESLint Checker:
 
 ```
-npx eslint "**/*.{js,jsx}"
+npx eslint "**/*.{js,jsx}" --fix
 ```
-
-_Use at the end '--fix' to help you out with any error._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -125,9 +122,10 @@ _Use at the end '--fix' to help you out with any error._
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] Migrate the Strapi/Postgres Database to Railway.
+- [x] Migrate the Strapi/Postgres Database to Render.
 - [ ] Implement a better filter system for the Products Page.
 - [ ] Create a Details page to see a specific product information.
+- [ ] Create a Login/Sign Up page for users.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
