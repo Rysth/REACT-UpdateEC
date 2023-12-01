@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import HeroSection from './sections/HeroSection';
-import AboutSection from './sections/AboutSection';
 
 function Home() {
   return (
@@ -11,7 +10,6 @@ function Home() {
       transition={{ duration: 2 }}
     >
       <HeroSection />
-      <AboutSection />
     </motion.div>
   );
 }
