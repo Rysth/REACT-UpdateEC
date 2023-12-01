@@ -12,7 +12,7 @@ function Header() {
     <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="sticky top-0 z-[1001] w-full backdrop-blur-2xl"
+      className="fixed top-0 z-[1001] w-full backdrop-blur-2xl"
     >
       <div className="flex flex-wrap items-center justify-between p-4 mx-auto text-white max-w-screen-2xl md:py-5">
         <div className="flex items-center gap-8">

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import HeroSection from './sections/HeroSection';
 import ActionSection from './sections/ActionSection';
 import FeatureSection from './sections/FeatureSection';
+import GallerySection from './sections/GallerySection';
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <HeroSection />
       <ActionSection />
       <FeatureSection />
+      <GallerySection />
     </motion.div>
   );
 }
