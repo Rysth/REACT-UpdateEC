@@ -18,7 +18,7 @@ function ContactSection() {
               style={{ margin: 0 }}
             />
           </div>
-          <div className="flex flex-col w-full px-4 py-8 mt-8 border rounded-xl lg:w-1/3 md:w-1/2 md:ml-auto md:mt-0">
+          <div className="flex flex-col w-full px-4 py-8 mt-8 border border-gray-700 rounded-xl lg:w-1/3 md:w-1/2 md:ml-auto md:mt-0">
             <h2 className="mb-1 text-lg font-bold text-center sm:text-xl title-font">
               Comparte tus Sugerencias
             </h2>
