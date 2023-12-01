@@ -4,6 +4,7 @@ import HeroSection from './sections/HeroSection';
 import ActionSection from './sections/ActionSection';
 import FeatureSection from './sections/FeatureSection';
 import GallerySection from './sections/GallerySection';
+import ContactSection from './sections/ContactSection';
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
       <ActionSection />
       <FeatureSection />
       <GallerySection />
+      <ContactSection />
     </motion.div>
   );
 }
