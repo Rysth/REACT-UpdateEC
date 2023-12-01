@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from '@material-tailwind/react';
+import 'animate.css';
 import './index.css';
 import App from './App';
 

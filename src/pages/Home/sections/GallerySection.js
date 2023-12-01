@@ -15,21 +15,21 @@ function GallerySection() {
             <div className="w-1/2 p-1 md:p-2">
               <img
                 alt="gallery"
-                className="block object-cover object-center w-full h-full"
+                className="block object-cover object-center w-full h-full cursor-pointer md:hover:scale-105 md:hover:grayscale md:transition md:shadow-2xl"
                 src={StockOne}
               />
             </div>
             <div className="w-1/2 p-1 md:p-2">
               <img
                 alt="gallery"
-                className="block object-cover object-center w-full h-full"
+                className="block object-cover object-center w-full h-full cursor-pointer md:hover:scale-105 md:hover:grayscale md:transition md:shadow-2xl"
                 src={StockTwo}
               />
             </div>
             <div className="w-full p-1 md:p-2">
               <img
                 alt="gallery"
-                className="block object-cover object-center w-full h-full"
+                className="block object-cover object-center w-full h-full cursor-pointer md:hover:scale-105 md:hover:grayscale md:transition md:shadow-2xl"
                 src={BannerTwo}
               />
             </div>
@@ -38,21 +38,21 @@ function GallerySection() {
             <div className="w-full p-1 md:p-2">
               <img
                 alt="gallery"
-                className="block object-cover object-center w-full h-full"
+                className="block object-cover object-center w-full h-full cursor-pointer md:hover:scale-105 md:hover:grayscale md:transition md:shadow-2xl"
                 src={BannerOne}
               />
             </div>
             <div className="w-1/2 p-1 md:p-2">
               <img
                 alt="gallery"
-                className="block object-cover object-center w-full h-full"
+                className="block object-cover object-center w-full h-full cursor-pointer md:hover:scale-105 md:hover:grayscale md:transition md:shadow-2xl"
                 src={StockFive}
               />
             </div>
             <div className="w-1/2 p-1 md:p-2">
               <img
                 alt="gallery"
-                className="block object-cover object-center w-full h-full"
+                className="block object-cover object-center w-full h-full cursor-pointer md:hover:scale-105 md:hover:grayscale md:transition md:shadow-2xl"
                 src={StockThree}
               />
             </div>
