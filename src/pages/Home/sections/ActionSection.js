@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 function ActionSection() {
   return (
     <section className="bg-[var(--CL-primary-purple)] text-white">
@@ -12,12 +14,13 @@ function ActionSection() {
             en una experiencia gaming de élite. ¡Descúbrelo ahora!
           </p>
           <div className="flex mt-6 md:mt-4">
-            <button
+            <NavLink
+              to="/products"
               type="button"
               className="p-2 px-4 text-xs text-black bg-white border border-transparent rounded-full md:transition md:hover:scale-105 md:active:scale-95"
             >
               Ver Productos
-            </button>
+            </NavLink>
           </div>
         </div>
       </div>

@@ -31,12 +31,15 @@ function HeroSection() {
             >
               Catálogo
             </button>
-            <button
+            <a
+              href="https://react-rysthcraft.onrender.com/"
+              target="_blank"
+              rel="noreferrer"
               type="button"
               className="p-2 px-4 text-xs sm:text-sm bg-[var(--CL-primary-cyan)] text-black rounded-full md:transition md:hover:scale-105 md:active:scale-95 border border-transparent"
             >
               Contactar
-            </button>
+            </a>
           </div>
         </div>
       </div>

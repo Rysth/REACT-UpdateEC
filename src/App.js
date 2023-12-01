@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from '@material-tailwind/react';
+import { NotificationContainer } from 'react-notifications';
 import './App.css';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
@@ -12,6 +13,7 @@ function App() {
     <ThemeProvider>
       <Provider store={store}>
         <BrowserRouter>
+          <NotificationContainer />
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />

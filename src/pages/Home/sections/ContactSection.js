@@ -1,6 +1,19 @@
-import React from 'react';
+import { useForm } from '@formspree/react';
+import { useEffect, useRef } from 'react';
+import { NotificationManager } from 'react-notifications';
 
 function ContactSection() {
+  const [state, handleSubmit] = useForm('mvonqdpy');
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    if (state.succeeded) {
+      NotificationManager.success('¡Muchas Gracias!', 'Envíado', 2000);
+      state.succeeded = false;
+      formRef.current.reset();
+    }
+  }, [state]);
+
   return (
     <section className="relative text-white">
       <div className="px-4 py-24 mx-auto max-w-screen-2xl ">
@@ -18,7 +31,11 @@ function ContactSection() {
               style={{ margin: 0 }}
             />
           </div>
-          <div className="flex flex-col w-full px-4 py-8 mt-8 border border-gray-700 rounded-xl lg:w-1/3 md:w-1/2 md:ml-auto md:mt-0">
+          <form
+            className="flex flex-col w-full px-4 py-8 mt-8 border border-gray-700 rounded-xl lg:w-1/3 md:w-1/2 md:ml-auto md:mt-0"
+            onSubmit={handleSubmit}
+            ref={formRef}
+          >
             <h2 className="mb-1 text-lg font-bold text-center sm:text-xl title-font">
               Comparte tus Sugerencias
             </h2>
@@ -55,15 +72,13 @@ function ContactSection() {
               </label>
             </div>
             <button
-              type="button"
+              type="submit"
+              disabled={state.submitting}
               className="p-2 px-4 text-xs sm:text-sm bg-[var(--CL-primary-purple)] rounded-md md:transition md:hover:scale-105 md:active:scale-95 border border-transparent"
             >
               Envíar
             </button>
-            <p className="mt-3 text-xs text-gray-500">
-              ¡Gracias por ayudarnos a Mejorar!
-            </p>
-          </div>
+          </form>
         </div>
       </div>
     </section>
