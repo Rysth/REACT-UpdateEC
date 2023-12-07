@@ -65,7 +65,7 @@ export const createAccount = createAsyncThunk(
         );
         throw new Error('Error creating the account');
       }
-      NotificationManager.success('Cuente Creada', 'Éxito', 1250);
+      NotificationManager.success('Cuenta Creada', 'Éxito', 1250);
       return response.data;
     } catch (error) {
       NotificationManager.error('Email/Contraseña Incorrecta.', 'Error', 1250);
@@ -101,6 +101,21 @@ const sessionSlice = createSlice({
         sessionStorage.setItem('authToken', state.authToken);
       })
       .addCase(createSession.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(createAccount.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(createAccount.fulfilled, (state, action) => {
+        state.active = true;
+        state.loading = false;
+        state.userData = action.payload.user;
+        state.authToken = action.payload.jwt;
+        sessionStorage.setItem('userData', JSON.stringify(state.userData));
+        sessionStorage.setItem('authToken', state.authToken);
+      })
+      .addCase(createAccount.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
