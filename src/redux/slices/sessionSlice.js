@@ -11,7 +11,7 @@ const initialState = {
   authToken: authToken === null,
   loading: false,
   error: false,
-  active: false,
+  active: userData !== null,
 };
 
 // Sessions - Sign In
@@ -27,7 +27,7 @@ export const createSession = createAsyncThunk(
 
       if (response.status !== 200) {
         NotificationManager.error(
-          'Email/Contraseña Incorrecto.',
+          'Email/Contraseña Incorrecta.',
           'Error',
           1250,
         );
@@ -36,7 +36,39 @@ export const createSession = createAsyncThunk(
       NotificationManager.success('Sesión Iniciada', 'Éxito', 1250);
       return response.data;
     } catch (error) {
-      NotificationManager.error('Problema de Servidor.', 'Error', 1250);
+      NotificationManager.error('Email/Contraseña Incorrecta.', 'Error', 1250);
+      throw new Error(`Error: ${error.message}`);
+    }
+  },
+);
+
+// Sessions - Sign Up
+export const createAccount = createAsyncThunk(
+  'session/createAccount',
+  async (userData) => {
+    try {
+      const response = await axios.post(
+        `${API_URL}/auth/local/register`,
+        userData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+
+      if (response.status !== 200) {
+        NotificationManager.error(
+          'Email/Contraseña Incorrecta.',
+          'Error',
+          1250,
+        );
+        throw new Error('Error creating the account');
+      }
+      NotificationManager.success('Cuente Creada', 'Éxito', 1250);
+      return response.data;
+    } catch (error) {
+      NotificationManager.error('Email/Contraseña Incorrecta.', 'Error', 1250);
       throw new Error(`Error: ${error.message}`);
     }
   },
@@ -52,10 +84,10 @@ const sessionSlice = createSlice({
         state.loading = true;
       })
       .addCase(createSession.fulfilled, (state, action) => {
+        state.active = true;
         state.loading = false;
         state.userData = action.payload.user;
         state.authToken = action.payload.jwt;
-        console.log(action.payload.user);
         sessionStorage.setItem('userData', JSON.stringify(state.userData));
         sessionStorage.setItem('authToken', state.authToken);
       })
