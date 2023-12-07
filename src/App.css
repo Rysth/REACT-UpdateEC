@@ -116,3 +116,11 @@ video {
     outline: none;
   }
 }
+
+.bg-purple {
+  @apply bg-[var(--CL-primary-purple)];
+}
+
+.bg-cyan {
+  @apply bg-[var(--CL-primary-cyan)];
+}

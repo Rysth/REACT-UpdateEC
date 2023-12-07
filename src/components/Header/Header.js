@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../../assets/SVG/logo.svg';
 import NavBar from './NavBar/NavBar';
+import { sessionActions } from '../../redux/slices/sessionSlice';
 
 function Header() {
+  const dispatch = useDispatch();
+  const { active } = useSelector((store) => store.session);
   const [isOpen, setIsOpen] = useState(false);
   const handleNavigationBar = () => setIsOpen(!isOpen);
   const closeNavigationBar = () => setIsOpen(false);
+
+  const closeUserSession = () => {
+    dispatch(sessionActions.destroySession());
+  };
+
+  useEffect(() => {}, [active]);
 
   return (
     <motion.header
@@ -43,40 +54,63 @@ function Header() {
               navClassList="text-black p-2"
               handleNavigationBar={closeNavigationBar}
             />
-            <div className="flex items-center justify-end w-full gap-2 sm:hidden">
-              <button
-                className="p-2 px-4 text-xs text-white underline rounded-full md:transition md:hover:scale-105 md:active:scale-95"
-                onClick={handleNavigationBar}
-                type="button"
-              >
-                Iniciar Sesión
-              </button>
-              <button
-                className="p-2 px-4 text-xs bg-[var(--CL-primary-purple)] text-white rounded-full md:transition md:hover:scale-105 md:active:scale-95"
-                onClick={handleNavigationBar}
-                type="button"
-              >
-                Registrarse
-              </button>
-            </div>
+            {!active ? (
+              <div className="flex items-center justify-end w-full gap-2 sm:hidden">
+                <NavLink
+                  to="/sign_in"
+                  className="p-2 px-4 text-xs text-white underline rounded-full md:transition md:hover:scale-105 md:active:scale-95"
+                  onClick={handleNavigationBar}
+                  type="button"
+                >
+                  Iniciar Sesión
+                </NavLink>
+                <NavLink
+                  to="/sign_up"
+                  className="p-2 px-4 text-xs text-white rounded-full bg-purple md:transition md:hover:scale-105 md:active:scale-95"
+                  onClick={handleNavigationBar}
+                >
+                  Registrarse
+                </NavLink>
+              </div>
+            ) : (
+              <div className="flex items-center justify-end w-full gap-2 sm:hidden">
+                <button
+                  type="button"
+                  className="p-2 px-4 text-xs text-white rounded-full bg-purple md:transition md:hover:scale-105 md:active:scale-95"
+                  onClick={closeUserSession}
+                >
+                  Cerrar Sesión
+                </button>
+              </div>
+            )}
           </>
         )}
-        <div className="items-center hidden gap-1 sm:flex">
-          <button
-            className="p-2 px-4 text-xs text-white border border-transparent rounded-full md:transition md:hover:scale-105 md:active:scale-95"
-            onClick={handleNavigationBar}
-            type="button"
-          >
-            Iniciar Sesión
-          </button>
-          <button
-            className="p-2 px-4 text-xs bg-[var(--CL-primary-purple)] text-white rounded-full md:transition md:hover:scale-105 md:active:scale-95 border border-transparent"
-            onClick={handleNavigationBar}
-            type="button"
-          >
-            Registrarse
-          </button>
-        </div>
+        {!active ? (
+          <div className="items-center hidden gap-1 sm:flex">
+            <NavLink
+              to="/sign_in"
+              className="p-2 px-4 text-xs text-white border border-transparent rounded-full md:transition md:hover:scale-105 md:active:scale-95"
+            >
+              Iniciar Sesión
+            </NavLink>
+            <a
+              href="/sign_up"
+              className="p-2 px-4 text-xs text-white border border-transparent rounded-full bg-purple md:transition md:hover:scale-105 md:active:scale-95"
+            >
+              Registrarse
+            </a>
+          </div>
+        ) : (
+          <div className="items-center hidden gap-1 sm:flex">
+            <button
+              type="button"
+              className="p-2 px-4 text-xs text-white border border-transparent rounded-full bg-purple md:transition md:hover:scale-105 md:active:scale-95"
+              onClick={closeUserSession}
+            >
+              Cerrar Sesión
+            </button>
+          </div>
+        )}
       </div>
     </motion.header>
   );
