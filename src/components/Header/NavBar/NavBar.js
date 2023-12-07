@@ -13,8 +13,8 @@ const routes = [
   },
   {
     id: 2,
-    to: '/products',
-    text: 'Productos',
+    to: '/shop',
+    text: 'Tienda',
     icon: 'fa-solid fa-star w-7 sm:hidden',
   },
 ];

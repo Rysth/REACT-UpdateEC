@@ -1,5 +1,5 @@
 .active {
-  @apply bg-[var(--CL-neutral-black)] md:bg-transparent text-white rounded-md;
+  @apply text-white rounded-md md:bg-transparent;
 }
 
 @media (min-width: 540px) {
