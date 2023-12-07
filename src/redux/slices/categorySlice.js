@@ -22,7 +22,6 @@ export const fetchCategories = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      console.log(error);
       throw new Error(`Error: ${error.message}`);
     }
   },
@@ -40,7 +39,6 @@ const categorySlice = createSlice({
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.categoriesArray = action.payload.data;
-        console.log(state.categoriesArray);
       })
       .addCase(fetchCategories.rejected, (state, action) => {
         state.loading = false;

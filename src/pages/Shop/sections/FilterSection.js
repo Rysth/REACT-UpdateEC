@@ -1,24 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../../redux/slices/categorySlice';
-
-const marcas = ['Asus', 'MSI', 'Meetion', 'HP', 'Logitech'];
+import { fetchBrands } from '../../../redux/slices/brandSlice';
 
 function FilterSection() {
   const dispatch = useDispatch();
   const { categoriesArray } = useSelector((store) => store.category);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-
-  const handleCheckboxChange = (category) => {
-    if (selectedCategories.includes(category)) {
-      setSelectedCategories(selectedCategories.filter((c) => c !== category));
-    } else {
-      setSelectedCategories([...selectedCategories, category]);
-    }
-  };
+  const { brandsArray } = useSelector((store) => store.brand);
 
   useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(fetchBrands());
   }, [dispatch]);
 
   return (
@@ -40,8 +32,6 @@ function FilterSection() {
                   type="checkbox"
                   value={category.id}
                   id={category.id}
-                  checked={selectedCategories.includes(category)}
-                  onChange={() => handleCheckboxChange(category)}
                   className="w-5 h-5 text-xl border-none rounded-md outline-none"
                 />
               </label>
@@ -53,19 +43,17 @@ function FilterSection() {
             Marcas
           </legend>
           <div className="max-h-[8rem] overflow-auto">
-            {marcas.map((category) => (
+            {brandsArray.map((brand) => (
               <label
-                key={category}
+                key={brand.id}
                 className="flex items-center justify-between p-2 text-sm md:hover:bg-indigo-700 md:transition md:cursor-pointer"
-                htmlFor={category}
+                htmlFor={brand.attributes.slug}
               >
-                {category}
+                {brand.attributes.name}
                 <input
                   type="checkbox"
-                  value={category}
-                  id={category}
-                  checked={selectedCategories.includes(category)}
-                  onChange={() => handleCheckboxChange(category)}
+                  value={brand.id}
+                  id={brand.attributes.slug}
                   className="w-5 h-5 text-xl border-none rounded-md outline-none"
                 />
               </label>
