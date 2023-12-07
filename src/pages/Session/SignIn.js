@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-function Login() {
+function SignIn() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -8,8 +8,8 @@ function Login() {
       transition={{ duration: 2 }}
     >
       <section className="h-screen">
-        <div className="flex flex-col sm:grid sm:grid-cols-[60%_1fr] h-full pt-20">
-          <header className="h-full bg-gradient-to-r from-[var(--CL-primary-purple)] to-[var(--CL-primary-cyan)] flex flex-col items-center justify-center text-white gap-1 max-h-40 sm:max-h-full">
+        <div className="flex flex-col sm:grid sm:grid-cols-[55%_1fr] h-full">
+          <header className="pt-16 h-full bg-gradient-to-r from-[var(--CL-primary-purple)] to-[var(--CL-primary-cyan)] flex flex-col items-center justify-center text-white gap-1 max-h-40 sm:max-h-full">
             <h2 className="text-4xl font-bold md:text-6xl">¡Bienvenido!</h2>
             <p className="">e-Commerce</p>
           </header>
@@ -50,4 +50,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignIn;

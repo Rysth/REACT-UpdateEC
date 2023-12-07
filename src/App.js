@@ -5,7 +5,8 @@ import { NotificationContainer } from 'react-notifications';
 import './App.css';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
-import Login from './pages/Session/Login';
+import SignIn from './pages/Session/SignIn';
+import SignUp from './pages/Session/SignUp';
 import store from './redux/store';
 import Footer from './components/Footer/Footer';
 
@@ -18,7 +19,8 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/sign_in" element={<SignIn />} />
+            <Route path="/sign_up" element={<SignUp />} />
           </Routes>
         </BrowserRouter>
         <Footer />

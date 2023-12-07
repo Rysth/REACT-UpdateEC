@@ -45,38 +45,37 @@ function Header() {
               handleNavigationBar={closeNavigationBar}
             />
             <div className="flex items-center justify-end w-full gap-2 sm:hidden">
-              <button
+              <NavLink
+                to="/sign_in"
                 className="p-2 px-4 text-xs text-white underline rounded-full md:transition md:hover:scale-105 md:active:scale-95"
                 onClick={handleNavigationBar}
                 type="button"
               >
                 Iniciar Sesión
-              </button>
-              <button
-                className="p-2 px-4 text-xs bg-[var(--CL-primary-purple)] text-white rounded-full md:transition md:hover:scale-105 md:active:scale-95"
+              </NavLink>
+              <NavLink
+                to="/sign_up"
+                className="p-2 px-4 text-xs text-white rounded-full bg-purple md:transition md:hover:scale-105 md:active:scale-95"
                 onClick={handleNavigationBar}
-                type="button"
               >
                 Registrarse
-              </button>
+              </NavLink>
             </div>
           </>
         )}
         <div className="items-center hidden gap-1 sm:flex">
           <NavLink
-            to="/login"
+            to="/sign_in"
             className="p-2 px-4 text-xs text-white border border-transparent rounded-full md:transition md:hover:scale-105 md:active:scale-95"
-            onClick={handleNavigationBar}
           >
             Iniciar Sesión
           </NavLink>
-          <button
-            className="p-2 px-4 text-xs bg-[var(--CL-primary-purple)] text-white rounded-full md:transition md:hover:scale-105 md:active:scale-95 border border-transparent"
-            onClick={handleNavigationBar}
-            type="button"
+          <a
+            href="/sign_up"
+            className="p-2 px-4 text-xs text-white border border-transparent rounded-full bg-purple md:transition md:hover:scale-105 md:active:scale-95"
           >
             Registrarse
-          </button>
+          </a>
         </div>
       </div>
     </motion.header>
