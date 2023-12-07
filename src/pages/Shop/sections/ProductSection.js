@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const productos = [
@@ -85,27 +86,46 @@ const productos = [
 ];
 
 function ProductSection() {
+  const [visibleQuantity, setVisibleQuantity] = useState(8);
+
+  const showMoreProducts = () => {
+    setVisibleQuantity(visibleQuantity + 8);
+  };
+
+  useEffect(() => {}, [visibleQuantity]);
+
   return (
-    <ul className="grid flex-1 grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-      {productos.map((product) => (
-        <li key={product.id}>
-          <Link
-            to={`/products/${product.id}`}
-            className="block w-full md:hover:-translate-y-3 md:transition"
-          >
-            <picture>
-              <img src={product.imageUrl} alt={product.name} />
-            </picture>
-            <header className="grid py-2">
-              <h3 className="text-lg font-bold truncate max-w-[15rem]">
-                {product.name}
-              </h3>
-              <p className="text-sm">{`$${product.price}`}</p>
-            </header>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <div className="flex flex-col flex-1 gap-10">
+      <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+        {productos.slice(0, visibleQuantity).map((product) => (
+          <li key={product.id}>
+            <Link
+              to={`/products/${product.id}`}
+              className="block w-full md:hover:-translate-y-3 md:transition"
+            >
+              <picture>
+                <img src={product.imageUrl} alt={product.name} />
+              </picture>
+              <header className="grid py-2">
+                <h3 className="text-lg font-bold truncate max-w-[15rem]">
+                  {product.name}
+                </h3>
+                <p className="text-sm">{`$${product.price}`}</p>
+              </header>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <footer className="grid place-items-center">
+        <button
+          type="button"
+          className="float-right p-2 text-sm text-center rounded-full bg-purple md:hover:scale-105 md:transition md:active:scale-95 "
+          onClick={showMoreProducts}
+        >
+          Mostrar Más
+        </button>
+      </footer>
+    </div>
   );
 }
 
