@@ -109,9 +109,12 @@ function Shop() {
         <BannerSection />
         <main className="flex flex-col flex-wrap">
           <SearchSection />
-          <div className="flex gap-10">
-            <aside className="w-52 purple">
-              <form action="" className="grid gap-10">
+          <div className="flex flex-col gap-10 sm:flex-row">
+            <aside className="sm:w-52 purple">
+              <form
+                action=""
+                className="grid grid-cols-2 gap-10 sm:grid-cols-1"
+              >
                 <fieldset>
                   <legend className="w-full py-2 mb-5 text-base font-semibold text-center sm:text-lg bg-purple">
                     Categorías
@@ -162,10 +165,13 @@ function Shop() {
                 </fieldset>
               </form>
             </aside>
-            <ul className="grid flex-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <ul className="grid flex-1 grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
               {productos.map((product) => (
                 <li key={product.id}>
-                  <Link to={`/products/${product.id}`} className="block w-full">
+                  <Link
+                    to={`/products/${product.id}`}
+                    className="block w-full md:hover:-translate-y-3 md:transition"
+                  >
                     <picture>
                       <img src={product.imageUrl} alt={product.name} />
                     </picture>
@@ -173,7 +179,7 @@ function Shop() {
                       <h3 className="text-lg font-bold truncate max-w-[15rem]">
                         {product.name}
                       </h3>
-                      <p className="text-sm">{product.price}</p>
+                      <p className="text-sm">{`$${product.price}`}</p>
                     </header>
                   </Link>
                 </li>
