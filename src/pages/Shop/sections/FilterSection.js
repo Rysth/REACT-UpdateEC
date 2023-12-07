@@ -1,21 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from '../../../redux/slices/categorySlice';
 
-const categories = ['Computadoras', 'Teclados', 'Mouses'];
 const marcas = ['Asus', 'MSI', 'Meetion', 'HP', 'Logitech'];
 
 function FilterSection() {
+  const dispatch = useDispatch();
+  const { categoriesArray } = useSelector((store) => store.category);
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   const handleCheckboxChange = (category) => {
-    // Check if the category is already selected
     if (selectedCategories.includes(category)) {
-      // If selected, remove it
       setSelectedCategories(selectedCategories.filter((c) => c !== category));
     } else {
-      // If not selected, add it
       setSelectedCategories([...selectedCategories, category]);
     }
   };
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   return (
     <aside className="sm:w-52 purple">
@@ -25,17 +29,17 @@ function FilterSection() {
             Categorías
           </legend>
           <div className="max-h-[8rem] overflow-auto">
-            {categories.map((category) => (
+            {categoriesArray.map((category) => (
               <label
-                key={category}
+                key={category.id}
                 className="flex items-center justify-between p-2 text-sm md:hover:bg-indigo-700 md:transition md:cursor-pointer"
-                htmlFor={category}
+                htmlFor={category.id}
               >
-                {category}
+                {category.attributes.name}
                 <input
                   type="checkbox"
-                  value={category}
-                  id={category}
+                  value={category.id}
+                  id={category.id}
                   checked={selectedCategories.includes(category)}
                   onChange={() => handleCheckboxChange(category)}
                   className="w-5 h-5 text-xl border-none rounded-md outline-none"
