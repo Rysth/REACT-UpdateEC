@@ -8,7 +8,7 @@ const authToken = sessionStorage.getItem('authToken');
 
 const initialState = {
   userData: userData || {},
-  authToken: authToken === null,
+  authToken: authToken || '',
   loading: false,
   error: false,
   active: userData !== null,
@@ -77,7 +77,16 @@ export const createAccount = createAsyncThunk(
 const sessionSlice = createSlice({
   name: 'session',
   initialState,
-  reducers: {},
+  reducers: {
+    destroySession(state) {
+      state.active = false;
+      state.userData = {};
+      state.authToken = '';
+      sessionStorage.removeItem('userData');
+      sessionStorage.removeItem('authToken');
+      NotificationManager.info('¡Muchas Gracias!', 'Éxito', 1250);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createSession.pending, (state) => {
