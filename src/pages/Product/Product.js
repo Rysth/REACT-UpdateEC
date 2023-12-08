@@ -1,11 +1,19 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { findProduct } from '../../redux/slices/productSlice';
 
 function Product() {
-  const { productsArray, loading } = useSelector((store) => store.product);
-  const firstProduct = productsArray[0];
+  const dispatch = useDispatch();
+  const { productID } = useParams();
+  const { foundProduct } = useSelector((store) => store.product);
 
-  if (loading) {
+  useEffect(() => {
+    dispatch(findProduct(productID));
+  }, [dispatch, productID]);
+
+  if (!foundProduct) {
     return (
       <header className="grid w-full h-20 py-2 bg-purple place-items-center">
         <h3 className="w-full text-lg font-bold text-center uppercase">
@@ -20,20 +28,20 @@ function Product() {
       <article className="grid gap-5 px-4 py-10 mx-auto sm:py-24 max-w-screen-2xl sm:grid-cols-2">
         <picture className="bg-white h-[300px] sm:h-[450px] lg:h-[550px]">
           <img
-            src={firstProduct.attributes.picture.data.attributes.url}
-            alt={firstProduct.name}
+            src={foundProduct.attributes.picture.data.attributes.url}
+            alt={foundProduct.name}
             className="object-contain w-full h-full"
           />
         </picture>
         <main className="flex flex-col gap-5 md:px-10">
           <header className="grid gap-1">
-            <h2 className="text-lg font-bold truncate text-uppercase sm:text-xl md:text-4xl">
-              {firstProduct.attributes.name}
+            <h2 className="text-lg font-bold uppercase truncate sm:text-xl md:text-4xl">
+              {foundProduct.attributes.name}
             </h2>
-            <h3 className="text-sm sm:text-xl md:text-2xl">{`$${firstProduct.attributes.price}`}</h3>
+            <h3 className="text-sm sm:text-xl md:text-2xl">{`$${foundProduct.attributes.price}`}</h3>
           </header>
           <p className="sm:mt-5  text-xs sm:text-sm max-h-[15rem] overflow-auto">
-            {firstProduct.attributes.description}
+            {foundProduct.attributes.description}
           </p>
           <footer className="flex items-center gap-5 mt-5">
             <button
@@ -50,7 +58,7 @@ function Product() {
               className="p-2.5 my-3 text-xs sm:text-sm text-black"
               defaultValue={1}
               min={1}
-              max={firstProduct.attributes.quantity}
+              max={foundProduct.attributes.quantity}
             />
           </footer>
         </main>

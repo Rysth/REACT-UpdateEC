@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 function ProductSection() {
   const { filteredArray, loading } = useSelector((store) => store.product);
@@ -27,8 +26,8 @@ function ProductSection() {
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
         {filteredArray.slice(0, visibleQuantity).map((product) => (
           <li key={product.id}>
-            <Link
-              to={`/shop/${product.id}`}
+            <a
+              href={`/shop/${product.id}`}
               className="block w-full md:hover:-translate-y-3 md:transition"
             >
               <picture className="h-[175px] lg:h-[240px] ">
@@ -44,7 +43,7 @@ function ProductSection() {
                 </h3>
                 <p className="text-sm">{`$${product.attributes.price}`}</p>
               </header>
-            </Link>
+            </a>
           </li>
         ))}
         {filteredArray.length === 0 && (
