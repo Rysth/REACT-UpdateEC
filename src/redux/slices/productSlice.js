@@ -120,6 +120,7 @@ const productSlice = createSlice({
 
         return categoryMatch && brandMatch && searchMatch;
       });
+      /* eslint-enable */
     },
   },
   extraReducers: (builder) => {
@@ -142,7 +143,6 @@ const productSlice = createSlice({
       .addCase(findProduct.fulfilled, (state, action) => {
         state.loading = false;
         state.foundProduct = action.payload.data;
-        console.log(state.foundProduct);
       })
       .addCase(findProduct.rejected, (state, action) => {
         state.loading = false;
