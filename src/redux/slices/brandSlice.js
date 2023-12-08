@@ -4,6 +4,7 @@ import API_URL from '../../helpers/connection';
 
 const initialState = {
   brandsArray: [],
+  filteredArray: [],
   loading: false,
   error: false,
 };
@@ -36,6 +37,7 @@ const brandSlice = createSlice({
       .addCase(fetchBrands.fulfilled, (state, action) => {
         state.loading = false;
         state.brandsArray = action.payload.data;
+        state.filteredArray = state.brandsArray;
       })
       .addCase(fetchBrands.rejected, (state, action) => {
         state.loading = false;

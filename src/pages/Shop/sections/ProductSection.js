@@ -5,7 +5,7 @@ import { fetchProducts } from '../../../redux/slices/productSlice';
 
 function ProductSection() {
   const dispatch = useDispatch();
-  const { filteredArray } = useSelector((store) => store.product);
+  const { filteredArray, loading } = useSelector((store) => store.product);
   const [visibleQuantity, setVisibleQuantity] = useState(8);
 
   const showMoreProducts = () => {
@@ -17,6 +17,16 @@ function ProductSection() {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
+  if (loading) {
+    return (
+      <header className="grid w-full h-20 py-2 bg-purple place-items-center">
+        <h3 className="w-full text-lg font-bold text-center uppercase">
+          Cargando...
+        </h3>
+      </header>
+    );
+  }
 
   return (
     <div className="flex flex-col flex-1 gap-10">
