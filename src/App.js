@@ -14,6 +14,7 @@ import Footer from './components/Footer/Footer';
 import Shop from './pages/Shop/Shop';
 import Product from './pages/Product/Product';
 import { fetchProducts } from './redux/slices/productSlice';
+import NotFound from './pages/404/NotFound';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
       <Footer />

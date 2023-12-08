@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 import { productActions } from '../../redux/slices/productSlice';
 import BannerSection from './sections/BannerSection';
 import SearchSection from './sections/SearchSection';
@@ -37,21 +38,27 @@ function Shop() {
     setSelectedIDs(updatedSelectedIDs);
   };
   return (
-    <section className="relative text-white">
-      <article className="px-4 py-24 mx-auto max-w-screen-2xl">
-        <BannerSection />
-        <main className="flex flex-col flex-wrap">
-          <SearchSection selectedIDs={selectedIDs} dispatch={dispatch} />
-          <div className="flex flex-col gap-10 sm:flex-row">
-            <FilterSection
-              selectedIDs={selectedIDs}
-              handleCheck={handleCheck}
-            />
-            <ProductSection />
-          </div>
-        </main>
-      </article>
-    </section>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2 }}
+    >
+      <section className="relative text-white">
+        <article className="px-4 py-24 mx-auto max-w-screen-2xl">
+          <BannerSection />
+          <main className="flex flex-col flex-wrap">
+            <SearchSection selectedIDs={selectedIDs} dispatch={dispatch} />
+            <div className="flex flex-col gap-10 sm:flex-row">
+              <FilterSection
+                selectedIDs={selectedIDs}
+                handleCheck={handleCheck}
+              />
+              <ProductSection />
+            </div>
+          </main>
+        </article>
+      </section>
+    </motion.div>
   );
 }
 

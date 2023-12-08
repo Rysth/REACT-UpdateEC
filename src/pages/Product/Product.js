@@ -4,6 +4,7 @@ import Zoom from 'react-medium-image-zoom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { findProduct } from '../../redux/slices/productSlice';
+import NotFound from '../404/NotFound';
 
 function Product() {
   const dispatch = useDispatch();
@@ -15,13 +16,7 @@ function Product() {
   }, [dispatch, productID]);
 
   if (!foundProduct) {
-    return (
-      <header className="grid w-full h-20 py-2 bg-purple place-items-center">
-        <h3 className="w-full text-lg font-bold text-center uppercase">
-          Cargando...
-        </h3>
-      </header>
-    );
+    return <NotFound />;
   }
 
   return (
