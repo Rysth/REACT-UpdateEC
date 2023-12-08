@@ -124,3 +124,11 @@ video {
 .bg-cyan {
   @apply bg-[var(--CL-primary-cyan)];
 }
+
+.active {
+  @apply bg-purple;
+}
+
+.bg-gradient-primary {
+  @apply from-[var(--CL-primary-purple)] to-[var(--CL-primary-cyan)];
+}

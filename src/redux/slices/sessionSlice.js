@@ -25,18 +25,21 @@ export const createSession = createAsyncThunk(
         },
       });
 
-      if (response.status !== 200) {
+      NotificationManager.success('Sesión Iniciada', 'Éxito', 1250);
+      return response.data;
+    } catch (error) {
+      const { status } = error.response.data.error;
+
+      if (status === 400) {
         NotificationManager.error(
           'Email/Contraseña Incorrecta.',
           'Error',
           1250,
         );
-        throw new Error('Error creating the session');
+
+        throw new Error('Error creating the account');
       }
-      NotificationManager.success('Sesión Iniciada', 'Éxito', 1250);
-      return response.data;
-    } catch (error) {
-      NotificationManager.error('Email/Contraseña Incorrecta.', 'Error', 1250);
+
       throw new Error(`Error: ${error.message}`);
     }
   },
@@ -57,18 +60,20 @@ export const createAccount = createAsyncThunk(
         },
       );
 
-      if (response.status !== 200) {
+      NotificationManager.success('Cuenta Creada', 'Éxito', 1250);
+      return response.data;
+    } catch (error) {
+      const { status } = error.response.data.error;
+
+      if (status === 400) {
         NotificationManager.error(
-          'Email/Contraseña Incorrecta.',
+          '!Cuenta ya existente! (Usuario/Email)',
           'Error',
           1250,
         );
         throw new Error('Error creating the account');
       }
-      NotificationManager.success('Cuenta Creada', 'Éxito', 1250);
-      return response.data;
-    } catch (error) {
-      NotificationManager.error('Email/Contraseña Incorrecta.', 'Error', 1250);
+
       throw new Error(`Error: ${error.message}`);
     }
   },
