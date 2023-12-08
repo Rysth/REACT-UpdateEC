@@ -28,7 +28,6 @@ export const createSession = createAsyncThunk(
       NotificationManager.success('Sesión Iniciada', 'Éxito', 1250);
       return response.data;
     } catch (error) {
-      console.log(error.response.data);
       const { status } = error.response.data.error;
 
       if (status === 400) {
@@ -37,6 +36,7 @@ export const createSession = createAsyncThunk(
           'Error',
           1250,
         );
+
         throw new Error('Error creating the account');
       }
 

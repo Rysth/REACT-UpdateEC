@@ -35,6 +35,7 @@ function ProductSection() {
                   src={product.attributes.picture.data.attributes.url}
                   alt={product.name}
                   className="object-contain w-full h-full bg-white"
+                  loading="lazy"
                 />
               </picture>
               <header className="grid py-2">

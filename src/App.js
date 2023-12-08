@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from '@material-tailwind/react';
 import { NotificationContainer } from 'react-notifications';
 import './App.css';
+import 'react-medium-image-zoom/dist/styles.css';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';

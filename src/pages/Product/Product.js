@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Zoom from 'react-medium-image-zoom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { findProduct } from '../../redux/slices/productSlice';
@@ -26,13 +27,16 @@ function Product() {
   return (
     <section className="relative mt-10 text-white">
       <article className="grid gap-5 px-4 py-10 mx-auto sm:py-24 max-w-screen-2xl sm:grid-cols-2">
-        <picture className="bg-white h-[300px] sm:h-[450px] lg:h-[550px]">
-          <img
-            src={foundProduct.attributes.picture.data.attributes.url}
-            alt={foundProduct.name}
-            className="object-contain w-full h-full"
-          />
-        </picture>
+        <Zoom zoomMargin={60}>
+          <picture className=" h-[300px] sm:h-[450px] lg:h-[550px] bg-white">
+            <img
+              src={foundProduct.attributes.picture.data.attributes.url}
+              alt={foundProduct.name}
+              className="object-contain w-full h-full"
+              loading="lazy"
+            />
+          </picture>
+        </Zoom>
         <main className="flex flex-col gap-5 md:px-10">
           <header className="grid gap-1">
             <h2 className="text-lg font-bold uppercase truncate sm:text-xl md:text-4xl">
