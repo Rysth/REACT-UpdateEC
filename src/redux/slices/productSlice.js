@@ -16,7 +16,10 @@ export const fetchProducts = createAsyncThunk(
     try {
       const apiKey = process.env.REACT_APP_API_KEY_UPDATEEC;
       const response = await axios.get(`${API_URL}/products`, {
-        params: { 'filters[active][$eq]': 'true', populate: 'picture' },
+        params: {
+          'filters[active][$eq]': 'true',
+          populate: 'picture,brand,category',
+        },
         headers: {
           Authorization: `Bearer ${apiKey}`,
         },
@@ -37,11 +40,63 @@ const productSlice = createSlice({
 
       if (!searchData) {
         state.filteredArray = state.productsArray;
+        return;
       }
       /* eslint-disable */
       state.filteredArray = state.productsArray.filter((element) =>
         element.attributes.name.toLowerCase().includes(searchData),
       );
+    },
+    filterProducts(state, action) {
+      const { categoryIDs, brandIDs } = action.payload;
+      if (
+        (!categoryIDs || categoryIDs.length === 0) &&
+        (!brandIDs || brandIDs.length === 0)
+      ) {
+        // If no category or brand IDs are provided, set filteredArray to the entire productsArray
+        state.filteredArray = state.productsArray;
+        return;
+      }
+
+      /* eslint-disable */
+      state.filteredArray = state.productsArray.filter((element) => {
+        const categoryMatch =
+          !categoryIDs.length ||
+          categoryIDs.includes(element.attributes.category.data.id);
+        const brandMatch =
+          !brandIDs.length ||
+          brandIDs.includes(element.attributes.brand.data.id);
+
+        return categoryMatch && brandMatch;
+      });
+    },
+    searchAndFilterProducts(state, action) {
+      const { searchData, categoryIDs, brandIDs } = action.payload;
+
+      if (
+        (!categoryIDs || categoryIDs.length === 0) &&
+        (!brandIDs || brandIDs.length === 0) &&
+        !searchData
+      ) {
+        // If no category, brand, or search data is provided, set filteredArray to the entire productsArray
+        state.filteredArray = state.productsArray;
+        return;
+      }
+
+      /* eslint-disable */
+      state.filteredArray = state.productsArray.filter((element) => {
+        const categoryMatch =
+          !categoryIDs.length ||
+          categoryIDs.includes(element.attributes.category.data.id);
+        const brandMatch =
+          !brandIDs.length ||
+          brandIDs.includes(element.attributes.brand.data.id);
+        const searchMatch =
+          !searchData ||
+          element.attributes.name.toLowerCase().includes(searchData);
+
+        return categoryMatch && brandMatch && searchMatch;
+      });
     },
   },
   extraReducers: (builder) => {

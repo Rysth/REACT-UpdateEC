@@ -1,12 +1,16 @@
-import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { productActions } from '../../../redux/slices/productSlice';
 
-function SearchSection() {
-  const dispatch = useDispatch();
-
+function SearchSection({ selectedIDs, dispatch }) {
   const onChangeSearch = (event) => {
     setTimeout(() => {
-      dispatch(productActions.searchProduct(event.target.value));
+      dispatch(
+        productActions.searchAndFilterProducts({
+          searchData: event.target.value,
+          categoryIDs: selectedIDs.category, // Use selectedIDs directly
+          brandIDs: selectedIDs.brand, // Use selectedIDs directly
+        }),
+      );
     }, 500);
   };
 
@@ -32,5 +36,13 @@ function SearchSection() {
     </div>
   );
 }
+
+SearchSection.propTypes = {
+  selectedIDs: PropTypes.shape({
+    category: PropTypes.element.isRequired,
+    brand: PropTypes.element.isRequired,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
 export default SearchSection;
