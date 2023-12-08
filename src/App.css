@@ -124,3 +124,7 @@ video {
 .bg-cyan {
   @apply bg-[var(--CL-primary-cyan)];
 }
+
+.active {
+  @apply bg-purple;
+}
