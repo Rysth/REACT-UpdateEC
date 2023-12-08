@@ -5,7 +5,7 @@ import { fetchProducts } from '../../../redux/slices/productSlice';
 
 function ProductSection() {
   const dispatch = useDispatch();
-  const { productsArray } = useSelector((store) => store.product);
+  const { filteredArray } = useSelector((store) => store.product);
   const [visibleQuantity, setVisibleQuantity] = useState(8);
 
   const showMoreProducts = () => {
@@ -21,7 +21,7 @@ function ProductSection() {
   return (
     <div className="flex flex-col flex-1 gap-10">
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-        {productsArray.slice(0, visibleQuantity).map((product) => (
+        {filteredArray.slice(0, visibleQuantity).map((product) => (
           <li key={product.id}>
             <Link
               to={`/products/${product.id}`}
@@ -43,6 +43,15 @@ function ProductSection() {
             </Link>
           </li>
         ))}
+        {filteredArray.length === 0 && (
+          <li className="col-span-4">
+            <header className="grid h-20 py-2 bg-red-500 place-items-center">
+              <h3 className="w-full text-lg font-bold text-center uppercase">
+                ¡Productos no Encontrados!
+              </h3>
+            </header>
+          </li>
+        )}
       </ul>
       <footer className="grid place-items-center">
         <button

@@ -4,6 +4,7 @@ import API_URL from '../../helpers/connection';
 
 const initialState = {
   productsArray: [],
+  filteredArray: [],
   loading: false,
   error: false,
 };
@@ -30,7 +31,19 @@ export const fetchProducts = createAsyncThunk(
 const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+    searchProduct(state, action) {
+      const searchData = action.payload.trim();
+
+      if (!searchData) {
+        state.filteredArray = state.productsArray;
+      }
+      /* eslint-disable */
+      state.filteredArray = state.productsArray.filter((element) =>
+        element.attributes.name.toLowerCase().includes(searchData),
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -39,7 +52,7 @@ const productSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.productsArray = action.payload.data;
-        console.log(state.productsArray);
+        state.filteredArray = state.productsArray;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
