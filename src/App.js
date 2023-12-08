@@ -10,6 +10,7 @@ import SignIn from './pages/Session/SignIn';
 import SignUp from './pages/Session/SignUp';
 import Footer from './components/Footer/Footer';
 import Shop from './pages/Shop/Shop';
+import Product from './pages/Product/Product';
 
 function App() {
   const { active } = useSelector((store) => store.session);
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/shop/:id" element={<Product />} />
           <Route
             path="/sign_in"
             element={
