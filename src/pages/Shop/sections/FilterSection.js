@@ -24,14 +24,14 @@ function FilterSection() {
             {categoriesArray.map((category) => (
               <label
                 key={category.id}
-                className="flex items-center justify-between p-2 text-sm md:hover:bg-indigo-700 md:transition md:cursor-pointer"
-                htmlFor={category.id}
+                className="flex items-center justify-between p-1 text-sm md:hover:bg-indigo-700 md:transition md:cursor-pointer"
+                htmlFor={category.attributes.slug}
               >
                 {category.attributes.name}
                 <input
                   type="checkbox"
                   value={category.id}
-                  id={category.id}
+                  id={category.attributes.slug}
                   className="w-5 h-5 text-xl border-none rounded-md outline-none"
                 />
               </label>
@@ -46,7 +46,7 @@ function FilterSection() {
             {brandsArray.map((brand) => (
               <label
                 key={brand.id}
-                className="flex items-center justify-between p-2 text-sm md:hover:bg-indigo-700 md:transition md:cursor-pointer"
+                className="flex items-center justify-between p-1 text-sm md:hover:bg-indigo-700 md:transition md:cursor-pointer"
                 htmlFor={brand.attributes.slug}
               >
                 {brand.attributes.name}
