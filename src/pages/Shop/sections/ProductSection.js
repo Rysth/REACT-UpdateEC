@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchProducts } from '../../../redux/slices/productSlice';
 
 function ProductSection() {
-  const dispatch = useDispatch();
   const { filteredArray, loading } = useSelector((store) => store.product);
   const [visibleQuantity, setVisibleQuantity] = useState(8);
 
@@ -13,10 +11,6 @@ function ProductSection() {
   };
 
   useEffect(() => {}, [visibleQuantity]);
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
 
   if (loading) {
     return (
@@ -34,7 +28,7 @@ function ProductSection() {
         {filteredArray.slice(0, visibleQuantity).map((product) => (
           <li key={product.id}>
             <Link
-              to={`/products/${product.id}`}
+              to={`/shop/${product.id}`}
               className="block w-full md:hover:-translate-y-3 md:transition"
             >
               <picture className="h-[175px] lg:h-[240px] ">

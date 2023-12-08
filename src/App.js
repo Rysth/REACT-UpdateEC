@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from '@material-tailwind/react';
 import { NotificationContainer } from 'react-notifications';
 import './App.css';
@@ -11,9 +12,15 @@ import SignUp from './pages/Session/SignUp';
 import Footer from './components/Footer/Footer';
 import Shop from './pages/Shop/Shop';
 import Product from './pages/Product/Product';
+import { fetchProducts } from './redux/slices/productSlice';
 
 function App() {
+  const dispatch = useDispatch();
   const { active } = useSelector((store) => store.session);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   /* eslint-disable */
   return (
