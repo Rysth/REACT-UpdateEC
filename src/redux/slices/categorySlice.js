@@ -1,32 +1,32 @@
-import axios from 'axios';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import API_URL from '../../helpers/connection';
+import axios from 'axios'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+/* Environment Variables */
+const API_URL = import.meta.env.VITE_APP_URL
+const API_KEY = import.meta.env.VITE_API_KEY
 
 const initialState = {
   categoriesArray: [],
   filteredArray: [],
   loading: false,
   error: false,
-};
+}
 
 // Categories - GET
-export const fetchCategories = createAsyncThunk(
-  'category/fetchCategories',
-  async () => {
-    try {
-      const apiKey = process.env.REACT_APP_API_KEY_UPDATEEC;
-      const response = await axios.get(`${API_URL}/categories`, {
-        params: { 'filters[active][$eq]': 'true' },
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      throw new Error(`Error: ${error.message}`);
-    }
-  },
-);
+export const fetchCategories = createAsyncThunk('category/fetchCategories', async () => {
+  try {
+    const response = await axios.get(`${API_URL}/categories`, {
+      params: { 'filters[active][$eq]': 'true' },
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+      },
+    })
+    return response.data
+  } catch (error) {
+    console.log(error)
+    throw new Error(`Error: ${error.message}`)
+  }
+})
 
 const categorySlice = createSlice({
   name: 'category',
@@ -35,20 +35,20 @@ const categorySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
-        state.loading = true;
+        state.loading = true
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.loading = false;
-        state.categoriesArray = action.payload.data;
-        state.filteredArray = state.categoriesArray;
+        state.loading = false
+        state.categoriesArray = action.payload.data
+        state.filteredArray = state.categoriesArray
       })
       .addCase(fetchCategories.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
+        state.loading = false
+        state.error = action.error.message
+      })
   },
-});
+})
 
-export const categoryActions = categorySlice.actions;
+export const categoryActions = categorySlice.actions
 
-export default categorySlice.reducer;
+export default categorySlice.reducer

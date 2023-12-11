@@ -1,16 +1,14 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 /* eslint-disable */
 function FilterGroup({ title, data, onSelect }) {
   const handleCheckboxChange = (itemId) => {
-    onSelect(itemId);
-  };
+    onSelect(itemId)
+  }
 
   return (
     <fieldset>
-      <legend className="w-full py-2 mb-5 text-sm font-semibold text-center sm:text-lg bg-purple">
-        {title}
-      </legend>
+      <legend className="w-full py-2 mb-5 text-sm font-semibold text-center sm:text-lg bg-purple">{title}</legend>
       <div className="max-h-[8rem] overflow-auto">
         {data.map((item) => (
           <label
@@ -30,13 +28,13 @@ function FilterGroup({ title, data, onSelect }) {
         ))}
       </div>
     </fieldset>
-  );
+  )
 }
 
 FilterGroup.propTypes = {
   title: PropTypes.string.isRequired,
-  dataKey: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,
-};
+}
 
-export default FilterGroup;
+export default FilterGroup

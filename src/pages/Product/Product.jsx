@@ -1,27 +1,27 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Zoom from 'react-medium-image-zoom';
-import { FaShoppingCart } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import { findProduct } from '../../redux/slices/productSlice';
-import NotFound from '../404/NotFound';
+import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import Zoom from 'react-medium-image-zoom'
+import { FaShoppingCart } from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
+import { findProduct } from '../../redux/slices/productSlice'
+import NotFound from '../404/NotFound'
 
 function Product() {
-  const dispatch = useDispatch();
-  const { productID } = useParams();
-  const { foundProduct } = useSelector((store) => store.product);
+  const dispatch = useDispatch()
+  const { productID } = useParams()
+  const { foundProduct } = useSelector((store) => store.product)
 
   useEffect(() => {
-    dispatch(findProduct(productID));
-  }, [dispatch, productID]);
+    dispatch(findProduct(productID))
+  }, [dispatch, productID])
 
   if (!foundProduct) {
-    return <NotFound />;
+    return <NotFound />
   }
 
   return (
     <section className="relative mt-10 text-white">
-      <article className="grid gap-5 px-4 py-10 mx-auto sm:py-24 max-w-screen-2xl sm:grid-cols-2">
+      <article className="grid max-w-screen-xl gap-5 px-4 py-10 mx-auto sm:py-24 sm:grid-cols-2">
         <Zoom zoomMargin={60}>
           <picture className=" h-[300px] sm:h-[450px] lg:h-[550px] bg-white">
             <img
@@ -63,7 +63,7 @@ function Product() {
         </main>
       </article>
     </section>
-  );
+  )
 }
 
-export default Product;
+export default Product

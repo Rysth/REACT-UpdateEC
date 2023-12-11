@@ -1,23 +1,23 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import Logo from '../../assets/SVG/logo.svg';
-import NavBar from './NavBar/NavBar';
-import { sessionActions } from '../../redux/slices/sessionSlice';
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import Logo from '../../assets/SVG/logo.svg'
+import NavBar from './NavBar/NavBar'
+import { sessionActions } from '../../redux/slices/sessionSlice'
 
 function Header() {
-  const dispatch = useDispatch();
-  const { active } = useSelector((store) => store.session);
-  const [isOpen, setIsOpen] = useState(false);
-  const handleNavigationBar = () => setIsOpen(!isOpen);
-  const closeNavigationBar = () => setIsOpen(false);
+  const dispatch = useDispatch()
+  const { active } = useSelector((store) => store.session)
+  const [isOpen, setIsOpen] = useState(false)
+  const handleNavigationBar = () => setIsOpen(!isOpen)
+  const closeNavigationBar = () => setIsOpen(false)
 
   const closeUserSession = () => {
-    dispatch(sessionActions.destroySession());
-  };
+    dispatch(sessionActions.destroySession())
+  }
 
-  useEffect(() => {}, [active]);
+  useEffect(() => {}, [active])
 
   return (
     <motion.header
@@ -25,26 +25,14 @@ function Header() {
       animate={{ opacity: 1 }}
       className="fixed top-0 z-[1001] w-full backdrop-blur-2xl"
     >
-      <div className="flex flex-wrap items-center justify-between p-4 mx-auto text-white max-w-screen-2xl md:py-5">
+      <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto text-white md:py-5">
         <div className="flex items-center gap-8">
           <a href="/" rel="nonopenner" aria-label="Home page">
-            <img
-              src={Logo}
-              alt="UpdateEC brand logo"
-              className="w-20 bg-transparent sm:w-28"
-            />
+            <img src={Logo} alt="UpdateEC brand logo" className="w-20 bg-transparent sm:w-28" />
           </a>
-          <NavBar
-            classList="hidden sm:flex font-semibold items-center gap-5 text-xs"
-            navClassList=""
-          />
+          <NavBar classList="hidden sm:flex font-semibold items-center gap-5 text-xs" navClassList="" />
         </div>
-        <button
-          type="button"
-          className="sm:hidden"
-          onClick={handleNavigationBar}
-          aria-label="toggleButton"
-        >
+        <button type="button" className="sm:hidden" onClick={handleNavigationBar} aria-label="toggleButton">
           <i className="w-full h-full text-2xl fa-solid fa-bars" />
         </button>
         {isOpen && (
@@ -113,7 +101,7 @@ function Header() {
         )}
       </div>
     </motion.header>
-  );
+  )
 }
 
-export default Header;
+export default Header

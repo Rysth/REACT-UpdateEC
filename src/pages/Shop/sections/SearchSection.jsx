@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { productActions } from '../../../redux/slices/productSlice';
+import PropTypes from 'prop-types'
+import { productActions } from '../../../redux/slices/productSlice'
 
 function SearchSection({ selectedIDs, dispatch }) {
   const onChangeSearch = (event) => {
@@ -10,9 +10,9 @@ function SearchSection({ selectedIDs, dispatch }) {
           categoryIDs: selectedIDs.category, // Use selectedIDs directly
           brandIDs: selectedIDs.brand, // Use selectedIDs directly
         }),
-      );
-    }, 500);
-  };
+      )
+    }, 500)
+  }
 
   return (
     <div className="grid w-full gap-4 my-8 sm:justify-between sm:flex sm:flex-row sm:items-center">
@@ -35,15 +35,15 @@ function SearchSection({ selectedIDs, dispatch }) {
         </li>
       </ul>
     </div>
-  );
+  )
 }
 
 SearchSection.propTypes = {
   selectedIDs: PropTypes.shape({
-    category: PropTypes.element.isRequired,
-    brand: PropTypes.element.isRequired,
+    category: PropTypes.array.isRequired,
+    brand: PropTypes.array.isRequired,
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
-};
+}
 
-export default SearchSection;
+export default SearchSection

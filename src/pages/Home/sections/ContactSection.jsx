@@ -1,22 +1,20 @@
-import { useForm } from '@formspree/react';
-import { useEffect, useRef } from 'react';
-import { NotificationManager } from 'react-notifications';
+import { useForm } from '@formspree/react'
+import { useEffect, useRef } from 'react'
 
 function ContactSection() {
-  const [state, handleSubmit] = useForm('mvonqdpy');
-  const formRef = useRef(null);
+  const [state, handleSubmit] = useForm('mvonqdpy')
+  const formRef = useRef(null)
 
   useEffect(() => {
     if (state.succeeded) {
-      NotificationManager.success('¡Muchas Gracias!', 'Envíado', 2000);
-      state.succeeded = false;
-      formRef.current.reset();
+      state.succeeded = false
+      formRef.current.reset()
     }
-  }, [state]);
+  }, [state])
 
   return (
     <section className="relative text-white">
-      <div className="px-4 py-24 mx-auto max-w-screen-2xl">
+      <div className="max-w-screen-xl px-4 py-24 mx-auto">
         <header className="mb-16 text-center">
           <h2 className="text-3xl font-bold sm:text-4xl">Contactános</h2>
         </header>
@@ -36,9 +34,7 @@ function ContactSection() {
             onSubmit={handleSubmit}
             ref={formRef}
           >
-            <h2 className="mb-1 text-lg font-bold text-center sm:text-xl title-font">
-              Comparte tus Sugerencias
-            </h2>
+            <h2 className="mb-1 text-lg font-bold text-center sm:text-xl title-font">Comparte tus Sugerencias</h2>
             <div className="relative my-4">
               <label htmlFor="name" className="text-sm leading-7 text-light">
                 Nombre Completo
@@ -82,7 +78,7 @@ function ContactSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default ContactSection;
+export default ContactSection

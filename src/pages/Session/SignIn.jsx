@@ -1,22 +1,18 @@
-import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { createSession } from '../../redux/slices/sessionSlice';
+import { motion } from 'framer-motion'
+import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { createSession } from '../../redux/slices/sessionSlice'
 
 function SignIn() {
-  const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch()
+  const { register, handleSubmit } = useForm()
 
   const onSubmit = (userData) => {
-    dispatch(createSession(userData));
-  };
+    dispatch(createSession(userData))
+  }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 2 }}
-    >
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
       {/* eslint-disable */}
       <section className="h-screen">
         <div className="flex flex-col sm:grid sm:grid-cols-[55%_1fr] h-full">
@@ -29,9 +25,7 @@ function SignIn() {
               className="flex flex-col items-center justify-center h-full gap-1 w-72 sm:rounded-l-3xl"
               onSubmit={handleSubmit(onSubmit)}
             >
-              <h2 className="w-full mb-5 text-3xl font-bold text-left md:text-4xl">
-                Iniciar Sesión
-              </h2>
+              <h2 className="w-full mb-5 text-3xl font-bold text-left md:text-4xl">Iniciar Sesión</h2>
               <label htmlFor="identifier" className="grid w-full gap-2 text-sm">
                 <span className="font-semibold">Correo Electrónico:</span>
                 <input
@@ -42,10 +36,7 @@ function SignIn() {
                   placeholder="username@example.com"
                 />
               </label>
-              <label
-                htmlFor="password"
-                className="grid w-full gap-2 mt-5 text-sm"
-              >
+              <label htmlFor="password" className="grid w-full gap-2 mt-5 text-sm">
                 <span className="font-semibold">Contraseña:</span>
                 <input
                   type="password"
@@ -66,7 +57,7 @@ function SignIn() {
         </div>
       </section>
     </motion.div>
-  );
+  )
 }
 
-export default SignIn;
+export default SignIn
