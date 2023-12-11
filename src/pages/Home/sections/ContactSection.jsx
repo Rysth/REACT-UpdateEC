@@ -1,5 +1,6 @@
 import { useForm } from '@formspree/react'
 import { useEffect, useRef } from 'react'
+import { toast } from 'react-toastify'
 
 function ContactSection() {
   const [state, handleSubmit] = useForm('mvonqdpy')
@@ -8,6 +9,7 @@ function ContactSection() {
   useEffect(() => {
     if (state.succeeded) {
       state.succeeded = false
+      toast.info('Mensaje Envíado', { theme: 'colored' })
       formRef.current.reset()
     }
   }, [state])

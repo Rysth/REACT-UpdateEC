@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import './App.css'
-import 'react-medium-image-zoom/dist/styles.css'
+import { ToastContainer } from 'react-toastify'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
@@ -13,6 +12,9 @@ import Shop from './pages/Shop/Shop'
 import Product from './pages/Product/Product'
 import { fetchProducts } from './redux/slices/productSlice'
 import NotFound from './pages/404/NotFound'
+import 'react-medium-image-zoom/dist/styles.css'
+import 'react-toastify/dist/ReactToastify.css'
+import './App.css'
 
 function App() {
   const dispatch = useDispatch()
@@ -24,6 +26,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ToastContainer position="bottom-right" />
       <Header />
       <main>
         <Routes>

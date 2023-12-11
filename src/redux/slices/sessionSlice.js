@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 
 /* Environment Variables */
 const API_URL = import.meta.env.VITE_APP_URL
@@ -29,7 +30,8 @@ export const createSession = createAsyncThunk('session/createSession', async (us
     const { status } = error.response.data.error
 
     if (status === 400) {
-      throw new Error('Error creating the account')
+      toast.error('Email/Contraseña incorrectas', { theme: 'colored' })
+      throw new Error('Error login the account')
     }
 
     throw new Error(`Error: ${error.message}`)
@@ -50,6 +52,7 @@ export const createAccount = createAsyncThunk('session/createAccount', async (us
     const { status } = error.response.data.error
 
     if (status === 400) {
+      toast.error('Email/Usuario ya existente', { theme: 'colored' })
       throw new Error('Error creating the account')
     }
 
@@ -67,6 +70,7 @@ const sessionSlice = createSlice({
       state.authToken = ''
       sessionStorage.removeItem('userData')
       sessionStorage.removeItem('authToken')
+      toast.info('Muchas Gracias', { theme: 'colored' })
     },
   },
   extraReducers: (builder) => {
@@ -81,6 +85,7 @@ const sessionSlice = createSlice({
         state.authToken = action.payload.jwt
         sessionStorage.setItem('userData', JSON.stringify(state.userData))
         sessionStorage.setItem('authToken', state.authToken)
+        toast.success('Sesión Iniciada', { theme: 'colored' })
       })
       .addCase(createSession.rejected, (state, action) => {
         state.loading = false
@@ -96,6 +101,7 @@ const sessionSlice = createSlice({
         state.authToken = action.payload.jwt
         sessionStorage.setItem('userData', JSON.stringify(state.userData))
         sessionStorage.setItem('authToken', state.authToken)
+        toast.success('Cuenta Creada', { theme: 'colored' })
       })
       .addCase(createAccount.rejected, (state, action) => {
         state.loading = false
