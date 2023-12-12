@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Logo from '../../assets/SVG/logo.svg'
 import NavBar from './NavBar/NavBar'
 import { sessionActions } from '../../redux/slices/sessionSlice'
+import { FaBarsStaggered } from 'react-icons/fa6'
+import { IoClose } from 'react-icons/io5'
 
 function Header() {
   const dispatch = useDispatch()
@@ -33,17 +35,21 @@ function Header() {
           <NavBar classList="hidden sm:flex font-semibold items-center gap-5 text-xs" navClassList="" />
         </div>
         <button type="button" className="sm:hidden" onClick={handleNavigationBar} aria-label="toggleButton">
-          <i className="w-full h-full text-2xl fa-solid fa-bars" />
+          {!isOpen ? (
+            <FaBarsStaggered className="w-full h-full text-2xl" />
+          ) : (
+            <IoClose className="w-full h-full text-3xl" />
+          )}
         </button>
         {isOpen && (
           <>
             <NavBar
               classList="bg-white my-3 rounded rounded-md flex flex-col basis-full sm:hidden text-sm p-2"
-              navClassList="text-black p-2"
+              navClassList="text-black p-2 flex items-center gap-1"
               handleNavigationBar={closeNavigationBar}
             />
             {!active ? (
-              <div className="flex items-center justify-end w-full gap-2 sm:hidden">
+              <div className="flex items-center justify-end w-full sm:hidden">
                 <NavLink
                   to="/sign_in"
                   className="p-2 px-4 text-xs text-white underline rounded-full md:transition md:hover:scale-105 md:active:scale-95"

@@ -125,8 +125,10 @@ video {
   @apply bg-[var(--CL-primary-cyan)];
 }
 
-.active {
-  @apply bg-purple;
+@media (max-width: 640px) {
+  .active {
+    @apply text-white bg-purple;
+  }
 }
 
 .bg-gradient-primary {
