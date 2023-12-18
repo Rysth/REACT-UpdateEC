@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import NavigationBar from './components/NavigatioBar/NavigationBar'
 import SessionPage from './pages/SessionPage/SessionPage'
+import FormSignIn from './pages/SessionPage/components/FormSignIn'
 import Footer from './components/Footer/Footer'
 import { fetchProducts } from './redux/slices/productSlice'
 import 'react-medium-image-zoom/dist/styles.css'
@@ -29,7 +30,9 @@ function App() {
             path="/sign_in"
             element={
               <ProtectedRoute isAllowed={!active} redirectTo="/">
-                <SessionPage />
+                <SessionPage>
+                  <FormSignIn />
+                </SessionPage>
               </ProtectedRoute>
             }
           />
