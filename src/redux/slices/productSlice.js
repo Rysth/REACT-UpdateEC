@@ -13,18 +13,20 @@ const initialState = {
   error: false,
 }
 
+const fetchProductsConfig = {
+  params: {
+    'filters[active][$eq]': 'true',
+    populate: 'picture,brand,category',
+  },
+  headers: {
+    Authorization: `Bearer ${API_KEY}`,
+  },
+}
+
 // Products - GET
 export const fetchProducts = createAsyncThunk('product/fetchProducts', async () => {
   try {
-    const response = await axios.get(`${API_URL}/products`, {
-      params: {
-        'filters[active][$eq]': 'true',
-        populate: 'picture,brand,category',
-      },
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-      },
-    })
+    const response = await axios.get(`${API_URL}/products`, fetchProductsConfig)
     return response.data
   } catch (error) {
     throw new Error(`Error: ${error.message}`)
@@ -34,15 +36,7 @@ export const fetchProducts = createAsyncThunk('product/fetchProducts', async () 
 // Products - GET
 export const findProduct = createAsyncThunk('product/findProduct', async (productID) => {
   try {
-    const response = await axios.get(`${API_URL}/products/${productID}`, {
-      params: {
-        'filters[active][$eq]': 'true',
-        populate: 'picture,brand,category',
-      },
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-      },
-    })
+    const response = await axios.get(`${API_URL}/products/${productID}`, fetchProductsConfig)
     return response.data
   } catch (error) {
     throw new Error(`Error: ${error.message}`)
@@ -60,20 +54,19 @@ const productSlice = createSlice({
         state.filteredArray = state.productsArray
         return
       }
-      /* eslint-disable */
+
       state.filteredArray = state.productsArray.filter((element) =>
         element.attributes.name.toLowerCase().includes(searchData),
       )
     },
     filterProducts(state, action) {
       const { categoryIDs, brandIDs } = action.payload
+
       if ((!categoryIDs || categoryIDs.length === 0) && (!brandIDs || brandIDs.length === 0)) {
-        // If no category or brand IDs are provided, set filteredArray to the entire productsArray
         state.filteredArray = state.productsArray
         return
       }
 
-      /* eslint-disable */
       state.filteredArray = state.productsArray.filter((element) => {
         const categoryMatch = !categoryIDs.length || categoryIDs.includes(element.attributes.category.data.id)
         const brandMatch = !brandIDs.length || brandIDs.includes(element.attributes.brand.data.id)
@@ -85,12 +78,10 @@ const productSlice = createSlice({
       const { searchData, categoryIDs, brandIDs } = action.payload
 
       if ((!categoryIDs || categoryIDs.length === 0) && (!brandIDs || brandIDs.length === 0) && !searchData) {
-        // If no category, brand, or search data is provided, set filteredArray to the entire productsArray
         state.filteredArray = state.productsArray
         return
       }
 
-      /* eslint-disable */
       state.filteredArray = state.productsArray.filter((element) => {
         const categoryMatch = !categoryIDs.length || categoryIDs.includes(element.attributes.category.data.id)
         const brandMatch = !brandIDs.length || brandIDs.includes(element.attributes.brand.data.id)
@@ -98,7 +89,6 @@ const productSlice = createSlice({
 
         return categoryMatch && brandMatch && searchMatch
       })
-      /* eslint-enable */
     },
   },
   extraReducers: (builder) => {
@@ -108,8 +98,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false
-        state.productsArray = action.payload.data
-        state.filteredArray = state.productsArray
+        state.productsArray = state.filteredArray = action.payload.data
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false
@@ -130,5 +119,4 @@ const productSlice = createSlice({
 })
 
 export const productActions = productSlice.actions
-
 export default productSlice.reducer

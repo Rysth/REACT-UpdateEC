@@ -17,9 +17,7 @@ export const fetchCategories = createAsyncThunk('category/fetchCategories', asyn
   try {
     const response = await axios.get(`${API_URL}/categories`, {
       params: { 'filters[active][$eq]': 'true' },
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-      },
+      headers: { Authorization: `Bearer ${API_KEY}` },
     })
     return response.data
   } catch (error) {
@@ -39,8 +37,7 @@ const categorySlice = createSlice({
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.loading = false
-        state.categoriesArray = action.payload.data
-        state.filteredArray = state.categoriesArray
+        state.categoriesArray = state.filteredArray = action.payload.data
       })
       .addCase(fetchCategories.rejected, (state, action) => {
         state.loading = false
@@ -50,5 +47,4 @@ const categorySlice = createSlice({
 })
 
 export const categoryActions = categorySlice.actions
-
 export default categorySlice.reducer

@@ -1,17 +1,18 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import Header from './components/Header/Header'
-import Home from './pages/Home/Home'
-import SignIn from './pages/Session/SignIn'
-import SignUp from './pages/Session/SignUp'
-import Footer from './components/Footer/Footer'
-import Shop from './pages/Shop/Shop'
-import Product from './pages/Product/Product'
-import { fetchProducts } from './redux/slices/productSlice'
+import NavigationBar from './components/NavigationBar/NavigationBar'
+import SessionPage from './pages/SessionPage/SessionPage'
+import FormSignIn from './pages/SessionPage/components/FormSignIn'
+import FormSignUp from './pages/SessionPage/components/FormSignUp'
+import HomePage from './pages/HomePage/HomePage'
+import ShopPage from './pages/ShopPage/ShopPage'
 import NotFound from './pages/404/NotFound'
+import ProductPage from './pages/ProductPage/ProductPage'
+import Footer from './components/Footer/Footer'
+import { fetchProducts } from './redux/slices/productSlice'
 import 'react-medium-image-zoom/dist/styles.css'
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
@@ -26,11 +27,35 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ToastContainer position="bottom-right" />
-      <Header />
-      <main>
+      <ToastContainer position="top-left" />
+      <NavigationBar />
+      <main className="h-full">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/sign_in"
+            element={
+              <ProtectedRoute isAllowed={!active} redirectTo="/">
+                <SessionPage>
+                  <FormSignIn />
+                </SessionPage>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/sign_up"
+            element={
+              <ProtectedRoute isAllowed={!active} redirectTo="/">
+                <SessionPage>
+                  <FormSignUp />
+                </SessionPage>
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/shop/:productID" element={<ProductPage />} />
+          <Route path="/*" element={<NotFound />} /> */
+          {/* <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/:productID" element={<Product />} />
           <Route
@@ -49,7 +74,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/*" element={<NotFound />} /> */}
         </Routes>
       </main>
       <Footer />

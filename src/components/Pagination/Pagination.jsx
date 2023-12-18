@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ReactPaginate from 'react-paginate';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ReactPaginate from 'react-paginate'
 
 function Pagination({ quantity, total, handlePaginate }) {
-  const totalPages = Math.ceil(total / quantity);
+  const totalPages = Math.ceil(total / quantity)
 
   return (
     <div className="absolute bottom-0 left-0 w-full ">
@@ -17,13 +17,13 @@ function Pagination({ quantity, total, handlePaginate }) {
         activeClassName="bg-purple-700 outline-transparent"
       />
     </div>
-  );
+  )
 }
 
 Pagination.propTypes = {
   quantity: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   handlePaginate: PropTypes.func.isRequired,
-};
+}
 
-export default Pagination;
+export default Pagination

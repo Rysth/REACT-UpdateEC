@@ -17,9 +17,7 @@ export const fetchBrands = createAsyncThunk('brand/fetchBrands', async () => {
   try {
     const response = await axios.get(`${API_URL}/brands`, {
       params: { 'filters[active][$eq]': 'true' },
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-      },
+      headers: { Authorization: `Bearer ${API_KEY}` },
     })
     return response.data
   } catch (error) {
@@ -38,8 +36,7 @@ const brandSlice = createSlice({
       })
       .addCase(fetchBrands.fulfilled, (state, action) => {
         state.loading = false
-        state.brandsArray = action.payload.data
-        state.filteredArray = state.brandsArray
+        state.brandsArray = state.filteredArray = action.payload.data
       })
       .addCase(fetchBrands.rejected, (state, action) => {
         state.loading = false
@@ -49,5 +46,4 @@ const brandSlice = createSlice({
 })
 
 export const brandActions = brandSlice.actions
-
 export default brandSlice.reducer

@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { motion } from 'framer-motion'
 import { productActions } from '../../redux/slices/productSlice'
 import BannerSection from './sections/BannerSection'
 import SearchSection from './sections/SearchSection'
 import FilterSection from './sections/FilterSection'
 import ProductSection from './sections/ProductSection'
 
-function Shop() {
+function ShopPage() {
   const dispatch = useDispatch()
   const [selectedIDs, setSelectedIDs] = useState({
     category: [],
@@ -38,21 +37,19 @@ function Shop() {
     setSelectedIDs(updatedSelectedIDs)
   }
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
-      <section className="relative text-white">
-        <article className="max-w-screen-xl px-4 py-24 mx-auto">
-          <BannerSection />
-          <main className="flex flex-col flex-wrap">
-            <SearchSection selectedIDs={selectedIDs} dispatch={dispatch} />
-            <div className="flex flex-col gap-10 sm:flex-row">
-              <FilterSection selectedIDs={selectedIDs} handleCheck={handleCheck} />
-              <ProductSection />
-            </div>
-          </main>
-        </article>
-      </section>
-    </motion.div>
+    <section className="relative text-white">
+      <article className="mx-auto max-w-screen-2xl">
+        <BannerSection />
+        <main className="flex flex-col flex-wrap px-4">
+          <SearchSection selectedIDs={selectedIDs} dispatch={dispatch} />
+          <div className="flex flex-col gap-10 sm:flex-row">
+            <FilterSection selectedIDs={selectedIDs} handleCheck={handleCheck} />
+            <ProductSection />
+          </div>
+        </main>
+      </article>
+    </section>
   )
 }
 
-export default Shop
+export default ShopPage

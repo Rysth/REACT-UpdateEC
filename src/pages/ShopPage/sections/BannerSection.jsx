@@ -5,7 +5,7 @@ function BannerSection() {
         Tienda
       </h2>
     </header>
-  );
+  )
 }
 
-export default BannerSection;
+export default BannerSection
