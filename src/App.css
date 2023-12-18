@@ -11,13 +11,12 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgb(17, 34, 29);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--CL-primary-purple);
-  border-radius: 5px;
 }
 
 :root {

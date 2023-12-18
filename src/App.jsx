@@ -1,8 +1,11 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import NavigationBar from './components/NavigatioBar/NavigationBar'
+import SessionPage from './pages/SessionPage/SessionPage'
+import Footer from './components/Footer/Footer'
 import { fetchProducts } from './redux/slices/productSlice'
 import 'react-medium-image-zoom/dist/styles.css'
 import 'react-toastify/dist/ReactToastify.css'
@@ -20,8 +23,16 @@ function App() {
     <BrowserRouter>
       <ToastContainer position="bottom-right" />
       <NavigationBar />
-      <main>
+      <main className="h-full">
         <Routes>
+          <Route
+            path="/sign_in"
+            element={
+              <ProtectedRoute isAllowed={!active} redirectTo="/">
+                <SessionPage />
+              </ProtectedRoute>
+            }
+          />
           {/* <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/:productID" element={<Product />} />
@@ -44,7 +55,7 @@ function App() {
           <Route path="/*" element={<NotFound />} /> */}
         </Routes>
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   )
 }

@@ -4,12 +4,15 @@ import { NavLink } from 'react-router-dom'
 
 function NavigationBar() {
   return (
-    <Navbar className="items-center py-3 bg-gray-900">
+    <Navbar className="sticky top-0 items-center py-3 bg-gray-900">
       <Navbar.Brand href="/">
         <img src={BrandImage} className="w-24 sm:w-32" alt="Flowbite React Logo" />
       </Navbar.Brand>
       <div className="flex items-center gap-2 sm:gap-6 md:order-2">
-        <Navbar.Link className="hidden py-2 text-xs text-white cursor-pointer sm:inline-block md:hover:text-cyan-300 md:transition">
+        <Navbar.Link
+          href="/sign_in"
+          className="hidden py-2 text-xs text-white cursor-pointer sm:inline-block md:hover:text-cyan-300 md:transition"
+        >
           Iniciar Sesión
         </Navbar.Link>
         <Button gradientDuoTone="purpleToBlue" className="p-2 transition rounded-full" size="xs">
