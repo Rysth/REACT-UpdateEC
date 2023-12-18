@@ -20,8 +20,8 @@ function Product() {
   }
 
   return (
-    <section className="relative mt-10 text-white">
-      <article className="grid max-w-screen-xl gap-5 px-4 py-10 mx-auto sm:py-24 sm:grid-cols-2">
+    <section className="relative text-white">
+      <article className="grid max-w-screen-xl gap-5 px-4 py-5 mx-auto sm:py-12 sm:grid-cols-2">
         <Zoom zoomMargin={60}>
           <picture className=" h-[300px] sm:h-[450px] lg:h-[550px] bg-white">
             <img
@@ -32,14 +32,14 @@ function Product() {
             />
           </picture>
         </Zoom>
-        <main className="flex flex-col gap-5 md:px-10">
+        <main className="flex flex-col justify-between gap-5 md:px-10">
           <header className="grid gap-1">
             <h2 className="text-lg font-bold uppercase truncate sm:text-xl md:text-4xl">
               {foundProduct.attributes.name}
             </h2>
             <h3 className="text-sm sm:text-xl md:text-2xl">{`$${foundProduct.attributes.price}`}</h3>
           </header>
-          <p className="sm:mt-5  text-xs sm:text-sm max-h-[15rem] overflow-auto">
+          <p className="sm:mt-5  text-xs sm:text-base max-h-[15rem] overflow-auto">
             {foundProduct.attributes.description}
           </p>
           <footer className="flex items-center gap-5 mt-5">
@@ -54,7 +54,7 @@ function Product() {
               type="number"
               name="quantity"
               id="quantity"
-              className="p-2.5 my-3 text-xs sm:text-sm text-black"
+              className="p-2.5 text-xs sm:text-sm text-black"
               defaultValue={1}
               min={1}
               max={foundProduct.attributes.quantity}
