@@ -1,4 +1,5 @@
 import { Button } from 'flowbite-react'
+import { Link } from 'react-router-dom'
 import HeroImage from '../../../assets/PNG/hero/hero_1.png'
 
 function HeroSection() {
@@ -6,7 +7,7 @@ function HeroSection() {
     <section>
       <div className="px-4 py-12 mx-auto sm:py-0 max-w-7xl sm:px-6 md:px-12 lg:px-24">
         <div className="flex flex-wrap items-center mx-auto max-w-7xl">
-          <div className="w-full lg:max-w-lg lg:w-1/2 rounded-xl">
+          <div className="w-full lg:max-w-lg lg:w-2/2 rounded-xl">
             <div>
               <div className="relative w-full max-w-lg">
                 <div className="absolute top-0 rounded-full bg-violet-300 -left-4 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
@@ -33,12 +34,23 @@ function HeroSection() {
             </p>
             <div className="flex gap-2 mt-0 lg:mt-6 max-w-7xl">
               <div className="mt-3 rounded-lg sm:mt-0">
-                <Button size="lg" className="w-32" color="blue">
+                <Button
+                  size="lg"
+                  className="w-32 bg-purple md:active:scale-95 md:transition md:hover:scale-105"
+                  color="dark"
+                  as={Link}
+                >
                   Contactar
                 </Button>
               </div>
               <div className="mt-3 rounded-lg sm:mt-0 sm:ml-3">
-                <Button size="lg" className="w-32" outline color="dark">
+                <Button
+                  size="lg"
+                  className="w-32 md:active:scale-95 md:transition md:hover:scale-105"
+                  outline
+                  color="dark"
+                  as={Link}
+                >
                   Tienda
                 </Button>
               </div>
