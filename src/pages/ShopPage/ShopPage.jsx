@@ -7,7 +7,7 @@ import SearchSection from './sections/SearchSection'
 import FilterSection from './sections/FilterSection'
 import ProductSection from './sections/ProductSection'
 
-function Shop() {
+function ShopPage() {
   const dispatch = useDispatch()
   const [selectedIDs, setSelectedIDs] = useState({
     category: [],
@@ -55,4 +55,4 @@ function Shop() {
   )
 }
 
-export default Shop
+export default ShopPage

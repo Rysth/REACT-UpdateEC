@@ -24,7 +24,7 @@ function HeroSection() {
             </div>
           </div>
           <div className="flex flex-col items-start mt-12 mb-16 text-left lg:flex-grow lg:w-1/2 lg:pl-6 xl:pl-24 md:mb-0 xl:mt-0">
-            <span className="mb-8 text-xs font-bold tracking-widest text-blue-600 uppercase"> E-COMMERCE</span>
+            <span className="mb-8 text-xs font-bold tracking-widest text-blue-600 uppercase">E-COMMERCE</span>
             <h1 className="mb-8 text-4xl font-bold leading-none tracking-tighter text-white md:text-7xl">
               Bienvenidos a UpdateEC
             </h1>
@@ -50,6 +50,7 @@ function HeroSection() {
                   outline
                   color="dark"
                   as={Link}
+                  to="/shop"
                 >
                   Tienda
                 </Button>

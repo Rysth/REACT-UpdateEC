@@ -1,51 +1,62 @@
-import { FaDollarSign, FaShieldAlt, FaStar } from 'react-icons/fa'
+import Product_1 from '../../../assets/PNG/products/product_1.png'
+import Product_2 from '../../../assets/PNG/products/product_2.png'
+import Product_3 from '../../../assets/PNG/products/product_3.png'
+import Product_4 from '../../../assets/PNG/products/product_4.png'
+
+const products = [
+  { id: 1, name: 'Audífonos Gamer', image: Product_1, isNew: true },
+  { id: 2, name: 'Cases Gamer', image: Product_2, isNew: true },
+  { id: 3, name: 'Teclados Gamer', image: Product_3, isNew: true },
+  { id: 4, name: 'Audífonos Gamer', image: Product_4, isNew: true },
+]
+
 function FeatureSection() {
   return (
-    <section className="relative text-white">
-      <div className="relative z-10 max-w-screen-xl px-4 py-24 mx-auto">
-        <header className="mb-16 text-center">
-          <h2 className="text-3xl font-bold sm:text-4xl">Nuestras Características</h2>
-        </header>
-        <div className="grid gap-5">
-          <div className="flex flex-col items-center pb-10 mx-auto border-b border-gray-200 cursor-pointer lg:w-3/5 sm:flex-row md:hover:-translate-x-10 md:transition">
-            <div className="inline-flex items-center justify-center flex-shrink-0 w-20 h-20  bg-[var(--CL-primary-purple)] rounded-full sm:w-32 sm:h-32 sm:mr-10">
-              <FaDollarSign className="text-4xl fas fa-dollar-sign sm:text-7xl" />
+    <div className="py-6 bg-white sm:py-8 lg:py-24">
+      <div className="px-4 mx-auto max-w-screen-2xl md:px-8">
+        <div className="mb-10 md:mb-16">
+          <h2 className="mb-4 text-2xl font-bold text-center text-gray-800 md:mb-6 lg:text-4xl">
+            Explora Nuestros Productos 🔥
+          </h2>
+
+          <p className="max-w-screen-md mx-auto text-center text-gray-500 ">
+            Explora nuestra exclusiva selección de productos especializados, cuidadosamente diseñados para elevar tu
+            experiencia en gaming.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {products.map((product) => (
+            <div key={product.id}>
+              <a href="/shop" className="relative block overflow-hidden rounded-t-lg bg-slate-900 group h-96">
+                <img
+                  src={product.image}
+                  loading="lazy"
+                  alt={`Photo of ${product.name}`}
+                  className="object-contain object-center w-full h-full transition duration-200 group-hover:scale-110"
+                />
+
+                {product.isNew && (
+                  <span className="absolute left-0 top-3 rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">
+                    Nuevo
+                  </span>
+                )}
+              </a>
+              <div className="justify-between gap-2 p-4 text-center rounded-b-lg bg-purple">
+                <div className="text-center">
+                  <a
+                    href="/shop"
+                    className="block font-bold text-center text-white transition duration-100 hover:text-gray-300 lg:text-xl"
+                  >
+                    {product.name}
+                  </a>
+                </div>
+              </div>
             </div>
-            <div className="flex-grow mt-6 text-center sm:text-left sm:mt-0">
-              <h2 className="mb-2 text-lg sm:text-xl text-[var(--CL-primary-cyan)] font-bold">Precio Competitivo</h2>
-              <p className="text-sm leading-relaxed">
-                Ofrecemos productos de alta calidad a precios competitivos, garantizando el mejor valor para tu
-                inversión.
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center pb-10 mx-auto border-b border-gray-200 cursor-pointer lg:w-3/5 sm:flex-row md:hover:translate-x-10 md:transition">
-            <div className="flex-grow mt-6 text-center sm:text-left sm:mt-0">
-              <h2 className="mb-2 text-lg sm:text-xl text-[var(--CL-primary-cyan)] font-bold">Calidad Excepcional</h2>
-              <p className="text-sm leading-relaxed">
-                Nuestra dedicación a la excelencia se refleja en cada producto. Calidad superior para elevar tu
-                experiencia gaming.
-              </p>
-            </div>
-            <div className="inline-flex items-center justify-center flex-shrink-0 order-first w-20 h-20 bg-[var(--CL-primary-purple)] rounded-full sm:w-32 sm:order-none sm:h-32 sm:ml-10">
-              <FaStar className="text-4xl fas fa-dollar-sign sm:text-7xl" />
-            </div>
-          </div>
-          <div className="flex flex-col items-center mx-auto cursor-pointer lg:w-3/5 sm:flex-row md:hover:-translate-x-10 md:transition">
-            <div className="inline-flex items-center justify-center flex-shrink-0 w-20 h-20 bg-[var(--CL-primary-purple)] rounded-full sm:w-32 sm:h-32 sm:mr-10">
-              <FaShieldAlt className="text-4xl fas fa-dollar-sign sm:text-7xl" />
-            </div>
-            <div className="flex-grow mt-6 text-center sm:text-left sm:mt-0">
-              <h2 className="mb-2 text-lg sm:text-xl text-[var(--CL-primary-cyan)] font-bold">Confianza Garantizada</h2>
-              <p className="text-sm leading-relaxed">
-                Construimos confianza mediante transparencia y compromiso. Tu satisfacción y confianza son nuestra
-                prioridad.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

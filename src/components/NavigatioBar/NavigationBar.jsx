@@ -57,7 +57,7 @@ function NavigationBar() {
         </Navbar.Link>
         <Navbar.Link
           as={NavLink}
-          to="/tienda"
+          to="/shop"
           className="text-sm text-white border-0 border-none sm:py-2 md:text-xs md:inline-block md:hover:text-cyan-300 md:transition hover:bg-purple"
         >
           Tienda

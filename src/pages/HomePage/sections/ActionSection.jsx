@@ -1,29 +1,48 @@
-import { NavLink } from 'react-router-dom'
+import { Button } from 'flowbite-react'
+import { Link } from 'react-router-dom'
+import BannerImage from '../../../assets/PNG/stock/stock_5.jpg'
 
 function ActionSection() {
   return (
-    <section className="bg-[var(--CL-primary-purple)] text-white">
-      <div className="flex flex-wrap max-w-screen-xl px-4 py-16 mx-auto sm:py-24">
-        <h2 className="mb-2 text-xl font-semibold sm:text-3xl md:text-4xl md:w-2/5">
-          Descubre periféricos y componentes de élite.
-        </h2>
-        <div className="md:w-3/5 md:pl-6">
-          <p className="text-xs leading-6 sm:text-base">
-            Mejora tu juego con UpdateEC. Explora nuestra selección premium de periféricos y componentes gamer. Impulsa
-            tu rendimiento y sumérgete en una experiencia gaming de élite. ¡Descúbrelo ahora!
-          </p>
-          <div className="flex mt-6 md:mt-4">
-            <NavLink
-              to="/products"
-              type="button"
-              className="p-2 px-4 text-xs text-black bg-white border border-transparent rounded-full md:transition md:hover:scale-105 md:active:scale-95"
-            >
-              Ver Productos
-            </NavLink>
+    <div className="py-6 sm:py-8 lg:py-40">
+      <div className="px-4 mx-auto max-w-screen-2xl md:px-8">
+        <div className="flex flex-col overflow-hidden bg-gray-900 rounded-lg sm:flex-row md:h-80">
+          <div className="flex flex-col w-full p-4 sm:w-1/2 sm:p-8 lg:w-2/5">
+            <h2 className="mb-4 text-xl font-bold text-white md:text-2xl lg:text-4xl">
+              Componentes Gaming
+              <br />
+              Hasta el 30% de Descuento
+            </h2>
+
+            <p className="max-w-md mb-4 text-sm text-gray-400 sm:text-base">
+              Potencia tu setup con Componentes Gaming de primera calidad. ¡Aprovecha ahora y disfruta de hasta un 30%
+              de descuento! Eleva tu experiencia de juego hoy.
+            </p>
+
+            <div className="mt-auto">
+              <Button
+                gradientDuoTone="purpleToBlue"
+                className="w-32 md:active:scale-95 md:transition md:hover:scale-105"
+                size="xl"
+                as={Link}
+                to="/shop"
+              >
+                Visitar
+              </Button>
+            </div>
+          </div>
+
+          <div className="order-first w-full h-48 bg-gray-700 sm:order-none sm:h-auto sm:w-1/2 lg:w-3/5">
+            <img
+              src={BannerImage}
+              loading="lazy"
+              alt="Photo by Dom Hill"
+              className="object-cover object-center w-full h-full"
+            />
           </div>
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

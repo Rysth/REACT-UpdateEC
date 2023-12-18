@@ -8,6 +8,7 @@ import SessionPage from './pages/SessionPage/SessionPage'
 import FormSignIn from './pages/SessionPage/components/FormSignIn'
 import FormSignUp from './pages/SessionPage/components/FormSignUp'
 import HomePage from './pages/HomePage/HomePage'
+import ShopPage from './pages/ShopPage/ShopPage'
 import Footer from './components/Footer/Footer'
 import { fetchProducts } from './redux/slices/productSlice'
 import 'react-medium-image-zoom/dist/styles.css'
@@ -49,6 +50,7 @@ function App() {
             }
           />
           <Route path="/" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
           {/* <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/:productID" element={<Product />} />
