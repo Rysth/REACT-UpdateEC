@@ -23,6 +23,12 @@ function Cart({ closeCart }) {
     return cartItems.reduce((total, item) => total + item.quantity * item.attributes.price, 0)
   }
 
+  // Function to update quantity
+  const handleUpdateQuantity = (itemID, newQuantity) => {
+    // Dispatch an action to update the quantity in the Redux store
+    dispatch(cartActions.updateQuantity({ itemID, newQuantity }))
+  }
+
   return (
     <div
       className="fixed top-0 right-0 z-50 flex flex-col w-full h-screen p-4 overflow-y-auto transition-transform bg-white sm:w-96 dark:bg-gray-800 animate__animated animate__fadeInRight"
@@ -43,7 +49,7 @@ function Cart({ closeCart }) {
       </header>
       <div className="flex flex-col flex-1 gap-4 overflow-y-auto">
         {cartItems.map((item) => (
-          <CartItem key={item.id} item={item} onRemoveItem={handleRemoveItem} />
+          <CartItem key={item.id} item={item} onRemoveItem={handleRemoveItem} onUpdateQuantity={handleUpdateQuantity} />
         ))}
       </div>
       <footer className="flex flex-col justify-end">
