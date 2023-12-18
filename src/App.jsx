@@ -9,6 +9,7 @@ import FormSignIn from './pages/SessionPage/components/FormSignIn'
 import FormSignUp from './pages/SessionPage/components/FormSignUp'
 import HomePage from './pages/HomePage/HomePage'
 import ShopPage from './pages/ShopPage/ShopPage'
+import NotFound from './pages/404/NotFound'
 import ProductPage from './pages/ProductPage/ProductPage'
 import Footer from './components/Footer/Footer'
 import { fetchProducts } from './redux/slices/productSlice'
@@ -53,6 +54,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/shop/:productID" element={<ProductPage />} />
+          <Route path="/*" element={<NotFound />} /> */
           {/* <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/:productID" element={<Product />} />
