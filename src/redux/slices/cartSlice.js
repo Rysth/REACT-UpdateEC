@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 
-// Load cart items from localStorage if available
+// Load cart items from sessionStorage if available
 const loadCartItems = () => {
-  const storedCartItems = localStorage.getItem('cartItems')
+  const storedCartItems = sessionStorage.getItem('cartItems')
   return storedCartItems ? JSON.parse(storedCartItems) : []
 }
 
@@ -26,20 +26,20 @@ const cartSlice = createSlice({
         state.cartItems.push({ ...item, quantity })
       }
       toast.success('Añadido al Carrito', { theme: 'colored', autoClose: 1500 })
-      // Save cart items to localStorage
-      localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+      // Save cart items to sessionStorage
+      sessionStorage.setItem('cartItems', JSON.stringify(state.cartItems))
     },
     removeItemFromCart(state, action) {
       const itemID = action.payload
       state.cartItems = state.cartItems.filter((item) => item.id !== itemID)
       toast.info('Removido del Carrito', { theme: 'colored', autoClose: 1500 })
-      // Save cart items to localStorage
-      localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+      // Save cart items to sessionStorage
+      sessionStorage.setItem('cartItems', JSON.stringify(state.cartItems))
     },
     clearCart(state) {
       state.cartItems = []
       toast.success('Productos Eliminados', { theme: 'colored', autoClose: 1500 })
-      localStorage.removeItem('cartItems')
+      sessionStorage.removeItem('cartItems')
     },
     updateQuantity(state, action) {
       const { itemID, newQuantity } = action.payload
@@ -48,8 +48,8 @@ const cartSlice = createSlice({
       if (updatedItem) {
         updatedItem.quantity = newQuantity
 
-        // Save the updated cart state to localStorage
-        localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+        // Save the updated cart state to sessionStorage
+        sessionStorage.setItem('cartItems', JSON.stringify(state.cartItems))
       }
     },
   },

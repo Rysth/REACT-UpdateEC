@@ -37,7 +37,6 @@ function CartItem({ item, onRemoveItem, onUpdateQuantity }) {
             size="sm"
             value={quantity}
             onChange={handleQuantityChange}
-            className="text-xs"
             min={1}
             max={item.attributes.quantity} // Set max based on the product's quantity
           />

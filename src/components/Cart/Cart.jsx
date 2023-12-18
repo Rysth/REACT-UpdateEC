@@ -4,6 +4,7 @@ import { HiXMark } from 'react-icons/hi2'
 import CartItem from './CartItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartActions } from '../../redux/slices/cartSlice'
+import { Link } from 'react-router-dom'
 
 function Cart({ closeCart }) {
   const dispatch = useDispatch()
@@ -58,15 +59,20 @@ function Cart({ closeCart }) {
             Subtotal: <span className="text-xl font-bold sm:text-2xl">${calculateSubtotal().toFixed(2)}</span>
           </p>
         </main>
-        <Button
-          size="sm"
-          className="float-right"
-          color="dark"
-          onClick={handleClearCart}
-          disabled={cartItems.length === 0}
-        >
-          Limpiar Carrito
-        </Button>
+        <div className="flex items-center justify-between gap-2">
+          <Button size="sm" className="flex-1 float-right" color="blue" disabled={cartItems.length === 0} as={Link}>
+            Pagar
+          </Button>
+          <Button
+            size="sm"
+            className="float-right"
+            color="dark"
+            onClick={handleClearCart}
+            disabled={cartItems.length === 0}
+          >
+            Limpiar Carrito
+          </Button>
+        </div>
       </footer>
     </div>
   )
