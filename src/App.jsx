@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import NavigationBar from './components/NavigatioBar/NavigationBar'
 import SessionPage from './pages/SessionPage/SessionPage'
 import FormSignIn from './pages/SessionPage/components/FormSignIn'
+import FormSignUp from './pages/SessionPage/components/FormSignUp'
 import Footer from './components/Footer/Footer'
 import { fetchProducts } from './redux/slices/productSlice'
 import 'react-medium-image-zoom/dist/styles.css'
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="top-right" />
       <NavigationBar />
       <main className="h-full">
         <Routes>
@@ -32,6 +33,16 @@ function App() {
               <ProtectedRoute isAllowed={!active} redirectTo="/">
                 <SessionPage>
                   <FormSignIn />
+                </SessionPage>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/sign_up"
+            element={
+              <ProtectedRoute isAllowed={!active} redirectTo="/">
+                <SessionPage>
+                  <FormSignUp />
                 </SessionPage>
               </ProtectedRoute>
             }

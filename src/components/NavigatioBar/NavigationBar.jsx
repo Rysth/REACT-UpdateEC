@@ -1,6 +1,6 @@
 import { Button, Navbar } from 'flowbite-react'
 import BrandImage from '../../assets/SVG/brand.svg'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 function NavigationBar() {
   return (
@@ -15,7 +15,7 @@ function NavigationBar() {
         >
           Iniciar Sesión
         </Navbar.Link>
-        <Button gradientDuoTone="purpleToBlue" className="p-2 transition rounded-full" size="xs">
+        <Button gradientDuoTone="purpleToBlue" className="p-2 transition rounded-full" size="xs" as={Link} to="sign_up">
           Registrarse
         </Button>
         <Navbar.Toggle className="text-white active:bg-transparent hover:bg-transparent" />
