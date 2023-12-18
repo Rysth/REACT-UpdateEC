@@ -26,7 +26,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ToastContainer position="top-right" />
+      <ToastContainer position="top-left" />
       <NavigationBar />
       <main className="h-full">
         <Routes>

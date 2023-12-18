@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { findProduct } from '../../redux/slices/productSlice'
 import NotFound from '../404/NotFound'
 import { cartActions } from '../../redux/slices/cartSlice'
+import { Button } from 'flowbite-react'
 
 function Product() {
   const dispatch = useDispatch()
@@ -52,17 +53,10 @@ function Product() {
             {foundProduct.attributes.description}
           </p>
           <footer className="flex items-center gap-5 mt-5">
-            <button
-              type="button"
-              className={`flex items-center justify-center flex-1 w-full gap-2 p-3 px-4 text-xs sm:text-sm bg-purple md:hover:scale-105 md:transition md:active:scale-95 ${
-                foundProduct.attributes.quantity === 0 ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
-              onClick={handleAddToCart}
-              disabled={foundProduct.attributes.quantity === 0}
-            >
-              <FaShoppingCart />
+            <Button type="button" color="dark" className="w-3/4 gap-1 rounded-none bg-purple" onClick={handleAddToCart}>
+              <FaShoppingCart className="mr-1" />
               Añadir al Carrito
-            </button>
+            </Button>
             <input
               type="number"
               name="quantity"

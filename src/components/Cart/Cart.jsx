@@ -13,6 +13,11 @@ function Cart({ closeCart }) {
     dispatch(cartActions.removeItemFromCart(itemID))
   }
 
+  // Function to handle clearing the cart
+  const handleClearCart = () => {
+    dispatch(cartActions.clearCart())
+  }
+
   // Function to calculate subtotal
   const calculateSubtotal = () => {
     return cartItems.reduce((total, item) => total + item.quantity * item.attributes.price, 0)
@@ -47,7 +52,13 @@ function Cart({ closeCart }) {
             Subtotal: <span className="text-xl font-bold sm:text-2xl">${calculateSubtotal().toFixed(2)}</span>
           </p>
         </main>
-        <Button size="sm" className="float-right" color="dark">
+        <Button
+          size="sm"
+          className="float-right"
+          color="dark"
+          onClick={handleClearCart}
+          disabled={cartItems.length === 0}
+        >
           Limpiar Carrito
         </Button>
       </footer>

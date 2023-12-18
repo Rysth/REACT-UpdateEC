@@ -25,16 +25,21 @@ const cartSlice = createSlice({
       } else {
         state.cartItems.push({ ...item, quantity })
       }
-      toast.info('Añadido al Carrito', { theme: 'colored' })
+      toast.success('Añadido al Carrito', { theme: 'colored', autoClose: 1500 })
       // Save cart items to localStorage
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
     },
     removeItemFromCart(state, action) {
       const itemID = action.payload
       state.cartItems = state.cartItems.filter((item) => item.id !== itemID)
-      toast.info('Removido del Carrito', { theme: 'colored' })
+      toast.info('Removido del Carrito', { theme: 'colored', autoClose: 1500 })
       // Save cart items to localStorage
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+    },
+    clearCart(state) {
+      state.cartItems = []
+      toast.success('Productos Eliminados', { theme: 'colored', autoClose: 1500 })
+      localStorage.removeItem('cartItems')
     },
   },
 })

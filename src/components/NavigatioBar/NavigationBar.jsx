@@ -10,12 +10,16 @@ import Cart from '../Cart/Cart'
 function NavigationBar() {
   const dispatch = useDispatch()
   const { active } = useSelector((store) => store.session)
+  const { cartItems } = useSelector((store) => store.cart)
   const [openCart, setOpenCart] = useState()
 
   const showCart = () => setOpenCart(true)
   const closeCart = () => setOpenCart(false)
 
   const onDestroySession = () => dispatch(sessionActions.destroySession())
+
+  // Calculate the total quantity of items in the cart
+  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
 
   return (
     <>
@@ -49,7 +53,7 @@ function NavigationBar() {
             <>
               <Button className="p-0 transition bg-transparent rounded-full " color="dark" size="xs" onClick={showCart}>
                 <HiShoppingBag className="mr-1 text-xl" />
-                <span>0</span>
+                <span>{totalQuantity}</span>
               </Button>
               <Button
                 gradientDuoTone="pinkToOrange"
