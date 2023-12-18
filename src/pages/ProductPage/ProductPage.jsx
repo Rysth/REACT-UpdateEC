@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Zoom from 'react-medium-image-zoom'
 import { FaShoppingCart } from 'react-icons/fa'
@@ -11,10 +11,13 @@ function Product() {
   const dispatch = useDispatch()
   const { productID } = useParams()
   const { foundProduct } = useSelector((store) => store.product)
+  const [quantity, setQuantity] = useState(1)
 
   const handleAddToCart = () => {
-    // Assuming foundProduct has the required details
-    dispatch(cartActions.addItemToCart({ item: foundProduct, quantity: 1 }))
+    if (quantity > 0 && quantity <= foundProduct.attributes.quantity) {
+      // Assuming foundProduct has the required details
+      dispatch(cartActions.addItemToCart({ item: foundProduct, quantity }))
+    }
   }
 
   useEffect(() => {
@@ -51,8 +54,11 @@ function Product() {
           <footer className="flex items-center gap-5 mt-5">
             <button
               type="button"
-              className="flex items-center justify-center flex-1 w-full gap-2 p-3 px-4 text-xs sm:text-sm bg-purple md:hover:scale-105 md:transition md:active:scale-95 "
+              className={`flex items-center justify-center flex-1 w-full gap-2 p-3 px-4 text-xs sm:text-sm bg-purple md:hover:scale-105 md:transition md:active:scale-95 ${
+                foundProduct.attributes.quantity === 0 ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
               onClick={handleAddToCart}
+              disabled={foundProduct.attributes.quantity === 0}
             >
               <FaShoppingCart />
               Añadir al Carrito
@@ -62,7 +68,10 @@ function Product() {
               name="quantity"
               id="quantity"
               className="p-2.5 text-xs sm:text-sm text-black"
-              defaultValue={1}
+              value={quantity}
+              onChange={(e) =>
+                setQuantity(Math.max(0, Math.min(parseInt(e.target.value, 10), foundProduct.attributes.quantity)))
+              }
               min={1}
               max={foundProduct.attributes.quantity}
             />

@@ -36,7 +36,7 @@ function Cart({ closeCart }) {
           <HiXMark />
         </Button>
       </header>
-      <div className="grid flex-1 gap-4">
+      <div className="flex flex-col flex-1 gap-4 overflow-y-auto">
         {cartItems.map((item) => (
           <CartItem key={item.id} item={item} onRemoveItem={handleRemoveItem} />
         ))}

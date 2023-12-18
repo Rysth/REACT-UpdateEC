@@ -8,10 +8,9 @@ function CartItem({ item, onRemoveItem }) {
     <div className="flex flex-wrap overflow-hidden border rounded-lg gap-x-3 sm:gap-y-4 h-28">
       <a href="#" className="relative block h-full overflow-hidden bg-gray-100 w-28 group">
         <img
-          src="https://images.unsplash.com/photo-1612681621979-fffe5920dbe8?auto=format&q=75&fit=crop&w=200"
+          src={item.attributes.picture.data.attributes.url}
           loading="lazy"
-          alt="Photo by Thái An"
-          className="object-cover object-center w-full h-full transition duration-200 group-hover:scale-110"
+          className="object-contain object-center w-full h-full transition duration-200 group-hover:scale-110"
         />
       </a>
       <div className="flex flex-col justify-between flex-1 px-2 py-4 lg:text-sm">
