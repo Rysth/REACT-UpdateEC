@@ -12,7 +12,7 @@ function FormSignIn() {
 
   return (
     <form
-      className="flex flex-col items-center justify-center h-full gap-3 text-gray-900 w-72 sm:rounded-l-3xl"
+      className="flex flex-col items-center justify-center h-full gap-3 text-white w-72 sm:rounded-l-3xl"
       onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className="w-full mb-5 text-3xl font-bold text-left md:text-4xl">Iniciar Sesión</h2>
@@ -40,7 +40,7 @@ function FormSignIn() {
           required
         />
       </fieldset>
-      <Button type="submit" fullSized className="mt-3" color="dark">
+      <Button type="submit" fullSized className="mt-3" color="blue">
         Ingresar
       </Button>
     </form>
