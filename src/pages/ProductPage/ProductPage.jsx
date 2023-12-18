@@ -5,11 +5,17 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { findProduct } from '../../redux/slices/productSlice'
 import NotFound from '../404/NotFound'
+import { cartActions } from '../../redux/slices/cartSlice'
 
 function Product() {
   const dispatch = useDispatch()
   const { productID } = useParams()
   const { foundProduct } = useSelector((store) => store.product)
+
+  const handleAddToCart = () => {
+    // Assuming foundProduct has the required details
+    dispatch(cartActions.addItemToCart({ item: foundProduct, quantity: 1 }))
+  }
 
   useEffect(() => {
     dispatch(findProduct(productID))
@@ -46,6 +52,7 @@ function Product() {
             <button
               type="button"
               className="flex items-center justify-center flex-1 w-full gap-2 p-3 px-4 text-xs sm:text-sm bg-purple md:hover:scale-105 md:transition md:active:scale-95 "
+              onClick={handleAddToCart}
             >
               <FaShoppingCart />
               Añadir al Carrito
