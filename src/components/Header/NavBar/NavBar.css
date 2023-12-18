@@ -1,9 +1,0 @@
-.active {
-  @apply text-white rounded-md md:bg-transparent;
-}
-
-@media (min-width: 540px) {
-  .active {
-    @apply text-[var(--CL-primary-cyan)] underline underline-offset-8 transition duration-300;
-  }
-}
