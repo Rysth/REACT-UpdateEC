@@ -98,7 +98,6 @@ const productSlice = createSlice({
 
         return categoryMatch && brandMatch && searchMatch
       })
-      /* eslint-enable */
     },
   },
   extraReducers: (builder) => {

@@ -29,10 +29,10 @@ function FormSignUp() {
         />
       </fieldset>
       <fieldset className="grid w-full gap-2 text-sm">
-        <Label htmlFor="username" value="Contraseña" color="gray" />
+        <Label htmlFor="username" value="Usuario" color="gray" />
         <TextInput
           id="username"
-          placeholder="*********"
+          placeholder="John Doe"
           color="gray"
           icon={HiUser}
           {...register('username', { required: true })}
