@@ -17,14 +17,14 @@ function FormSignUp() {
     >
       <h2 className="w-full mb-5 text-3xl font-bold text-left md:text-4xl">Registrarse</h2>
       <fieldset className="grid w-full gap-2 text-sm">
-        <Label htmlFor="identifier" value="Correo Electrónico" color="gray" />
+        <Label htmlFor="email" value="Correo Electrónico" color="gray" />
         <TextInput
-          id="identifier"
+          id="email"
           type="email"
           icon={HiMail}
           placeholder="username@example.com"
           color="gray"
-          {...register('identifier', { required: true })}
+          {...register('email', { required: true })}
           required
         />
       </fieldset>
