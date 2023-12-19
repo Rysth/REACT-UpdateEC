@@ -2,6 +2,7 @@ import Product_1 from '../../../assets/PNG/products/product_1.png'
 import Product_2 from '../../../assets/PNG/products/product_2.png'
 import Product_3 from '../../../assets/PNG/products/product_3.png'
 import Product_4 from '../../../assets/PNG/products/product_4.png'
+import { Link } from 'react-router-dom'
 
 const products = [
   { id: 1, name: 'Audífonos Gamer', image: Product_1, isNew: true },
@@ -28,7 +29,7 @@ function FeatureSection() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {products.map((product) => (
             <div key={product.id}>
-              <a href="/shop" className="relative block overflow-hidden rounded-t-lg bg-slate-900 group h-96">
+              <Link to="/shop" className="relative block overflow-hidden rounded-t-lg bg-slate-900 group h-96">
                 <img
                   src={product.image}
                   loading="lazy"
@@ -41,15 +42,15 @@ function FeatureSection() {
                     Nuevo
                   </span>
                 )}
-              </a>
+              </Link>
               <div className="justify-between gap-2 p-4 text-center rounded-b-lg bg-purple">
                 <div className="text-center">
-                  <a
-                    href="/shop"
+                  <Link
+                    to="/shop"
                     className="block font-bold text-center text-white transition duration-100 hover:text-gray-300 lg:text-xl"
                   >
                     {product.name}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
