@@ -13,7 +13,7 @@ function CategoryCard({ imageSrc, category, description }) {
         <p className="text-xs sm:text-sm">{description}</p>
       </main>
       <footer className="flex justify-center">
-        <Button href="/shop" size="xs" color="dark">
+        <Button href="/shop" size="xs" color="light">
           Ver Más
         </Button>
       </footer>
