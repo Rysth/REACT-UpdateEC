@@ -14,7 +14,7 @@ function NavigationBar() {
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
 
   return (
-    <header className=" bg-[#271033] sticky top-0 z-50">
+    <header className="sticky top-0 z-50 bg-purple">
       <Navbar className="items-center max-w-screen-xl p-4 mx-auto bg-transparent backdrop-blur-2xl">
         <Navbar.Brand href="/">
           <img src={BrandImage} className="w-24 sm:w-28" alt="UpdateEC's logo brand" />
@@ -29,7 +29,7 @@ function NavigationBar() {
           {!active ? (
             <Button
               data-drawer-target="drawer-navigation"
-              data-drawer-show="drawer-navigation"
+              data-drawer-toggle="drawer-navigation"
               size="xs"
               color="purple"
               className="px-0 text-white bg-transparent"
