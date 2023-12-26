@@ -1,9 +1,13 @@
 import { Button } from 'flowbite-react'
 import React from 'react'
-import { HiXMark, HiHome, HiBuildingStorefront } from 'react-icons/hi2'
+import { HiBuildingStorefront, HiHome, HiXMark } from 'react-icons/hi2'
+import { useSelector } from 'react-redux'
 import MenuBarItem from './MenuBarItem'
+import MenuBarLogout from './MenuBarLogout'
 
 function MenuBar() {
+  const { active } = useSelector((store) => store.session)
+
   return (
     <div
       id="drawer-navigation"
@@ -33,12 +37,18 @@ function MenuBar() {
         </ul>
       </div>
       <footer className="grid gap-2">
-        <Button href="/sign_in" color="light" fullSized>
-          Iniciar Sesión
-        </Button>
-        <Button href="/sign_up" color="purple" fullSized>
-          Registrarse
-        </Button>
+        {active ? (
+          <MenuBarLogout />
+        ) : (
+          <>
+            <Button href="/sign_in" color="light" fullSized>
+              Iniciar Sesión
+            </Button>
+            <Button href="/sign_up" color="purple" fullSized>
+              Registrarse
+            </Button>
+          </>
+        )}
       </footer>
     </div>
   )

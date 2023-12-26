@@ -1,16 +1,10 @@
 import { Button, Navbar } from 'flowbite-react'
 import { HiBars3BottomRight, HiOutlineShoppingCart } from 'react-icons/hi2'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import BrandImage from '../../../assets/SVG/brand.svg'
-import { sessionActions } from '../../../redux/slices/sessionSlice'
 
 function NavigationBar() {
-  const dispatch = useDispatch()
-  const { active } = useSelector((store) => store.session)
   const { cartItems } = useSelector((store) => store.cart)
-
-  const onDestroySession = () => dispatch(sessionActions.destroySession())
-
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
 
   return (
@@ -26,27 +20,16 @@ function NavigationBar() {
               {totalQuantity}
             </p>
           </Button>
-          {!active ? (
-            <Button
-              data-drawer-target="drawer-navigation"
-              data-drawer-toggle="drawer-navigation"
-              size="xs"
-              color="purple"
-              className="px-0 text-white bg-transparent"
-            >
-              <HiBars3BottomRight className="mr-1 text-xl" />
-              Menú
-            </Button>
-          ) : (
-            <Button
-              gradientDuoTone="pinkToOrange"
-              className="p-2 transition rounded-full"
-              size="xs"
-              onClick={onDestroySession}
-            >
-              Cerrar Sesión
-            </Button>
-          )}
+          <Button
+            data-drawer-target="drawer-navigation"
+            data-drawer-toggle="drawer-navigation"
+            size="xs"
+            color="purple"
+            className="px-0 text-white bg-transparent"
+          >
+            <HiBars3BottomRight className="mr-1 text-xl" />
+            Menú
+          </Button>
         </div>
       </Navbar>
     </header>
