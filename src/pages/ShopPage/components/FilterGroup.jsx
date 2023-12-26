@@ -13,7 +13,7 @@ function FilterGroup({ title, data, onSelect }) {
         {data.map((item) => (
           <label
             key={item.id}
-            className="flex items-center justify-between p-1 text-sm md:hover:bg-indigo-700 md:transition md:cursor-pointer"
+            className="flex items-center justify-between p-1 text-sm text-gray-900 md:hover:text-white md:hover:bg-indigo-700 md:transition md:cursor-pointer"
             htmlFor={item.attributes.slug}
           >
             {item.attributes.name}

@@ -18,7 +18,7 @@ function SearchSection({ selectedIDs, dispatch }) {
   return (
     <div className="grid w-full gap-4 my-4 sm:justify-between sm:flex sm:flex-row sm:items-center">
       <header className="text-center sm:my-16">
-        <h2 className="text-2xl font-bold sm:text-3xl md:text-5xl">Búsqueda</h2>
+        <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl md:text-5xl">Búsqueda</h2>
       </header>
       <ul className="gap-3">
         <li className="block text-sm">
