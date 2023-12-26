@@ -1,4 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/poppins');
+@import url('https://fonts.cdnfonts.com/css/signate-grotesk');
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
 
 @tailwind base;
 @tailwind components;
@@ -23,9 +25,9 @@
   --CL-primary-purple: #271033;
   --CL-neutral-white: #fff;
   --CL-neutral-black: #161616;
-  --FF-nunito: 'Nunito', sans-serif;
-  --FF-quicksan: 'Quicksand', sans-serif;
+  --FF-signate-grotesk: 'Signate Grotesk', sans-serif;
   --FF-poppins: 'Poppins', sans-serif;
+  --FF-ica-rubrik: 'ICA Rubrik', sans-serif;
 }
 
 /* Handle on hover */
@@ -53,7 +55,8 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: var(--FF-poppins);
+  font-family: var(--FF-signate-grotesk);
+  font-family: var(--FF-ica-rubrik);
 }
 
 p,
