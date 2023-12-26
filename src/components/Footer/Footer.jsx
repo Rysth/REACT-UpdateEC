@@ -9,9 +9,9 @@ function Footer() {
             <img src={BrandImage} className="w-24 sm:w-28" alt="UpdateEC's logo brand" />
           </picture>
         </a>
-        <p className="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:py-2 sm:mt-0">
+        <p className="mt-4 text-sm text-gray-200 sm:ml-4 sm:pl-4 sm:py-2 sm:mt-0">
           © 2023 UpdateEC —
-          <a href="https://github.com/Rysth" className="ml-1 " rel="noopener noreferrer" target="_blank">
+          <a href="https://github.com/Rysth" className="ml-1 font-semibold" rel="noopener noreferrer" target="_blank">
             @rysthcraft
           </a>
         </p>

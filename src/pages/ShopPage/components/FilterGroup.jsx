@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 
-/* eslint-disable */
 function FilterGroup({ title, data, onSelect }) {
   const handleCheckboxChange = (itemId) => {
     onSelect(itemId)
