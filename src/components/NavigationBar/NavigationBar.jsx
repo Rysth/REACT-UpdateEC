@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Button, Navbar } from 'flowbite-react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { sessionActions } from '../../redux/slices/sessionSlice'
-import { HiShoppingBag } from 'react-icons/hi2'
+import { HiOutlineShoppingCart, HiBars3BottomRight } from 'react-icons/hi2'
 import BrandImage from '../../assets/SVG/brand.svg'
 import Cart from '../Cart/Cart'
 
@@ -18,71 +18,37 @@ function NavigationBar() {
 
   const onDestroySession = () => dispatch(sessionActions.destroySession())
 
-  // Calculate the total quantity of items in the cart
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
 
   return (
-    <header className=" bg-[#212529] sticky top-0 z-50">
+    <header className=" bg-[#271033] sticky top-0 z-50">
       <Navbar className="items-center max-w-screen-xl p-4 mx-auto bg-transparent backdrop-blur-2xl">
         <Navbar.Brand href="/">
           <img src={BrandImage} className="w-24 sm:w-28" alt="UpdateEC's logo brand" />
         </Navbar.Brand>
-        <div className="flex items-center gap-2 sm:gap-3 md:order-2">
+        <div className="flex items-center gap-2">
+          <Button className="relative px-0 bg-transparent" color="blue" size="xs" onClick={showCart}>
+            <HiOutlineShoppingCart className="mr-1 text-xl" />
+            <p className="absolute grid w-5 h-5 bg-red-600 rounded-full place-items-center right-0.5 -top-1">
+              {totalQuantity}
+            </p>
+          </Button>
           {!active ? (
-            <>
-              <Button
-                as={NavLink}
-                to="/sign_in"
-                size="xs"
-                className="px-0 py-2 text-xs text-white bg-transparent cursor-pointer sm:inline-block md:hover:text-cyan-300 md:transition"
-                pill
-              >
-                Iniciar Sesión
-              </Button>
-              <Button
-                gradientDuoTone="purpleToBlue"
-                className="p-2 transition rounded-full"
-                size="xs"
-                as={Link}
-                to="/sign_up"
-              >
-                Registrarse
-              </Button>
-            </>
+            <Button size="xs" color="blue" className="px-0 text-white bg-transparent">
+              <HiBars3BottomRight className="mr-1 text-xl" />
+              Menú
+            </Button>
           ) : (
-            <>
-              <Button className="p-0 transition bg-transparent rounded-full " color="dark" size="xs" onClick={showCart}>
-                <HiShoppingBag className="mr-1 text-xl" />
-                <span>{totalQuantity}</span>
-              </Button>
-              <Button
-                gradientDuoTone="pinkToOrange"
-                className="p-2 transition rounded-full"
-                size="xs"
-                onClick={onDestroySession}
-              >
-                Cerrar Sesión
-              </Button>
-            </>
+            <Button
+              gradientDuoTone="pinkToOrange"
+              className="p-2 transition rounded-full"
+              size="xs"
+              onClick={onDestroySession}
+            >
+              Cerrar Sesión
+            </Button>
           )}
-          <Navbar.Toggle className="text-white active:bg-transparent hover:bg-transparent" />
         </div>
-        <Navbar.Collapse>
-          <Navbar.Link
-            as={NavLink}
-            to="/"
-            className="text-sm text-white border-0 border-none sm:py-2 md:text-xs md:inline-block md:hover:text-cyan-300 md:transition hover:bg-purple"
-          >
-            Inicio
-          </Navbar.Link>
-          <Navbar.Link
-            as={NavLink}
-            to="/shop"
-            className="text-sm text-white border-0 border-none sm:py-2 md:text-xs md:inline-block md:hover:text-cyan-300 md:transition hover:bg-purple"
-          >
-            Tienda
-          </Navbar.Link>
-        </Navbar.Collapse>
       </Navbar>
       {openCart && <Cart closeCart={closeCart} />}
     </header>
