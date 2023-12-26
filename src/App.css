@@ -131,10 +131,8 @@ button {
   @apply bg-[var(--CL-primary-cyan)];
 }
 
-@media (max-width: 768px) {
-  .active {
-    @apply text-white no-underline bg-purple;
-  }
+.active {
+  @apply text-gray-900 no-underline bg-white;
 }
 
 .bg-gradient-primary {

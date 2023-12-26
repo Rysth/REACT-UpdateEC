@@ -16,6 +16,7 @@ import FormSignIn from './pages/SessionPage/components/FormSignIn'
 import FormSignUp from './pages/SessionPage/components/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
 import { fetchProducts } from './redux/slices/productSlice'
+import Footer from './components/Footer/Footer'
 
 function App() {
   const dispatch = useDispatch()
@@ -58,6 +59,7 @@ function App() {
           <Route path="/*" element={<NotFound />} /> */
         </Routes>
       </main>
+      <Footer />
     </BrowserRouter>
   )
 }
