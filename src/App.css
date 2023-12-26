@@ -1,4 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/poppins');
+@import url('https://fonts.cdnfonts.com/css/signate-grotesk');
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
 
 @tailwind base;
 @tailwind components;
@@ -11,22 +13,21 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: rgb(17, 34, 29);
+  background: var(--CL-primary-purple);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--CL-primary-purple);
+  background: white;
 }
 
 :root {
-  --CL-primary-purple: rgb(84, 0, 240);
-  --CL-primary-cyan: #47e9ff;
+  --CL-primary-purple: #271033;
   --CL-neutral-white: #fff;
   --CL-neutral-black: #161616;
-  --FF-nunito: 'Nunito', sans-serif;
-  --FF-quicksan: 'Quicksand', sans-serif;
+  --FF-signate-grotesk: 'Signate Grotesk', sans-serif;
   --FF-poppins: 'Poppins', sans-serif;
+  --FF-ica-rubrik: 'ICA Rubrik', sans-serif;
 }
 
 /* Handle on hover */
@@ -54,7 +55,8 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: var(--FF-poppins);
+  font-family: var(--FF-signate-grotesk);
+  font-family: var(--FF-ica-rubrik);
 }
 
 p,
@@ -76,10 +78,6 @@ video {
 
 button {
   @apply transition md:hover:scale-105 md:active:scale-95;
-}
-
-.active {
-  @apply md:underline text-cyan-300 md:underline-offset-8;
 }
 
 /* Display */
@@ -129,10 +127,8 @@ button {
   @apply bg-[var(--CL-primary-cyan)];
 }
 
-@media (max-width: 768px) {
-  .active {
-    @apply text-white no-underline bg-purple;
-  }
+.active {
+  @apply text-gray-900 no-underline bg-white;
 }
 
 .bg-gradient-primary {

@@ -1,64 +1,34 @@
 import { Button } from 'flowbite-react'
-import { Link } from 'react-router-dom'
-import HeroImage from '../../../assets/PNG/hero/hero_1.png'
+import HeroImage from '../../../assets/PNG/hero/hero_2.jpg'
 
 function HeroSection() {
   return (
-    <section>
-      <div className="px-4 py-12 mx-auto sm:py-0 max-w-7xl sm:px-6 md:px-12 lg:px-24">
-        <div className="flex flex-wrap items-center mx-auto max-w-7xl">
-          <div className="w-full lg:max-w-lg lg:w-2/2 rounded-xl">
-            <div>
-              <div className="relative w-full max-w-lg">
-                <div className="absolute top-0 rounded-full bg-violet-300 -left-4 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-
-                <div className="absolute rounded-full bg-fuchsia-300 -bottom-24 right-20 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-                <div className="relative">
-                  <img
-                    className="object-cover object-center w-full mx-auto rounded-lg drop-shadow-2xl"
-                    alt="hero"
-                    src={HeroImage}
-                  />
-                </div>
-              </div>
-            </div>
+    <section className="p-4">
+      <article className="flex flex-col max-w-screen-xl mx-auto">
+        <header className="flex flex-col items-center max-w-lg gap-5 py-12 mx-auto text-center sm:py-20 sm:pb-10">
+          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl lg:text-8xl">
+            Bienvenidos a UpdateEC
+          </h2>
+          <p className="text-xs text-gray-500 sm:text-base">
+            Optimiza tu experiencia gaming con nuestros componentes de vanguardia. Descubre el rendimiento superior para
+            conquistar cada partida. <span className="font-semibold ">¡Explora ahora!</span>
+          </p>
+          <div className="flex items-center gap-2">
+            <Button href="/shop" className="w-32" gradientMonochrome="purple">
+              Tienda
+            </Button>
+            <Button href="/shop" className="w-32" color="light">
+              Contactar
+            </Button>
           </div>
-          <div className="flex flex-col items-start mt-12 mb-16 text-left lg:flex-grow lg:w-1/2 lg:pl-6 xl:pl-24 md:mb-0 xl:mt-0">
-            <span className="mb-8 text-xs font-bold tracking-widest text-blue-600 uppercase">E-COMMERCE</span>
-            <h1 className="mb-8 text-4xl font-bold leading-none tracking-tighter text-white md:text-7xl">
-              Bienvenidos a UpdateEC
-            </h1>
-            <p className="mb-8 text-base leading-relaxed text-left text-slate-200">
-              Optimiza tu experiencia gaming con nuestros componentes de vanguardia. Descubre el rendimiento superior
-              para conquistar cada partida. ¡Explora ahora!
-            </p>
-            <div className="flex gap-2 mt-0 lg:mt-6 max-w-7xl">
-              <div className="mt-3 rounded-lg sm:mt-0">
-                <Button
-                  size="lg"
-                  className="w-32 bg-purple md:active:scale-95 md:transition md:hover:scale-105"
-                  color="dark"
-                  as={Link}
-                >
-                  Contactar
-                </Button>
-              </div>
-              <div className="mt-3 rounded-lg sm:mt-0 sm:ml-3">
-                <Button
-                  size="lg"
-                  className="w-32 md:active:scale-95 md:transition md:hover:scale-105"
-                  outline
-                  color="dark"
-                  as={Link}
-                  to="/shop"
-                >
-                  Tienda
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        </header>
+        <hr className="h-1 w-[45px] bg-black mx-auto" />
+        <main className="py-12 sm:py-20 sm:pt-10">
+          <picture>
+            <img src={HeroImage} alt="" className="mx-auto shadow-2xl lg:max-w-4xl rounded-2xl" loading="lazy" />
+          </picture>
+        </main>
+      </article>
     </section>
   )
 }

@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { productActions } from '../../redux/slices/productSlice'
 import BannerSection from './sections/BannerSection'
-import SearchSection from './sections/SearchSection'
 import FilterSection from './sections/FilterSection'
 import ProductSection from './sections/ProductSection'
+import SearchSection from './sections/SearchSection'
 
 function ShopPage() {
   const dispatch = useDispatch()
@@ -38,7 +38,7 @@ function ShopPage() {
   }
   return (
     <section className="relative text-white">
-      <article className="mx-auto max-w-screen-2xl">
+      <article className="max-w-screen-xl mx-auto">
         <BannerSection />
         <main className="flex flex-col flex-wrap px-4">
           <SearchSection selectedIDs={selectedIDs} dispatch={dispatch} />
