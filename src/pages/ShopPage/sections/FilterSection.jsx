@@ -16,7 +16,7 @@ function FilterSection({ handleCheck }) {
   }, [dispatch])
 
   return (
-    <aside className="sm:w-52 purple">
+    <aside className="sticky top-0 sm:w-52 purple">
       <form action="" className="grid grid-cols-2 gap-10 sm:grid-cols-1">
         <FilterGroup title="Categorías" data={categoriesArray} onSelect={(id) => handleCheck(id, 'category')} />
         <FilterGroup title="Marcas" data={brandsArray} onSelect={(id) => handleCheck(id, 'brand')} />

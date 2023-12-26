@@ -13,12 +13,12 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--CL-primary-purple);
+  background: white;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: white;
+  background: var(--CL-primary-purple);
 }
 
 :root {

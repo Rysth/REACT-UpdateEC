@@ -37,7 +37,7 @@ function ShopPage() {
     setSelectedIDs(updatedSelectedIDs)
   }
   return (
-    <section className="relative text-white">
+    <section className="relative mb-10 text-white">
       <article className="max-w-screen-xl mx-auto">
         <BannerSection />
         <main className="flex flex-col flex-wrap px-4">

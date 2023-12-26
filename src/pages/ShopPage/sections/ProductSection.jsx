@@ -48,7 +48,7 @@ function ProductSection() {
           </li>
         )}
       </ul>
-      <footer className="grid pb-10 place-items-center">
+      <footer className="grid place-items-center">
         <button
           type="button"
           className="float-right p-3 px-4 text-xs text-center rounded-full bg-purple md:hover:scale-105 md:transition md:active:scale-95"
