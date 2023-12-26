@@ -11,7 +11,7 @@ function MenuBar() {
   return (
     <div
       id="drawer-navigation"
-      className="fixed top-0 left-0 z-[1000] w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-purple flex flex-col"
+      className="h-screen fixed top-0 left-0 z-[1000] w-64 p-4 overflow-y-auto transition-transform -translate-x-full bg-purple flex flex-col shadow-2xl"
       tabIndex="-1"
       aria-labelledby="drawer-navigation-label"
     >

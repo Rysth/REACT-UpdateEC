@@ -8,7 +8,7 @@ function NavigationBar() {
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
 
   return (
-    <header className="sticky top-0 z-50 bg-purple">
+    <header className="sticky top-0 z-50 shadow bg-purple">
       <Navbar className="items-center max-w-screen-xl p-4 mx-auto bg-transparent backdrop-blur-2xl">
         <Navbar.Brand href="/">
           <img src={BrandImage} className="w-24 sm:w-28" alt="UpdateEC's logo brand" />
