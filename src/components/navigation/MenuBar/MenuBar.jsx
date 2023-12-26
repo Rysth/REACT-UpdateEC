@@ -1,13 +1,13 @@
 import { Button } from 'flowbite-react'
 import React from 'react'
-import { HiXMark, HiHome } from 'react-icons/hi2'
+import { HiXMark, HiHome, HiBuildingStorefront } from 'react-icons/hi2'
 import MenuBarItem from './MenuBarItem'
 
 function MenuBar() {
   return (
     <div
       id="drawer-navigation"
-      className="fixed top-0 left-0 z-[1000] w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-purple "
+      className="fixed top-0 left-0 z-[1000] w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-purple flex flex-col"
       tabIndex="-1"
       aria-labelledby="drawer-navigation-label"
     >
@@ -26,11 +26,20 @@ function MenuBar() {
           <span className="sr-only">Close menu</span>
         </Button>
       </header>
-      <div className="py-4 overflow-y-auto">
+      <div className="flex-1 py-4 overflow-y-auto">
         <ul className="space-y-2 font-medium">
           <MenuBarItem title="Inicio" path="/" icon={HiHome} />
+          <MenuBarItem title="Tienda" path="/shop" icon={HiBuildingStorefront} />
         </ul>
       </div>
+      <footer className="grid gap-2">
+        <Button href="/sign_in" color="light" fullSized>
+          Iniciar Sesión
+        </Button>
+        <Button href="/sign_up" color="purple" fullSized>
+          Registrarse
+        </Button>
+      </footer>
     </div>
   )
 }
