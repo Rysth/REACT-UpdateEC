@@ -85,7 +85,7 @@ const productSlice = createSlice({
       state.filteredArray = state.productsArray.filter((element) => {
         const categoryMatch = !categoryIDs.length || categoryIDs.includes(element.attributes.category.data.id)
         const brandMatch = !brandIDs.length || brandIDs.includes(element.attributes.brand.data.id)
-        const searchMatch = !searchData || element.attributes.name.toLowerCase().includes(searchData)
+        const searchMatch = !searchData || element.attributes.name.toLowerCase().includes(searchData.toLowerCase())
 
         return categoryMatch && brandMatch && searchMatch
       })
