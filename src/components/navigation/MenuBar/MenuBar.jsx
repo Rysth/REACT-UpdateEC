@@ -1,6 +1,7 @@
 import { Button } from 'flowbite-react'
 import React from 'react'
 import { HiXMark, HiHome } from 'react-icons/hi2'
+import MenuBarItem from './MenuBarItem'
 
 function MenuBar() {
   return (
@@ -27,12 +28,7 @@ function MenuBar() {
       </header>
       <div className="py-4 overflow-y-auto">
         <ul className="space-y-2 font-medium">
-          <li>
-            <a href="#" className="flex items-center p-2 text-sm text-white transition rounded-lg hover:bg-white group">
-              <HiHome className="w-5 h-5 text-xl text-white transition duration-75 group-hover:text-gray-900" />
-              <span className="ms-3 group-hover:text-gray-900">Inicio</span>
-            </a>
-          </li>
+          <MenuBarItem title="Inicio" path="/" icon={HiHome} />
         </ul>
       </div>
     </div>
