@@ -14,7 +14,7 @@ function HeroSection() {
             conquistar cada partida. <span className="font-semibold ">¡Explora ahora!</span>
           </p>
           <div className="flex items-center gap-2">
-            <Button href="/shop" className="w-32" color="purple">
+            <Button href="/shop" className="w-32" gradientMonochrome="purple">
               Tienda
             </Button>
             <Button href="/shop" className="w-32" color="light">
