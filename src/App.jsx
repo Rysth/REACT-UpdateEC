@@ -1,20 +1,21 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import 'react-medium-image-zoom/dist/styles.css'
 import { useDispatch, useSelector } from 'react-redux'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import './App.css'
+import NavigationBar from './components/navigation/NavigationBar/NavigationBar'
+import MenuBar from './components/navigation/MenuBar/MenuBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import NavigationBar from './components/NavigationBar/NavigationBar'
+import NotFound from './pages/404/NotFound'
+import HomePage from './pages/HomePage/HomePage'
+import ProductPage from './pages/ProductPage/ProductPage'
 import SessionPage from './pages/SessionPage/SessionPage'
 import FormSignIn from './pages/SessionPage/components/FormSignIn'
 import FormSignUp from './pages/SessionPage/components/FormSignUp'
-import HomePage from './pages/HomePage/HomePage'
 import ShopPage from './pages/ShopPage/ShopPage'
-import NotFound from './pages/404/NotFound'
-import ProductPage from './pages/ProductPage/ProductPage'
 import { fetchProducts } from './redux/slices/productSlice'
-import 'react-medium-image-zoom/dist/styles.css'
-import 'react-toastify/dist/ReactToastify.css'
-import './App.css'
 
 function App() {
   const dispatch = useDispatch()
@@ -28,6 +29,7 @@ function App() {
     <BrowserRouter>
       <ToastContainer position="top-left" />
       <NavigationBar />
+      <MenuBar />
       <main className="h-full">
         <Routes>
           <Route

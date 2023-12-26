@@ -1,8 +1,8 @@
 import { Button, Navbar } from 'flowbite-react'
 import { HiBars3BottomRight, HiOutlineShoppingCart } from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
-import BrandImage from '../../assets/SVG/brand.svg'
-import { sessionActions } from '../../redux/slices/sessionSlice'
+import BrandImage from '../../../assets/SVG/brand.svg'
+import { sessionActions } from '../../../redux/slices/sessionSlice'
 
 function NavigationBar() {
   const dispatch = useDispatch()
@@ -27,7 +27,13 @@ function NavigationBar() {
             </p>
           </Button>
           {!active ? (
-            <Button size="xs" color="purple" className="px-0 text-white bg-transparent">
+            <Button
+              data-drawer-target="drawer-navigation"
+              data-drawer-show="drawer-navigation"
+              size="xs"
+              color="purple"
+              className="px-0 text-white bg-transparent"
+            >
               <HiBars3BottomRight className="mr-1 text-xl" />
               Menú
             </Button>
