@@ -1,62 +1,37 @@
 import { Button } from 'flowbite-react'
 import { Link } from 'react-router-dom'
-import HeroImage from '../../../assets/PNG/hero/hero_1.png'
+import HeroImage from '../../../assets/PNG/hero/hero_2.jpg'
 
 function HeroSection() {
   return (
-    <section>
-      <div className="px-4 py-12 mx-auto sm:py-0 max-w-7xl sm:px-6 md:px-12 lg:px-24">
-        <div className="flex flex-wrap items-center mx-auto max-w-7xl">
-          <div className="w-full lg:max-w-lg lg:w-2/2 rounded-xl">
-            <div>
-              <div className="relative w-full max-w-lg">
-                <div className="absolute top-0 rounded-full bg-violet-300 -left-4 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+    <section className="relative flex items-center justify-center flex-1 py-16 overflow-hidden bg-gray-100 shadow-lg min-h-96 shrink-0 md:py-20 xl:py-48">
+      <img
+        src={HeroImage}
+        loading="lazy"
+        alt="Photo by Fakurian Design"
+        className="absolute inset-0 object-cover object-center w-full h-full"
+      />
+      <div className="absolute inset-0 bg-indigo-800 mix-blend-multiply backdrop-blur-sm"></div>
+      <div className="relative flex flex-col items-center p-4 sm:max-w-xl">
+        <p className="mb-4 text-lg text-center text-indigo-200 sm:text-xl md:mb-8">Very proud to introduce</p>
+        <h1 className="mb-8 text-4xl font-bold text-center text-white sm:text-5xl md:mb-12 md:text-6xl">
+          Revolutionary way to build the web
+        </h1>
 
-                <div className="absolute rounded-full bg-fuchsia-300 -bottom-24 right-20 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-                <div className="relative">
-                  <img
-                    className="object-cover object-center w-full mx-auto rounded-lg drop-shadow-2xl"
-                    alt="hero"
-                    src={HeroImage}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col items-start mt-12 mb-16 text-left lg:flex-grow lg:w-1/2 lg:pl-6 xl:pl-24 md:mb-0 xl:mt-0">
-            <span className="mb-8 text-xs font-bold tracking-widest text-blue-600 uppercase">E-COMMERCE</span>
-            <h1 className="mb-8 text-4xl font-bold leading-none tracking-tighter text-white md:text-7xl">
-              Bienvenidos a UpdateEC
-            </h1>
-            <p className="mb-8 text-base leading-relaxed text-left text-slate-200">
-              Optimiza tu experiencia gaming con nuestros componentes de vanguardia. Descubre el rendimiento superior
-              para conquistar cada partida. ¡Explora ahora!
-            </p>
-            <div className="flex gap-2 mt-0 lg:mt-6 max-w-7xl">
-              <div className="mt-3 rounded-lg sm:mt-0">
-                <Button
-                  size="lg"
-                  className="w-32 bg-purple md:active:scale-95 md:transition md:hover:scale-105"
-                  color="dark"
-                  as={Link}
-                >
-                  Contactar
-                </Button>
-              </div>
-              <div className="mt-3 rounded-lg sm:mt-0 sm:ml-3">
-                <Button
-                  size="lg"
-                  className="w-32 md:active:scale-95 md:transition md:hover:scale-105"
-                  outline
-                  color="dark"
-                  as={Link}
-                  to="/shop"
-                >
-                  Tienda
-                </Button>
-              </div>
-            </div>
-          </div>
+        <div className="flex w-full flex-col gap-2.5 sm:flex-row sm:justify-center">
+          <a
+            href="#"
+            className="inline-block px-8 py-3 text-sm font-semibold text-center text-white transition duration-100 bg-indigo-500 rounded-lg outline-none ring-indigo-300 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base"
+          >
+            Start now
+          </a>
+
+          <a
+            href="#"
+            className="inline-block px-8 py-3 text-sm font-semibold text-center text-gray-500 transition duration-100 bg-gray-200 rounded-lg outline-none ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base"
+          >
+            Take tour
+          </a>
         </div>
       </div>
     </section>

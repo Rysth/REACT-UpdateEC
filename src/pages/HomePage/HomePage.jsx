@@ -4,11 +4,11 @@ import FeatureSection from './sections/FeatureSection'
 
 function HomePage() {
   return (
-    <>
+    <section>
       <HeroSection />
       <ActionSection />
       <FeatureSection />
-    </>
+    </section>
   )
 }
 
