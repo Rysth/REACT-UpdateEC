@@ -1,5 +1,5 @@
 import { useForm } from '@formspree/react'
-import { Button, Label, TextInput } from 'flowbite-react'
+import { Button, Label, TextInput, Textarea } from 'flowbite-react'
 import { useEffect, useRef } from 'react'
 import { toast } from 'react-toastify'
 
@@ -23,11 +23,11 @@ function ContactSection() {
           <h2 className="text-3xl font-bold sm:text-4xl">Contactános</h2>
         </header>
         <div className="flex flex-wrap sm:flex-nowrap">
-          <div className="relative flex items-end justify-start w-full p-10 overflow-hidden bg-gray-300 rounded-lg lg:w-2/3 md:w-1/2 sm:mr-10 min-h-[24rem]">
+          <div className="relative flex items-end justify-start w-full p-10 overflow-hidden bg-gray-300 rounded-lg lg:w-2/3 md:w-1/2 sm:mr-10 min-h-[24rem] shadow-xl">
             <iframe
               width="100%"
               height="100%"
-              className="absolute inset-0"
+              className="absolute inset-0 "
               title="map"
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15948.295900119461!2d-79.9035076!3d-2.1252271!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d6d5dc2cb91dd%3A0x99e63b4d41f9b8b!2sUpdateEC!5e0!3m2!1sen!2sec!4v1701461802982!5m2!1sen!2sec"
               style={{ margin: 0 }}
@@ -52,14 +52,10 @@ function ContactSection() {
               <TextInput id="email" type="email" placeholder="username@example.com" required />
             </div>
             <div className="relative mb-4">
-              <label htmlFor="message" className="text-sm font-light leading-7">
-                Mensaje
-                <textarea
-                  id="message"
-                  name="message"
-                  className="w-full h-32 px-3 py-1 text-sm leading-6 text-black transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none resize-none focus:border-indigo-500 focus:ring-1 focus:ring-[var(--CL-primary-cyan)]"
-                />
-              </label>
+              <div className="block mb-2">
+                <Label htmlFor="message" value="Sugerencias" className="text-white" />
+              </div>
+              <Textarea id="message" placeholder="Mensaje..." className="resize-none" required rows={4} />
             </div>
 
             <Button type="submit" gradientMonochrome="purple" disabled={state.submitting}>
