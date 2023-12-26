@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer className="text-white bg-slate-900 body-font">
-      <div className="container flex flex-col items-center justify-between px-4 py-8 mx-auto max-w-screen-2xl sm:flex-row">
+      <div className="container flex flex-col items-center justify-between max-w-screen-xl px-4 py-8 mx-auto sm:flex-row">
         <a className="flex items-center justify-center font-medium title-font md:justify-start" href="/">
           <span className="text-xl">UpdateEC</span>
         </a>

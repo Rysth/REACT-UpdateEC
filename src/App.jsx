@@ -11,7 +11,6 @@ import HomePage from './pages/HomePage/HomePage'
 import ShopPage from './pages/ShopPage/ShopPage'
 import NotFound from './pages/404/NotFound'
 import ProductPage from './pages/ProductPage/ProductPage'
-import Footer from './components/Footer/Footer'
 import { fetchProducts } from './redux/slices/productSlice'
 import 'react-medium-image-zoom/dist/styles.css'
 import 'react-toastify/dist/ReactToastify.css'
@@ -77,7 +76,6 @@ function App() {
           <Route path="/*" element={<NotFound />} /> */}
         </Routes>
       </main>
-      <Footer />
     </BrowserRouter>
   )
 }

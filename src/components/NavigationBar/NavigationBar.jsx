@@ -22,10 +22,10 @@ function NavigationBar() {
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
 
   return (
-    <>
-      <Navbar className="sticky top-0 z-50 items-center py-3 bg-slate-900 backdrop-blur-2xl">
+    <header className=" bg-[#212529] sticky top-0 z-50">
+      <Navbar className="items-center max-w-screen-xl p-4 mx-auto bg-transparent backdrop-blur-2xl">
         <Navbar.Brand href="/">
-          <img src={BrandImage} className="w-24 sm:w-32" alt="UpdateEC's logo brand" />
+          <img src={BrandImage} className="w-24 sm:w-28" alt="UpdateEC's logo brand" />
         </Navbar.Brand>
         <div className="flex items-center gap-2 sm:gap-3 md:order-2">
           {!active ? (
@@ -85,7 +85,7 @@ function NavigationBar() {
         </Navbar.Collapse>
       </Navbar>
       {openCart && <Cart closeCart={closeCart} />}
-    </>
+    </header>
   )
 }
 
