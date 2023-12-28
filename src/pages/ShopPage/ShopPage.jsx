@@ -42,10 +42,10 @@ function ShopPage() {
         <BannerSection />
         <main className="flex flex-col flex-wrap">
           <SearchSection selectedIDs={selectedIDs} dispatch={dispatch} />
-          <div className="relative flex flex-col gap-10 sm:flex-row">
+          <main className="relative flex flex-col gap-10 sm:flex-row">
             <FilterSection selectedIDs={selectedIDs} handleCheck={handleCheck} />
             <ProductSection />
-          </div>
+          </main>
         </main>
       </article>
     </section>
