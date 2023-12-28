@@ -8,10 +8,14 @@ function ProductSection() {
   const dispatch = useDispatch()
   const { filteredArray, loading } = useSelector((store) => store.product)
   const [visibleQuantity, setVisibleQuantity] = useState(8)
-  const { foundProduct } = useSelector((store) => store.product)
 
-  const handleAddToCart = () => {
-    dispatch(cartActions.addItemToCart({ item: foundProduct, quantity: 1 }))
+  const handleAddToCart = (productID) => {
+    const product = {
+      id: productID,
+    }
+    setTimeout(() => {
+      dispatch(cartActions.addItemToCart({ item: product, quantity: 1 }))
+    }, 200)
   }
 
   const showMoreProducts = () => {
@@ -48,11 +52,10 @@ function ProductSection() {
               </header>
             </a>
             <Button
-              pill
               size="xs"
               className="absolute z-10 md:opacity-0 right-3 top-3 md:group-hover:opacity-100"
-              color="blue"
-              onClick={handleAddToCart}
+              color="purple"
+              onClick={() => handleAddToCart(product.id)}
             >
               <HiPlusCircle className="text-2xl" />
               <span className="sr-only">Añadir</span>

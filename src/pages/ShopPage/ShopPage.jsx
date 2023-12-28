@@ -38,11 +38,11 @@ function ShopPage() {
   }
   return (
     <section className="relative mb-10 text-white">
-      <article className="max-w-screen-xl mx-auto">
+      <article className="max-w-screen-xl px-4 mx-auto">
         <BannerSection />
-        <main className="flex flex-col flex-wrap px-4">
+        <main className="flex flex-col flex-wrap">
           <SearchSection selectedIDs={selectedIDs} dispatch={dispatch} />
-          <div className="flex flex-col gap-10 sm:flex-row">
+          <div className="relative flex flex-col gap-10 sm:flex-row">
             <FilterSection selectedIDs={selectedIDs} handleCheck={handleCheck} />
             <ProductSection />
           </div>
