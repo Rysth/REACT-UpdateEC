@@ -11,7 +11,7 @@ import { Spinner } from 'flowbite-react'
 function ProductCard() {
   const dispatch = useDispatch()
   const { productID } = useParams()
-  const { foundProduct, loading } = useSelector((store) => store.product)
+  const { foundProduct } = useSelector((store) => store.product)
   const [quantity, setQuantity] = useState(1)
 
   const handleAddToCart = () => {
@@ -35,7 +35,7 @@ function ProductCard() {
   return (
     <article className="grid max-w-screen-xl gap-2 px-4 py-5 mx-auto sm:py-12 sm:grid-cols-2">
       <Zoom zoomMargin={60}>
-        <picture className=" h-[300px] sm:h-[450px] lg:h-[550px] bg-white border">
+        <picture className=" h-[300px] sm:h-[450px] lg:h-[600px] bg-white border">
           <img
             src={foundProduct.attributes.picture.data.attributes.url}
             alt={foundProduct.name}

@@ -1,9 +1,11 @@
-import ProductCard from './components/ProductCard'
+import ProductPreview from './components/ProductPreview'
+import ProductSimilar from './components/ProductSimilar'
 
 function Product() {
   return (
     <section className="relative">
-      <ProductCard />
+      <ProductPreview />
+      <ProductSimilar />
     </section>
   )
 }
