@@ -1,9 +1,18 @@
+import { Button } from 'flowbite-react'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { HiPlusCircle } from 'react-icons/hi2'
+import { useDispatch, useSelector } from 'react-redux'
+import { cartActions } from '../../../redux/slices/cartSlice'
 
 function ProductSection() {
+  const dispatch = useDispatch()
   const { filteredArray, loading } = useSelector((store) => store.product)
   const [visibleQuantity, setVisibleQuantity] = useState(8)
+  const { foundProduct } = useSelector((store) => store.product)
+
+  const handleAddToCart = () => {
+    dispatch(cartActions.addItemToCart({ item: foundProduct, quantity: 1 }))
+  }
 
   const showMoreProducts = () => {
     setVisibleQuantity(visibleQuantity + 8)
@@ -23,8 +32,8 @@ function ProductSection() {
     <div className="flex flex-col flex-1 gap-10">
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
         {filteredArray.slice(0, visibleQuantity).map((product) => (
-          <li key={product.id} className="">
-            <a href={`/shop/${product.id}`} className="block w-full md:hover:-translate-y-3 md:transition">
+          <li key={product.id} className="relative group">
+            <a href={`/shop/${product.id}`} className="block w-full">
               <picture className="h-[175px] lg:h-[240px] border border-gray-200">
                 <img
                   src={product.attributes.picture.data.attributes.url}
@@ -38,6 +47,16 @@ function ProductSection() {
                 <p className="text-sm">{`$${product.attributes.price}`}</p>
               </header>
             </a>
+            <Button
+              pill
+              size="xs"
+              className="absolute z-10 md:opacity-0 right-3 top-3 md:group-hover:opacity-100"
+              color="blue"
+              onClick={handleAddToCart}
+            >
+              <HiPlusCircle className="text-2xl" />
+              <span className="sr-only">Añadir</span>
+            </Button>
           </li>
         ))}
         {filteredArray.length === 0 && (

@@ -11,12 +11,11 @@ import { Button } from 'flowbite-react'
 function Product() {
   const dispatch = useDispatch()
   const { productID } = useParams()
-  const { active } = useSelector((store) => store.session)
   const { foundProduct } = useSelector((store) => store.product)
   const [quantity, setQuantity] = useState(1)
 
   const handleAddToCart = () => {
-    if (active && quantity > 0 && quantity <= foundProduct.attributes.quantity) {
+    if (quantity > 0 && quantity <= foundProduct.attributes.quantity) {
       // Assuming foundProduct has the required details
       dispatch(cartActions.addItemToCart({ item: foundProduct, quantity }))
     }
@@ -54,31 +53,22 @@ function Product() {
             {foundProduct.attributes.description}
           </p>
           <footer className="flex items-center gap-5 mt-5">
-            {active && (
-              <>
-                <Button
-                  type="button"
-                  color="dark"
-                  className="w-3/4 gap-1 rounded-none bg-purple"
-                  onClick={handleAddToCart}
-                >
-                  <FaShoppingCart className="mr-1" />
-                  Añadir al Carrito
-                </Button>
-                <input
-                  type="number"
-                  name="quantity"
-                  id="quantity"
-                  className="p-2.5 text-xs sm:text-sm text-black"
-                  value={quantity}
-                  onChange={(e) =>
-                    setQuantity(Math.max(0, Math.min(parseInt(e.target.value, 10), foundProduct.attributes.quantity)))
-                  }
-                  min={1}
-                  max={foundProduct.attributes.quantity}
-                />
-              </>
-            )}
+            <Button type="button" color="dark" className="w-3/4 gap-1 rounded-none bg-purple" onClick={handleAddToCart}>
+              <FaShoppingCart className="mr-1" />
+              Añadir al Carrito
+            </Button>
+            <input
+              type="number"
+              name="quantity"
+              id="quantity"
+              className="p-2.5 text-xs sm:text-sm text-black"
+              value={quantity}
+              onChange={(e) =>
+                setQuantity(Math.max(0, Math.min(parseInt(e.target.value, 10), foundProduct.attributes.quantity)))
+              }
+              min={1}
+              max={foundProduct.attributes.quantity}
+            />
           </footer>
         </main>
       </article>
