@@ -3,20 +3,12 @@ import { useEffect, useState } from 'react'
 import { HiPlusCircle } from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartActions } from '../../../redux/slices/cartSlice'
+import ProductCard from '../../../components/ui/ProductCard/ProductCard'
 
 function ProductSection() {
   const dispatch = useDispatch()
   const { filteredArray, loading } = useSelector((store) => store.product)
   const [visibleQuantity, setVisibleQuantity] = useState(8)
-
-  const handleAddToCart = (productID) => {
-    const product = {
-      id: productID,
-    }
-    setTimeout(() => {
-      dispatch(cartActions.addItemToCart({ item: product, quantity: 1 }))
-    }, 200)
-  }
 
   const showMoreProducts = () => {
     setVisibleQuantity(visibleQuantity + 8)
@@ -36,31 +28,7 @@ function ProductSection() {
     <div className="flex flex-col flex-1 gap-10">
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
         {filteredArray.slice(0, visibleQuantity).map((product) => (
-          <li key={product.id} className="relative group">
-            <a href={`/shop/${product.id}`} className="block w-full">
-              <picture className="h-[175px] lg:h-[240px] border border-gray-200">
-                <img
-                  src={product.attributes.picture.data.attributes.url}
-                  alt={product.name}
-                  className="object-contain w-full h-full bg-white "
-                  loading="lazy"
-                />
-              </picture>
-              <header className="grid p-2 bg-purple">
-                <h3 className="text-lg font-bold truncate max-w-[20rem] uppercase">{product.attributes.name}</h3>
-                <p className="text-sm">{`$${product.attributes.price}`}</p>
-              </header>
-            </a>
-            <Button
-              size="xs"
-              className="absolute z-10 md:opacity-0 right-3 top-3 md:group-hover:opacity-100"
-              color="purple"
-              onClick={() => handleAddToCart(product.id)}
-            >
-              <HiPlusCircle className="text-2xl" />
-              <span className="sr-only">Añadir</span>
-            </Button>
-          </li>
+          <ProductCard product={product} />
         ))}
         {filteredArray.length === 0 && (
           <li className="col-span-5">
