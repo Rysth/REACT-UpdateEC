@@ -7,7 +7,7 @@ function ShopPage() {
     <article>
       <BannerSection />
       <SectionLayout>
-        <main className="max-w-screen-xl mx-auto ">
+        <main className="max-w-screen-xl py-12 mx-auto">
           <ProductSection />
         </main>
       </SectionLayout>

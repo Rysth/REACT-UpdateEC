@@ -141,15 +141,16 @@ const productSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false
         state.productsArray = [...state.productsArray, ...action.payload.data]
+
+        console.log(state.loading)
+        if (state.filteredArray.length === 0) {
+          state.filteredArray = [...state.productsArray, ...action.payload.data]
+        }
         state.filteredArray = [...state.filteredArray, ...action.payload.data]
       })
       .addCase(fetchLastestProducts.fulfilled, (state, action) => {
         state.loading = false
         state.lastestProducts = action.payload.data
-      })
-      .addCase(fetchProducts.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.error.message
       })
       .addCase(findProduct.pending, (state) => {
         state.loading = true
@@ -160,7 +161,6 @@ const productSlice = createSlice({
       })
       .addCase(searchAndFilterProducts.fulfilled, (state, action) => {
         state.loading = false
-        console.log(action.payload.data)
         state.filteredArray = action.payload.data
       })
   },

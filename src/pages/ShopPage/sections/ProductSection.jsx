@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../../components/ui/ProductCard/ProductCard'
 import { fetchProducts } from '../../../redux/slices/productSlice'
+import { Spinner } from 'flowbite-react'
 
 function ProductSection() {
   const dispatch = useDispatch()
@@ -18,8 +19,8 @@ function ProductSection() {
 
   if (loading) {
     return (
-      <header className="grid w-full h-20 py-2 bg-purple place-items-center">
-        <h3 className="w-full text-lg font-bold text-center text-white uppercase">Cargando...</h3>
+      <header className="grid h-screen place-items-center animate__animated animate__fadeIn animate__slow">
+        <Spinner color="purple" className="w-24 h-24 sm:w-28 sm:h-28" />
       </header>
     )
   }
