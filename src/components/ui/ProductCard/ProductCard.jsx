@@ -3,22 +3,26 @@ import PropTypes from 'prop-types'
 
 function ProductCard({ product }) {
   return (
-    <li key={product.id} className="relative group">
-      <a href={`/shop/${product.id}`} className="block w-full">
-        <picture className="h-[175px] lg:h-[240px] border border-gray-200 overflow-hidden">
-          <img
-            src={product.attributes.picture.data.attributes.url}
-            alt={product.name}
-            className="object-contain w-full h-full transition bg-white md:hover:scale-105"
-            loading="lazy"
-          />
-        </picture>
-        <header className="grid p-2 text-white bg-purple">
-          <h3 className="text-lg font-bold truncate max-w-[20rem] uppercase">{product.attributes.name}</h3>
-          <p className="text-sm">{`$${product.attributes.price}`}</p>
-        </header>
-      </a>
-    </li>
+    <a
+      href={`/shop/${product.id}`}
+      className="p-2 border border-gray-100 rounded-lg shadow-xl group lg:mx-2 shadow-black/5"
+    >
+      <picture className="h-auto overflow-hidden max-h-72">
+        <img
+          src={product.attributes.picture.data.attributes.url}
+          alt={product.attributes.name}
+          className="object-contain w-full h-full transition duration-500 group-hover:scale-110"
+        />
+      </picture>
+      <header className="px-4 py-3 text-center">
+        <h2 className="uppercase truncate transition duration-300 group-hover:text-violet-800">
+          {product.attributes.name}
+        </h2>
+        <p className="font-semibold uppercase truncate text-violet-700 group-hover:text-violet-80">
+          ${product.attributes.price}
+        </p>
+      </header>
+    </a>
   )
 }
 

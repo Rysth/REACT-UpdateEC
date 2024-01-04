@@ -24,24 +24,25 @@ function ProductSection() {
     )
   }
 
+  if (filteredArray.length === 0) {
+    return (
+      <header className="grid w-full h-20 py-2 bg-red-500 place-items-center">
+        <h3 className="w-full text-lg font-bold text-center uppercase">¡Productos no Encontrados!</h3>
+      </header>
+    )
+  }
+
   return (
     <div className="flex flex-col flex-1 gap-10">
-      <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+      <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-5">
         {filteredArray.map((product, index) => (
           <ProductCard product={product} key={index} />
         ))}
-        {filteredArray.length === 0 && (
-          <li className="col-span-5">
-            <header className="grid h-20 py-2 bg-red-500 place-items-center">
-              <h3 className="w-full text-lg font-bold text-center uppercase">¡Productos no Encontrados!</h3>
-            </header>
-          </li>
-        )}
       </ul>
       <footer className="grid place-items-center">
         <button
           type="button"
-          className="float-right p-3 px-4 text-xs text-center rounded-full bg-purple md:hover:scale-105 md:transition md:active:scale-95"
+          className="float-right p-3 px-4 text-xs text-center text-white rounded-full bg-purple md:hover:scale-105 md:transition md:active:scale-95"
           onClick={loadMoreProducts}
         >
           Mostrar Más

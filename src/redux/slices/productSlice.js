@@ -70,6 +70,24 @@ export const findProduct = createAsyncThunk('product/findProduct', async (produc
   }
 })
 
+// Products - GET
+export const searchAndFilterProducts = createAsyncThunk('product/searchAndFilterProducts', async ({ searchData }) => {
+  try {
+    const fetchSearchAndFilterProductsConfig = {
+      ...fetchProductsConfig,
+      params: {
+        ...fetchProductsConfig.params,
+        'filters[name][$contains]': searchData,
+      },
+    }
+
+    const response = await axios.get(`${API_URL}/products`, fetchSearchAndFilterProductsConfig)
+    return response.data
+  } catch (error) {
+    throw new Error(`Error: ${error.message}`)
+  }
+})
+
 const productSlice = createSlice({
   name: 'product',
   initialState,
@@ -140,9 +158,10 @@ const productSlice = createSlice({
         state.loading = false
         state.foundProduct = action.payload.data
       })
-      .addCase(findProduct.rejected, (state, action) => {
+      .addCase(searchAndFilterProducts.fulfilled, (state, action) => {
         state.loading = false
-        state.error = action.error.message
+        console.log(action.payload.data)
+        state.filteredArray = action.payload.data
       })
   },
 })
