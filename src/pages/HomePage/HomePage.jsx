@@ -12,8 +12,8 @@ function HomePage() {
       <ActionSection />
       <FeatureSection />
       <CategorySection />
-      <DesignSection />
       <LastestSection />
+      <DesignSection />
     </section>
   )
 }

@@ -1,12 +1,8 @@
-import { Button } from 'flowbite-react'
 import { useEffect, useState } from 'react'
-import { HiPlusCircle } from 'react-icons/hi2'
-import { useDispatch, useSelector } from 'react-redux'
-import { cartActions } from '../../../redux/slices/cartSlice'
+import { useSelector } from 'react-redux'
 import ProductCard from '../../../components/ui/ProductCard/ProductCard'
 
 function ProductSection() {
-  const dispatch = useDispatch()
   const { filteredArray, loading } = useSelector((store) => store.product)
   const [visibleQuantity, setVisibleQuantity] = useState(8)
 
@@ -27,8 +23,8 @@ function ProductSection() {
   return (
     <div className="flex flex-col flex-1 gap-10">
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-        {filteredArray.slice(0, visibleQuantity).map((product) => (
-          <ProductCard product={product} />
+        {filteredArray.slice(0, visibleQuantity).map((product, index) => (
+          <ProductCard product={product} key={index} />
         ))}
         {filteredArray.length === 0 && (
           <li className="col-span-5">

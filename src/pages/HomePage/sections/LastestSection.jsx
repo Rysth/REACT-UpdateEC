@@ -34,18 +34,19 @@ function LastestSection() {
           responsive={responsive}
           infinite
           autoPlay
-          itemClass="lg:mx-2 border rounded-lg p-2 shadow-xl border-gray-100 "
+          itemClass="lg:mx-2 border rounded-lg p-2 shadow-xl shadow-black/5 border-gray-100"
+          containerClass="pb-12"
         >
           {lastestProducts.map((product, index) => (
             <a href={`/shop/${product.id}`} key={index} className="group ">
-              <picture className="h-auto overflow-hidden max-h-64">
+              <picture className="h-auto overflow-hidden max-h-72">
                 <img
                   src={product.attributes.picture.data.attributes.url}
                   alt={product.attributes.name}
                   className="object-contain w-full h-full transition duration-500 group-hover:scale-110"
                 />
               </picture>
-              <header className="px-4 py-2 text-center">
+              <header className="px-4 py-3 text-center">
                 <h2 className="uppercase truncate transition duration-300 group-hover:text-violet-800">
                   {product.attributes.name}
                 </h2>

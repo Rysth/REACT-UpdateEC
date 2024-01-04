@@ -15,7 +15,7 @@ import SessionPage from './pages/SessionPage/SessionPage'
 import FormSignIn from './pages/SessionPage/components/FormSignIn'
 import FormSignUp from './pages/SessionPage/components/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
-import Footer from './components/Footer/Footer'
+import Footer from './components/navigation/Footer/Footer'
 import { fetchLastestProducts } from './redux/slices/productSlice'
 
 function App() {
