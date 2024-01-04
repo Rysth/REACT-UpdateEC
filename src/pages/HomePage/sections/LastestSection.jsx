@@ -9,7 +9,7 @@ function LastestSection() {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 768, min: 640 },
@@ -31,7 +31,7 @@ function LastestSection() {
             <HiArrowRight className="text-purple-700" />
           </a>
         </header>
-        <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" centerMode>
+        <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" centerMode draggable={false}>
           {lastestProducts.map((product, index) => (
             <ProductCard product={product} key={index} />
           ))}
