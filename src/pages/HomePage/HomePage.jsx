@@ -8,7 +8,6 @@ function HomePage() {
   return (
     <section>
       <HeroSection />
-      <ActionSection />
       <FeatureSection />
       <DesignSection />
       <ContactSection />

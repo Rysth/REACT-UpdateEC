@@ -1,22 +1,20 @@
-import { Button } from 'flowbite-react'
 import PropTypes from 'prop-types'
 
 function CategoryCard({ imageSrc, category, description }) {
   return (
-    <article className="relative h-[350px] max-w-[275px] p-2 mx-auto sm:max-w-full sm:h-[450px] rounded-lg flex flex-col justify-center shadow-xl w-full">
-      <span className="absolute inset-0 w-full rounded-lg bg-gradient-to-t from-violet-800 to-white"></span>
-      <picture className="relative z-10 w-full h-3/5">
-        <img src={imageSrc} alt={category} className="object-contain w-full h-full" />
-      </picture>
-      <main className="relative z-10 py-5 text-center text-white">
-        <h3 className="text-xl sm:text-2xl">{category}</h3>
-        <p className="text-xs sm:text-sm">{description}</p>
-      </main>
-      <footer className="flex justify-center">
-        <Button href="/shop" size="xs" color="light">
-          Ver Más
-        </Button>
-      </footer>
+    <article className="p-5 border border-gray-100 h-60 group">
+      <a href="#" className="flex flex-col justify-between h-full">
+        <picture className="h-3/4">
+          <img
+            src={imageSrc}
+            alt={category}
+            className="object-contain w-full h-full transition duration-500 group-hover:scale-110"
+          />
+        </picture>
+        <main className="grid text-center text-gray-900 place-items-centerflex-1">
+          <h3 className="text-xl">{category}</h3>
+        </main>
+      </a>
     </article>
   )
 }
