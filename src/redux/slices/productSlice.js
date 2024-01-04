@@ -142,7 +142,6 @@ const productSlice = createSlice({
         state.loading = false
         state.productsArray = [...state.productsArray, ...action.payload.data]
 
-        console.log(state.loading)
         if (state.filteredArray.length === 0) {
           state.filteredArray = [...state.productsArray, ...action.payload.data]
         }

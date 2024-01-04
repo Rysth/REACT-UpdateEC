@@ -35,7 +35,7 @@ function ProductSection() {
 
   return (
     <div className="flex flex-col flex-1 gap-10">
-      <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-5">
+      <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-5">
         {filteredArray.map((product, index) => (
           <ProductCard product={product} key={index} />
         ))}
