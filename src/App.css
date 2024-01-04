@@ -76,10 +76,6 @@ video {
   max-width: 100%;
 }
 
-button {
-  @apply transition md:hover:scale-105 md:active:scale-95;
-}
-
 /* Display */
 .d-none {
   display: none;

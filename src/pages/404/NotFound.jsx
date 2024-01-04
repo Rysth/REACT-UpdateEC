@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 
 function NotFound() {
   return (
-    <motion.header
+    <header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
@@ -17,7 +16,7 @@ function NotFound() {
       >
         Regresar
       </Link>
-    </motion.header>
+    </header>
   )
 }
 
