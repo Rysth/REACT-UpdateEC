@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 
-function CategoryCard({ imageSrc, category, description }) {
+function CategoryCard({ imageSrc, category }) {
   return (
-    <article className="p-5 border border-gray-100 h-60 group">
+    <article className="h-48 p-5 border border-gray-100 sm:h-72 group">
       <a href="#" className="flex flex-col justify-between h-full">
         <picture className="h-3/4">
           <img

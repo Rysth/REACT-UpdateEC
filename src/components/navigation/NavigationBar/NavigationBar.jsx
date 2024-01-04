@@ -30,10 +30,10 @@ function NavigationBar() {
           />
         </div>
         <Navbar.Collapse className="transition animate__animated animate__fadeIn">
-          <Navbar.Link href="#" className="hover:!text-violet-700 text-gray-900 uppercase">
+          <Navbar.Link href="/" className="hover:!text-violet-700 text-gray-900 uppercase">
             Inicio
           </Navbar.Link>
-          <Navbar.Link href="#" className="hover:!text-violet-700 text-gray-900 uppercase">
+          <Navbar.Link href="/shop" className="hover:!text-violet-700 text-gray-900 uppercase">
             Tienda
           </Navbar.Link>
           <Navbar.Link href="#" className="hover:!text-violet-700 text-gray-900 uppercase">
