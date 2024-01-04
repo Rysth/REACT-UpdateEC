@@ -14,16 +14,10 @@ import SessionPage from './pages/SessionPage/SessionPage'
 import FormSignIn from './pages/SessionPage/components/FormSignIn'
 import FormSignUp from './pages/SessionPage/components/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
-import { fetchProducts } from './redux/slices/productSlice'
 import Footer from './components/Footer/Footer'
 
 function App() {
-  const dispatch = useDispatch()
   const { active } = useSelector((store) => store.session)
-
-  useEffect(() => {
-    dispatch(fetchProducts())
-  }, [dispatch])
 
   return (
     <BrowserRouter>

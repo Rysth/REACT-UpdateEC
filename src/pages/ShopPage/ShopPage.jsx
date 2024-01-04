@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { productActions } from '../../redux/slices/productSlice'
+import { fetchProducts, productActions } from '../../redux/slices/productSlice'
 import BannerSection from './sections/BannerSection'
 import FilterSection from './sections/FilterSection'
 import ProductSection from './sections/ProductSection'
@@ -36,6 +36,11 @@ function ShopPage() {
     // Update the local state with the toggled IDs
     setSelectedIDs(updatedSelectedIDs)
   }
+
+  useEffect(() => {
+    dispatch(fetchProducts())
+  }, [dispatch])
+
   return (
     <section className="relative mb-10 text-white">
       <article className="max-w-screen-xl px-4 mx-auto">
