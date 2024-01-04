@@ -1,5 +1,5 @@
 import { Button, Navbar } from 'flowbite-react'
-import { HiOutlineShoppingBag, HiMiniBars3BottomRight } from 'react-icons/hi2'
+import { HiMiniBars3BottomRight, HiOutlineShoppingBag } from 'react-icons/hi2'
 import { useSelector } from 'react-redux'
 import BrandImage from '../../../assets/SVG/brand.svg'
 
@@ -8,7 +8,7 @@ function NavigationBar() {
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
 
   return (
-    <header className="sticky top-0 z-50 bg-white animate__animated animate__bounceInDown animate__slow">
+    <header className="sticky top-0 z-50 bg-white shadow animate__animated animate__bounceInDown animate__slow">
       <Navbar className="items-center max-w-screen-xl p-4 mx-auto bg-transparent backdrop-blur-2xl">
         <Navbar.Brand href="/">
           <img src={BrandImage} className="w-24 sm:w-32" alt="UpdateEC's logo brand" />
