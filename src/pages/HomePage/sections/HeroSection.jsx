@@ -5,7 +5,7 @@ import ProductImage from '../../../assets/PNG/products/product_5.png'
 
 function HeroSection() {
   return (
-    <SectionLayout backgroundColor="bg-gray-50">
+    <SectionLayout backgroundColor="bg-gray-50 animate__animated animate__fadeIn animate__slow  animate__delay-1s">
       <article className="flex flex-col max-w-screen-xl gap-20 py-12 mx-auto sm:gap-8 md:flex-row ">
         <header className="flex flex-col justify-center gap-2 text-center sm:gap-0 md:text-left md:pr-32 sm:flex-1">
           <p className="mb-3 text-sm uppercase text-violet-700 md:mb-4 sm:text-base">Productos Gaming Profesionales</p>
@@ -28,7 +28,7 @@ function HeroSection() {
             </Button>
           </div>
         </header>
-        <main className="sm:flex-1 sm:h-auto">
+        <main className="sm:flex-1 sm:h-auto animate__animated animate__bounceIn animate__slow animate__delay-1s">
           <img
             src={ProductImage}
             loading="lazy"

@@ -12,7 +12,7 @@ const commitmentPoints = [
 
 function DesignSection() {
   return (
-    <section className="bg-purple">
+    <section className="bg-purple animate__animated animate__fadeIn">
       <div className="max-w-screen-xl px-4 py-10 mx-auto lg:py-20">
         <div className="lg:grid lg:grid-cols-12 lg:gap-16 lg:items-center">
           <div className="lg:col-span-7">

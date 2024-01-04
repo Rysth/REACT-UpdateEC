@@ -6,7 +6,7 @@ import CategoryTwo from '../../../assets/PNG/categories/category_2.png'
 function CategorySection() {
   return (
     <SectionLayout>
-      <article className="grid max-w-screen-xl gap-8 pb-12 mx-auto sm:grid-cols-2">
+      <article className="grid max-w-screen-xl gap-8 pb-12 mx-auto sm:grid-cols-2 animate__animated animate__bounce">
         <a
           href="/shop"
           className="relative flex flex-col items-center gap-2 py-10 overflow-hidden bg-gray-100 h-96 group"

@@ -23,7 +23,7 @@ function LastestSection() {
   return (
     <SectionLayout>
       <article className="max-w-screen-xl py-12 mx-auto">
-        <header className="flex items-center justify-between gap-2 mb-6">
+        <header className="flex flex-col items-center justify-between gap-2 mb-6 sm:flex-row">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Últimos Productos</h2>
           <a href="/shop" className="flex items-center gap-1 text-sm transition duration-200 hover:translate-x-2">
             Más Productos
@@ -34,7 +34,7 @@ function LastestSection() {
           responsive={responsive}
           infinite
           autoPlay
-          itemClass="lg:mx-2 border rounded-lg p-2 shadow-xl border-gray-100"
+          itemClass="lg:mx-2 border rounded-lg p-2 shadow-xl border-gray-100 "
         >
           {lastestProducts.map((product, index) => (
             <a href={`/shop/${product.id}`} key={index} className="group ">
@@ -49,9 +49,9 @@ function LastestSection() {
                 <h2 className="uppercase truncate transition duration-300 group-hover:text-violet-800">
                   {product.attributes.name}
                 </h2>
-                <h2 className="uppercase truncate text-violet-700 group-hover:text-violet-80">
+                <p className="font-semibold uppercase truncate text-violet-700 group-hover:text-violet-80">
                   ${product.attributes.price}
-                </h2>
+                </p>
               </header>
             </a>
           ))}

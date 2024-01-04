@@ -14,7 +14,7 @@ function FeatureSection() {
   ]
 
   return (
-    <section className="p-4 py-10 sm:py-20">
+    <section className="p-4 py-10 sm:py-20 ">
       <article className="flex flex-col max-w-screen-xl gap-2 mx-auto">
         <header className="grid gap-2">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Categorías Destacadas</h2>
