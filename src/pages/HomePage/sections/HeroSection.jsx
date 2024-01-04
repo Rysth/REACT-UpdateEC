@@ -1,35 +1,43 @@
 import { Button } from 'flowbite-react'
-import HeroImage from '../../../assets/PNG/hero/hero_2.jpg'
+import { HiArrowRight } from 'react-icons/hi2'
+import SectionLayout from '../../../layouts/SectionLayout'
+import ProductImage from '../../../assets/PNG/products/product_5.png'
 
 function HeroSection() {
   return (
-    <section className="p-4">
-      <article className="flex flex-col max-w-screen-xl mx-auto">
-        <header className="flex flex-col items-center max-w-lg gap-5 py-12 mx-auto text-center sm:py-20 sm:pb-10">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl lg:text-8xl">
-            Bienvenidos a UpdateEC
-          </h2>
-          <p className="text-xs text-gray-500 sm:text-base">
-            Optimiza tu experiencia gaming con nuestros componentes de vanguardia. Descubre el rendimiento superior para
-            conquistar cada partida. <span className="font-semibold ">¡Explora ahora!</span>
+    <SectionLayout backgroundColor="bg-gray-50 animate__animated animate__fadeIn animate__slow  animate__delay-1s">
+      <article className="flex flex-col max-w-screen-xl gap-20 py-12 mx-auto sm:gap-8 md:flex-row ">
+        <header className="flex flex-col justify-center gap-2 text-center sm:gap-0 md:text-left md:pr-32 sm:flex-1">
+          <p className="mb-3 text-sm uppercase text-violet-700 md:mb-4 sm:text-base">Productos Gaming Profesionales</p>
+          <h1 className="mb-4 text-4xl font-bold text-black sm:text-5xl md:mb-8 md:text-7xl">
+            Redefine tu Juego <br /> Sé Parte de la Elite Gaming
+          </h1>
+          <p className="mb-4 text-sm leading-relaxed text-gray-500 md:text-base md:mb-8">
+            Sumérgete en el gaming de élite con dispositivos de alto rendimiento y accesorios únicos. Vive la pasión y
+            precisión.
           </p>
-          <div className="flex items-center gap-2">
-            <Button href="/shop" className="w-32" gradientMonochrome="purple">
+          <div className="flex flex-col gap-2.5 sm:flex-row sm:justify-center lg:justify-start">
+            <Button
+              size="sm"
+              href="#"
+              className="p-2 transition bg-purple-700 sm:px-4 md:px-6 hover:bg-purple-800 hover:shadow-xl md:hover:translate-x-2"
+              pill
+            >
               Tienda
-            </Button>
-            <Button href="/shop" className="w-32" color="light">
-              Contactar
+              <HiArrowRight className="ml-1" />
             </Button>
           </div>
         </header>
-        <hr className="h-1 w-[45px] bg-black mx-auto" />
-        <main className="py-12 sm:py-20 sm:pt-10">
-          <picture>
-            <img src={HeroImage} alt="" className="mx-auto shadow-2xl lg:max-w-4xl rounded-2xl" loading="lazy" />
-          </picture>
+        <main className="sm:flex-1 sm:h-auto animate__animated animate__bounceIn animate__slow animate__delay-1s">
+          <img
+            src={ProductImage}
+            loading="lazy"
+            alt="Photo by Fakurian Design"
+            className="block object-cover w-full h-full"
+          />
         </main>
       </article>
-    </section>
+    </SectionLayout>
   )
 }
 

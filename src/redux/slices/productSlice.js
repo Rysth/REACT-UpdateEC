@@ -8,6 +8,7 @@ const API_KEY = import.meta.env.VITE_API_KEY
 const initialState = {
   productsArray: [],
   filteredArray: [],
+  lastestProducts: [],
   foundProduct: null,
   loading: false,
   error: false,
@@ -27,6 +28,24 @@ const fetchProductsConfig = {
 export const fetchProducts = createAsyncThunk('product/fetchProducts', async () => {
   try {
     const response = await axios.get(`${API_URL}/products`, fetchProductsConfig)
+    return response.data
+  } catch (error) {
+    throw new Error(`Error: ${error.message}`)
+  }
+})
+
+// Products - GET
+export const fetchLastestProducts = createAsyncThunk('product/fetchLastestProducts', async () => {
+  try {
+    const fetchLastestProductsConfig = {
+      ...fetchProductsConfig,
+      params: {
+        ...fetchProductsConfig.params,
+        'pagination[limit]': 10,
+        sort: 'createdAt:desc', // Limit results to 5
+      },
+    }
+    const response = await axios.get(`${API_URL}/products`, fetchLastestProductsConfig)
     return response.data
   } catch (error) {
     throw new Error(`Error: ${error.message}`)
@@ -85,7 +104,7 @@ const productSlice = createSlice({
       state.filteredArray = state.productsArray.filter((element) => {
         const categoryMatch = !categoryIDs.length || categoryIDs.includes(element.attributes.category.data.id)
         const brandMatch = !brandIDs.length || brandIDs.includes(element.attributes.brand.data.id)
-        const searchMatch = !searchData || element.attributes.name.toLowerCase().includes(searchData)
+        const searchMatch = !searchData || element.attributes.name.toLowerCase().includes(searchData.toLowerCase())
 
         return categoryMatch && brandMatch && searchMatch
       })
@@ -99,6 +118,10 @@ const productSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false
         state.productsArray = state.filteredArray = action.payload.data
+      })
+      .addCase(fetchLastestProducts.fulfilled, (state, action) => {
+        state.loading = false
+        state.lastestProducts = action.payload.data
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false

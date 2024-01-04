@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { productActions } from '../../redux/slices/productSlice'
+import { fetchProducts, productActions } from '../../redux/slices/productSlice'
 import BannerSection from './sections/BannerSection'
 import FilterSection from './sections/FilterSection'
 import ProductSection from './sections/ProductSection'
@@ -36,16 +36,21 @@ function ShopPage() {
     // Update the local state with the toggled IDs
     setSelectedIDs(updatedSelectedIDs)
   }
+
+  useEffect(() => {
+    dispatch(fetchProducts())
+  }, [dispatch])
+
   return (
-    <section className="relative text-white">
-      <article className="max-w-screen-xl mx-auto">
+    <section className="relative mb-10 text-white">
+      <article className="max-w-screen-xl px-4 mx-auto">
         <BannerSection />
-        <main className="flex flex-col flex-wrap px-4">
+        <main className="flex flex-col flex-wrap">
           <SearchSection selectedIDs={selectedIDs} dispatch={dispatch} />
-          <div className="flex flex-col gap-10 sm:flex-row">
+          <main className="relative flex flex-col gap-10 sm:flex-row">
             <FilterSection selectedIDs={selectedIDs} handleCheck={handleCheck} />
             <ProductSection />
-          </div>
+          </main>
         </main>
       </article>
     </section>

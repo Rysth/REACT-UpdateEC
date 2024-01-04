@@ -7,7 +7,7 @@ function FilterGroup({ title, data, onSelect }) {
 
   return (
     <fieldset>
-      <legend className="w-full py-2 mb-5 text-sm font-semibold text-center sm:text-lg bg-purple">{title}</legend>
+      <legend className="w-full py-2 text-sm font-semibold text-center sm:text-lg bg-purple">{title}</legend>
       <div className="max-h-[8rem] overflow-auto">
         {data.map((item) => (
           <label
@@ -20,7 +20,7 @@ function FilterGroup({ title, data, onSelect }) {
               type="checkbox"
               value={item.id}
               id={item.attributes.slug}
-              className="w-5 h-5 text-xl border-none rounded-md outline-none"
+              className="w-5 h-5 text-xl rounded-md "
               onChange={() => handleCheckboxChange(item.id)}
             />
           </label>

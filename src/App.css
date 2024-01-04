@@ -13,16 +13,16 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--CL-primary-purple);
+  background: white;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: white;
+  background: var(--CL-primary-purple);
 }
 
 :root {
-  --CL-primary-purple: #271033;
+  --CL-primary-purple: #1d1a31;
   --CL-neutral-white: #fff;
   --CL-neutral-black: #161616;
   --FF-signate-grotesk: 'Signate Grotesk', sans-serif;
@@ -74,10 +74,6 @@ iframe,
 video {
   display: block;
   max-width: 100%;
-}
-
-button {
-  @apply transition md:hover:scale-105 md:active:scale-95;
 }
 
 /* Display */

@@ -1,14 +1,8 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 
 function NotFound() {
   return (
-    <motion.header
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 2 }}
-      className="flex flex-col items-center justify-center gap-1 text-white h-[41.5rem] animate__animated animate__fadeInDown"
-    >
+    <header className="flex flex-col items-center justify-center gap-1 text-white h-[41.5rem] animate__animated animate__fadeInDown">
       <h2 className="font-bold text-7xl md:text-[8rem]">404</h2>
       <h3 className="text-base font-semibold sm:text-2xl md:text-[2rem]">¡Página no Encontrada!</h3>
       <Link
@@ -17,7 +11,7 @@ function NotFound() {
       >
         Regresar
       </Link>
-    </motion.header>
+    </header>
   )
 }
 
