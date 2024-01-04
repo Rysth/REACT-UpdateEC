@@ -11,7 +11,7 @@ const authToken = sessionStorage.getItem('authToken')
 const initialState = {
   userData: userData || {},
   authToken: authToken || '',
-  loading: false,
+  loading: true,
   error: false,
   active: userData !== null,
 }
@@ -65,18 +65,18 @@ const sessionSlice = createSlice({
   initialState,
   reducers: {
     destroySession(state) {
+      toast.info('Cerrando Sesión...', { theme: 'colored' })
       state.active = false
       state.userData = {}
       state.authToken = ''
       sessionStorage.removeItem('userData')
       sessionStorage.removeItem('authToken')
-      toast.info('Muchas Gracias', { theme: 'colored' })
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(createSession.pending, (state) => {
-        state.loading = true
+        toast.info('Iniciando Sesión...', { theme: 'colored' })
       })
       .addCase(createSession.fulfilled, (state, action) => {
         state.active = true
@@ -93,6 +93,7 @@ const sessionSlice = createSlice({
       })
       .addCase(createAccount.pending, (state) => {
         state.loading = true
+        toast.info('Envíando...', { theme: 'colored' })
       })
       .addCase(createAccount.fulfilled, (state, action) => {
         state.active = true

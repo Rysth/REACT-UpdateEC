@@ -1,19 +1,31 @@
 import { Button, Navbar } from 'flowbite-react'
-import { HiMiniBars3BottomRight, HiOutlineShoppingBag } from 'react-icons/hi2'
-import { useSelector } from 'react-redux'
+import {
+  HiMiniBars3BottomRight,
+  HiOutlineShoppingBag,
+  HiOutlineUser,
+  HiMiniArrowLeftOnRectangle,
+} from 'react-icons/hi2'
+import { useDispatch, useSelector } from 'react-redux'
 import BrandImage from '../../../assets/SVG/brand.svg'
+import { sessionActions } from '../../../redux/slices/sessionSlice'
 
 function NavigationBar() {
+  const dispatch = useDispatch()
   const { cartItems } = useSelector((store) => store.cart)
+  const { active } = useSelector((store) => store.session)
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
 
+  const onLogoutSession = () => {
+    dispatch(sessionActions.destroySession())
+  }
+
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-b-gray-100 animate__animated animate__bounceInDown animate__slow">
+    <header className="sticky top-0 z-50 bg-white border-b border-b-gray-100 animate__animated animate__fadeIn animate__slow">
       <Navbar className="items-center max-w-screen-xl p-4 mx-auto bg-transparent backdrop-blur-2xl">
         <Navbar.Brand href="/">
           <img src={BrandImage} className="w-24 sm:w-32" alt="UpdateEC's logo brand" />
         </Navbar.Brand>
-        <div className="flex md:order-2">
+        <div className="flex items-center md:order-2">
           <Button
             href="#"
             color="dark"
@@ -24,6 +36,18 @@ function NavigationBar() {
               {totalQuantity}
             </p>
           </Button>
+          {active ? (
+            <Button
+              className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0"
+              onClick={onLogoutSession}
+            >
+              <HiMiniArrowLeftOnRectangle className="text-2xl text-red-700 transition sm:text-3xl group-hover:text-violet-700" />
+            </Button>
+          ) : (
+            <Button href="/sign_in" className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0">
+              <HiOutlineUser className="text-2xl transition sm:text-3xl group-hover:text-violet-700" />
+            </Button>
+          )}
           <Navbar.Toggle
             barIcon={HiMiniBars3BottomRight}
             className="text-gray-900 !bg-transparent focus:ring-0 hover:text-violet-700"
