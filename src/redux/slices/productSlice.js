@@ -41,7 +41,7 @@ export const fetchLastestProducts = createAsyncThunk('product/fetchLastestProduc
       ...fetchProductsConfig,
       params: {
         ...fetchProductsConfig.params,
-        'pagination[limit]': 5,
+        'pagination[limit]': 10,
         sort: 'createdAt:desc', // Limit results to 5
       },
     }
@@ -122,7 +122,6 @@ const productSlice = createSlice({
       .addCase(fetchLastestProducts.fulfilled, (state, action) => {
         state.loading = false
         state.lastestProducts = action.payload.data
-        console.log(state.lastestProducts)
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false

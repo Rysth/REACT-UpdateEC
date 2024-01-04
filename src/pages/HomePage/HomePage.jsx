@@ -1,7 +1,7 @@
-import DesignSection from './sections/DesignSection'
 import FeatureSection from './sections/FeatureSection'
 import HeroSection from './sections/HeroSection'
 import CategorySection from './sections/CategorySection'
+import LastestSection from './sections/LastestSection'
 
 function HomePage() {
   return (
@@ -9,7 +9,7 @@ function HomePage() {
       <HeroSection />
       <FeatureSection />
       <CategorySection />
-      <DesignSection />
+      <LastestSection />
     </section>
   )
 }
