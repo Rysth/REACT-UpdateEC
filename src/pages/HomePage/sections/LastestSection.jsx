@@ -31,13 +31,7 @@ function LastestSection() {
             <HiArrowRight className="text-purple-700" />
           </a>
         </header>
-        <Carousel
-          responsive={responsive}
-          infinite
-          autoPlay
-          itemClass="lg:mx-2 border rounded-lg p-2 shadow-xl shadow-black/5 border-gray-100"
-          containerClass="pb-12"
-        >
+        <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" centerMode>
           {lastestProducts.map((product, index) => (
             <ProductCard product={product} key={index} />
           ))}
