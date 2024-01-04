@@ -7,7 +7,7 @@ function FilterGroup({ title, data, onSelect }) {
 
   return (
     <fieldset>
-      <legend className="w-full py-2 text-sm font-semibold text-center sm:text-lg bg-purple">{title}</legend>
+      <legend className="w-full py-2 text-sm font-semibold text-center text-white sm:text-lg bg-purple">{title}</legend>
       <div className="max-h-[8rem] overflow-auto">
         {data.map((item) => (
           <label

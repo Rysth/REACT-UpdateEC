@@ -1,21 +1,25 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../../components/ui/ProductCard/ProductCard'
+import { fetchProducts } from '../../../redux/slices/productSlice'
 
 function ProductSection() {
+  const dispatch = useDispatch()
   const { filteredArray, loading } = useSelector((store) => store.product)
-  const [visibleQuantity, setVisibleQuantity] = useState(8)
+  const [currentPage, setCurrentPage] = useState(1)
 
-  const showMoreProducts = () => {
-    setVisibleQuantity(visibleQuantity + 8)
+  const loadMoreProducts = () => {
+    setCurrentPage(currentPage + 1)
   }
 
-  useEffect(() => {}, [visibleQuantity])
+  useEffect(() => {
+    dispatch(fetchProducts(currentPage))
+  }, [currentPage, dispatch])
 
   if (loading) {
     return (
       <header className="grid w-full h-20 py-2 bg-purple place-items-center">
-        <h3 className="w-full text-lg font-bold text-center uppercase">Cargando...</h3>
+        <h3 className="w-full text-lg font-bold text-center text-white uppercase">Cargando...</h3>
       </header>
     )
   }
@@ -23,7 +27,7 @@ function ProductSection() {
   return (
     <div className="flex flex-col flex-1 gap-10">
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-        {filteredArray.slice(0, visibleQuantity).map((product, index) => (
+        {filteredArray.map((product, index) => (
           <ProductCard product={product} key={index} />
         ))}
         {filteredArray.length === 0 && (
@@ -38,7 +42,7 @@ function ProductSection() {
         <button
           type="button"
           className="float-right p-3 px-4 text-xs text-center rounded-full bg-purple md:hover:scale-105 md:transition md:active:scale-95"
-          onClick={showMoreProducts}
+          onClick={loadMoreProducts}
         >
           Mostrar Más
         </button>

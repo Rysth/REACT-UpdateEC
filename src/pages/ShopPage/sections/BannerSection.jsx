@@ -1,9 +1,11 @@
 function BannerSection() {
   return (
-    <header className="py-10 text-center sm:py-20 bg-purple">
-      <h2 className="text-5xl font-bold title-font sm:text-6xl md:text-8xl animate__animated animate__fadeInDown">
-        Tienda
-      </h2>
+    <header className="py-10 text-white sm:py-20 bg-purple">
+      <article className="max-w-screen-xl mx-auto">
+        <a href="/" className="text-2xl font-bold title-font animate__animated animate__fadeInDown">
+          Inicio
+        </a>
+      </article>
     </header>
   )
 }

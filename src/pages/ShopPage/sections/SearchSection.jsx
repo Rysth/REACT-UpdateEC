@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { productActions } from '../../../redux/slices/productSlice'
 import { TextInput } from 'flowbite-react'
+import SectionLayout from '../../../layouts/SectionLayout'
 
 function SearchSection({ selectedIDs, dispatch }) {
   const onChangeSearch = (event) => {

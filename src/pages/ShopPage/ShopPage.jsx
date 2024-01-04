@@ -5,6 +5,7 @@ import BannerSection from './sections/BannerSection'
 import FilterSection from './sections/FilterSection'
 import ProductSection from './sections/ProductSection'
 import SearchSection from './sections/SearchSection'
+import SectionLayout from '../../layouts/SectionLayout'
 
 function ShopPage() {
   const dispatch = useDispatch()
@@ -36,24 +37,19 @@ function ShopPage() {
     // Update the local state with the toggled IDs
     setSelectedIDs(updatedSelectedIDs)
   }
-
-  useEffect(() => {
-    dispatch(fetchProducts())
-  }, [dispatch])
-
   return (
-    <section className="relative mb-10 text-white">
-      <article className="max-w-screen-xl px-4 mx-auto">
-        <BannerSection />
-        <main className="flex flex-col flex-wrap">
+    <article>
+      <BannerSection />
+      <SectionLayout>
+        <main className="flex flex-col flex-wrap max-w-screen-xl mx-auto">
           <SearchSection selectedIDs={selectedIDs} dispatch={dispatch} />
           <main className="relative flex flex-col gap-10 sm:flex-row">
             <FilterSection selectedIDs={selectedIDs} handleCheck={handleCheck} />
             <ProductSection />
           </main>
         </main>
-      </article>
-    </section>
+      </SectionLayout>
+    </article>
   )
 }
 
