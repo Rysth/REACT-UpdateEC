@@ -15,9 +15,15 @@ import FormSignIn from './pages/SessionPage/components/FormSignIn'
 import FormSignUp from './pages/SessionPage/components/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
 import Footer from './components/Footer/Footer'
+import { fetchLastestProducts } from './redux/slices/productSlice'
 
 function App() {
   const { active } = useSelector((store) => store.session)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchLastestProducts())
+  }, [dispatch])
 
   return (
     <BrowserRouter>

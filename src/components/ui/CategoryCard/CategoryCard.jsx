@@ -22,7 +22,6 @@ function CategoryCard({ imageSrc, category }) {
 CategoryCard.propTypes = {
   imageSrc: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
 }
 
 export default CategoryCard

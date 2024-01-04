@@ -1,4 +1,3 @@
-import ContactSection from './sections/ContactSection'
 import DesignSection from './sections/DesignSection'
 import FeatureSection from './sections/FeatureSection'
 import HeroSection from './sections/HeroSection'
@@ -11,7 +10,6 @@ function HomePage() {
       <FeatureSection />
       <CategorySection />
       <DesignSection />
-      <ContactSection />
     </section>
   )
 }
