@@ -6,7 +6,6 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import MenuBar from './components/navigation/MenuBar/MenuBar'
 import NavigationBar from './components/navigation/NavigationBar/NavigationBar'
 import NotFound from './pages/404/NotFound'
 import HomePage from './pages/HomePage/HomePage'
@@ -30,7 +29,6 @@ function App() {
     <BrowserRouter>
       <ToastContainer position="top-right" />
       <NavigationBar />
-      <MenuBar />
       <main className="h-full">
         <Routes>
           <Route
