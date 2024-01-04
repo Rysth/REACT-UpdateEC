@@ -19,7 +19,7 @@ function HeroSection() {
           <div className="flex flex-col gap-2.5 sm:flex-row sm:justify-center lg:justify-start">
             <Button
               size="sm"
-              href="#"
+              href="/shop"
               className="p-2 transition bg-purple-700 sm:px-4 md:px-6 hover:bg-purple-800 hover:shadow-xl md:hover:translate-x-2"
               pill
             >

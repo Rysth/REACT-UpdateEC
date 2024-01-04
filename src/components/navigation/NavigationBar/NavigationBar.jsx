@@ -1,4 +1,4 @@
-import { Button, Navbar } from 'flowbite-react'
+import { Button, Navbar, Tooltip } from 'flowbite-react'
 import {
   HiMiniBars3BottomRight,
   HiOutlineShoppingBag,
@@ -26,27 +26,33 @@ function NavigationBar() {
           <img src={BrandImage} className="w-24 sm:w-32" alt="UpdateEC's logo brand" />
         </Navbar.Brand>
         <div className="flex items-center md:order-2">
-          <Button
-            href="#"
-            color="dark"
-            className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0"
-          >
-            <HiOutlineShoppingBag className="text-2xl transition sm:text-3xl group-hover:text-violet-700" />
-            <p className="absolute grid w-5 h-5 sm:w-6 sm:h-6 bg-red-600 text-white rounded-full place-items-center right-2 sm:right-2.5 bottom-0.5">
-              {totalQuantity}
-            </p>
-          </Button>
-          {active ? (
+          <Tooltip content="Carrito de Compras" placement="bottom" className="text-center">
             <Button
+              href="#"
+              color="dark"
               className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0"
-              onClick={onLogoutSession}
             >
-              <HiMiniArrowLeftOnRectangle className="text-2xl text-red-700 transition sm:text-3xl group-hover:text-violet-700" />
+              <HiOutlineShoppingBag className="text-2xl transition sm:text-3xl group-hover:text-violet-700" />
+              <p className="absolute grid w-5 h-5 sm:w-6 sm:h-6 bg-red-600 text-white rounded-full place-items-center right-2 sm:right-2.5 bottom-0.5">
+                {totalQuantity}
+              </p>
             </Button>
+          </Tooltip>
+          {active ? (
+            <Tooltip content="Cerrar Sesión" placement="bottom" className="text-center">
+              <Button
+                className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0"
+                onClick={onLogoutSession}
+              >
+                <HiMiniArrowLeftOnRectangle className="text-2xl text-red-700 transition sm:text-3xl group-hover:text-violet-700" />
+              </Button>
+            </Tooltip>
           ) : (
-            <Button href="/sign_in" className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0">
-              <HiOutlineUser className="text-2xl transition sm:text-3xl group-hover:text-violet-700" />
-            </Button>
+            <Tooltip content="Iniciar Sesión" placement="bottom" className="text-center">
+              <Button href="/sign_in" className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0">
+                <HiOutlineUser className="text-2xl transition sm:text-3xl group-hover:text-violet-700" />
+              </Button>
+            </Tooltip>
           )}
           <Navbar.Toggle
             barIcon={HiMiniBars3BottomRight}
