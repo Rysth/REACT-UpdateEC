@@ -1,22 +1,16 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../../components/ui/ProductCard/ProductCard'
 import { useEffect, useState } from 'react'
+import { fetchSimilarProducts } from '../../../redux/slices/productSlice'
 
 function ProductSimilar() {
-  const { productsArray, foundProduct } = useSelector((store) => store.product)
-  const [similarProducts, setSimilarProducts] = useState([])
+  const dispatch = useDispatch()
+  const { similarProducts, foundProduct } = useSelector((store) => store.product)
 
   useEffect(() => {
     if (foundProduct) {
-      setSimilarProducts(
-        productsArray
-          .filter(
-            (product) =>
-              product.attributes.category.data.id === foundProduct.attributes.category.data.id &&
-              product.id !== foundProduct.id,
-          )
-          .slice(0, 4),
-      )
+      const categoryID = foundProduct.attributes.category.data.id
+      dispatch(fetchSimilarProducts(categoryID))
     }
   }, [foundProduct])
 

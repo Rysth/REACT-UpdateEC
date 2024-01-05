@@ -9,6 +9,7 @@ const initialState = {
   productsArray: [],
   filteredArray: [],
   lastestProducts: [],
+  similarProducts: [],
   foundProduct: null,
   loading: true,
   error: false,
@@ -54,6 +55,25 @@ export const fetchLastestProducts = createAsyncThunk('product/fetchLastestProduc
       },
     }
     const response = await axios.get(`${API_URL}/products`, fetchLastestProductsConfig)
+    return response.data
+  } catch (error) {
+    throw new Error(`Error: ${error.message}`)
+  }
+})
+
+// Products - GET
+export const fetchSimilarProducts = createAsyncThunk('product/fetchSimilarProducts', async (categoryID) => {
+  try {
+    const fetchSimilarProductsConfig = {
+      ...fetchProductsConfig,
+      params: {
+        ...fetchProductsConfig.params,
+        'pagination[limit]': 4,
+        'filters[category][id][$eq]': categoryID,
+      },
+    }
+    console.log(categoryID)
+    const response = await axios.get(`${API_URL}/products`, fetchSimilarProductsConfig)
     return response.data
   } catch (error) {
     throw new Error(`Error: ${error.message}`)
@@ -146,6 +166,10 @@ const productSlice = createSlice({
       .addCase(fetchLastestProducts.fulfilled, (state, action) => {
         state.loading = false
         state.lastestProducts = action.payload.data
+      })
+      .addCase(fetchSimilarProducts.fulfilled, (state, action) => {
+        state.loading = false
+        state.similarProducts = action.payload.data
       })
       .addCase(findProduct.pending, (state) => {
         state.loading = true
