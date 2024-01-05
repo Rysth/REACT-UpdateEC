@@ -7,7 +7,7 @@ function useAddToCart(product) {
   const dispatch = useDispatch()
   const [isAdding, setIsAdding] = useState(false)
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (quantity = 1) => {
     setIsAdding(true)
 
     setTimeout(() => {
@@ -20,12 +20,12 @@ function useAddToCart(product) {
       dispatch(
         cartActions.addItemToCart({
           item: product, // Pass the product as the item
-          quantity: 1, // Assuming adding one item at a time
+          quantity: quantity, // Assuming adding one item at a time
         }),
       )
 
       setIsAdding(false)
-    }, 2000) // Simulates a network request delay
+    }, 1500) // Simulates a network request delay
   }
 
   return {

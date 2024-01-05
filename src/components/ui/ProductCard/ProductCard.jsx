@@ -7,6 +7,7 @@ import useAddToCart from '../../../hooks/useAddToCart'
 function ProductCard({ product }) {
   const [productQuantity, setProductQuantity] = useState(0)
   const { isAdding, handleAddToCart } = useAddToCart(product)
+
   useEffect(() => {
     setProductQuantity(product.attributes.quantity)
   }, [])
