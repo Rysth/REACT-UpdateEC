@@ -11,7 +11,6 @@ function ProductSection() {
   const [currentPage, setCurrentPage] = useState(1)
 
   const loadMoreProducts = () => {
-    toast.info('Consultando...', { theme: 'colored', autoClose: 1000 })
     setCurrentPage(currentPage + 1)
   }
 

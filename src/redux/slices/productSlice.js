@@ -171,6 +171,9 @@ const productSlice = createSlice({
         state.loading = false
         state.lastestProducts = action.payload.data
       })
+      .addCase(fetchSimilarProducts.pending, (state, action) => {
+        state.loading = true
+      })
       .addCase(fetchSimilarProducts.fulfilled, (state, action) => {
         state.loading = false
         state.similarProducts = action.payload.data
