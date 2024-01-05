@@ -1,5 +1,5 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 
 /* Environment Variables */
@@ -75,7 +75,7 @@ const sessionSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createSession.pending, (state) => {
+      .addCase(createSession.pending, () => {
         toast.info('Iniciando Sesión...', { theme: 'colored' })
       })
       .addCase(createSession.fulfilled, (state, action) => {

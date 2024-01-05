@@ -1,5 +1,5 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 /* Environment Variables */
 const API_URL = import.meta.env.VITE_APP_URL
@@ -171,7 +171,7 @@ const productSlice = createSlice({
         state.loading = false
         state.lastestProducts = action.payload.data
       })
-      .addCase(fetchSimilarProducts.pending, (state, action) => {
+      .addCase(fetchSimilarProducts.pending, (state) => {
         state.loading = true
       })
       .addCase(fetchSimilarProducts.fulfilled, (state, action) => {

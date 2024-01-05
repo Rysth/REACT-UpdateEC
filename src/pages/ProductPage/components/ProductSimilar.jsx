@@ -13,7 +13,7 @@ function ProductSimilar() {
       const productID = foundProduct.id
       dispatch(fetchSimilarProducts({ categoryID, productID }))
     }
-  }, [foundProduct])
+  }, [foundProduct, dispatch])
 
   useEffect(() => {}, [similarProducts])
 

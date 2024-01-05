@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import LoadingCard from '../../../components/ui/LoadingCard/LoadingCard'
 import ProductCard from '../../../components/ui/ProductCard/ProductCard'
 import { fetchProducts } from '../../../redux/slices/productSlice'
-import LoadingCard from '../../../components/ui/LoadingCard/LoadingCard'
-import { toast } from 'react-toastify'
 
 function ProductSection() {
   const dispatch = useDispatch()
