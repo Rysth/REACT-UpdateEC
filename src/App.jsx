@@ -49,7 +49,14 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/shop/:productID" element={<ProductPage />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute isAllowed={active} redirectTo="/sign_in">
+                <CartPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/*" element={<NotFound />} /> */
         </Routes>
       </main>

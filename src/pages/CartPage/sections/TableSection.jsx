@@ -1,13 +1,13 @@
+import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import ConfirmModal from '../../../components/modal/ConfirmModal/ConfirmModal'
 import SectionLayout from '../../../layouts/SectionLayout'
 import { cartActions } from '../../../redux/slices/cartSlice'
 import TableItem from '../components/TableItem'
 
-function TableSection() {
+function TableSection({ cartItems }) {
   const dispatch = useDispatch()
-  const { cartItems } = useSelector((store) => store.cart)
   const [openModal, setOpenModal] = useState(false)
   const [itemToRemove, setItemToRemove] = useState({})
 
@@ -24,7 +24,7 @@ function TableSection() {
         onConfirm={confirmRemove}
         title="¿Desea eliminar el producto?"
       />
-      <article className="max-w-screen-xl py-8 mx-auto space-y-4">
+      <article className="max-w-screen-xl pt-8 mx-auto space-y-4">
         <header className="grid gap-2">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Carrito de Compras</h2>
         </header>
@@ -66,6 +66,10 @@ function TableSection() {
       </article>
     </SectionLayout>
   )
+}
+
+TableSection.propTypes = {
+  cartItems: PropTypes.array.isRequired,
 }
 
 export default TableSection
