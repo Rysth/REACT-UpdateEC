@@ -3,13 +3,15 @@ import { Button } from 'flowbite-react'
 import PropTypes from 'prop-types'
 import { cartActions } from '../../../redux/slices/cartSlice'
 import { useDispatch } from 'react-redux'
+import { HiTrash } from 'react-icons/hi2'
 
-function ItemCard({ product }) {
+function ItemCard({ product, showModal, setProductToRemove }) {
   const dispatch = useDispatch()
   const [quantity, setQuantity] = useState(product.quantity)
 
   const handleRemove = () => {
-    dispatch(cartActions.removeItemFromCart(product.id))
+    setProductToRemove(product)
+    showModal(true)
   }
 
   const handleIncrease = () => {
@@ -36,7 +38,7 @@ function ItemCard({ product }) {
         </a>
       </td>
       <td className="px-4 py-1 font-semibold text-gray-900">
-        <a href={`/shop/${product.id}`} className="truncate max-w-[18rem] inline-block">
+        <a href={`/shop/${product.id}`} className="truncate max-w-[18rem] inline-block uppercase">
           {product.attributes.name}
         </a>
       </td>
@@ -77,8 +79,9 @@ function ItemCard({ product }) {
         ${(product.attributes.price * product.quantity).toFixed(2)}
       </td>
       <td className="px-4 py-1">
-        <Button color="failure" size="xs" onClick={handleRemove}>
-          Eliminar
+        <Button color="failure" size="sm" onClick={handleRemove}>
+          <span className="sr-only">Eliminar</span>
+          <HiTrash />
         </Button>
       </td>
     </tr>
@@ -87,6 +90,8 @@ function ItemCard({ product }) {
 
 ItemCard.propTypes = {
   product: PropTypes.object.isRequired,
+  showModal: PropTypes.func.isRequired,
+  setProductToRemove: PropTypes.func.isRequired,
 }
 
 export default ItemCard
