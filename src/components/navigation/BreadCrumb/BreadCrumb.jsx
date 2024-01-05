@@ -15,7 +15,9 @@ function BreadCrumb({ paths }) {
             <Breadcrumb.Item key={index} href={path.href}>
               <span
                 className={
-                  path.active ? 'text-white uppercase' : 'text-gray-300 transition duration-300 hover:text-cyan-400'
+                  path.active
+                    ? 'text-white uppercase truncate max-w-[10rem] sm:max-w-full'
+                    : 'text-gray-300 transition duration-300 hover:text-cyan-400'
                 }
               >
                 {path.name}
