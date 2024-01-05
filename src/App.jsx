@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Footer from './components/navigation/Footer/Footer'
 import NavigationBar from './components/navigation/NavigationBar/NavigationBar'
 import NotFound from './pages/404/NotFound'
+import CartPage from './pages/CartPage/CartPage'
 import HomePage from './pages/HomePage/HomePage'
 import ProductPage from './pages/ProductPage/ProductPage'
 import SessionPage from './pages/SessionPage/SessionPage'
@@ -48,6 +49,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/shop/:productID" element={<ProductPage />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/*" element={<NotFound />} /> */
         </Routes>
       </main>
