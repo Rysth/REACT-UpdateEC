@@ -141,11 +141,7 @@ const productSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false
         state.productsArray = [...state.productsArray, ...action.payload.data]
-
-        if (state.filteredArray.length === 0) {
-          state.filteredArray = [...state.productsArray, ...action.payload.data]
-        }
-        state.filteredArray = [...state.filteredArray, ...action.payload.data]
+        state.filteredArray = state.productsArray
       })
       .addCase(fetchLastestProducts.fulfilled, (state, action) => {
         state.loading = false

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'flowbite-react'
+import { Badge, Button } from 'flowbite-react'
 import { HiOutlineShoppingBag } from 'react-icons/hi2'
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../../../redux/slices/cartSlice'
@@ -9,11 +9,17 @@ import { toast } from 'react-toastify'
 function ProductCard({ product }) {
   const dispatch = useDispatch()
   const [isAdding, setIsAdding] = useState(false)
+  const [productQuantity, setProductQuantity] = useState(0)
 
   const handleAddToCart = () => {
     setIsAdding(true)
     toast.info('Añadiendo...', { theme: 'colored', autoClose: 1000 })
+
     setTimeout(() => {
+      if (productQuantity === 0) {
+        toast.error('Lo sentimos, el producto no cuenta con stock.', { theme: 'colored', autoClose: 1000 })
+        return
+      }
       dispatch(
         cartActions.addItemToCart({
           item: product, // Pass the product as the item
@@ -23,6 +29,10 @@ function ProductCard({ product }) {
       setIsAdding(false)
     }, 2000)
   }
+
+  useEffect(() => {
+    setProductQuantity(product.attributes.quantity)
+  }, [])
 
   return (
     <div className="relative group">
@@ -46,16 +56,31 @@ function ProductCard({ product }) {
           </p>
         </header>
       </a>
-      <Button
-        size="xs"
-        className="absolute !z-30 mx-auto opacity-0 top-4 right-4 group-hover:opacity-100 hover:scale-105 transition active:scale-95"
-        color="light"
-        onClick={handleAddToCart}
-        disabled={isAdding}
-      >
-        <HiOutlineShoppingBag className="mr-1 text-xl" />
-        Añadir
-      </Button>
+      {productQuantity === 0 && (
+        <Badge
+          size="xs"
+          className="absolute !z-30 mx-auto top-4 left-4"
+          color="failure"
+          onClick={handleAddToCart}
+          disabled={productQuantity === 0}
+        >
+          Fuera de Stock
+        </Badge>
+      )}
+      {productQuantity !== 0 && (
+        <Button
+          size="xs"
+          className={`absolute !z-30 mx-auto opacity-0 top-4 right-4 group-hover:opacity-100 ${
+            productQuantity !== 0 && 'hover:scale-105 transition active:scale-95'
+          }`}
+          color="light"
+          onClick={handleAddToCart}
+          disabled={productQuantity === 0}
+        >
+          <HiOutlineShoppingBag className="mr-1 text-xl" />
+          Añadir
+        </Button>
+      )}
     </div>
   )
 }
