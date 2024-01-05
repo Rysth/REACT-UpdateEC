@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../../components/ui/ProductCard/ProductCard'
 import { fetchProducts } from '../../../redux/slices/productSlice'
 import LoadingCard from '../../../components/ui/LoadingCard/LoadingCard'
+import { toast } from 'react-toastify'
 
 function ProductSection() {
   const dispatch = useDispatch()
@@ -10,6 +11,7 @@ function ProductSection() {
   const [currentPage, setCurrentPage] = useState(1)
 
   const loadMoreProducts = () => {
+    toast.info('Consultando...', { theme: 'colored', autoClose: 1000 })
     setCurrentPage(currentPage + 1)
   }
 

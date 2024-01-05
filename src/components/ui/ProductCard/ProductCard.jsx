@@ -1,35 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import { Badge, Button } from 'flowbite-react'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 import { HiOutlineShoppingBag } from 'react-icons/hi2'
-import { useDispatch } from 'react-redux'
-import { cartActions } from '../../../redux/slices/cartSlice'
-import { toast } from 'react-toastify'
+import useAddToCart from '../../../hooks/useAddToCart'
 
 function ProductCard({ product }) {
-  const dispatch = useDispatch()
-  const [isAdding, setIsAdding] = useState(false)
   const [productQuantity, setProductQuantity] = useState(0)
-
-  const handleAddToCart = () => {
-    setIsAdding(true)
-    toast.info('Añadiendo...', { theme: 'colored', autoClose: 1000 })
-
-    setTimeout(() => {
-      if (productQuantity === 0) {
-        toast.error('Lo sentimos, el producto no cuenta con stock.', { theme: 'colored', autoClose: 1000 })
-        return
-      }
-      dispatch(
-        cartActions.addItemToCart({
-          item: product, // Pass the product as the item
-          quantity: 1, // Assuming adding one item at a time
-        }),
-      )
-      setIsAdding(false)
-    }, 2000)
-  }
-
+  const { isAdding, handleAddToCart } = useAddToCart(product)
   useEffect(() => {
     setProductQuantity(product.attributes.quantity)
   }, [])
