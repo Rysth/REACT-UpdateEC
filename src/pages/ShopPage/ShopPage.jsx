@@ -1,13 +1,11 @@
-import BannerSection from './sections/BannerSection'
 import ProductSection from './sections/ProductSection'
 import SectionLayout from '../../layouts/SectionLayout'
-import { Button, TextInput } from 'flowbite-react'
-import { HiOutlineSearch } from 'react-icons/hi'
+import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 
 function ShopPage() {
   return (
     <article>
-      <BannerSection />
+      <BreadCrumb paths={[{ name: 'Tienda', href: '/category', active: true }]} />
       <SectionLayout>
         <main className="max-w-screen-xl py-12 mx-auto ">
           <ProductSection />

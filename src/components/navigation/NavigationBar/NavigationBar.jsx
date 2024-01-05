@@ -28,7 +28,7 @@ function NavigationBar() {
         <div className="flex items-center md:order-2">
           <Tooltip content="Carrito de Compras" placement="bottom" className="text-center">
             <Button
-              href="#"
+              href="/shopping_cart"
               color="dark"
               className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0"
             >

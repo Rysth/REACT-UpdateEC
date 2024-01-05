@@ -44,10 +44,12 @@ function ProductCard({ product }) {
           <img
             src={product.attributes.picture.data.attributes.url}
             alt={product.attributes.name}
-            className="object-contain w-full h-full transition duration-500 group-hover:scale-110"
+            className={`object-contain w-full h-full transition duration-500 group-hover:scale-110 ${
+              isAdding && 'pointer-events-none grayscale'
+            }`}
           />
         </picture>
-        <header className="px-4 py-3 space-y-1 text-center">
+        <header className="px-4 py-3 text-center">
           <h2 className="uppercase truncate transition duration-300 group-hover:text-violet-800">
             {product.attributes.name}
           </h2>
@@ -56,12 +58,11 @@ function ProductCard({ product }) {
           </p>
         </header>
       </a>
-      {productQuantity === 0 && (
+      {productQuantity === 0 && product && (
         <Badge
           size="xs"
           className="absolute !z-30 mx-auto top-4 left-4"
           color="failure"
-          onClick={handleAddToCart}
           disabled={productQuantity === 0}
         >
           Fuera de Stock
