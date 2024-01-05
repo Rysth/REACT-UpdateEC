@@ -41,6 +41,22 @@ const cartSlice = createSlice({
       toast.success('Productos Eliminados', { theme: 'colored', autoClose: 1500 })
       sessionStorage.removeItem('cartItems')
     },
+    increaseQuantity(state, action) {
+      const itemId = action.payload
+      const existingItem = state.cartItems.find((item) => item.id === itemId)
+      if (existingItem) {
+        existingItem.quantity += 1
+      }
+      sessionStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+    },
+    decreaseQuantity(state, action) {
+      const itemId = action.payload
+      const existingItem = state.cartItems.find((item) => item.id === itemId)
+      if (existingItem && existingItem.quantity > 1) {
+        existingItem.quantity -= 1
+      }
+      sessionStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+    },
   },
 })
 

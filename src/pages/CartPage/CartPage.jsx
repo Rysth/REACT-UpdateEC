@@ -46,8 +46,8 @@ function CartPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {cartItems.map((product) => (
-                    <ItemCard product={product} />
+                  {cartItems.map((product, index) => (
+                    <ItemCard product={product} key={index} />
                   ))}
                 </tbody>
               </table>
