@@ -62,23 +62,27 @@ export const fetchLastestProducts = createAsyncThunk('product/fetchLastestProduc
 })
 
 // Products - GET
-export const fetchSimilarProducts = createAsyncThunk('product/fetchSimilarProducts', async (categoryID) => {
-  try {
-    const fetchSimilarProductsConfig = {
-      ...fetchProductsConfig,
-      params: {
-        ...fetchProductsConfig.params,
-        'pagination[limit]': 4,
-        'filters[category][id][$eq]': categoryID,
-      },
+export const fetchSimilarProducts = createAsyncThunk(
+  'product/fetchSimilarProducts',
+  async ({ categoryID, productID }) => {
+    try {
+      const fetchSimilarProductsConfig = {
+        ...fetchProductsConfig,
+        params: {
+          ...fetchProductsConfig.params,
+          'pagination[limit]': 4,
+          'filters[category][id][$eq]': categoryID,
+          'filters[id][$ne]': productID,
+        },
+      }
+      console.log(categoryID)
+      const response = await axios.get(`${API_URL}/products`, fetchSimilarProductsConfig)
+      return response.data
+    } catch (error) {
+      throw new Error(`Error: ${error.message}`)
     }
-    console.log(categoryID)
-    const response = await axios.get(`${API_URL}/products`, fetchSimilarProductsConfig)
-    return response.data
-  } catch (error) {
-    throw new Error(`Error: ${error.message}`)
-  }
-})
+  },
+)
 
 // Products - GET
 export const findProduct = createAsyncThunk('product/findProduct', async (productID) => {

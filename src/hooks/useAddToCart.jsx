@@ -7,7 +7,7 @@ function useAddToCart(product) {
   const dispatch = useDispatch()
   const [isAdding, setIsAdding] = useState(false)
 
-  const handleAddToCart = (quantity = 1) => {
+  const handleAddToCart = (productQuantity) => {
     setIsAdding(true)
 
     setTimeout(() => {
@@ -20,7 +20,7 @@ function useAddToCart(product) {
       dispatch(
         cartActions.addItemToCart({
           item: product, // Pass the product as the item
-          quantity: quantity, // Assuming adding one item at a time
+          quantity: productQuantity, // Assuming adding one item at a time
         }),
       )
 

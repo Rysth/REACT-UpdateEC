@@ -5,11 +5,11 @@ import { HiOutlineShoppingBag } from 'react-icons/hi2'
 import useAddToCart from '../../../hooks/useAddToCart'
 
 function ProductCard({ product }) {
-  const [productQuantity, setProductQuantity] = useState(0)
+  const [productQuantity, setProductQuantity] = useState(product.attributes.quantity)
   const { isAdding, handleAddToCart } = useAddToCart(product)
 
   useEffect(() => {
-    setProductQuantity(product.attributes.quantity)
+    setProductQuantity()
   }, [])
 
   return (
@@ -53,7 +53,7 @@ function ProductCard({ product }) {
             isAdding && 'pointer-events-none !opacity-50'
           }`}
           color="light"
-          onClick={handleAddToCart}
+          onClick={() => handleAddToCart(1)}
           disabled={isAdding}
         >
           <HiOutlineShoppingBag className="mr-1 text-xl" />

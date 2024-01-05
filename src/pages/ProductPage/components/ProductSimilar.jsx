@@ -1,6 +1,6 @@
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../../components/ui/ProductCard/ProductCard'
-import { useEffect, useState } from 'react'
 import { fetchSimilarProducts } from '../../../redux/slices/productSlice'
 
 function ProductSimilar() {
@@ -10,7 +10,8 @@ function ProductSimilar() {
   useEffect(() => {
     if (foundProduct) {
       const categoryID = foundProduct.attributes.category.data.id
-      dispatch(fetchSimilarProducts(categoryID))
+      const productID = foundProduct.id
+      dispatch(fetchSimilarProducts({ categoryID, productID }))
     }
   }, [foundProduct])
 
