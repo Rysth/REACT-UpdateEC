@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../../components/ui/ProductCard/ProductCard'
 import { fetchProducts } from '../../../redux/slices/productSlice'
-import { Spinner } from 'flowbite-react'
+import LoadingCard from '../../../components/ui/LoadingCard/LoadingCard'
 
 function ProductSection() {
   const dispatch = useDispatch()
@@ -18,11 +18,7 @@ function ProductSection() {
   }, [currentPage, dispatch])
 
   if (loading) {
-    return (
-      <header className="grid h-screen place-items-center animate__animated animate__fadeIn animate__slow">
-        <Spinner color="purple" className="w-24 h-24 sm:w-28 sm:h-28" />
-      </header>
-    )
+    return <LoadingCard />
   }
 
   if (filteredArray.length === 0) {

@@ -14,7 +14,9 @@ function BreadCrumb({ paths }) {
           {paths.map((path, index) => (
             <Breadcrumb.Item key={index} href={path.href}>
               <span
-                className={path.active ? 'text-white' : 'text-gray-300 transition duration-300 hover:text-cyan-400'}
+                className={
+                  path.active ? 'text-white uppercase' : 'text-gray-300 transition duration-300 hover:text-cyan-400'
+                }
               >
                 {path.name}
               </span>

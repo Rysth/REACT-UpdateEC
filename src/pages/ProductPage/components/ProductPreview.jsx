@@ -3,14 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import Zoom from 'react-medium-image-zoom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import { cartActions } from '../../../redux/slices/cartSlice'
-import { findProduct } from '../../../redux/slices/productSlice'
-import { Spinner } from 'flowbite-react'
 
 function ProductCard() {
   const dispatch = useDispatch()
-  const { productID } = useParams()
   const { foundProduct } = useSelector((store) => store.product)
   const [quantity, setQuantity] = useState(1)
 
@@ -19,19 +15,6 @@ function ProductCard() {
       dispatch(cartActions.addItemToCart({ item: foundProduct, quantity }))
     }
   }
-
-  useEffect(() => {
-    dispatch(findProduct(productID))
-  }, [dispatch, productID])
-
-  if (!foundProduct) {
-    return (
-      <header className="grid h-screen place-items-center">
-        <Spinner color="purple" className="w-24 h-24 sm:w-28 sm:h-28" />
-      </header>
-    )
-  }
-
   return (
     <article className="grid max-w-screen-xl gap-2 px-4 py-5 mx-auto sm:py-12 sm:grid-cols-2">
       <Zoom zoomMargin={60}>

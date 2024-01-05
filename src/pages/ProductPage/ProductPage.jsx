@@ -1,14 +1,19 @@
+import { useEffect } from 'react'
+import { FaStar } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
+import LoadingCard from '../../components/ui/LoadingCard/LoadingCard'
+import { findProduct } from '../../redux/slices/productSlice'
 import { fetchReviews } from '../../redux/slices/reviewSlice'
 import ProductPreview from './components/ProductPreview'
 import ProductSimilar from './components/ProductSimilar'
-import { useEffect } from 'react'
-import { FaStar } from 'react-icons/fa'
 
-function Product() {
+function ProductPage() {
   const dispatch = useDispatch()
   const { foundProduct } = useSelector((store) => store.product)
   const { reviewsArray } = useSelector((store) => store.review)
+  const { productID } = useParams()
 
   useEffect(() => {
     if (foundProduct) {
@@ -16,8 +21,26 @@ function Product() {
     }
   }, [dispatch, foundProduct])
 
+  useEffect(() => {
+    dispatch(findProduct(productID))
+  }, [dispatch, productID])
+
+  if (!foundProduct) {
+    return <LoadingCard />
+  }
+
   return (
     <section className="relative">
+      <BreadCrumb
+        paths={[
+          { name: 'Tienda', href: '/shop', active: false },
+          {
+            name: foundProduct.attributes.name,
+            href: `/shop/${foundProduct.id}`,
+            active: true,
+          },
+        ]}
+      />
       <ProductPreview />
       <ProductSimilar />
       <div className="py-6 bg-white sm:py-8 lg:py-12">
@@ -47,4 +70,4 @@ function Product() {
   )
 }
 
-export default Product
+export default ProductPage
