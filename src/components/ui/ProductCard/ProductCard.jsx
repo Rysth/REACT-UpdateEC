@@ -70,12 +70,12 @@ function ProductCard({ product }) {
       {productQuantity !== 0 && (
         <Button
           size="xs"
-          className={`absolute !z-30 mx-auto opacity-0 top-4 right-4 group-hover:opacity-100 ${
-            productQuantity !== 0 && 'hover:scale-105 transition active:scale-95'
+          className={`absolute !z-30 mx-auto opacity-0 top-4 right-4 group-hover:opacity-100 hover:scale-105 transition active:scale-95 ${
+            isAdding && 'pointer-events-none !opacity-50'
           }`}
           color="light"
           onClick={handleAddToCart}
-          disabled={productQuantity === 0}
+          disabled={isAdding}
         >
           <HiOutlineShoppingBag className="mr-1 text-xl" />
           Añadir
