@@ -1,41 +1,29 @@
 import { Badge, Button } from 'flowbite-react'
-import React, { useEffect, useState } from 'react'
-import { FaShoppingCart } from 'react-icons/fa'
+import React, { useState } from 'react'
+import { HiShoppingBag } from 'react-icons/hi2'
+import Markdown from 'react-markdown'
 import Zoom from 'react-medium-image-zoom'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { cartActions } from '../../../redux/slices/cartSlice'
-import { findProduct } from '../../../redux/slices/productSlice'
-import { Spinner } from 'flowbite-react'
+import { useSelector } from 'react-redux'
+import useAddToCart from '../../../hooks/useAddToCart'
 
-function ProductCard() {
-  const dispatch = useDispatch()
-  const { productID } = useParams()
+function ProductPreview() {
   const { foundProduct } = useSelector((store) => store.product)
+  const { isAdding, handleAddToCart } = useAddToCart(foundProduct)
   const [quantity, setQuantity] = useState(1)
 
-  const handleAddToCart = () => {
-    if (quantity > 0 && quantity <= foundProduct.attributes.quantity) {
-      dispatch(cartActions.addItemToCart({ item: foundProduct, quantity }))
-    }
+  const increaseQuantity = () => {
+    if (quantity < foundProduct.attributes.quantity) setQuantity(quantity + 1)
   }
 
-  useEffect(() => {
-    dispatch(findProduct(productID))
-  }, [dispatch, productID])
-
-  if (!foundProduct) {
-    return (
-      <header className="grid h-screen place-items-center">
-        <Spinner color="purple" className="w-24 h-24 sm:w-28 sm:h-28" />
-      </header>
-    )
+  const decreaseQuantity = () => {
+    if (quantity > 1) setQuantity(quantity - 1)
   }
 
+  const isAddToCartDisabled = quantity <= 0 || quantity > foundProduct.attributes.quantity || isAdding
   return (
-    <article className="grid max-w-screen-xl gap-2 px-4 py-5 mx-auto sm:py-12 sm:grid-cols-2">
+    <article className="max-w-screen-xl gap-2 px-4 py-5 mx-auto space-y-2 sm:grid sm:grid-cols-2 sm:py-12">
       <Zoom zoomMargin={60}>
-        <picture className=" h-[300px] sm:h-[450px] lg:h-[600px] bg-white border">
+        <picture className="w-full h-[300px] sm:h-[450px] lg:h-[500px] bg-white border rounded sm:flex-1">
           <img
             src={foundProduct.attributes.picture.data.attributes.url}
             alt={foundProduct.name}
@@ -44,14 +32,17 @@ function ProductCard() {
           />
         </picture>
       </Zoom>
-      <main className="flex flex-col justify-between gap-5 md:px-10">
-        <header className="grid gap-1">
-          <h2 className="text-lg font-bold uppercase truncate sm:text-xl md:text-4xl">
+      <main className="flex flex-col gap-5 md:pl-10 ">
+        <header className="space-y-1 sm:space-y-4">
+          <h2 className="text-lg font-bold uppercase truncate sm:text-xl md:text-3xl">
             {foundProduct.attributes.name}
           </h2>
-          <h3 className="text-sm sm:text-xl md:text-2xl">{`$${foundProduct.attributes.price}`}</h3>
+          <p className="text-sm">
+            Stock: <span className="text-purple-700">{foundProduct.attributes.quantity} unidades disponibles</span>
+          </p>
+          <hr className="block h-1 bg-gray-200 rounded" />
         </header>
-        <main>
+        <main className="space-y-5">
           <div className="flex flex-wrap gap-1">
             <Badge
               className="max-w-max"
@@ -59,35 +50,58 @@ function ProductCard() {
             >{`Categoría: ${foundProduct.attributes.category.data.attributes.name}`}</Badge>
             <Badge
               className="max-w-max"
-              color={`${foundProduct.attributes.quantity < 5 ? 'purple' : 'blue'}`}
-            >{`Disponibles: ${foundProduct.attributes.quantity}`}</Badge>
+              color="blue"
+            >{`Marca: ${foundProduct.attributes.brand.data.attributes.name}`}</Badge>
           </div>
-          <p className="sm:mt-5  text-xs sm:text-base max-h-[15rem] overflow-auto">
-            {foundProduct.attributes.description}
-          </p>
+          <h2 className="my-3 text-xl font-bold text-purple-700 uppercase truncate md:text-3xl">
+            ${foundProduct.attributes.price}
+          </h2>
+          <div className="text-xs sm:text-sm max-h-[15rem] overflow-hidden">
+            <Markdown>{foundProduct.attributes.description}</Markdown>
+          </div>
         </main>
-
-        <footer className="flex items-center gap-5 mt-5">
-          <Button type="button" color="dark" className="w-3/4 gap-1 rounded-none bg-purple" onClick={handleAddToCart}>
-            <FaShoppingCart className="mr-1" />
+        <footer className="flex items-center gap-5 mt-auto sm:flex-row">
+          <div className="flex items-center border border-gray-200 rounded">
+            <Button
+              className="w-5 h-10 leading-10 text-gray-700 transition bg-transparent border-none hover:opacity-75"
+              color="light"
+              onClick={decreaseQuantity}
+            >
+              -
+            </Button>
+            <input
+              type="number"
+              id="quantity"
+              value={quantity || ''}
+              onChange={(e) =>
+                setQuantity(Math.max(0, Math.min(parseInt(e.target.value, 10), foundProduct.attributes.quantity)))
+              }
+              min={1}
+              max={foundProduct.attributes.quantity}
+              className="h-5 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+            />
+            <Button
+              className="w-5 h-10 leading-10 text-gray-700 transition bg-transparent border-none hover:opacity-75"
+              color="light"
+              onClick={increaseQuantity}
+            >
+              +
+            </Button>
+          </div>
+          <Button
+            type="button"
+            color="purple"
+            className="w-3/4 gap-1 bg-purple-700 rounded"
+            onClick={() => handleAddToCart(quantity)}
+            disabled={isAddToCartDisabled}
+          >
+            <HiShoppingBag className="mr-1" />
             Añadir al Carrito
           </Button>
-          <input
-            type="number"
-            name="quantity"
-            id="quantity"
-            className="p-2.5 text-xs sm:text-sm text-black"
-            value={quantity}
-            onChange={(e) =>
-              setQuantity(Math.max(0, Math.min(parseInt(e.target.value, 10), foundProduct.attributes.quantity)))
-            }
-            min={1}
-            max={foundProduct.attributes.quantity}
-          />
         </footer>
       </main>
     </article>
   )
 }
 
-export default ProductCard
+export default ProductPreview

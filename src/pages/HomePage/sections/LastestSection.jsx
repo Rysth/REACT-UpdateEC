@@ -2,13 +2,14 @@ import { useSelector } from 'react-redux'
 import SectionLayout from '../../../layouts/SectionLayout'
 import Carousel from 'react-multi-carousel'
 import { HiArrowRight } from 'react-icons/hi2'
+import ProductCard from '../../../components/ui/ProductCard/ProductCard'
 
 function LastestSection() {
   const { lastestProducts } = useSelector((store) => store.product)
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 768, min: 640 },
@@ -30,31 +31,9 @@ function LastestSection() {
             <HiArrowRight className="text-purple-700" />
           </a>
         </header>
-        <Carousel
-          responsive={responsive}
-          infinite
-          autoPlay
-          itemClass="lg:mx-2 border rounded-lg p-2 shadow-xl shadow-black/5 border-gray-100"
-          containerClass="pb-12"
-        >
+        <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" centerMode draggable={false}>
           {lastestProducts.map((product, index) => (
-            <a href={`/shop/${product.id}`} key={index} className="group ">
-              <picture className="h-auto overflow-hidden max-h-72">
-                <img
-                  src={product.attributes.picture.data.attributes.url}
-                  alt={product.attributes.name}
-                  className="object-contain w-full h-full transition duration-500 group-hover:scale-110"
-                />
-              </picture>
-              <header className="px-4 py-3 text-center">
-                <h2 className="uppercase truncate transition duration-300 group-hover:text-violet-800">
-                  {product.attributes.name}
-                </h2>
-                <p className="font-semibold uppercase truncate text-violet-700 group-hover:text-violet-80">
-                  ${product.attributes.price}
-                </p>
-              </header>
-            </a>
+            <ProductCard product={product} key={index} />
           ))}
         </Carousel>
       </article>

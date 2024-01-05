@@ -1,5 +1,5 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 /* Environment Variables */
 const API_URL = import.meta.env.VITE_APP_URL
@@ -9,8 +9,9 @@ const initialState = {
   productsArray: [],
   filteredArray: [],
   lastestProducts: [],
+  similarProducts: [],
   foundProduct: null,
-  loading: false,
+  loading: true,
   error: false,
 }
 
@@ -25,12 +26,20 @@ const fetchProductsConfig = {
 }
 
 // Products - GET
-export const fetchProducts = createAsyncThunk('product/fetchProducts', async () => {
+export const fetchProducts = createAsyncThunk('product/fetchProducts', async (page = 1) => {
   try {
-    const response = await axios.get(`${API_URL}/products`, fetchProductsConfig)
+    const fetchProductsWithPagination = {
+      ...fetchProductsConfig,
+      params: {
+        ...fetchProductsConfig.params,
+        'pagination[page]': page,
+        'pagination[pageSize]': 8,
+      },
+    }
+    const response = await axios.get(`${API_URL}/products`, fetchProductsWithPagination)
     return response.data
   } catch (error) {
-    throw new Error(`Error: ${error.message}`)
+    throw new Error(`Error: ${error}`)
   }
 })
 
@@ -53,9 +62,50 @@ export const fetchLastestProducts = createAsyncThunk('product/fetchLastestProduc
 })
 
 // Products - GET
+export const fetchSimilarProducts = createAsyncThunk(
+  'product/fetchSimilarProducts',
+  async ({ categoryID, productID }) => {
+    try {
+      const fetchSimilarProductsConfig = {
+        ...fetchProductsConfig,
+        params: {
+          ...fetchProductsConfig.params,
+          'pagination[limit]': 4,
+          'filters[category][id][$eq]': categoryID,
+          'filters[id][$ne]': productID,
+        },
+      }
+      console.log(categoryID)
+      const response = await axios.get(`${API_URL}/products`, fetchSimilarProductsConfig)
+      return response.data
+    } catch (error) {
+      throw new Error(`Error: ${error.message}`)
+    }
+  },
+)
+
+// Products - GET
 export const findProduct = createAsyncThunk('product/findProduct', async (productID) => {
   try {
     const response = await axios.get(`${API_URL}/products/${productID}`, fetchProductsConfig)
+    return response.data
+  } catch (error) {
+    throw new Error(`Error: ${error.message}`)
+  }
+})
+
+// Products - GET
+export const searchAndFilterProducts = createAsyncThunk('product/searchAndFilterProducts', async ({ searchData }) => {
+  try {
+    const fetchSearchAndFilterProductsConfig = {
+      ...fetchProductsConfig,
+      params: {
+        ...fetchProductsConfig.params,
+        'filters[name][$contains]': searchData,
+      },
+    }
+
+    const response = await axios.get(`${API_URL}/products`, fetchSearchAndFilterProductsConfig)
     return response.data
   } catch (error) {
     throw new Error(`Error: ${error.message}`)
@@ -112,20 +162,21 @@ const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProducts.pending, (state) => {
-        state.loading = true
-      })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false
-        state.productsArray = state.filteredArray = action.payload.data
+        state.productsArray = [...state.productsArray, ...action.payload.data]
+        state.filteredArray = state.productsArray
       })
       .addCase(fetchLastestProducts.fulfilled, (state, action) => {
         state.loading = false
         state.lastestProducts = action.payload.data
       })
-      .addCase(fetchProducts.rejected, (state, action) => {
+      .addCase(fetchSimilarProducts.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(fetchSimilarProducts.fulfilled, (state, action) => {
         state.loading = false
-        state.error = action.error.message
+        state.similarProducts = action.payload.data
       })
       .addCase(findProduct.pending, (state) => {
         state.loading = true
@@ -134,9 +185,9 @@ const productSlice = createSlice({
         state.loading = false
         state.foundProduct = action.payload.data
       })
-      .addCase(findProduct.rejected, (state, action) => {
+      .addCase(searchAndFilterProducts.fulfilled, (state, action) => {
         state.loading = false
-        state.error = action.error.message
+        state.filteredArray = action.payload.data
       })
   },
 })

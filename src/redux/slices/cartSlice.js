@@ -41,17 +41,6 @@ const cartSlice = createSlice({
       toast.success('Productos Eliminados', { theme: 'colored', autoClose: 1500 })
       sessionStorage.removeItem('cartItems')
     },
-    updateQuantity(state, action) {
-      const { itemID, newQuantity } = action.payload
-      const updatedItem = state.cartItems.find((item) => item.id === itemID)
-
-      if (updatedItem) {
-        updatedItem.quantity = newQuantity
-
-        // Save the updated cart state to sessionStorage
-        sessionStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-      }
-    },
   },
 })
 
