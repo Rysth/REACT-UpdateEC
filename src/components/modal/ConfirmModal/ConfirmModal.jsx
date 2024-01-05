@@ -9,7 +9,7 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, title }) => {
       <Modal.Header />
       <Modal.Body>
         <div className="text-center">
-          <HiOutlineExclamationCircle className="w-16 h-16 mx-auto mb-4 text-red-700 " />
+          <HiOutlineExclamationCircle className="w-32 h-32 mx-auto mb-4 text-red-700 " />
           <h3 className="mb-5 text-lg font-bold text-gray-900 ">{title}</h3>
           <div className="flex justify-center gap-2">
             <Button color="failure" onClick={onConfirm}>
