@@ -1,4 +1,4 @@
-import TableSection from './components/TableSection'
+import TableSection from './sections/TableSection'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 
 function CartPage() {

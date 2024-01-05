@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ConfirmModal from '../../../components/modal/ConfirmModal/ConfirmModal'
-import ItemCard from '../../../components/ui/ItemCard.jsx/ItemCard'
 import SectionLayout from '../../../layouts/SectionLayout'
 import { cartActions } from '../../../redux/slices/cartSlice'
+import TableItem from '../components/TableItem'
 
 function TableSection() {
   const dispatch = useDispatch()
@@ -52,7 +52,7 @@ function TableSection() {
               </thead>
               <tbody>
                 {cartItems.map((product, index) => (
-                  <ItemCard
+                  <TableItem
                     product={product}
                     key={index}
                     showModal={setOpenModal}

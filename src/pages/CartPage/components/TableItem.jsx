@@ -5,7 +5,7 @@ import { cartActions } from '../../../redux/slices/cartSlice'
 import { useDispatch } from 'react-redux'
 import { HiTrash } from 'react-icons/hi2'
 
-function ItemCard({ product, showModal, setProductToRemove }) {
+function TableItem({ product, showModal, setProductToRemove }) {
   const dispatch = useDispatch()
   const [quantity, setQuantity] = useState(product.quantity)
 
@@ -88,10 +88,10 @@ function ItemCard({ product, showModal, setProductToRemove }) {
   )
 }
 
-ItemCard.propTypes = {
+TableItem.propTypes = {
   product: PropTypes.object.isRequired,
   showModal: PropTypes.func.isRequired,
   setProductToRemove: PropTypes.func.isRequired,
 }
 
-export default ItemCard
+export default TableItem

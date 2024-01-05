@@ -6,8 +6,8 @@ import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import LoadingCard from '../../components/ui/LoadingCard/LoadingCard'
 import { findProduct } from '../../redux/slices/productSlice'
 import { fetchReviews } from '../../redux/slices/reviewSlice'
-import ProductPreview from './components/ProductPreview'
-import ProductSimilar from './components/ProductSimilar'
+import ProductPreview from './sections/ProductPreview'
+import ProductSimilar from './sections/ProductSimilar'
 
 function ProductPage() {
   const dispatch = useDispatch()

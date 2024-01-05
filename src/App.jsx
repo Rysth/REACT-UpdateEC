@@ -13,8 +13,8 @@ import CartPage from './pages/CartPage/CartPage'
 import HomePage from './pages/HomePage/HomePage'
 import ProductPage from './pages/ProductPage/ProductPage'
 import SessionPage from './pages/SessionPage/SessionPage'
-import FormSignIn from './pages/SessionPage/components/FormSignIn'
-import FormSignUp from './pages/SessionPage/components/FormSignUp'
+import FormSignIn from './pages/SessionPage/sections/FormSignIn'
+import FormSignUp from './pages/SessionPage/sections/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
 
 function App() {
