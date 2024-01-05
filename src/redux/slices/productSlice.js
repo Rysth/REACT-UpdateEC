@@ -33,7 +33,7 @@ export const fetchProducts = createAsyncThunk('product/fetchProducts', async (pa
       params: {
         ...fetchProductsConfig.params,
         'pagination[page]': page,
-        'pagination[pageSize]': 8,
+        'pagination[pageSize]': 15,
       },
     }
     const response = await axios.get(`${API_URL}/products`, fetchProductsWithPagination)
@@ -75,7 +75,6 @@ export const fetchSimilarProducts = createAsyncThunk(
           'filters[id][$ne]': productID,
         },
       }
-      console.log(categoryID)
       const response = await axios.get(`${API_URL}/products`, fetchSimilarProductsConfig)
       return response.data
     } catch (error) {
