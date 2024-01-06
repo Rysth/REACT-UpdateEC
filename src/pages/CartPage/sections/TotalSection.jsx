@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import SectionLayout from '../../../layouts/SectionLayout'
 import PropTypes from 'prop-types'
-import { PayPalButtons } from '@paypal/react-paypal-js'
+import ButtonWrapper from '../components/ButtonWrapper'
+import { useSelector } from 'react-redux'
 
 function TotalSection({ cartItems }) {
   const [subTotal, setSubTotal] = useState(0)
   const [taxes, setTaxes] = useState(0)
+  const [total, setTotal] = useState(0)
+  const { userData } = useSelector((store) => store.session)
 
   const calculateSubTotal = () => {
     return cartItems.reduce((total, product) => {
@@ -20,6 +23,7 @@ function TotalSection({ cartItems }) {
     const newTaxes = calculateTaxes(newSubTotal)
     setSubTotal(newSubTotal)
     setTaxes(newTaxes)
+    setTotal((newSubTotal + newTaxes).toFixed(2))
   }, [cartItems])
 
   return (
@@ -43,7 +47,7 @@ function TotalSection({ cartItems }) {
                 <span className="text-lg font-bold">Total</span>
 
                 <span className="flex flex-col items-end">
-                  <span className="text-lg font-bold">${(subTotal + taxes).toFixed(2)} USD</span>
+                  <span className="text-lg font-bold">${total} USD</span>
                   <span className="text-sm text-gray-500">incluído impuestos</span>
                 </span>
               </div>
@@ -51,7 +55,7 @@ function TotalSection({ cartItems }) {
             </div>
           </div>
           <div className="sm:w-2/4">
-            <PayPalButtons />
+            <ButtonWrapper cartItems={cartItems} totalAmount={total} user={userData} />
           </div>
         </div>
       </article>

@@ -38,7 +38,7 @@ const cartSlice = createSlice({
     },
     clearCart(state) {
       state.cartItems = []
-      toast.success('Productos Eliminados', { theme: 'colored', autoClose: 1500 })
+      toast.success('¡Muchas Gracias!', { theme: 'colored', autoClose: 1500 })
       sessionStorage.removeItem('cartItems')
     },
     increaseQuantity(state, action) {

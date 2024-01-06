@@ -24,7 +24,7 @@ function NavigationBar() {
   }
 
   return (
-    <header className="sticky top-0 z-[1000] bg-white border-b border-b-gray-100 animate__animated animate__fadeIn animate__slow">
+    <header className="sticky top-0 z-[999] bg-white border-b border-b-gray-100 animate__animated animate__fadeIn animate__slow">
       <ConfirmModal
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
