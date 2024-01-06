@@ -14,7 +14,8 @@ const store = configureStore({
     brand: brandReducer,
     product: productReducer,
     cart: cartReducer,
-    order: reviewReducer,
+    review: reviewReducer,
+    order: orderReducer,
   },
 })
 
