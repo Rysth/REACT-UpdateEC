@@ -2,8 +2,6 @@ import { useSelector } from 'react-redux'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import TableSection from './sections/TableSection'
 import TotalSection from './sections/TotalSection'
-import SectionLayout from '../../layouts/SectionLayout'
-import { PayPalButtons } from '@paypal/react-paypal-js'
 
 function CartPage() {
   const { cartItems } = useSelector((store) => store.cart)

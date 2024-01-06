@@ -2,8 +2,9 @@ import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import { useDispatch } from 'react-redux'
 import { createOrder } from '../../../redux/slices/orderSlice'
 import { cartActions } from '../../../redux/slices/cartSlice'
+import PropTypes from 'prop-types'
 
-const ButtonWrapper = ({ cartItems, totalAmount, user }) => {
+const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
   const dispatch = useDispatch()
   const [{ isPending }] = usePayPalScriptReducer()
 
@@ -44,9 +45,21 @@ const ButtonWrapper = ({ cartItems, totalAmount, user }) => {
   return (
     <>
       {isPending && <div>Loading...</div>}
-      <PayPalButtons style={{ layout: 'vertical' }} createOrder={createOrderHandler} onApprove={onApproveHandler} />
+      <PayPalButtons
+        style={{ layout: 'vertical' }}
+        createOrder={createOrderHandler}
+        onApprove={onApproveHandler}
+        disabled={isDisabled}
+      />
     </>
   )
+}
+
+ButtonWrapper.propTypes = {
+  cartItems: PropTypes.array.isRequired,
+  totalAmount: PropTypes.number.isRequired,
+  user: PropTypes.object.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
 }
 
 export default ButtonWrapper

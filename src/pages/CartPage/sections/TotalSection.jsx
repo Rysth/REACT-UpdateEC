@@ -55,7 +55,12 @@ function TotalSection({ cartItems }) {
             </div>
           </div>
           <div className="sm:w-2/4">
-            <ButtonWrapper cartItems={cartItems} totalAmount={total} user={userData} />
+            <ButtonWrapper
+              cartItems={cartItems}
+              totalAmount={total}
+              user={userData}
+              isDisabled={parseFloat(total) === 0}
+            />
           </div>
         </div>
       </article>

@@ -32,7 +32,6 @@ export const createOrder = createAsyncThunk('order/createOrder', async ({ orderD
           ...orderData,
           payment_detail: paymentDetailId,
         }
-        console.log(orderDataWithPaymentDetail)
         return axios.post(
           `${API_URL}/orders`,
           { data: orderDataWithPaymentDetail },
@@ -47,9 +46,8 @@ export const createOrder = createAsyncThunk('order/createOrder', async ({ orderD
       .then((orderResponse) => {
         return orderResponse.data // final data to return
       })
+    return true
   } catch (error) {
-    const data = error.response.data
-    console.log(data)
     throw new Error(`Error: ${error.message}`)
   }
 })
@@ -61,7 +59,7 @@ const orderSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createOrder.pending, () => {
-        toast.info('Generando orden...', { theme: 'colored' })
+        toast.info('Generando orden...', { theme: 'colored', autoClose: 1000 })
       })
       .addCase(createOrder.fulfilled, (state) => {
         state.loading = false
