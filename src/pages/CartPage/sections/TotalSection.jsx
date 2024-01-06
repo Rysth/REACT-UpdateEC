@@ -24,7 +24,7 @@ function TotalSection({ cartItems }) {
 
   return (
     <SectionLayout>
-      <article className="max-w-screen-xl mx-auto">
+      <article className="grid max-w-screen-xl mx-auto">
         <div className="flex flex-col items-end gap-4">
           <div className="w-full p-4 bg-gray-100 rounded-lg sm:max-w-xs">
             <div className="space-y-1">

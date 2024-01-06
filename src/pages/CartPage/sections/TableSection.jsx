@@ -28,8 +28,8 @@ function TableSection({ cartItems }) {
         <header className="grid gap-2">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Carrito de Compras</h2>
         </header>
-        <main className="min-h-[24rem]">
-          <div className="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg max-h-[32rem]">
+        <main className="min-h-[20rem]">
+          <div className="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg max-h-96">
             <table className="w-full text-sm text-left text-gray-500 ">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                 <tr>
