@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import SectionLayout from '../../../layouts/SectionLayout'
 import PropTypes from 'prop-types'
-import { Button } from 'flowbite-react'
+import { PayPalButtons } from '@paypal/react-paypal-js'
 
 function TotalSection({ cartItems }) {
   const [subTotal, setSubTotal] = useState(0)
@@ -24,9 +24,9 @@ function TotalSection({ cartItems }) {
 
   return (
     <SectionLayout>
-      <article className="grid max-w-screen-xl mx-auto">
-        <div className="flex flex-col items-end gap-4">
-          <div className="w-full p-4 bg-gray-100 rounded-lg sm:max-w-xs">
+      <article className="max-w-screen-xl mx-auto ">
+        <div className="flex flex-col gap-10 sm:flex-row">
+          <div className="p-4 bg-gray-100 rounded-lg sm:w-2/4 max-h-[10rem]">
             <div className="space-y-1">
               <div className="flex justify-between gap-4 text-gray-500">
                 <span>Subtotal</span>
@@ -47,11 +47,12 @@ function TotalSection({ cartItems }) {
                   <span className="text-sm text-gray-500">incluído impuestos</span>
                 </span>
               </div>
+              <div className=""></div>
             </div>
           </div>
-          <Button color="purple" disabled={subTotal === 0}>
-            Finalizar Compra
-          </Button>
+          <div className="sm:w-2/4">
+            <PayPalButtons />
+          </div>
         </div>
       </article>
     </SectionLayout>
