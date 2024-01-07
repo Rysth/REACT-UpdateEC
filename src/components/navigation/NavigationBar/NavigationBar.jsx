@@ -76,9 +76,6 @@ function NavigationBar() {
           <Navbar.Link href="/shop" className="hover:!text-violet-700 text-gray-900 uppercase">
             Tienda
           </Navbar.Link>
-          <Navbar.Link href="#" className="hover:!text-violet-700 text-gray-900 uppercase">
-            Nosotros
-          </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </header>
