@@ -9,11 +9,12 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Footer from './components/navigation/Footer/Footer'
 import NavigationBar from './components/navigation/NavigationBar/NavigationBar'
 import NotFound from './pages/404/NotFound'
+import CartPage from './pages/CartPage/CartPage'
 import HomePage from './pages/HomePage/HomePage'
 import ProductPage from './pages/ProductPage/ProductPage'
 import SessionPage from './pages/SessionPage/SessionPage'
-import FormSignIn from './pages/SessionPage/components/FormSignIn'
-import FormSignUp from './pages/SessionPage/components/FormSignUp'
+import FormSignIn from './pages/SessionPage/sections/FormSignIn'
+import FormSignUp from './pages/SessionPage/sections/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
 
 function App() {
@@ -48,6 +49,14 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/shop/:productID" element={<ProductPage />} />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute isAllowed={active} redirectTo="/sign_in">
+                <CartPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/*" element={<NotFound />} /> */
         </Routes>
       </main>

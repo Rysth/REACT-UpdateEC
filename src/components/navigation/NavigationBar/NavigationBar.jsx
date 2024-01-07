@@ -1,26 +1,36 @@
 import { Button, Navbar, Tooltip } from 'flowbite-react'
 import {
+  HiMiniArrowLeftOnRectangle,
   HiMiniBars3BottomRight,
   HiOutlineShoppingBag,
   HiOutlineUser,
-  HiMiniArrowLeftOnRectangle,
 } from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
 import BrandImage from '../../../assets/SVG/brand.svg'
 import { sessionActions } from '../../../redux/slices/sessionSlice'
+import ConfirmModal from '../../modal/ConfirmModal/ConfirmModal'
+import { useState } from 'react'
 
 function NavigationBar() {
   const dispatch = useDispatch()
   const { cartItems } = useSelector((store) => store.cart)
   const { active } = useSelector((store) => store.session)
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
+  const [openModal, setOpenModal] = useState(false)
 
   const onLogoutSession = () => {
+    setOpenModal(false)
     dispatch(sessionActions.destroySession())
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-b-gray-100 animate__animated animate__fadeIn animate__slow">
+    <header className="sticky top-0 z-[999] bg-white border-b border-b-gray-100 animate__animated animate__fadeIn animate__slow">
+      <ConfirmModal
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+        onConfirm={onLogoutSession}
+        title="¿Desea cerrar sesión?"
+      />
       <Navbar className="items-center max-w-screen-xl p-4 mx-auto bg-transparent backdrop-blur-2xl">
         <Navbar.Brand href="/">
           <img src={BrandImage} className="w-24 sm:w-32" alt="UpdateEC's logo brand" />
@@ -28,7 +38,7 @@ function NavigationBar() {
         <div className="flex items-center md:order-2">
           <Tooltip content="Carrito de Compras" placement="bottom" className="text-center">
             <Button
-              href="/shopping_cart"
+              href="/cart"
               color="dark"
               className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0"
             >
@@ -42,7 +52,7 @@ function NavigationBar() {
             <Tooltip content="Cerrar Sesión" placement="bottom" className="text-center">
               <Button
                 className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0"
-                onClick={onLogoutSession}
+                onClick={() => setOpenModal(true)}
               >
                 <HiMiniArrowLeftOnRectangle className="text-2xl text-red-700 transition sm:text-3xl group-hover:text-violet-700" />
               </Button>
@@ -65,9 +75,6 @@ function NavigationBar() {
           </Navbar.Link>
           <Navbar.Link href="/shop" className="hover:!text-violet-700 text-gray-900 uppercase">
             Tienda
-          </Navbar.Link>
-          <Navbar.Link href="#" className="hover:!text-violet-700 text-gray-900 uppercase">
-            Nosotros
           </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>

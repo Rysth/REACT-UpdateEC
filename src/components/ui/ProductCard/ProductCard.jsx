@@ -22,7 +22,7 @@ function ProductCard({ product }) {
           <img
             src={product.attributes.picture.data.attributes.url}
             alt={product.attributes.name}
-            className={`object-contain w-full h-full transition duration-500 group-hover:scale-110 ${
+            className={`object-contain w-full h-full transition duration-500 sm:group-hover:scale-110 ${
               isAdding && 'pointer-events-none grayscale'
             }`}
           />
@@ -49,7 +49,7 @@ function ProductCard({ product }) {
       {productQuantity !== 0 && (
         <Button
           size="xs"
-          className={`absolute !z-30 mx-auto opacity-0 top-4 right-4 group-hover:opacity-100 hover:scale-105 transition active:scale-95 ${
+          className={`absolute !z-30 mx-auto sm:opacity-0 top-4 right-4 sm:group-hover:opacity-100 sm:hover:scale-105 transition active:scale-95 ${
             isAdding && 'pointer-events-none !opacity-50'
           }`}
           color="light"

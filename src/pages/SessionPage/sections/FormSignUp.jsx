@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { createAccount } from '../../../redux/slices/sessionSlice'
 import { Button, Label, TextInput } from 'flowbite-react'
-import { HiKey, HiMail, HiUser } from 'react-icons/hi'
+import { HiLockClosed, HiMail, HiUser } from 'react-icons/hi'
 
 function FormSignUp() {
   const dispatch = useDispatch()
@@ -12,7 +12,7 @@ function FormSignUp() {
 
   return (
     <form
-      className="flex flex-col items-center justify-center w-full gap-3 p-4 text-gray-900 bg-white border shadow-xl sm:p-8 sm:w-96 rounded-xl animate__animated animate__zoomIn "
+      className="flex flex-col items-center justify-center w-full gap-3 p-4 text-gray-900 bg-white border shadow-xl sm:p-8 sm:w-96 rounded-xl animate__animated animate__fadeIn "
       onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className="w-full mb-5 text-3xl font-bold text-center md:text-4xl">Registrarse</h2>
@@ -46,7 +46,7 @@ function FormSignUp() {
           type="password"
           placeholder="*********"
           color="gray"
-          icon={HiKey}
+          icon={HiLockClosed}
           {...register('password', { required: true })}
           required
         />
@@ -54,9 +54,9 @@ function FormSignUp() {
       <Button type="submit" fullSized className="mt-3 transition duration-300" color="purple" pill>
         Registrarse
       </Button>
-      <Button href="/sign_in" type="submit" className="transition duration-300" color="light" size="xs" pill>
+      <a href="/sign_in" className="text-xs text-blue-600 underline transition hover:text-blue-800">
         ¿Ya tienes una cuenta?
-      </Button>
+      </a>
     </form>
   )
 }

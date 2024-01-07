@@ -2,7 +2,7 @@ import { Button } from 'flowbite-react'
 
 function ActionSection() {
   return (
-    <div className="p-4 py-8 bg-purple lg:py-20 animate__animated animate__bounce animate__delay-2s">
+    <div className="p-4 py-8 bg-purple lg:py-20">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex flex-col items-center justify-between gap-4 rounded-lg sm:flex-row">
           <header className="text-center sm:text-left">
