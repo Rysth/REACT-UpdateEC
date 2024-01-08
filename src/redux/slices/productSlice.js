@@ -13,12 +13,14 @@ const initialState = {
   foundProduct: null,
   loading: true,
   error: false,
+  isFiltered: false,
 }
 
 const fetchProductsConfig = {
   params: {
     'filters[active][$eq]': 'true',
     populate: 'picture,brand,category',
+    'pagination[pageSize]': 15,
   },
   headers: {
     Authorization: `Bearer ${API_KEY}`,
@@ -33,7 +35,6 @@ export const fetchProducts = createAsyncThunk('product/fetchProducts', async (pa
       params: {
         ...fetchProductsConfig.params,
         'pagination[page]': page,
-        'pagination[pageSize]': 15,
       },
     }
     const response = await axios.get(`${API_URL}/products`, fetchProductsWithPagination)
@@ -96,11 +97,13 @@ export const findProduct = createAsyncThunk('product/findProduct', async (produc
 // Products - GET
 export const searchAndFilterProducts = createAsyncThunk('product/searchAndFilterProducts', async ({ searchData }) => {
   try {
+    console.log(searchData)
+
     const fetchSearchAndFilterProductsConfig = {
       ...fetchProductsConfig,
       params: {
         ...fetchProductsConfig.params,
-        'filters[name][$contains]': searchData,
+        'filters[name][$containsi]': searchData,
       },
     }
 
@@ -116,7 +119,7 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     searchProduct(state, action) {
-      const searchData = action.payload.trim()
+      const searchData = action.payload.trim().toLowerCase()
 
       if (!searchData) {
         state.filteredArray = state.productsArray
@@ -184,8 +187,18 @@ const productSlice = createSlice({
         state.loading = false
         state.foundProduct = action.payload.data
       })
+      .addCase(searchAndFilterProducts.pending, (state) => {
+        state.loading = true
+      })
       .addCase(searchAndFilterProducts.fulfilled, (state, action) => {
         state.loading = false
+        console.log(action.payload.data.length)
+        if (action.payload.data.length === 15) {
+          state.isFiltered = false
+          state.filteredArray = action.payload.data
+          return
+        }
+        state.isFiltered = true
         state.filteredArray = action.payload.data
       })
   },

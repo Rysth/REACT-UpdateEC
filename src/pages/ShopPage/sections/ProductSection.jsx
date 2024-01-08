@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import LoadingCard from '../../../components/ui/LoadingCard/LoadingCard'
 import ProductCard from '../../../components/ui/ProductCard/ProductCard'
 import { fetchProducts } from '../../../redux/slices/productSlice'
+import { Button } from 'flowbite-react'
 
 function ProductSection() {
   const dispatch = useDispatch()
-  const { filteredArray, loading } = useSelector((store) => store.product)
+  const { filteredArray, loading, isFiltered } = useSelector((store) => store.product)
   const [currentPage, setCurrentPage] = useState(1)
 
   const loadMoreProducts = () => {
@@ -37,13 +38,9 @@ function ProductSection() {
         ))}
       </ul>
       <footer className="grid place-items-center">
-        <button
-          type="button"
-          className="float-right p-3 px-4 text-xs text-center text-white rounded-full bg-purple md:hover:scale-105 md:transition md:active:scale-95"
-          onClick={loadMoreProducts}
-        >
+        <Button type="button" color="dark" className="" onClick={loadMoreProducts} disabled={isFiltered}>
           Mostrar Más
-        </button>
+        </Button>
       </footer>
     </div>
   )
