@@ -24,7 +24,7 @@ function TotalSection({ cartItems }) {
     setSubTotal(newSubTotal)
     setTaxes(newTaxes)
     setTotal((newSubTotal + newTaxes).toFixed(2))
-  }, [cartItems, calculateSubTotal])
+  }, [cartItems])
 
   return (
     <SectionLayout>

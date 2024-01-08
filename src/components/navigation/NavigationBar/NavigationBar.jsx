@@ -1,19 +1,11 @@
 import { Button, Dropdown, Navbar, Tooltip } from 'flowbite-react'
 import { useState } from 'react'
-import {
-  HiMiniArrowLeftOnRectangle,
-  HiMiniBars3BottomRight,
-  HiOutlineShoppingBag,
-  HiOutlineUser,
-  HiUserCircle,
-  HiUser,
-  HiListBullet,
-} from 'react-icons/hi2'
+import { HiLogout } from 'react-icons/hi'
+import { HiListBullet, HiMiniBars3BottomRight, HiOutlineShoppingBag, HiOutlineUser, HiUser } from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
 import BrandImage from '../../../assets/SVG/brand.svg'
 import { sessionActions } from '../../../redux/slices/sessionSlice'
 import ConfirmModal from '../../modal/ConfirmModal/ConfirmModal'
-import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from 'react-icons/hi'
 
 function NavigationBar() {
   const dispatch = useDispatch()

@@ -25,13 +25,13 @@ function OrderPage() {
 
   useEffect(() => {
     dispatch(fetchOrders(userData.id))
-  }, [userData])
+  }, [userData, dispatch])
 
   useEffect(() => {
     return () => {
       debouncedSearch.cancel()
     }
-  }, [])
+  }, [debouncedSearch])
 
   return (
     <section>
