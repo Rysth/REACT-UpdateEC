@@ -1,7 +1,18 @@
-import { Table, TextInput } from 'flowbite-react'
+import { Badge, Table, TextInput } from 'flowbite-react'
 import SectionLayout from '../../layouts/SectionLayout'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { fetchOrders } from '../../redux/slices/orderSlice'
 
 function OrderPage() {
+  const dispatch = useDispatch()
+  const { userData } = useSelector((store) => store.session)
+  const { ordersArray } = useSelector((store) => store.order)
+
+  useEffect(() => {
+    dispatch(fetchOrders(userData.id))
+  }, [userData])
+
   return (
     <section>
       <SectionLayout>
@@ -13,23 +24,39 @@ function OrderPage() {
           <main className="overflow-x-auto">
             <Table hoverable>
               <Table.Head>
-                <Table.HeadCell>Fecha</Table.HeadCell>
+                <Table.HeadCell className="min-w-[10rem]">Fecha</Table.HeadCell>
                 <Table.HeadCell>Estado</Table.HeadCell>
-                <Table.HeadCell>ID</Table.HeadCell>
-                <Table.HeadCell>Método de Pago</Table.HeadCell>
+                <Table.HeadCell>Factura ID</Table.HeadCell>
+                <Table.HeadCell className="min-w-[10rem]">Método de Pago</Table.HeadCell>
                 <Table.HeadCell>Total</Table.HeadCell>
-                <Table.HeadCell>
-                  <span className="sr-only">Edit</span>
-                </Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell className="font-medium text-gray-900">Apple MacBook Pro 17</Table.Cell>
-                  <Table.Cell>Sliver</Table.Cell>
-                  <Table.Cell>Laptop</Table.Cell>
-                  <Table.Cell>PayPal</Table.Cell>
-                  <Table.Cell>$2999</Table.Cell>
-                </Table.Row>
+                {ordersArray.map((order, index) => {
+                  const paymentID = order.attributes.payment_detail.data.attributes.payment_id
+                  const paymentStatus = order.attributes.payment_detail.data.attributes.payment_status
+                  const paymentTotal = order.attributes.payment_detail.data.attributes.amount_paid
+                  const isCompleted = paymentStatus === 'COMPLETED'
+
+                  return (
+                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={index}>
+                      <Table.Cell className="font-medium text-gray-900">{order.attributes.date}</Table.Cell>
+                      <Table.Cell>
+                        {isCompleted ? (
+                          <Badge color="success" className="max-w-max">
+                            {paymentStatus}
+                          </Badge>
+                        ) : (
+                          <Badge color="failure" className="max-w-max">
+                            {paymentStatus}
+                          </Badge>
+                        )}
+                      </Table.Cell>
+                      <Table.Cell>{paymentID}</Table.Cell>
+                      <Table.Cell>PayPal</Table.Cell>
+                      <Table.Cell className="font-medium text-green-600">${paymentTotal}</Table.Cell>
+                    </Table.Row>
+                  )
+                })}
               </Table.Body>
             </Table>
           </main>

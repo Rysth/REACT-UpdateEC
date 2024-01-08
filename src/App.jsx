@@ -25,7 +25,7 @@ function App() {
     <BrowserRouter>
       <ToastContainer position="top-left" />
       <NavigationBar />
-      <main className="h-full">
+      <main className="min-h-screen">
         <Routes>
           <Route
             path="/sign_in"
