@@ -1,14 +1,21 @@
 import { Badge, Table, TextInput } from 'flowbite-react'
 import SectionLayout from '../../layouts/SectionLayout'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { fetchOrders } from '../../redux/slices/orderSlice'
+import { useEffect, useState } from 'react'
+import { fetchOrders, orderActions } from '../../redux/slices/orderSlice'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 
 function OrderPage() {
   const dispatch = useDispatch()
   const { userData } = useSelector((store) => store.session)
   const { ordersArray } = useSelector((store) => store.order)
+  const [searchData, setSearchData] = useState('')
+
+  const onSearchChange = (event) => {
+    const newData = event.target.value
+    setSearchData(newData)
+    dispatch(orderActions.searchOrder(newData))
+  }
 
   useEffect(() => {
     dispatch(fetchOrders(userData.id))
@@ -30,7 +37,7 @@ function OrderPage() {
         <article className="max-w-screen-xl py-12 mx-auto space-y-10">
           <header className="grid gap-3">
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Mis Ordenes</h2>
-            <TextInput placeholder="Buscar..." className="max-w-sm" />
+            <TextInput placeholder="Buscar..." className="max-w-sm" value={searchData} onChange={onSearchChange} />
           </header>
           <main className="overflow-x-auto">
             <Table hoverable>

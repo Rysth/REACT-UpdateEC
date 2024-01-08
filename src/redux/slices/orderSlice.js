@@ -71,7 +71,20 @@ export const createOrder = createAsyncThunk('order/createOrder', async ({ orderD
 const orderSlice = createSlice({
   name: 'order',
   initialState,
-  reducers: {},
+  reducers: {
+    searchOrder(state, action) {
+      const searchData = action.payload.trim().toLowerCase()
+
+      if (!searchData) {
+        state.ordersArray = state.ordersOriginal
+        return
+      }
+
+      state.ordersArray = state.ordersOriginal.filter((element) =>
+        element.attributes.payment_detail.data.attributes.payment_id.toLowerCase().includes(searchData),
+      )
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createOrder.pending, () => {

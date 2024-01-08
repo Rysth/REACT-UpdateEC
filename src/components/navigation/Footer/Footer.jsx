@@ -2,7 +2,7 @@ import BrandImage from '../../../assets/SVG/brand_white.svg'
 
 function Footer() {
   return (
-    <footer className="text-white border-t bg-[var(--CL-primary-purple)]">
+    <footer className="text-white bg-[var(--CL-primary-purple)]">
       <div className="flex flex-col items-center justify-between max-w-screen-xl px-4 py-8 mx-auto sm:flex-row">
         <a className="flex items-center justify-center font-medium title-font md:justify-start" href="/">
           <picture>

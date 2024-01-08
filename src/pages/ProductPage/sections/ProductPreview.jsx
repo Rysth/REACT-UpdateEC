@@ -23,7 +23,7 @@ function ProductPreview() {
   return (
     <article className="max-w-screen-xl gap-2 px-4 py-5 mx-auto space-y-2 sm:grid sm:grid-cols-2 sm:py-12">
       <Zoom zoomMargin={60}>
-        <picture className="w-full h-[300px] sm:h-[450px] lg:h-[500px] bg-white border rounded sm:flex-1">
+        <picture className="w-full h-[300px] sm:h-[450px] lg:h-[560px] bg-white border rounded sm:flex-1">
           <img
             src={foundProduct.attributes.picture.data.attributes.url}
             alt={foundProduct.name}
@@ -34,9 +34,7 @@ function ProductPreview() {
       </Zoom>
       <main className="flex flex-col gap-5 md:pl-10 ">
         <header className="space-y-1 sm:space-y-4">
-          <h2 className="text-lg font-bold uppercase truncate sm:text-xl md:text-3xl">
-            {foundProduct.attributes.name}
-          </h2>
+          <h2 className="text-lg font-bold uppercase sm:text-xl md:text-3xl">{foundProduct.attributes.name}</h2>
           <p className="text-sm">
             Stock: <span className="text-purple-700">{foundProduct.attributes.quantity} unidades disponibles</span>
           </p>
