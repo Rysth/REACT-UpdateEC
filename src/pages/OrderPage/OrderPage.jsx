@@ -3,6 +3,7 @@ import SectionLayout from '../../layouts/SectionLayout'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchOrders } from '../../redux/slices/orderSlice'
+import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 
 function OrderPage() {
   const dispatch = useDispatch()
@@ -15,6 +16,16 @@ function OrderPage() {
 
   return (
     <section>
+      <BreadCrumb
+        paths={[
+          { name: 'Tienda', href: '/shop', active: false },
+          {
+            name: 'Ordenes',
+            href: `/orders`,
+            active: true,
+          },
+        ]}
+      />
       <SectionLayout>
         <article className="max-w-screen-xl py-12 mx-auto space-y-10">
           <header className="grid gap-3">

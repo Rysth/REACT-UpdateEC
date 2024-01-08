@@ -67,7 +67,7 @@ function NavigationBar() {
                 )}
               >
                 <Dropdown.Header>
-                  <span className="block text-sm">{userData.username}</span>
+                  <span className="block text-sm font-bold text-gray-900">{userData.username}</span>
                   <span className="block text-xs font-medium truncate">{userData.email}</span>
                 </Dropdown.Header>
                 <Dropdown.Item icon={HiListBullet} href="/orders">
@@ -92,10 +92,10 @@ function NavigationBar() {
           />
         </div>
         <Navbar.Collapse className="transition animate__animated animate__fadeIn">
-          <Navbar.Link href="/" className="hover:!text-violet-700 text-gray-900 uppercase !sm:text-xs">
+          <Navbar.Link href="/" className="hover:!text-violet-700 text-gray-900">
             Inicio
           </Navbar.Link>
-          <Navbar.Link href="/shop" className="hover:!text-violet-700 text-gray-900 uppercase !sm:text-xs">
+          <Navbar.Link href="/shop" className="hover:!text-violet-700 text-gray-900">
             Tienda
           </Navbar.Link>
         </Navbar.Collapse>
