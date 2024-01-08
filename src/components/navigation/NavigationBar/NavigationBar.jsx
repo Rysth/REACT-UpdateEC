@@ -70,7 +70,9 @@ function NavigationBar() {
                   <span className="block text-sm">{userData.username}</span>
                   <span className="block text-xs font-medium truncate">{userData.email}</span>
                 </Dropdown.Header>
-                <Dropdown.Item icon={HiListBullet}>Ordenes</Dropdown.Item>
+                <Dropdown.Item icon={HiListBullet} href="/orders">
+                  Ordenes
+                </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item icon={HiLogout} className="text-red-600" onClick={() => setOpenModal(true)}>
                   Cerrar Sesión
