@@ -16,6 +16,7 @@ import SessionPage from './pages/SessionPage/SessionPage'
 import FormSignIn from './pages/SessionPage/sections/FormSignIn'
 import FormSignUp from './pages/SessionPage/sections/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
+import OrderPage from './pages/OrderPage/OrderPage'
 
 function App() {
   const { active } = useSelector((store) => store.session)
@@ -24,7 +25,7 @@ function App() {
     <BrowserRouter>
       <ToastContainer position="top-left" />
       <NavigationBar />
-      <main className="h-full">
+      <main className="min-h-screen">
         <Routes>
           <Route
             path="/sign_in"
@@ -54,6 +55,14 @@ function App() {
             element={
               <ProtectedRoute isAllowed={active} redirectTo="/sign_in">
                 <CartPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <ProtectedRoute isAllowed={active} redirectTo="/sign_in">
+                <OrderPage />
               </ProtectedRoute>
             }
           />

@@ -7,9 +7,25 @@ const API_URL = import.meta.env.VITE_APP_URL
 const API_KEY = import.meta.env.VITE_API_KEY
 
 const initialState = {
+  ordersOriginal: [],
+  ordersArray: [],
   loading: true,
   error: false,
 }
+
+// Orders - GET
+export const fetchOrders = createAsyncThunk('order/fetchOrders', async (userID) => {
+  try {
+    const response = await axios.get(`${API_URL}/orders`, {
+      params: { 'filters[user][id][$eq]': userID, populate: 'payment_detail', sort: 'createdAt:desc' },
+      headers: { Authorization: `Bearer ${API_KEY}` },
+    })
+    return response.data
+  } catch (error) {
+    console.log(error)
+    throw new Error(`Error: ${error.message}`)
+  }
+})
 
 // Orders - POST
 export const createOrder = createAsyncThunk('order/createOrder', async ({ orderData, paymentData }) => {
@@ -55,7 +71,20 @@ export const createOrder = createAsyncThunk('order/createOrder', async ({ orderD
 const orderSlice = createSlice({
   name: 'order',
   initialState,
-  reducers: {},
+  reducers: {
+    searchOrder(state, action) {
+      const searchData = action.payload.trim().toLowerCase()
+
+      if (!searchData) {
+        state.ordersArray = state.ordersOriginal
+        return
+      }
+
+      state.ordersArray = state.ordersOriginal.filter((element) =>
+        element.attributes.payment_detail.data.attributes.payment_id.toLowerCase().includes(searchData),
+      )
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createOrder.pending, () => {
@@ -64,6 +93,10 @@ const orderSlice = createSlice({
       .addCase(createOrder.fulfilled, (state) => {
         state.loading = false
         toast.success('¡Orden Generada!', { theme: 'colored' })
+      })
+      .addCase(fetchOrders.fulfilled, (state, action) => {
+        state.loading = false
+        state.ordersArray = state.ordersOriginal = action.payload.data
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.loading = false

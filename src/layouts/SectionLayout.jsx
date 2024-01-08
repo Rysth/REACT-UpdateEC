@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import React from 'react'
 
 function SectionLayout({ children, backgroundColor }) {
   return <section className={`p-4 ${backgroundColor}`}>{children}</section>

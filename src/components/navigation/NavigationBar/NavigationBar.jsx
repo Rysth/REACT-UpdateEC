@@ -1,20 +1,16 @@
-import { Button, Navbar, Tooltip } from 'flowbite-react'
-import {
-  HiMiniArrowLeftOnRectangle,
-  HiMiniBars3BottomRight,
-  HiOutlineShoppingBag,
-  HiOutlineUser,
-} from 'react-icons/hi2'
+import { Button, Dropdown, Navbar, Tooltip } from 'flowbite-react'
+import { useState } from 'react'
+import { HiLogout } from 'react-icons/hi'
+import { HiListBullet, HiMiniBars3BottomRight, HiOutlineShoppingBag, HiOutlineUser, HiUser } from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
 import BrandImage from '../../../assets/SVG/brand.svg'
 import { sessionActions } from '../../../redux/slices/sessionSlice'
 import ConfirmModal from '../../modal/ConfirmModal/ConfirmModal'
-import { useState } from 'react'
 
 function NavigationBar() {
   const dispatch = useDispatch()
   const { cartItems } = useSelector((store) => store.cart)
-  const { active } = useSelector((store) => store.session)
+  const { active, userData } = useSelector((store) => store.session)
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
   const [openModal, setOpenModal] = useState(false)
 
@@ -35,32 +31,50 @@ function NavigationBar() {
         <Navbar.Brand href="/">
           <img src={BrandImage} className="w-24 sm:w-32" alt="UpdateEC's logo brand" />
         </Navbar.Brand>
-        <div className="flex items-center md:order-2">
-          <Tooltip content="Carrito de Compras" placement="bottom" className="text-center">
+        <div className="flex items-center md:order-2 ">
+          <Tooltip content="Carrito de Compras" placement="bottom" className="hidden text-center sm:visible">
             <Button
               href="/cart"
               color="dark"
-              className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0"
+              size="sm"
+              className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0 "
             >
-              <HiOutlineShoppingBag className="text-2xl transition sm:text-3xl group-hover:text-violet-700" />
-              <p className="absolute grid w-5 h-5 sm:w-6 sm:h-6 bg-red-600 text-white rounded-full place-items-center right-2 sm:right-2.5 bottom-0.5">
+              <HiOutlineShoppingBag className="text-2xl transition group-hover:text-violet-700" />
+              <p className="absolute grid w-5 h-5 bg-red-600 text-white rounded-full place-items-center right-2 sm:right-2 bottom-0.5 text-xs">
                 {totalQuantity}
               </p>
             </Button>
           </Tooltip>
           {active ? (
-            <Tooltip content="Cerrar Sesión" placement="bottom" className="text-center">
-              <Button
-                className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0"
-                onClick={() => setOpenModal(true)}
+            <Tooltip content="Cuenta" placement="bottom" className="hidden text-center sm:visible">
+              <Dropdown
+                renderTrigger={() => (
+                  <Button
+                    color="dark"
+                    size="sm"
+                    className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0 "
+                  >
+                    <HiUser className="text-2xl transition group-hover:text-violet-700" />
+                  </Button>
+                )}
               >
-                <HiMiniArrowLeftOnRectangle className="text-2xl text-red-700 transition sm:text-3xl group-hover:text-violet-700" />
-              </Button>
+                <Dropdown.Header>
+                  <span className="block text-sm font-bold text-gray-900">{userData.username}</span>
+                  <span className="block text-xs font-medium truncate">{userData.email}</span>
+                </Dropdown.Header>
+                <Dropdown.Item icon={HiListBullet} href="/orders">
+                  Ordenes
+                </Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item icon={HiLogout} className="text-red-600" onClick={() => setOpenModal(true)}>
+                  Cerrar Sesión
+                </Dropdown.Item>
+              </Dropdown>
             </Tooltip>
           ) : (
-            <Tooltip content="Iniciar Sesión" placement="bottom" className="text-center">
+            <Tooltip content="Iniciar Sesión" placement="bottom" className="hidden text-center sm:visible">
               <Button href="/sign_in" className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0">
-                <HiOutlineUser className="text-2xl transition sm:text-3xl group-hover:text-violet-700" />
+                <HiOutlineUser className="p-0 text-2xl transition group-hover:text-violet-700" />
               </Button>
             </Tooltip>
           )}
@@ -70,10 +84,10 @@ function NavigationBar() {
           />
         </div>
         <Navbar.Collapse className="transition animate__animated animate__fadeIn">
-          <Navbar.Link href="/" className="hover:!text-violet-700 text-gray-900 uppercase">
+          <Navbar.Link href="/" className="hover:!text-violet-700 text-gray-900">
             Inicio
           </Navbar.Link>
-          <Navbar.Link href="/shop" className="hover:!text-violet-700 text-gray-900 uppercase">
+          <Navbar.Link href="/shop" className="hover:!text-violet-700 text-gray-900">
             Tienda
           </Navbar.Link>
         </Navbar.Collapse>
