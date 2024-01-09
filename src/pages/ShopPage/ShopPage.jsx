@@ -5,9 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import SectionLayout from '../../layouts/SectionLayout'
 import { fetchCategories } from '../../redux/slices/categorySlice'
-import { fetchProducts, searchAndFilterProducts } from '../../redux/slices/productSlice'
+import { searchAndFilterProducts } from '../../redux/slices/productSlice'
 import ProductSection from './sections/ProductSection'
-import { Select } from 'flowbite-react'
 
 function ShopPage() {
   const dispatch = useDispatch()
@@ -40,7 +39,7 @@ function ShopPage() {
 
   useEffect(() => {
     dispatch(fetchCategories())
-  }, [])
+  }, [dispatch])
 
   return (
     <article>
