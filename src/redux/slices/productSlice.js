@@ -97,31 +97,23 @@ export const findProduct = createAsyncThunk('product/findProduct', async (produc
 // Products - GET
 export const searchAndFilterProducts = createAsyncThunk(
   'product/searchAndFilterProducts',
-  async ({ searchData, categoryID = 0 }) => {
+  async ({ searchData, categoryID }) => {
     try {
-      const fetchSearchAndFilterProductsConfig = {
+      let params = {
+        ...fetchProductsConfig.params,
+        'filters[name][$containsi]': searchData,
+        'pagination[pageSize]': 15,
+      }
+
+      if (categoryID && categoryID !== 0) {
+        params['filters[category][id][$eq]'] = categoryID
+      }
+
+      const response = await axios.get(`${API_URL}/products`, {
         ...fetchProductsConfig,
-        params: {
-          ...fetchProductsConfig.params,
-          'filters[name][$containsi]': searchData,
-          'filters[category][id][$eq]': categoryID,
-          'pagination[pageSize]': 15,
-        },
-      }
-      let response = ''
-      if (categoryID.length !== 0) {
-        response = await axios.get(`${API_URL}/products`, fetchSearchAndFilterProductsConfig)
-      } else {
-        const fetchSearchAndFilterConfig = {
-          ...fetchProductsConfig,
-          params: {
-            ...fetchProductsConfig.params,
-            'filters[name][$containsi]': searchData,
-            'pagination[pageSize]': 15,
-          },
-        }
-        response = await axios.get(`${API_URL}/products`, fetchSearchAndFilterConfig)
-      }
+        params,
+      })
+
       return response.data
     } catch (error) {
       throw new Error(`Error: ${error.message}`)

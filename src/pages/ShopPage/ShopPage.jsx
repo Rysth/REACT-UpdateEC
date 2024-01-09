@@ -15,11 +15,12 @@ function ShopPage() {
   const [categoryData, setCategoryData] = useState(0)
   const { categoriesArray } = useSelector((store) => store.category)
 
-  // Debounced search handler
   const debouncedSearch = debounce((newData) => {
     setSearchData(newData)
-    dispatch(searchAndFilterProducts({ searchData: newData, categoryID: categoryData }))
-  }, 200) // 200ms debounce time
+    dispatch(
+      searchAndFilterProducts({ searchData: newData, categoryID: categoryData !== 0 ? categoryData : undefined }),
+    )
+  }, 200)
 
   const onSearchChange = (event) => {
     const newData = event.target.value
@@ -28,7 +29,7 @@ function ShopPage() {
 
   const onCategoryChange = (categoryID) => {
     setCategoryData(categoryID)
-    dispatch(searchAndFilterProducts({ searchData: searchData, categoryID }))
+    dispatch(searchAndFilterProducts({ searchData, categoryID: categoryID !== 0 ? categoryID : undefined }))
   }
 
   useEffect(() => {
