@@ -95,25 +95,39 @@ export const findProduct = createAsyncThunk('product/findProduct', async (produc
 })
 
 // Products - GET
-export const searchAndFilterProducts = createAsyncThunk('product/searchAndFilterProducts', async ({ searchData }) => {
-  try {
-    console.log(searchData)
-
-    const fetchSearchAndFilterProductsConfig = {
-      ...fetchProductsConfig,
-      params: {
-        ...fetchProductsConfig.params,
-        'filters[name][$containsi]': searchData,
-        'pagination[pageSize]': 15,
-      },
+export const searchAndFilterProducts = createAsyncThunk(
+  'product/searchAndFilterProducts',
+  async ({ searchData, categoryID = 0 }) => {
+    try {
+      const fetchSearchAndFilterProductsConfig = {
+        ...fetchProductsConfig,
+        params: {
+          ...fetchProductsConfig.params,
+          'filters[name][$containsi]': searchData,
+          'filters[category][id][$eq]': categoryID,
+          'pagination[pageSize]': 15,
+        },
+      }
+      let response = ''
+      if (categoryID.length !== 0) {
+        response = await axios.get(`${API_URL}/products`, fetchSearchAndFilterProductsConfig)
+      } else {
+        const fetchSearchAndFilterConfig = {
+          ...fetchProductsConfig,
+          params: {
+            ...fetchProductsConfig.params,
+            'filters[name][$containsi]': searchData,
+            'pagination[pageSize]': 15,
+          },
+        }
+        response = await axios.get(`${API_URL}/products`, fetchSearchAndFilterConfig)
+      }
+      return response.data
+    } catch (error) {
+      throw new Error(`Error: ${error.message}`)
     }
-
-    const response = await axios.get(`${API_URL}/products`, fetchSearchAndFilterProductsConfig)
-    return response.data
-  } catch (error) {
-    throw new Error(`Error: ${error.message}`)
-  }
-})
+  },
+)
 
 const productSlice = createSlice({
   name: 'product',
@@ -193,7 +207,6 @@ const productSlice = createSlice({
       })
       .addCase(searchAndFilterProducts.fulfilled, (state, action) => {
         state.loading = false
-        console.log(action.payload.data.length)
         if (action.payload.data.length === 15) {
           state.isFiltered = false
           state.filteredArray = action.payload.data

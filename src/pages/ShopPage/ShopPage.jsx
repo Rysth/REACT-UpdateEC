@@ -1,25 +1,34 @@
-import { TextInput } from 'flowbite-react'
+import { SearchSelect, SearchSelectItem, TextInput } from '@tremor/react'
 import { debounce } from 'lodash'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import SectionLayout from '../../layouts/SectionLayout'
-import { searchAndFilterProducts } from '../../redux/slices/productSlice'
+import { fetchCategories } from '../../redux/slices/categorySlice'
+import { fetchProducts, searchAndFilterProducts } from '../../redux/slices/productSlice'
 import ProductSection from './sections/ProductSection'
-import { useDispatch } from 'react-redux'
+import { Select } from 'flowbite-react'
 
 function ShopPage() {
   const dispatch = useDispatch()
   const [searchData, setSearchData] = useState('')
+  const [categoryData, setCategoryData] = useState(0)
+  const { categoriesArray } = useSelector((store) => store.category)
 
   // Debounced search handler
   const debouncedSearch = debounce((newData) => {
     setSearchData(newData)
-    dispatch(searchAndFilterProducts({ searchData: newData }))
+    dispatch(searchAndFilterProducts({ searchData: newData, categoryID: categoryData }))
   }, 200) // 200ms debounce time
 
   const onSearchChange = (event) => {
     const newData = event.target.value
     debouncedSearch(newData)
+  }
+
+  const onCategoryChange = (categoryID) => {
+    setCategoryData(categoryID)
+    dispatch(searchAndFilterProducts({ searchData: searchData, categoryID }))
   }
 
   useEffect(() => {
@@ -28,6 +37,10 @@ function ShopPage() {
     }
   }, [debouncedSearch])
 
+  useEffect(() => {
+    dispatch(fetchCategories())
+  }, [])
+
   return (
     <article>
       <BreadCrumb paths={[{ name: 'Tienda', href: '/', active: true }]} />
@@ -35,12 +48,26 @@ function ShopPage() {
         <main className="max-w-screen-xl py-12 mx-auto space-y-8">
           <header className="flex flex-col items-center justify-between gap-3 sm:flex-row">
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Nuestros Productos</h2>
-            <TextInput
-              placeholder="Buscar..."
-              className="w-full sm:w-60"
-              defaultValue={searchData}
-              onChange={onSearchChange}
-            />
+            <div className="flex flex-col items-center gap-2 sm:flex-row">
+              <TextInput
+                placeholder="Buscar..."
+                className="w-full sm:w-96"
+                defaultValue={searchData}
+                onChange={onSearchChange}
+              />
+              <SearchSelect
+                className="z-40 max-w-xs rounded"
+                placeholder="Categoría"
+                onValueChange={onCategoryChange}
+                value={categoryData}
+              >
+                {categoriesArray.map((category) => (
+                  <SearchSelectItem key={category.id} value={category.id}>
+                    {category.attributes.name}
+                  </SearchSelectItem>
+                ))}
+              </SearchSelect>
+            </div>
           </header>
           <ProductSection />
         </main>
