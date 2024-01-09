@@ -33,11 +33,11 @@ function ShopPage() {
       <BreadCrumb paths={[{ name: 'Tienda', href: '/', active: true }]} />
       <SectionLayout>
         <main className="max-w-screen-xl py-12 mx-auto space-y-8">
-          <header className="grid gap-3">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Productos</h2>
+          <header className="flex flex-col items-center justify-between gap-3 sm:flex-row">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Nuestros Productos</h2>
             <TextInput
               placeholder="Buscar..."
-              className="max-w-sm"
+              className="w-full sm:w-60"
               defaultValue={searchData}
               onChange={onSearchChange}
             />

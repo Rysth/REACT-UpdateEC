@@ -20,7 +20,6 @@ const fetchProductsConfig = {
   params: {
     'filters[active][$eq]': 'true',
     populate: 'picture,brand,category',
-    'pagination[pageSize]': 15,
   },
   headers: {
     Authorization: `Bearer ${API_KEY}`,
@@ -35,6 +34,7 @@ export const fetchProducts = createAsyncThunk('product/fetchProducts', async (pa
       params: {
         ...fetchProductsConfig.params,
         'pagination[page]': page,
+        'pagination[pageSize]': 15,
       },
     }
     const response = await axios.get(`${API_URL}/products`, fetchProductsWithPagination)
@@ -72,8 +72,8 @@ export const fetchSimilarProducts = createAsyncThunk(
         params: {
           ...fetchProductsConfig.params,
           'pagination[limit]': 4,
-          'filters[category][id][$eq]': categoryID,
           'filters[id][$ne]': productID,
+          'filters[category][id][$eq]': categoryID,
         },
       }
       const response = await axios.get(`${API_URL}/products`, fetchSimilarProductsConfig)
@@ -104,6 +104,7 @@ export const searchAndFilterProducts = createAsyncThunk('product/searchAndFilter
       params: {
         ...fetchProductsConfig.params,
         'filters[name][$containsi]': searchData,
+        'pagination[pageSize]': 15,
       },
     }
 
