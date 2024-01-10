@@ -42,6 +42,7 @@ function HomePage() {
 
   return (
     <section>
+      {/* =====HERO===== */}
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
         <article className="flex flex-col max-w-screen-xl gap-20 py-24 mx-auto sm:gap-8 md:flex-row sm:pt-36">
           <header className="flex flex-col justify-center gap-2 text-center sm:gap-0 md:text-left sm:flex-1">
@@ -69,7 +70,8 @@ function HomePage() {
           </main>
         </article>
       </SectionLayout>
-      <SectionLayout backgroundColor="bg-purple animate__animated animate__fadeIn animate__slow">
+      {/* =====CALL TO ACTION===== */}
+      <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow bg-purple">
         <article className="max-w-screen-xl py-12 mx-auto sm:py-16">
           <main className="flex flex-col items-center justify-between gap-4 rounded-lg sm:flex-row">
             <header className="text-center sm:text-left">
@@ -84,6 +86,7 @@ function HomePage() {
           </main>
         </article>
       </SectionLayout>
+      {/* =====CATEGORIES===== */}
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
         <article className="grid max-w-screen-xl gap-8 pb-12 mx-auto sm:grid-cols-2 ">
           <a
@@ -132,6 +135,7 @@ function HomePage() {
           </a>
         </article>
       </SectionLayout>
+      {/* =====LASTEST PRODUCTS===== */}
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
         <article className="max-w-screen-xl py-12 mx-auto">
           <header className="flex flex-col items-center justify-between gap-2 mb-6 sm:flex-row">
@@ -148,9 +152,10 @@ function HomePage() {
           </Carousel>
         </article>
       </SectionLayout>
-      <SectionLayout backgroundColor="bg-purple animate__animated animate__fadeIn animate__slow">
-        <div className="max-w-screen-xl px-4 py-10 mx-auto lg:py-20">
-          <div className="lg:grid lg:grid-cols-12 lg:gap-16 lg:items-center">
+      {/* =====FEATURES===== */}
+      <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow bg-purple">
+        <article className="max-w-screen-xl px-4 py-10 mx-auto lg:py-20">
+          <main className="lg:grid lg:grid-cols-12 lg:gap-16 lg:items-center">
             <div className="lg:col-span-7">
               <div className="grid items-center grid-cols-12 gap-2 sm:gap-6 lg:-translate-x-10">
                 <div className="col-span-4">
@@ -187,8 +192,8 @@ function HomePage() {
                 </ul>
               </div>
             </div>
-          </div>
-        </div>
+          </main>
+        </article>
       </SectionLayout>
     </section>
   )
