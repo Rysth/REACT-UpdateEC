@@ -23,7 +23,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ToastContainer position="top-left" />
+      <ToastContainer position="bottom-right" />
       <NavigationBar />
       <main className="min-h-screen">
         <Routes>

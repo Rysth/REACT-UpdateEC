@@ -43,9 +43,12 @@ function FormSignIn() {
       <Button type="submit" fullSized className="mt-3 transition duration-300" color="blue">
         Ingresar
       </Button>
-      <a href="/sign_up" className="text-xs text-blue-600 underline transition hover:text-blue-800">
-        ¡Registrate Ahora!
-      </a>
+      <fieldset className="flex items-center gap-1 text-xs">
+        ¿Eres Nuevo/a?
+        <a href="/sign_up" className="text-blue-600 underline transition hover:text-blue-800">
+          ¡Registrate Ahora!
+        </a>
+      </fieldset>
     </form>
   )
 }
