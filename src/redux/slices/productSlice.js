@@ -172,27 +172,27 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.loading = false
         state.productsArray = [...state.productsArray, ...action.payload.data]
         state.filteredArray = state.productsArray
+        state.loading = false
       })
       .addCase(fetchLastestProducts.fulfilled, (state, action) => {
-        state.loading = false
         state.lastestProducts = action.payload.data
+        state.loading = false
       })
       .addCase(fetchSimilarProducts.pending, (state) => {
         state.loading = true
       })
       .addCase(fetchSimilarProducts.fulfilled, (state, action) => {
-        state.loading = false
         state.similarProducts = action.payload.data
+        state.loading = false
       })
       .addCase(findProduct.pending, (state) => {
         state.loading = true
       })
       .addCase(findProduct.fulfilled, (state, action) => {
-        state.loading = false
         state.foundProduct = action.payload.data
+        state.loading = false
       })
       .addCase(searchAndFilterProducts.pending, (state) => {
         state.loading = true
@@ -200,12 +200,12 @@ const productSlice = createSlice({
       .addCase(searchAndFilterProducts.fulfilled, (state, action) => {
         state.loading = false
         if (action.payload.data.length === 15) {
-          state.isFiltered = false
           state.filteredArray = action.payload.data
+          state.isFiltered = false
           return
         }
-        state.isFiltered = true
         state.filteredArray = action.payload.data
+        state.isFiltered = true
       })
   },
 })

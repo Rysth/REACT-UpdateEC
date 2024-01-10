@@ -25,8 +25,6 @@ function ProductPage() {
     dispatch(findProduct(productID))
   }, [dispatch, productID])
 
-  const productHasReviews = reviewsArray.length > 0
-
   if (!foundProduct) {
     return <LoadingCard />
   }
