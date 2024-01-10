@@ -6,7 +6,7 @@ import SectionLayout from '../../../layouts/SectionLayout'
 function BreadCrumb({ paths }) {
   return (
     <SectionLayout backgroundColor="bg-purple">
-      <article className="max-w-screen-xl pt-32 pb-10 mx-auto sm:pt-48">
+      <article className="max-w-screen-xl pt-32 pb-10 mx-auto sm:pt-40">
         <Breadcrumb aria-label="Default breadcrumb example">
           <Breadcrumb.Item href="/">
             <span className="text-gray-300 transition duration-300 hover:text-cyan-400">Inicio</span>

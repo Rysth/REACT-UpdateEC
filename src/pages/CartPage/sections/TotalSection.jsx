@@ -26,6 +26,8 @@ function TotalSection({ cartItems }) {
     setTotal((newSubTotal + newTaxes).toFixed(2))
   }, [cartItems])
 
+  useEffect(() => {}, [total])
+
   return (
     <SectionLayout>
       <article className="max-w-screen-xl mx-auto ">

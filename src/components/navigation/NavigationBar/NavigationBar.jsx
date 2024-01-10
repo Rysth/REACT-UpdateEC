@@ -59,7 +59,7 @@ function NavigationBar() {
                 )}
               >
                 <Dropdown.Header>
-                  <span className="block text-sm font-bold text-white">{userData.username}</span>
+                  <span className="block text-sm font-bold ">{userData.username}</span>
                   <span className="block text-xs font-medium truncate">{userData.email}</span>
                 </Dropdown.Header>
                 <Dropdown.Item icon={HiListBullet} href="/orders">

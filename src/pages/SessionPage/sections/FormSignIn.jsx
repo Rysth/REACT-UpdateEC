@@ -12,7 +12,7 @@ function FormSignIn() {
 
   return (
     <form
-      className="flex flex-col items-center justify-center w-full gap-3 p-4 text-gray-900 bg-white border shadow-xl sm:p-8 sm:w-96 rounded-xl animate__animated animate__fadeIn "
+      className="flex flex-col items-center justify-center w-full gap-3 p-4 text-gray-900 bg-white border shadow-2xl sm:p-8 sm:w-96 rounded-xl animate__animated animate__fadeIn"
       onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className="w-full py-2 mb-5 text-4xl font-bold text-center md:text-4xl">Iniciar Sesión</h2>
@@ -40,7 +40,7 @@ function FormSignIn() {
           required
         />
       </fieldset>
-      <Button type="submit" fullSized className="mt-3 transition duration-300" color="purple" pill>
+      <Button type="submit" fullSized className="mt-3 transition duration-300" color="blue">
         Ingresar
       </Button>
       <a href="/sign_up" className="text-xs text-blue-600 underline transition hover:text-blue-800">

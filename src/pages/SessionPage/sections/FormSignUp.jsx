@@ -51,7 +51,7 @@ function FormSignUp() {
           required
         />
       </fieldset>
-      <Button type="submit" fullSized className="mt-3 transition duration-300" color="purple" pill>
+      <Button type="submit" fullSized className="mt-3 transition duration-300" color="blue">
         Registrarse
       </Button>
       <a href="/sign_in" className="text-xs text-blue-600 underline transition hover:text-blue-800">

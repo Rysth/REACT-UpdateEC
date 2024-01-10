@@ -38,7 +38,7 @@ function ProductSection() {
         ))}
       </ul>
       <footer className="grid place-items-center">
-        <Button type="button" color="purple" className="" onClick={loadMoreProducts} disabled={isFiltered}>
+        <Button type="button" color="blue" className="" onClick={loadMoreProducts} disabled={isFiltered}>
           Mostrar Más
         </Button>
       </footer>

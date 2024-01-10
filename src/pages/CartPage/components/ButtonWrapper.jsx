@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { createOrder } from '../../../redux/slices/orderSlice'
 import { cartActions } from '../../../redux/slices/cartSlice'
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
 
 const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
   const dispatch = useDispatch()
@@ -41,6 +42,8 @@ const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
     dispatch(createOrder({ orderData, paymentData }))
     dispatch(cartActions.clearCart())
   }
+
+  useEffect(() => {}, [totalAmount])
 
   return (
     <>
