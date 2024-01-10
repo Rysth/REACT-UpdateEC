@@ -85,25 +85,26 @@ function ShopPage() {
       </SectionLayout>
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
         {loading && <LoadingCard />}
-        {filteredArray.length === 0 && !loading && (
+        {filteredArray.length === 0 && !loading ? (
           <header className="grid w-full h-20 max-w-screen-xl py-2 mx-auto bg-red-500 place-items-center">
             <h3 className="w-full text-lg font-bold text-center text-white uppercase">¡Productos no Encontrados!</h3>
           </header>
+        ) : (
+          <article className="max-w-screen-xl pb-12 mx-auto">
+            <main className="flex flex-col flex-1 gap-10">
+              <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-5">
+                {filteredArray.map((product, index) => (
+                  <ProductCard product={product} key={index} />
+                ))}
+              </ul>
+              <footer className="grid place-items-center">
+                <Button type="button" color="blue" className="" onClick={loadMoreProducts} disabled={isFiltered}>
+                  Mostrar Más
+                </Button>
+              </footer>
+            </main>
+          </article>
         )}
-        <article className="max-w-screen-xl pb-12 mx-auto">
-          <main className="flex flex-col flex-1 gap-10">
-            <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-5">
-              {filteredArray.map((product, index) => (
-                <ProductCard product={product} key={index} />
-              ))}
-            </ul>
-            <footer className="grid place-items-center">
-              <Button type="button" color="blue" className="" onClick={loadMoreProducts} disabled={isFiltered}>
-                Mostrar Más
-              </Button>
-            </footer>
-          </main>
-        </article>
       </SectionLayout>
     </article>
   )
