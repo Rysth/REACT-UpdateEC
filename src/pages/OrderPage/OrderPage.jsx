@@ -37,7 +37,6 @@ function OrderPage() {
     <section>
       <BreadCrumb
         paths={[
-          { name: 'Tienda', href: '/shop', active: false },
           {
             name: 'Ordenes',
             href: `/orders`,

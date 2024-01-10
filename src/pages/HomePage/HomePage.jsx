@@ -47,9 +47,7 @@ function HomePage() {
         <article className="flex flex-col max-w-screen-xl gap-20 py-24 mx-auto sm:gap-8 md:flex-row sm:pt-36">
           <header className="flex flex-col justify-center gap-2 text-center sm:gap-0 md:text-left sm:flex-1">
             <p className="text-sm font-semibold text-blue-700 uppercase">Productos Gaming Profesionales</p>
-            <h1 className="my-4 text-4xl font-bold text-black sm:text-5xl md:text-7xl md:mb-8">
-              Sé Parte de la Elite Gaming
-            </h1>
+            <h1 className="my-4 text-5xl font-bold text-black md:text-7xl md:mb-8">Sé Parte de la Elite Gaming</h1>
             <div className="flex flex-col gap-2.5 sm:flex-row md:justify-start">
               <Button
                 href="/shop"
