@@ -152,7 +152,6 @@ function HomePage() {
           </Carousel>
         </article>
       </SectionLayout>
-      {/* =====FEATURES===== */}
     </section>
   )
 }
