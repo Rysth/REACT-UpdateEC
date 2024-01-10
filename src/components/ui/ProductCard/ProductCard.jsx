@@ -28,10 +28,10 @@ function ProductCard({ product }) {
           />
         </picture>
         <header className="px-4 py-3 text-center">
-          <h2 className="uppercase truncate transition duration-300 group-hover:text-blue-800">
+          <h2 className="px-4 text-sm font-bold uppercase truncate transition duration-300 group-hover:text-blue-800">
             {product.attributes.name}
           </h2>
-          <p className="font-semibold text-blue-700 uppercase truncate group-hover:text-blue-80">
+          <p className="text-sm text-blue-700 uppercase truncate group-hover:text-blue-80">
             ${product.attributes.price}
           </p>
         </header>

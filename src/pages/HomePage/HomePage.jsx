@@ -72,7 +72,7 @@ function HomePage() {
       </SectionLayout>
       {/* =====CALL TO ACTION===== */}
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow bg-purple">
-        <article className="max-w-screen-xl py-12 mx-auto sm:py-16">
+        <article className="max-w-screen-xl py-12 mx-auto ">
           <main className="flex flex-col items-center justify-between gap-4 rounded-lg sm:flex-row">
             <header className="text-center sm:text-left">
               <h2 className="mb-2 text-2xl font-bold text-white sm:mb-1 md:text-4xl">Potencia tu Juego</h2>
@@ -88,7 +88,7 @@ function HomePage() {
       </SectionLayout>
       {/* =====CATEGORIES===== */}
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
-        <article className="grid max-w-screen-xl gap-8 pb-12 mx-auto sm:grid-cols-2 ">
+        <article className="grid max-w-screen-xl gap-8 py-12 mx-auto sm:grid-cols-2 ">
           <a
             href="/shop"
             className="relative flex flex-col items-center gap-2 py-10 overflow-hidden bg-gray-100 h-96 group"
@@ -153,48 +153,6 @@ function HomePage() {
         </article>
       </SectionLayout>
       {/* =====FEATURES===== */}
-      <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow bg-purple">
-        <article className="max-w-screen-xl px-4 py-10 mx-auto lg:py-20">
-          <main className="lg:grid lg:grid-cols-12 lg:gap-16 lg:items-center">
-            <div className="lg:col-span-7">
-              <div className="grid items-center grid-cols-12 gap-2 sm:gap-6 lg:-translate-x-10">
-                <div className="col-span-4">
-                  <img className="object-cover rounded-xl" src={StockImage1} alt="Image Description" />
-                </div>
-
-                <div className="col-span-3">
-                  <img className="object-cover rounded-xl h-72" src={StockImage2} alt="Image Description" />
-                </div>
-
-                <div className="col-span-5">
-                  <img className="object-cover rounded-xl h-96" src={StockImage3} alt="Image Description" />
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-5 sm:mt-10 lg:mt-0 lg:col-span-5">
-              <div className="space-y-6 sm:space-y-8">
-                <div className="space-y-2 md:space-y-4">
-                  <h2 className="text-3xl font-bold sm:text-4xl text-cyan-400">Nuestro Compromiso</h2>
-                  <p className="text-sm text-gray-200 sm:text-base">
-                    En UpdateEC, nos comprometemos a ofrecer calidad excepcional, servicio confiable y precios justos.
-                    Eleva tu experiencia gamer con nosotros.
-                  </p>
-                </div>
-
-                <ul role="list" className="space-y-2 sm:space-y-4">
-                  {commitmentPoints.map((point, index) => (
-                    <li key={index} className="flex items-center space-x-2">
-                      <HiOutlineCheckCircle className="text-2xl text-cyan-400 sm:text-3xl" />
-                      <p className="text-sm text-gray-200 sm:text-base">{point.text}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </main>
-        </article>
-      </SectionLayout>
     </section>
   )
 }
