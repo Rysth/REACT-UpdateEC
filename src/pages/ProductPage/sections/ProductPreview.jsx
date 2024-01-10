@@ -36,7 +36,7 @@ function ProductPreview() {
         <header className="space-y-1 sm:space-y-4">
           <h2 className="text-lg font-bold uppercase sm:text-xl md:text-3xl">{foundProduct.attributes.name}</h2>
           <p className="text-sm">
-            Stock: <span className="text-purple-700">{foundProduct.attributes.quantity} unidades disponibles</span>
+            Stock: <span className="text-blue-700">{foundProduct.attributes.quantity} unidades disponibles</span>
           </p>
           <hr className="block h-1 bg-gray-200 rounded" />
         </header>
@@ -51,7 +51,7 @@ function ProductPreview() {
               color="blue"
             >{`Marca: ${foundProduct.attributes.brand.data.attributes.name}`}</Badge>
           </div>
-          <h2 className="my-3 text-xl font-bold text-purple-700 uppercase truncate md:text-3xl">
+          <h2 className="my-3 text-xl font-bold text-blue-700 uppercase truncate md:text-3xl">
             ${foundProduct.attributes.price}
           </h2>
           <div className="text-xs sm:text-sm max-h-[15rem] overflow-hidden">
@@ -88,8 +88,8 @@ function ProductPreview() {
           </div>
           <Button
             type="button"
-            color="purple"
-            className="w-3/4 gap-1 bg-purple-700 rounded"
+            color="blue"
+            className="w-3/4 gap-1 bg-blue-700 rounded"
             onClick={() => handleAddToCart(quantity)}
             disabled={isAddToCartDisabled}
           >
