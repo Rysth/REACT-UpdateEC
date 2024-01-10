@@ -11,8 +11,8 @@ function CategoryCard({ imageSrc, category }) {
             className="object-contain w-full h-full transition duration-500 group-hover:scale-110"
           />
         </picture>
-        <main className="grid text-center text-gray-900 place-items-centerflex-1">
-          <h3 className="text-xl">{category}</h3>
+        <main className="grid flex-1 text-center text-gray-900 place-items-center">
+          <h3 className="text-lg">{category}</h3>
         </main>
       </a>
     </article>

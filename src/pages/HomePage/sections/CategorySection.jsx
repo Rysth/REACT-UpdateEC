@@ -22,7 +22,7 @@ function CategorySection() {
             <Button
               size="sm"
               href="/shop"
-              className="p-1 transition bg-purple-700 group-hover:bg-purple-800 sm:px-4 hover:shadow-xl md:hover:scale-105"
+              className="p-1 transition bg-blue-700 group-hover:bg-blue-800 sm:px-4 hover:shadow-xl md:hover:scale-105"
               pill
             >
               Comprar Ahora
@@ -44,7 +44,7 @@ function CategorySection() {
             <Button
               size="sm"
               href="/shop"
-              className="p-1 transition bg-purple-700 group-hover:bg-purple-800 sm:px-4 hover:shadow-xl md:hover:scale-105"
+              className="p-1 transition bg-blue-700 group-hover:bg-blue-800 sm:px-4 hover:shadow-xl md:hover:scale-105"
               pill
             >
               Comprar Ahora

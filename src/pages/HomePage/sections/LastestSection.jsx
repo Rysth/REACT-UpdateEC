@@ -28,7 +28,7 @@ function LastestSection() {
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Últimos Productos</h2>
           <a href="/shop" className="flex items-center gap-1 text-sm transition duration-200 hover:translate-x-2">
             Más Productos
-            <HiArrowRight className="text-purple-700" />
+            <HiArrowRight className="text-blue-700" />
           </a>
         </header>
         <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" centerMode draggable={false}>

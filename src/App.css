@@ -50,15 +50,6 @@ body {
   font-family: var(--FF-poppins);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: var(--FF-signate-grotesk);
-  font-family: var(--FF-ica-rubrik);
-}
-
 p,
 button,
 input,
