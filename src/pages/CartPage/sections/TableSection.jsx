@@ -35,13 +35,13 @@ function TableSection({ cartItems }) {
 
   return (
     <SectionLayout>
-      <ConfirmModal
-        isOpen={openModal}
-        onClose={() => setOpenModal(false)}
-        onConfirm={confirmRemove}
-        title="¿Desea eliminar el producto?"
-      />
       <article className="max-w-screen-xl pt-8 mx-auto space-y-4">
+        <ConfirmModal
+          isOpen={openModal}
+          onClose={() => setOpenModal(false)}
+          onConfirm={confirmRemove}
+          title="¿Desea eliminar el producto?"
+        />
         <header className="grid gap-2">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Carrito de Compras</h2>
         </header>

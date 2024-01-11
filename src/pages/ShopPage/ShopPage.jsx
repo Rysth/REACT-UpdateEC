@@ -53,22 +53,26 @@ function ShopPage() {
     }
   }, [debouncedSearch])
 
+  if (loading) {
+    return <LoadingCard />
+  }
+
   return (
     <article>
       <BreadCrumb paths={[{ name: 'Tienda', href: '/', active: true }]} />
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
         <article className="max-w-screen-xl py-12 mx-auto">
           <header className="flex flex-col items-center justify-between gap-3 sm:flex-row">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Nuestros Productos</h2>
-            <div className="flex flex-col items-center gap-2 sm:flex-row">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl sm:w-2/4">Nuestros Productos</h2>
+            <div className="flex flex-col items-center w-full gap-2 sm:justify-end sm:flex-row">
               <TextInput
                 placeholder="Buscar..."
-                className="w-full sm:w-96"
+                className="w-full sm:w-60"
                 defaultValue={searchData}
                 onChange={onSearchChange}
               />
               <SearchSelect
-                className="z-40 max-w-xs rounded"
+                className="z-40 rounded sm:w-60"
                 placeholder="Categoría"
                 onValueChange={onCategoryChange}
                 value={categoryData}
@@ -84,7 +88,6 @@ function ShopPage() {
         </article>
       </SectionLayout>
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
-        {loading && <LoadingCard />}
         {filteredArray.length === 0 && !loading ? (
           <header className="grid w-full h-20 max-w-screen-xl py-2 mx-auto bg-red-500 place-items-center">
             <h3 className="w-full text-lg font-bold text-center text-white uppercase">¡Productos no Encontrados!</h3>

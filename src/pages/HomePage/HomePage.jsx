@@ -1,14 +1,11 @@
 import { Button } from 'flowbite-react'
 import { useEffect } from 'react'
-import { HiArrowRight, HiOutlineCheckCircle, HiOutlineShoppingCart } from 'react-icons/hi2'
+import { HiArrowRight, HiOutlineShoppingCart } from 'react-icons/hi2'
 import Carousel from 'react-multi-carousel'
 import { useDispatch, useSelector } from 'react-redux'
 import CategoryOne from '../../assets/PNG/categories/category_1.png'
 import CategoryTwo from '../../assets/PNG/categories/category_2.png'
 import ProductImage from '../../assets/PNG/products/product_2.png'
-import StockImage1 from '../../assets/PNG/stock/stock_2.jpg'
-import StockImage2 from '../../assets/PNG/stock/stock_3.jpg'
-import StockImage3 from '../../assets/PNG/stock/stock_4.jpg'
 import ProductCard from '../../components/ui/ProductCard/ProductCard'
 import SectionLayout from '../../layouts/SectionLayout'
 import { fetchLastestProducts } from '../../redux/slices/productSlice'
@@ -30,11 +27,6 @@ function HomePage() {
       items: 1,
     },
   }
-  const commitmentPoints = [
-    { text: 'Rendimiento Impecable' },
-    { text: 'Calidad Insuperable' },
-    { text: 'Precios Accesibles' },
-  ]
 
   useEffect(() => {
     dispatch(fetchLastestProducts())
@@ -87,7 +79,7 @@ function HomePage() {
       {/* =====CATEGORIES===== */}
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
         <article className="grid max-w-screen-xl gap-8 py-12 mx-auto sm:grid-cols-2 ">
-          <a
+          <div
             href="/shop"
             className="relative flex flex-col items-center gap-2 py-10 overflow-hidden bg-gray-100 h-96 group"
           >
@@ -108,8 +100,8 @@ function HomePage() {
                 Comprar Ahora
               </Button>
             </main>
-          </a>
-          <a
+          </div>
+          <div
             href="/shop"
             className="relative flex flex-col items-center gap-2 py-10 overflow-hidden bg-gray-100 h-96 group"
           >
@@ -130,7 +122,7 @@ function HomePage() {
                 Comprar Ahora
               </Button>
             </main>
-          </a>
+          </div>
         </article>
       </SectionLayout>
       {/* =====LASTEST PRODUCTS===== */}
