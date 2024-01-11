@@ -11,13 +11,36 @@ const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
   const [{ isPending }] = usePayPalScriptReducer()
 
   const createOrderHandler = async (data, actions) => {
+    const items = cartItems.map((item) => ({
+      name: item.attributes.name,
+      unit_amount: {
+        currency_code: 'USD',
+        value: item.attributes.price.toFixed(2),
+      },
+      quantity: item.quantity.toString(),
+    }))
+
+    // Calculate the subtotal of items (unit_amount * quantity for each item)
+    const itemSubtotal = items
+      .reduce((sum, item) => {
+        return sum + parseFloat(item.unit_amount.value) * parseInt(item.quantity)
+      }, 0)
+      .toFixed(2)
+
     return actions.order
       .create({
         purchase_units: [
           {
             amount: {
-              value: totalAmount.toFixed(2),
+              value: itemSubtotal,
+              breakdown: {
+                item_total: {
+                  currency_code: 'USD', // Change currency code if needed
+                  value: itemSubtotal,
+                },
+              },
             },
+            items: items,
           },
         ],
       })
