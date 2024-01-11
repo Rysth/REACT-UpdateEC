@@ -17,14 +17,46 @@ import FormSignIn from './pages/SessionPage/sections/FormSignIn'
 import FormSignUp from './pages/SessionPage/sections/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
 import OrderPage from './pages/OrderPage/OrderPage'
+import { Button } from 'flowbite-react'
+import { useEffect, useState } from 'react'
+import { HiArrowUp } from 'react-icons/hi'
 
 function App() {
+  const [isVisible, setIsVisible] = useState(false)
   const { active } = useSelector((store) => store.session)
+
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true)
+    } else {
+      setIsVisible(false)
+    }
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility)
+
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility)
+    }
+  }, [])
 
   return (
     <BrowserRouter>
       <ToastContainer position="bottom-right" />
       <NavigationBar />
+      {isVisible && (
+        <Button onClick={scrollToTop} className="fixed shadow w-14 h-14 bottom-5 right-5 z-[5000]" color="blue" pill>
+          <HiArrowUp className="text-lg" />
+        </Button>
+      )}
       <main className="min-h-screen">
         <Routes>
           <Route

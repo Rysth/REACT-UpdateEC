@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { createOrder } from '../../../redux/slices/orderSlice'
 import { cartActions } from '../../../redux/slices/cartSlice'
 import PropTypes from 'prop-types'
+import { Spinner } from 'flowbite-react'
 import { useEffect } from 'react'
 
 const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
@@ -15,7 +16,7 @@ const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
         purchase_units: [
           {
             amount: {
-              value: totalAmount.toString(),
+              value: totalAmount.toFixed(2),
             },
           },
         ],
@@ -45,16 +46,22 @@ const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
 
   useEffect(() => {}, [totalAmount])
 
+  if (isPending) {
+    return (
+      <main className="grid h-full place-items-center">
+        <Spinner size="xl" />
+      </main>
+    )
+  }
+
   return (
-    <>
-      {isPending && <div>Loading...</div>}
-      <PayPalButtons
-        style={{ layout: 'vertical' }}
-        createOrder={createOrderHandler}
-        onApprove={onApproveHandler}
-        disabled={isDisabled}
-      />
-    </>
+    <PayPalButtons
+      style={{ layout: 'vertical' }}
+      createOrder={createOrderHandler}
+      onApprove={onApproveHandler}
+      disabled={isDisabled}
+      forceReRender={[totalAmount.toFixed(2)]}
+    />
   )
 }
 

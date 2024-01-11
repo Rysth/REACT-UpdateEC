@@ -1,14 +1,7 @@
 import { Button, Dropdown, Navbar } from 'flowbite-react'
 import { useState } from 'react'
 import { HiLogout } from 'react-icons/hi'
-import {
-  HiListBullet,
-  HiMiniBars3BottomRight,
-  HiOutlineShoppingBag,
-  HiOutlineUser,
-  HiUser,
-  HiMagnifyingGlass,
-} from 'react-icons/hi2'
+import { HiListBullet, HiMiniBars3BottomRight, HiOutlineShoppingBag, HiOutlineUser, HiUser } from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
 import BrandImage from '../../../assets/SVG/brand_white.svg'
 import { sessionActions } from '../../../redux/slices/sessionSlice'
@@ -27,7 +20,7 @@ function NavigationBar() {
   }
 
   return (
-    <header className="fixed top-0 w-full z-[999] animate__animated animate__fadeInDown p-2 sm:p-4">
+    <header className="fixed top-0 w-full z-[9999] animate__animated animate__fadeInDown p-2 sm:p-4">
       <ConfirmModal
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
