@@ -20,7 +20,7 @@ function TableSection({ cartItems }) {
 
   if (cartItems.length === 0) {
     return (
-      <header className="flex flex-col items-center justify-center w-full h-[100vh] max-w-screen-xl gap-2 py-2 mx-auto place-items-center">
+      <header className="flex flex-col items-center justify-center w-full max-w-screen-xl min-h-screen gap-2 py-2 mx-auto place-items-center">
         <HiOutlineShoppingCart className="text-8xl" />
         <h3 className="w-full text-lg font-bold text-center text-gray-900 uppercase sm:text-2xl ">
           ¡Tú Carrito está Vacío!
@@ -35,7 +35,7 @@ function TableSection({ cartItems }) {
 
   return (
     <SectionLayout>
-      <article className="max-w-screen-xl pt-8 mx-auto space-y-4">
+      <article className="max-w-screen-xl min-h-screen py-12 mx-auto space-y-4">
         <ConfirmModal
           isOpen={openModal}
           onClose={() => setOpenModal(false)}

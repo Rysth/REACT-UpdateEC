@@ -34,7 +34,7 @@ export const fetchProducts = createAsyncThunk('product/fetchProducts', async (pa
       params: {
         ...fetchProductsConfig.params,
         'pagination[page]': page,
-        'pagination[pageSize]': 15,
+        'pagination[pageSize]': 10,
       },
     }
     const response = await axios.get(`${API_URL}/products`, fetchProductsWithPagination)

@@ -66,7 +66,7 @@ function OrderPage() {
         ]}
       />
       <SectionLayout>
-        <article className="max-w-screen-xl py-12 mx-auto space-y-10">
+        <article className="max-w-screen-xl min-h-screen py-12 mx-auto space-y-10">
           <header className="grid gap-3">
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Mis Ordenes</h2>
             <TextInput
