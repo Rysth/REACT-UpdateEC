@@ -53,7 +53,11 @@ const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
     const orderDetails = await actions.order.capture()
     const orderData = {
       date: new Date().toISOString(), // Current date
-      products: cartItems.map((item) => item.id),
+      orderProductDetails: cartItems.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+        subtotal: item.quantity * item.attributes.price,
+      })),
       user: user.id,
     }
     const paymentData = {

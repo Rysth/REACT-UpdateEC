@@ -31,7 +31,7 @@ export const fetchOrders = createAsyncThunk('order/fetchOrders', async (userID) 
 export const createOrder = createAsyncThunk('order/createOrder', async ({ orderData, paymentData }) => {
   try {
     // First, save the payment details
-    await axios
+    const orderID = await axios
       .post(
         `${API_URL}/payment-details`,
         { data: paymentData },
@@ -60,8 +60,29 @@ export const createOrder = createAsyncThunk('order/createOrder', async ({ orderD
         ) // return the next promise
       })
       .then((orderResponse) => {
-        return orderResponse.data // final data to return
+        return orderResponse.data.data.id
       })
+
+    for (const detail of orderData.orderProductDetails) {
+      await axios.post(
+        `${API_URL}/order-product-details`,
+        {
+          data: {
+            order: orderID,
+            product: detail.productId,
+            quantity: detail.quantity,
+            subtotal: detail.subtotal,
+          },
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${API_KEY}`,
+          },
+        },
+      )
+    }
+
     return true
   } catch (error) {
     throw new Error(`Error: ${error.message}`)
