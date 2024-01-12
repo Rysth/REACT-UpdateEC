@@ -3,19 +3,44 @@ import { useDispatch } from 'react-redux'
 import { createOrder } from '../../../redux/slices/orderSlice'
 import { cartActions } from '../../../redux/slices/cartSlice'
 import PropTypes from 'prop-types'
+import { Spinner } from 'flowbite-react'
+import { useEffect } from 'react'
 
 const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
   const dispatch = useDispatch()
   const [{ isPending }] = usePayPalScriptReducer()
 
   const createOrderHandler = async (data, actions) => {
+    const items = cartItems.map((item) => ({
+      name: item.attributes.name,
+      unit_amount: {
+        currency_code: 'USD',
+        value: item.attributes.price.toFixed(2),
+      },
+      quantity: item.quantity.toString(),
+    }))
+
+    // Calculate the subtotal of items (unit_amount * quantity for each item)
+    const itemSubtotal = items
+      .reduce((sum, item) => {
+        return sum + parseFloat(item.unit_amount.value) * parseInt(item.quantity)
+      }, 0)
+      .toFixed(2)
+
     return actions.order
       .create({
         purchase_units: [
           {
             amount: {
-              value: totalAmount.toString(),
+              value: itemSubtotal,
+              breakdown: {
+                item_total: {
+                  currency_code: 'USD', // Change currency code if needed
+                  value: itemSubtotal,
+                },
+              },
             },
+            items: items,
           },
         ],
       })
@@ -28,7 +53,11 @@ const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
     const orderDetails = await actions.order.capture()
     const orderData = {
       date: new Date().toISOString(), // Current date
-      products: cartItems.map((item) => item.id),
+      orderProductDetails: cartItems.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+        subtotal: item.quantity * item.attributes.price,
+      })),
       user: user.id,
     }
     const paymentData = {
@@ -42,16 +71,24 @@ const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
     dispatch(cartActions.clearCart())
   }
 
+  useEffect(() => {}, [totalAmount])
+
+  if (isPending) {
+    return (
+      <main className="grid h-full place-items-center">
+        <Spinner size="xl" />
+      </main>
+    )
+  }
+
   return (
-    <>
-      {isPending && <div>Loading...</div>}
-      <PayPalButtons
-        style={{ layout: 'vertical' }}
-        createOrder={createOrderHandler}
-        onApprove={onApproveHandler}
-        disabled={isDisabled}
-      />
-    </>
+    <PayPalButtons
+      style={{ layout: 'vertical' }}
+      createOrder={createOrderHandler}
+      onApprove={onApproveHandler}
+      disabled={isDisabled}
+      forceReRender={[totalAmount.toFixed(2)]}
+    />
   )
 }
 

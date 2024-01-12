@@ -22,7 +22,7 @@
 }
 
 :root {
-  --CL-primary-purple: #1d1a31;
+  --CL-primary-purple: #171527;
   --CL-neutral-white: #fff;
   --CL-neutral-black: #161616;
   --FF-signate-grotesk: 'Signate Grotesk', sans-serif;
@@ -48,15 +48,6 @@ body {
 
 body {
   font-family: var(--FF-poppins);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: var(--FF-signate-grotesk);
-  font-family: var(--FF-ica-rubrik);
 }
 
 p,

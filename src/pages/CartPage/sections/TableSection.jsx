@@ -5,6 +5,8 @@ import ConfirmModal from '../../../components/modal/ConfirmModal/ConfirmModal'
 import SectionLayout from '../../../layouts/SectionLayout'
 import { cartActions } from '../../../redux/slices/cartSlice'
 import TableItem from '../components/TableItem'
+import { Button } from 'flowbite-react'
+import { HiOutlineShoppingCart, HiArrowLeft } from 'react-icons/hi'
 
 function TableSection({ cartItems }) {
   const dispatch = useDispatch()
@@ -16,15 +18,30 @@ function TableSection({ cartItems }) {
     setOpenModal(false)
   }
 
+  if (cartItems.length === 0) {
+    return (
+      <header className="flex flex-col items-center justify-center w-full max-w-screen-xl min-h-screen gap-2 py-2 mx-auto place-items-center">
+        <HiOutlineShoppingCart className="text-8xl" />
+        <h3 className="w-full text-lg font-bold text-center text-gray-900 uppercase sm:text-2xl ">
+          ¡Tú Carrito está Vacío!
+        </h3>
+        <Button href="/shop" color="blue" size="sm">
+          <HiArrowLeft className="mr-1" />
+          Regresar
+        </Button>
+      </header>
+    )
+  }
+
   return (
     <SectionLayout>
-      <ConfirmModal
-        isOpen={openModal}
-        onClose={() => setOpenModal(false)}
-        onConfirm={confirmRemove}
-        title="¿Desea eliminar el producto?"
-      />
-      <article className="max-w-screen-xl pt-8 mx-auto space-y-4">
+      <article className="max-w-screen-xl min-h-screen py-12 mx-auto space-y-4">
+        <ConfirmModal
+          isOpen={openModal}
+          onClose={() => setOpenModal(false)}
+          onConfirm={confirmRemove}
+          title="¿Desea eliminar el producto?"
+        />
         <header className="grid gap-2">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Carrito de Compras</h2>
         </header>

@@ -30,7 +30,7 @@ export const createSession = createAsyncThunk('session/createSession', async (us
     const { status } = error.response.data.error
 
     if (status === 400) {
-      toast.error('Email/Contraseña incorrectas', { theme: 'colored' })
+      toast.error('Email/Contraseña incorrectas')
       throw new Error('Error login the account')
     }
 
@@ -52,7 +52,7 @@ export const createAccount = createAsyncThunk('session/createAccount', async (us
     const { status } = error.response.data.error
 
     if (status === 400) {
-      toast.error('Email/Usuario ya existente', { theme: 'colored' })
+      toast.error('Email/Usuario ya existente')
       throw new Error('Error creating the account')
     }
 
@@ -65,7 +65,7 @@ const sessionSlice = createSlice({
   initialState,
   reducers: {
     destroySession(state) {
-      toast.info('Cerrando Sesión...', { theme: 'colored' })
+      toast.info('Cerrando Sesión...')
       state.active = false
       state.userData = {}
       state.authToken = ''
@@ -76,7 +76,7 @@ const sessionSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createSession.pending, () => {
-        toast.info('Iniciando Sesión...', { theme: 'colored' })
+        toast.info('Iniciando Sesión...')
       })
       .addCase(createSession.fulfilled, (state, action) => {
         state.active = true
@@ -85,7 +85,7 @@ const sessionSlice = createSlice({
         state.authToken = action.payload.jwt
         sessionStorage.setItem('userData', JSON.stringify(state.userData))
         sessionStorage.setItem('authToken', state.authToken)
-        toast.success('Sesión Iniciada', { theme: 'colored' })
+        toast.success('Sesión Iniciada')
       })
       .addCase(createSession.rejected, (state, action) => {
         state.loading = false
@@ -93,7 +93,7 @@ const sessionSlice = createSlice({
       })
       .addCase(createAccount.pending, (state) => {
         state.loading = true
-        toast.info('Envíando...', { theme: 'colored' })
+        toast.info('Envíando...')
       })
       .addCase(createAccount.fulfilled, (state, action) => {
         state.active = true
@@ -102,7 +102,7 @@ const sessionSlice = createSlice({
         state.authToken = action.payload.jwt
         sessionStorage.setItem('userData', JSON.stringify(state.userData))
         sessionStorage.setItem('authToken', state.authToken)
-        toast.success('Cuenta Creada', { theme: 'colored' })
+        toast.success('Cuenta Creada')
       })
       .addCase(createAccount.rejected, (state, action) => {
         state.loading = false
