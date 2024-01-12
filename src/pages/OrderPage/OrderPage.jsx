@@ -1,12 +1,12 @@
 import { Badge, Button, Table, TextInput } from 'flowbite-react'
+import debounce from 'lodash/debounce'
 import { useEffect, useState } from 'react'
+import { HiArrowLeft, HiDocumentSearch } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
+import LoadingCard from '../../components/ui/LoadingCard/LoadingCard'
 import SectionLayout from '../../layouts/SectionLayout'
 import { fetchOrders, orderActions } from '../../redux/slices/orderSlice'
-import debounce from 'lodash/debounce'
-import { HiOutlineShoppingCart, HiArrowLeft, HiDocumentSearch } from 'react-icons/hi'
-import LoadingCard from '../../components/ui/LoadingCard/LoadingCard'
 
 function OrderPage() {
   const dispatch = useDispatch()
@@ -98,7 +98,7 @@ function OrderPage() {
                       <Table.Cell className="font-medium text-gray-900">{order.attributes.date}</Table.Cell>
                       <Table.Cell>{paymentID}</Table.Cell>
                       <Table.Cell>
-                        {true ? (
+                        {isCompleted ? (
                           <Badge color="blue" className="max-w-max">
                             Completo
                           </Badge>
