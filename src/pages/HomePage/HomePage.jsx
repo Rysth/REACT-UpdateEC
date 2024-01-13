@@ -16,14 +16,14 @@ function HomePage() {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 5,
     },
     tablet: {
       breakpoint: { max: 768, min: 640 },
-      items: 2,
+      items: 3,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 640, min: 0 },
       items: 1,
     },
   }
@@ -135,7 +135,7 @@ function HomePage() {
               <HiArrowRight className="text-blue-700" />
             </a>
           </header>
-          <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" centerMode draggable={false}>
+          <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" draggable={false}>
             {lastestProducts.map((product, index) => (
               <ProductCard product={product} key={index} />
             ))}
