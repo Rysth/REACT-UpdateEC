@@ -53,10 +53,6 @@ function ShopPage() {
     }
   }, [debouncedSearch])
 
-  if (loading) {
-    return <LoadingCard />
-  }
-
   return (
     <article>
       <BreadCrumb paths={[{ name: 'Tienda', href: '/', active: true }]} />
@@ -95,11 +91,14 @@ function ShopPage() {
         ) : (
           <article className="max-w-screen-xl min-h-screen pb-12 mx-auto">
             <main className="flex flex-col flex-1 gap-10">
-              <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-5">
-                {filteredArray.map((product, index) => (
-                  <ProductCard product={product} key={index} />
-                ))}
-              </ul>
+              {loading && <LoadingCard />}
+              {!loading && (
+                <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-5">
+                  {filteredArray.map((product, index) => (
+                    <ProductCard product={product} key={index} />
+                  ))}
+                </ul>
+              )}
               <footer className="grid place-items-center">
                 <Button type="button" color="blue" className="" onClick={loadMoreProducts} disabled={isFiltered}>
                   Mostrar Más
