@@ -91,6 +91,7 @@ function OrderPage() {
                   const paymentID = order.attributes.payment_detail.data.attributes.payment_id
                   const paymentStatus = order.attributes.payment_detail.data.attributes.payment_status
                   const paymentTotal = order.attributes.payment_detail.data.attributes.amount_paid
+                  const orderStatus = order.attributes.order_status.data.attributes.name
                   const isCompleted = paymentStatus === 'COMPLETED'
 
                   return (
@@ -98,15 +99,9 @@ function OrderPage() {
                       <Table.Cell className="font-medium text-gray-900">{order.attributes.date}</Table.Cell>
                       <Table.Cell>{paymentID}</Table.Cell>
                       <Table.Cell>
-                        {isCompleted ? (
-                          <Badge color="blue" className="max-w-max">
-                            Completo
-                          </Badge>
-                        ) : (
-                          <Badge color="indigo" className="max-w-max">
-                            Pendiente
-                          </Badge>
-                        )}
+                        <Badge color="blue" className="max-w-max">
+                          {orderStatus}
+                        </Badge>
                       </Table.Cell>
                       <Table.Cell>PayPal</Table.Cell>
                       <Table.Cell>

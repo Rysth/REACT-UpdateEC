@@ -17,7 +17,7 @@ const initialState = {
 export const fetchOrders = createAsyncThunk('order/fetchOrders', async (userID) => {
   try {
     const response = await axios.get(`${API_URL}/orders`, {
-      params: { 'filters[user][id][$eq]': userID, populate: 'payment_detail', sort: 'createdAt:desc' },
+      params: { 'filters[user][id][$eq]': userID, populate: 'payment_detail,order_status', sort: 'createdAt:desc' },
       headers: { Authorization: `Bearer ${API_KEY}` },
     })
     return response.data
@@ -118,6 +118,7 @@ const orderSlice = createSlice({
       .addCase(fetchOrders.fulfilled, (state, action) => {
         state.loading = false
         state.ordersArray = state.ordersOriginal = action.payload.data
+        console.log(action.payload.data)
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.loading = false

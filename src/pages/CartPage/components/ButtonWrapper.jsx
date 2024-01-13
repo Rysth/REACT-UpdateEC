@@ -59,6 +59,7 @@ const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
         subtotal: item.quantity * item.attributes.price,
       })),
       user: user.id,
+      order_status: 1,
     }
     const paymentData = {
       payment_id: orderDetails.id,
