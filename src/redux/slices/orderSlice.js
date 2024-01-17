@@ -27,7 +27,6 @@ export const fetchOrders = createAsyncThunk('order/fetchOrders', async (userID) 
     })
     return response.data
   } catch (error) {
-    console.log(error)
     throw new Error(`Error: ${error.message}`)
   }
 })
@@ -118,16 +117,15 @@ const orderSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createOrder.pending, () => {
-        toast.info('Generando orden...', { theme: 'colored', autoClose: 1000 })
+        toast.info('Generando orden...', { autoClose: 2000 })
       })
       .addCase(createOrder.fulfilled, (state) => {
         state.loading = false
-        toast.success('¡Orden Generada!', { theme: 'colored' })
+        toast.success('¡Orden Generada!', { autoClose: 2000 })
       })
       .addCase(fetchOrders.fulfilled, (state, action) => {
         state.loading = false
         state.ordersArray = state.ordersOriginal = action.payload.data
-        console.log(state.ordersArray)
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.loading = false

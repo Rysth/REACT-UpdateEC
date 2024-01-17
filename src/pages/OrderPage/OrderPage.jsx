@@ -73,13 +73,15 @@ function OrderPage() {
       />
       <Modal className="z-[10000]" show={openModal} onClose={() => setOpenModal(false)}>
         <Modal.Header className="text-white bg-blue-600 rounded-t-lg ">
-          <p className="text-center text-white sm:text-left">
-            {orderSelected && `Orden #${orderSelected.attributes.payment_detail.data.attributes.payment_id}`}
-          </p>
+          <p className="text-center text-white sm:text-left">{orderSelected && `Orden #${orderSelected.id}`}</p>
         </Modal.Header>
         <Modal.Body>
           <div className="grid gap-2 rounded sm:grid-cols-2">
-            <div className="space-y-2">
+            <div className="space-y-2 text-center sm:text-left">
+              <h4 className="text-sm">
+                <span className="font-bold">Orden:</span>{' '}
+                {orderSelected && orderSelected.attributes.payment_detail.data.attributes.payment_id}
+              </h4>
               <h4 className="text-sm">
                 <span className="font-bold">Comprador:</span>{' '}
                 {orderSelected && orderSelected.attributes.payment_detail.data.attributes.payer_id}
@@ -92,7 +94,15 @@ function OrderPage() {
               </h4>
             </div>
             <div className="row-start-1 space-y-2 sm:col-start-2">
-              <h4 className="grid h-full py-4 text-xl font-bold text-white uppercase bg-indigo-500 rounded-md place-items-center">
+              <h4
+                className={`grid h-full py-4 text-xl font-bold text-white uppercase rounded-md place-items-center ${
+                  orderSelected && orderSelected.attributes.order_status.data.id === 1
+                    ? 'bg-gray-500'
+                    : orderSelected && orderSelected.attributes.order_status.data.id === 2
+                      ? 'bg-blue-500'
+                      : 'bg-green-500'
+                } `}
+              >
                 {orderSelected && orderSelected.attributes.order_status.data.attributes.name}
               </h4>
             </div>
@@ -108,11 +118,12 @@ function OrderPage() {
               orderSelected.attributes.order_product_details.data.map((product) => {
                 const productData = product.attributes
                 return (
-                  <div className="grid grid-cols-3 text-sm text-center">
+                  <div className="grid grid-cols-3 text-sm text-center" key={product.id}>
                     <a
                       href={`/shop/${productData.product.data.id}`}
                       target="_blank"
-                      className="text-blue-500 underline uppercase truncate"
+                      className="text-blue-500 underline uppercase truncate hover:text-black"
+                      rel="noreferrer"
                     >
                       {productData.product.data.attributes.name}
                     </a>
@@ -160,6 +171,12 @@ function OrderPage() {
                   const paymentStatus = order.attributes.payment_detail.data.attributes.payment_status
                   const paymentTotal = order.attributes.payment_detail.data.attributes.amount_paid
                   const orderStatus = order.attributes.order_status.data.attributes.name
+                  const orderStatusBadge =
+                    order.attributes.order_status.data.id === 1
+                      ? 'gray'
+                      : order.attributes.order_status.data.id === 2
+                        ? 'blue'
+                        : 'green'
                   const isCompleted = paymentStatus === 'COMPLETED'
 
                   return (
@@ -167,7 +184,7 @@ function OrderPage() {
                       <Table.Cell className="font-medium text-gray-900">{order.attributes.date}</Table.Cell>
                       <Table.Cell>{paymentID}</Table.Cell>
                       <Table.Cell>
-                        <Badge color="blue" className="max-w-max">
+                        <Badge color={orderStatusBadge} className="max-w-max">
                           {orderStatus}
                         </Badge>
                       </Table.Cell>
