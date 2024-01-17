@@ -5,7 +5,7 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi'
 
 const ConfirmModal = ({ isOpen, onClose, onConfirm, title }) => {
   return (
-    <Modal show={isOpen} size="md" onClose={onClose} popup dismissible className="z-[1000]">
+    <Modal show={isOpen} size="md" onClose={onClose} popup dismissible className="z-[10000]">
       <Modal.Header />
       <Modal.Body>
         <div className="text-center">

@@ -1,4 +1,4 @@
-import { Badge, Button, Table, TextInput } from 'flowbite-react'
+import { Badge, Button, Modal, Table, TextInput } from 'flowbite-react'
 import debounce from 'lodash/debounce'
 import { useEffect, useState } from 'react'
 import { HiArrowLeft, HiDocumentSearch } from 'react-icons/hi'
@@ -11,8 +11,9 @@ import { fetchOrders, orderActions } from '../../redux/slices/orderSlice'
 function OrderPage() {
   const dispatch = useDispatch()
   const { userData } = useSelector((store) => store.session)
-  const { ordersArray, loading } = useSelector((store) => store.order)
+  const { ordersArray, loading, orderSelected } = useSelector((store) => store.order)
   const [searchData, setSearchData] = useState('')
+  const [openModal, setOpenModal] = useState(false)
 
   // Debounced search handler
   const debouncedSearch = debounce((newData) => {
@@ -23,6 +24,11 @@ function OrderPage() {
   const onSearchChange = (event) => {
     const newData = event.target.value
     debouncedSearch(newData)
+  }
+
+  const handleOrderSelected = (orderID) => {
+    dispatch(orderActions.setOrderSelected(orderID))
+    setOpenModal(true)
   }
 
   useEffect(() => {
@@ -65,6 +71,67 @@ function OrderPage() {
           },
         ]}
       />
+      <Modal className="z-[10000]" show={openModal} onClose={() => setOpenModal(false)}>
+        <Modal.Header className="text-white bg-blue-600 rounded-t-lg ">
+          <p className="text-center text-white sm:text-left">
+            {orderSelected && `Orden #${orderSelected.attributes.payment_detail.data.attributes.payment_id}`}
+          </p>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="grid gap-2 rounded sm:grid-cols-2">
+            <div className="space-y-2">
+              <h4 className="text-sm">
+                <span className="font-bold">Comprador:</span>{' '}
+                {orderSelected && orderSelected.attributes.payment_detail.data.attributes.payer_id}
+              </h4>
+              <h4 className="text-sm">
+                <span className="font-bold">Método de Pago:</span> PayPal
+              </h4>
+              <h4 className="text-sm">
+                <span className="font-bold">Fecha:</span> {orderSelected && orderSelected.attributes.date}
+              </h4>
+            </div>
+            <div className="row-start-1 space-y-2 sm:col-start-2">
+              <h4 className="grid h-full py-4 text-xl font-bold text-white uppercase bg-indigo-500 rounded-md place-items-center">
+                {orderSelected && orderSelected.attributes.order_status.data.attributes.name}
+              </h4>
+            </div>
+          </div>
+          <hr className="my-5" />
+          <div className="grid grid-cols-3 mb-3 text-sm text-center">
+            <p className="font-semibold">Producto</p>
+            <p className="font-semibold">Cantidad</p>
+            <p className="font-semibold">Subtotal</p>
+          </div>
+          <div className="grid gap-2">
+            {orderSelected &&
+              orderSelected.attributes.order_product_details.data.map((product) => {
+                const productData = product.attributes
+                return (
+                  <div className="grid grid-cols-3 text-sm text-center">
+                    <a
+                      href={`/shop/${productData.product.data.id}`}
+                      target="_blank"
+                      className="text-blue-500 underline uppercase truncate"
+                    >
+                      {productData.product.data.attributes.name}
+                    </a>
+                    <p>{productData.quantity}</p>
+                    <p>${productData.subtotal}</p>
+                  </div>
+                )
+              })}
+          </div>
+        </Modal.Body>
+        <Modal.Footer className="flex items-center justify-between">
+          <h4 className="text-lg">
+            <span className="font-bold">Total:</span>
+          </h4>
+          <span className="text-lg font-bold text-green-600">
+            ${orderSelected && orderSelected.attributes.payment_detail.data.attributes.amount_paid}
+          </span>
+        </Modal.Footer>
+      </Modal>
       <SectionLayout>
         <article className="max-w-screen-xl min-h-screen py-12 mx-auto space-y-10">
           <header className="grid gap-3">
@@ -85,6 +152,7 @@ function OrderPage() {
                 <Table.HeadCell className="min-w-[10rem]">Método de Pago</Table.HeadCell>
                 <Table.HeadCell>Estado Pago</Table.HeadCell>
                 <Table.HeadCell>Total</Table.HeadCell>
+                <Table.HeadCell className="text-center">Acciones</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
                 {ordersArray.map((order, index) => {
@@ -116,6 +184,11 @@ function OrderPage() {
                         )}
                       </Table.Cell>
                       <Table.Cell className="font-bold text-green-600">${paymentTotal}</Table.Cell>
+                      <Table.Cell className="grid font-bold text-green-600 place-items-center">
+                        <Button size="xs" color="blue" onClick={() => handleOrderSelected(order.id)} id={order.id}>
+                          Ver
+                        </Button>
+                      </Table.Cell>
                     </Table.Row>
                   )
                 })}

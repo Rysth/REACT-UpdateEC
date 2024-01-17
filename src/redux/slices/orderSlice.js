@@ -9,6 +9,7 @@ const API_KEY = import.meta.env.VITE_API_KEY
 const initialState = {
   ordersOriginal: [],
   ordersArray: [],
+  orderSelected: null,
   loading: true,
   error: false,
 }
@@ -17,7 +18,11 @@ const initialState = {
 export const fetchOrders = createAsyncThunk('order/fetchOrders', async (userID) => {
   try {
     const response = await axios.get(`${API_URL}/orders`, {
-      params: { 'filters[user][id][$eq]': userID, populate: 'payment_detail,order_status', sort: 'createdAt:desc' },
+      params: {
+        'filters[user][id][$eq]': userID,
+        populate: 'payment_detail,order_status,order_product_details.product,user',
+        sort: 'createdAt:desc',
+      },
       headers: { Authorization: `Bearer ${API_KEY}` },
     })
     return response.data
@@ -105,6 +110,10 @@ const orderSlice = createSlice({
         element.attributes.payment_detail.data.attributes.payment_id.toLowerCase().includes(searchData),
       )
     },
+    setOrderSelected(state, action) {
+      const orderID = action.payload
+      state.orderSelected = state.ordersOriginal.find((element) => element.id === orderID)
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -118,7 +127,7 @@ const orderSlice = createSlice({
       .addCase(fetchOrders.fulfilled, (state, action) => {
         state.loading = false
         state.ordersArray = state.ordersOriginal = action.payload.data
-        console.log(action.payload.data)
+        console.log(state.ordersArray)
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.loading = false
