@@ -1,6 +1,6 @@
 import { Button } from 'flowbite-react'
 import { useEffect } from 'react'
-import { HiArrowRight, HiOutlineShoppingCart } from 'react-icons/hi2'
+import { HiArrowRight, HiArchiveBox, HiCheckCircle, HiBolt } from 'react-icons/hi2'
 import Carousel from 'react-multi-carousel'
 import { useDispatch, useSelector } from 'react-redux'
 import CategoryOne from '../../assets/PNG/categories/category_1.png'
@@ -36,17 +36,21 @@ function HomePage() {
     <section>
       {/* =====HERO===== */}
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
-        <article className="flex flex-col max-w-screen-xl gap-20 py-24 mx-auto sm:gap-8 md:flex-row ">
+        <article className="flex flex-col max-w-screen-xl gap-12 py-12 mx-auto sm:gap-8 md:flex-row ">
           <header className="flex flex-col justify-center gap-2 text-center sm:gap-0 md:text-left sm:flex-1">
             <p className="text-sm font-semibold text-blue-700 uppercase">Productos Gaming Profesionales</p>
-            <h1 className="my-4 text-5xl font-bold text-black md:text-7xl md:mb-8">Sé Parte de la Elite Gaming</h1>
+            <h1 className="my-1 text-5xl font-bold text-black md:text-8xl md:my-4">Potencia tu Experiencia</h1>
+            <p className="max-w-sm mb-4 text-sm leading-5 text-gray-600 md:text-base">
+              Productos gaming de alta gama, y calidad insuperable en un solo lugar.
+            </p>
             <div className="flex flex-col gap-2.5 sm:flex-row md:justify-start">
               <Button
                 href="/shop"
-                className="p-2 !text-xl transition bg-blue-700 sm:px-4 md:px-6 hover:bg-blue-800 hover:shadow-xl md:hover:translate-x-2"
+                className="p-2 !text-xl transition bg-blue-700 sm:px-4 hover:bg-blue-800 hover:shadow-xl"
+                pill
               >
-                <HiOutlineShoppingCart className="mr-1 text-xl" />
-                Tienda
+                Visitar
+                <HiArrowRight className="ml-1 text-xl" />
               </Button>
             </div>
           </header>
@@ -55,7 +59,7 @@ function HomePage() {
               src={ProductImage}
               loading="lazy"
               alt="Photo by Fakurian Design"
-              className="block object-cover w-full h-full"
+              className="block object-contain w-full h-full"
             />
           </main>
         </article>
@@ -70,7 +74,12 @@ function HomePage() {
                 Encuentra tus herramientas gamer. <br /> ¡Explora y juega mejor!
               </p>
             </header>
-            <Button href="/shop" color="blue" className="w-32 transition">
+            <Button
+              href="/shop"
+              color="blue"
+              pill
+              className="w-32 transition bg-blue-700 sm:px-4 hover:bg-blue-800 hover:shadow-xl"
+            >
               Comenzar
             </Button>
           </main>
@@ -140,6 +149,31 @@ function HomePage() {
               <ProductCard product={product} key={index} />
             ))}
           </Carousel>
+        </article>
+      </SectionLayout>
+      {/* =====LASTEST PRODUCTS===== */}
+      <SectionLayout backgroundColor="bg-purple">
+        <article className="max-w-screen-xl py-12 mx-auto">
+          <main className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
+            <div className="flex flex-col items-center gap-2 p-2 text-white sm:gap-4">
+              <HiArchiveBox className="text-8xl" />
+              <p className="max-w-xs mx-auto leading-7 text-center">
+                Empaquetación <span className="font-bold">100% Confiable</span>. Transporte Insuperable.
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-2 p-2 text-white sm:gap-4">
+              <HiCheckCircle className="text-8xl" />
+              <p className="max-w-xs mx-auto leading-7 text-center">
+                Garantía <span className="font-bold">contra Defectos</span>. Garantía para su Comodidad.
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-2 p-2 text-white sm:gap-4">
+              <HiBolt className="text-8xl" />
+              <p className="max-w-xs mx-auto leading-7 text-center">
+                Entrega <span className="font-bold">Rápida y Segura</span>. Experiencia de Compra Ágil.
+              </p>
+            </div>
+          </main>
         </article>
       </SectionLayout>
     </section>
