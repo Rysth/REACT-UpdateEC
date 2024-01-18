@@ -14,12 +14,6 @@ function ProductPage() {
   const { productID } = useParams()
 
   useEffect(() => {
-    if (foundProduct) {
-      dispatch(fetchReviews(foundProduct.id))
-    }
-  }, [dispatch, foundProduct])
-
-  useEffect(() => {
     dispatch(findProduct(productID))
   }, [dispatch, productID])
 
