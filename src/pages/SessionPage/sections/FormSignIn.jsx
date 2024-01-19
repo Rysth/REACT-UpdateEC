@@ -1,9 +1,9 @@
-import { Button, Label, TextInput } from 'flowbite-react'
+import { Button, TextInput } from 'flowbite-react'
 import { useForm } from 'react-hook-form'
 import { HiLockClosed, HiMail } from 'react-icons/hi'
 import { useDispatch } from 'react-redux'
-import { createSession } from '../../../redux/slices/sessionSlice'
 import LoginIllustration from '../../../assets/SVG/illustrations/undraw_login.svg'
+import { createSession } from '../../../redux/slices/sessionSlice'
 
 function FormSignIn() {
   const dispatch = useDispatch()
@@ -19,10 +19,10 @@ function FormSignIn() {
       <img src={LoginIllustration} alt="" className="w-40 lg:w-60" />
       <h2 className="w-full py-2 text-3xl font-bold text-center">Iniciar Sesión</h2>
       <fieldset className="grid w-full gap-2">
-        <Label htmlFor="identifier" value="Correo Electrónico" color="gray" />
         <TextInput
           id="identifier"
           type="email"
+          placeholder="Correo Electrónico"
           icon={HiMail}
           color="gray"
           {...register('identifier', { required: true })}
@@ -30,11 +30,11 @@ function FormSignIn() {
         />
       </fieldset>
       <fieldset className="grid w-full gap-2">
-        <Label htmlFor="password" value="Contraseña" color="gray" />
         <TextInput
           id="password"
           type="password"
           color="gray"
+          placeholder="Contraseña"
           icon={HiLockClosed}
           {...register('password', { required: true })}
           required

@@ -20,7 +20,7 @@ function TotalSection({ cartItems }) {
   }, [cartItems])
 
   return (
-    <SectionLayout>
+    <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
       <article className="max-w-screen-xl mx-auto">
         <div className="flex flex-col gap-10 sm:flex-row">
           <div className="p-4 bg-gray-100 rounded-lg sm:w-2/4 max-h-[8rem]">

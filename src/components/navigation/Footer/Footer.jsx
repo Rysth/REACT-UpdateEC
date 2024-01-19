@@ -2,7 +2,7 @@ import BrandImage from '../../../assets/SVG/brand_white.svg'
 
 function Footer() {
   return (
-    <footer className="text-white border-t shadow bg-purple animate__animated animate__fadeIn animate__slow">
+    <footer className="text-white bg-purple animate__animated animate__fadeIn animate__slow">
       <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <a href="/" className="flex flex-col items-center mb-4 sm:mb-0">

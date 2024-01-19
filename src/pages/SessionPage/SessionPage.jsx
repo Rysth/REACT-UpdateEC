@@ -3,8 +3,8 @@ import BackgroundImage from '../../assets/PNG/session/background.jpg'
 
 function SessionPage({ children }) {
   return (
-    <section className="relative flex flex-col h-screen max-w-screen-xl mx-auto lg:flex-row">
-      <div className="absolute top-0 bottom-0 z-10 w-full h-full lg:relative lg:w-3/5 brightness-50 lg:brightness-100">
+    <section className="relative flex flex-col h-screen mx-auto lg:flex-row">
+      <div className="absolute top-0 bottom-0 z-10 w-full h-full lg:relative lg:w-3/5 brightness-50 lg:brightness-100 animate__animated animate__fadeIn animate__slow">
         <img
           src={BackgroundImage}
           alt=""
