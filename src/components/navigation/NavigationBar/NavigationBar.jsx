@@ -20,7 +20,7 @@ function NavigationBar() {
   }
 
   return (
-    <header className="relative top-0 w-full z-[9999] animate__animated animate__fadeInDown p-2 md:px-4 shadow-md shadow-black/5 bg-white">
+    <header className="relative top-0 w-full z-[1000] animate__animated animate__fadeInDown p-2 md:px-4 shadow-md shadow-black/5 bg-white">
       <ConfirmModal
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
@@ -77,22 +77,22 @@ function NavigationBar() {
             className="text-gray-900  !bg-transparent focus:ring-0 hover:text-blue-700"
           />
         </div>
-        <Navbar.Collapse className="p-2 transition md:p-0">
+        <Navbar.Collapse className="p-2 space-y-4 transition md:p-0">
           <Navbar.Link
             href="/"
-            className="hover:bg-gray-900 md:hover:!text-blue-700 bg-white md:bg-transparent text-blue-700 md:text-gray-900 mb-1 md:mb-0 font-semibold rounded-md border-transparent"
+            className="md:hover:!text-blue-700 bg-white md:bg-transparent text-blue-700 md:text-gray-900 mb-1 md:shadow-none md:mb-0 font-semibold rounded-md md:border-transparent border shadow-md"
           >
             Inicio
           </Navbar.Link>
           <Navbar.Link
             href="/shop"
-            className="hover:bg-gray-900 md:hover:!text-blue-700 bg-white md:bg-transparent text-blue-700 md:text-gray-900 md:mb-0 font-semibold rounded-md border-transparent"
+            className="md:hover:!text-blue-700 bg-white md:bg-transparent text-blue-700 md:text-gray-900 mb-1 md:shadow-none md:mb-0 font-semibold rounded-md md:border-transparent border shadow-md"
           >
             Tienda
           </Navbar.Link>
           <Navbar.Link
             href="/about"
-            className="hover:bg-gray-900 md:hover:!text-blue-700 bg-white md:bg-transparent text-blue-700 md:text-gray-900 md:mb-0 font-semibold rounded-md border-transparent"
+            className="md:hover:!text-blue-700 bg-white md:bg-transparent text-blue-700 md:text-gray-900 mb-1 md:shadow-none md:mb-0 font-semibold rounded-md md:border-transparent border shadow-md"
           >
             Nosotros
           </Navbar.Link>

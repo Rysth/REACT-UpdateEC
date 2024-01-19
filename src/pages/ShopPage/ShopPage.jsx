@@ -7,9 +7,10 @@ import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import LoadingCard from '../../components/ui/LoadingCard/LoadingCard'
 import ProductCard from '../../components/ui/ProductCard/ProductCard'
 import SectionLayout from '../../layouts/SectionLayout'
-import { fetchCategories } from '../../redux/slices/categorySlice'
 import { fetchBrands } from '../../redux/slices/brandSlice'
+import { fetchCategories } from '../../redux/slices/categorySlice'
 import { fetchProducts, searchAndFilterProducts } from '../../redux/slices/productSlice'
+import { HiFunnel, HiMagnifyingGlass } from 'react-icons/hi2'
 
 const debouncedSearch = debounce((newData, categoryData, brandData, dispatch) => {
   dispatch(
@@ -97,12 +98,19 @@ function ShopPage() {
         <article className="max-w-screen-xl min-h-screen pb-12 mx-auto">
           <main className="flex flex-col flex-1 gap-5 sm:flex-row">
             <div className="flex flex-col w-full gap-2 sm:w-1/4">
-              <TextInput placeholder="Buscar..." className="w-full" value={searchData} onValueChange={onSearchChange} />
+              <TextInput
+                placeholder="Buscar..."
+                className="w-full"
+                value={searchData}
+                onValueChange={onSearchChange}
+                icon={HiMagnifyingGlass}
+              />
               <SearchSelect
                 className="z-50"
                 placeholder="Categoría"
                 onValueChange={onCategoryChange}
                 value={categoryData}
+                icon={HiFunnel}
               >
                 {categoriesArray.map((category) => (
                   <SearchSelectItem key={category.id} value={category.id}>
@@ -110,7 +118,13 @@ function ShopPage() {
                   </SearchSelectItem>
                 ))}
               </SearchSelect>
-              <SearchSelect className="z-40" placeholder="Marca" onValueChange={onBrandChange} value={brandData}>
+              <SearchSelect
+                className="z-40"
+                placeholder="Marca"
+                onValueChange={onBrandChange}
+                value={brandData}
+                icon={HiFunnel}
+              >
                 {brandsArray.map((brand) => (
                   <SearchSelectItem key={brand.id} value={brand.id}>
                     {brand.attributes.name}
