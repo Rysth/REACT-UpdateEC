@@ -1,10 +1,10 @@
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
-import { useDispatch } from 'react-redux'
-import { createOrder } from '../../../redux/slices/orderSlice'
-import { cartActions } from '../../../redux/slices/cartSlice'
-import PropTypes from 'prop-types'
 import { Spinner } from 'flowbite-react'
+import PropTypes from 'prop-types'
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { cartActions } from '../../../redux/slices/cartSlice'
+import { createOrder } from '../../../redux/slices/orderSlice'
 
 const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
   const dispatch = useDispatch()

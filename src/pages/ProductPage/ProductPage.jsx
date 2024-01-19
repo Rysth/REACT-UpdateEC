@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import LoadingCard from '../../components/ui/LoadingCard/LoadingCard'
 import { findProduct } from '../../redux/slices/productSlice'
-import { fetchReviews } from '../../redux/slices/reviewSlice'
 import ProductPreview from './sections/ProductPreview'
 import ProductSimilar from './sections/ProductSimilar'
 
@@ -12,12 +11,6 @@ function ProductPage() {
   const dispatch = useDispatch()
   const { foundProduct } = useSelector((store) => store.product)
   const { productID } = useParams()
-
-  useEffect(() => {
-    if (foundProduct) {
-      dispatch(fetchReviews(foundProduct.id))
-    }
-  }, [dispatch, foundProduct])
 
   useEffect(() => {
     dispatch(findProduct(productID))

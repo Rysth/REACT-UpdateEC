@@ -17,6 +17,7 @@ import FormSignIn from './pages/SessionPage/sections/FormSignIn'
 import FormSignUp from './pages/SessionPage/sections/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
 import OrderPage from './pages/OrderPage/OrderPage'
+import AboutPage from './pages/AboutPage/AboutPage'
 import { Button } from 'flowbite-react'
 import { useEffect, useState } from 'react'
 import { HiArrowUp } from 'react-icons/hi'
@@ -50,10 +51,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="top-right" />
       <NavigationBar />
       {isVisible && (
-        <Button onClick={scrollToTop} className="fixed shadow w-14 h-14 bottom-5 right-5 z-[5000]" color="blue" pill>
+        <Button onClick={scrollToTop} className="fixed shadow w-14 h-14 bottom-5 right-5 z-[9000]" color="blue" pill>
           <HiArrowUp className="text-lg" />
         </Button>
       )}
@@ -80,6 +81,7 @@ function App() {
             }
           />
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/shop/:productID" element={<ProductPage />} />
           <Route

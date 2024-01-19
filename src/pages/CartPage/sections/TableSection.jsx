@@ -1,12 +1,12 @@
+import { Button } from 'flowbite-react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
+import { HiArrowLeft, HiOutlineShoppingCart } from 'react-icons/hi'
 import { useDispatch } from 'react-redux'
 import ConfirmModal from '../../../components/modal/ConfirmModal/ConfirmModal'
 import SectionLayout from '../../../layouts/SectionLayout'
 import { cartActions } from '../../../redux/slices/cartSlice'
 import TableItem from '../components/TableItem'
-import { Button } from 'flowbite-react'
-import { HiOutlineShoppingCart, HiArrowLeft } from 'react-icons/hi'
 
 function TableSection({ cartItems }) {
   const dispatch = useDispatch()
@@ -20,7 +20,7 @@ function TableSection({ cartItems }) {
 
   if (cartItems.length === 0) {
     return (
-      <header className="flex flex-col items-center justify-center w-full max-w-screen-xl min-h-screen gap-2 py-2 mx-auto place-items-center">
+      <header className="flex flex-col items-center justify-center w-full max-w-screen-xl min-h-screen gap-2 py-2 mx-auto place-items-center animate__animated animate__fadeIn animate__slow">
         <HiOutlineShoppingCart className="text-8xl" />
         <h3 className="w-full text-lg font-bold text-center text-gray-900 uppercase sm:text-2xl ">
           ¡Tú Carrito está Vacío!
@@ -34,7 +34,7 @@ function TableSection({ cartItems }) {
   }
 
   return (
-    <SectionLayout>
+    <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
       <article className="max-w-screen-xl min-h-screen py-12 mx-auto space-y-4">
         <ConfirmModal
           isOpen={openModal}
