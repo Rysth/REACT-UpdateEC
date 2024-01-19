@@ -57,18 +57,24 @@ function ShopPage() {
     <article>
       <BreadCrumb paths={[{ name: 'Tienda', href: '/shop', active: true }]} />
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
-        <article className="max-w-screen-xl py-12 mx-auto">
-          <header className="flex flex-col items-center justify-between gap-3 sm:flex-row">
+        <article className="max-w-screen-xl py-12 pb-0 mx-auto">
+          <header className="flex flex-col items-center justify-between gap-3 mb-4 sm:flex-row">
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl sm:w-2/4">Nuestros Productos</h2>
-            <div className="flex flex-col items-center w-full gap-2 sm:justify-end sm:flex-row">
+          </header>
+        </article>
+      </SectionLayout>
+      <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
+        <article className="max-w-screen-xl min-h-screen pb-12 mx-auto">
+          <main className="flex flex-col flex-1 gap-5 sm:flex-row">
+            <div className="flex flex-col w-full gap-2 sm:w-1/4">
               <TextInput
                 placeholder="Buscar..."
-                className="w-full sm:w-60"
+                className="w-full"
                 defaultValue={searchData}
                 onChange={onSearchChange}
               />
               <SearchSelect
-                className="z-40 rounded sm:w-60"
+                className="z-40 rounded"
                 placeholder="Categoría"
                 onValueChange={onCategoryChange}
                 value={categoryData}
@@ -80,33 +86,30 @@ function ShopPage() {
                 ))}
               </SearchSelect>
             </div>
-          </header>
-        </article>
-      </SectionLayout>
-      <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
-        {filteredArray.length === 0 && !loading ? (
-          <header className="grid w-full h-20 max-w-screen-xl py-2 mx-auto bg-red-500 place-items-center">
-            <h3 className="w-full text-lg font-bold text-center text-white uppercase">¡Productos no Encontrados!</h3>
-          </header>
-        ) : (
-          <article className="max-w-screen-xl min-h-screen pb-12 mx-auto">
-            <main className="flex flex-col flex-1 gap-10">
+            <div className="sm:w-3/4">
+              {filteredArray.length === 0 && !loading && (
+                <header className="grid w-full h-20 max-w-screen-xl py-2 mx-auto bg-red-500 place-items-center">
+                  <h3 className="w-full text-lg font-bold text-center text-white uppercase">
+                    ¡Productos no Encontrados!
+                  </h3>
+                </header>
+              )}
               {loading && <LoadingCard />}
               {!loading && (
-                <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-5">
+                <ul className="grid grid-cols-2 gap-2 md:grid-cols-4">
                   {filteredArray.map((product, index) => (
                     <ProductCard product={product} key={index} />
                   ))}
                 </ul>
               )}
-              <footer className="grid place-items-center">
+              <footer className="grid mt-8 place-items-center">
                 <Button type="button" color="blue" className="" onClick={loadMoreProducts} disabled={isFiltered}>
                   Mostrar Más
                 </Button>
               </footer>
-            </main>
-          </article>
-        )}
+            </div>
+          </main>
+        </article>
       </SectionLayout>
     </article>
   )

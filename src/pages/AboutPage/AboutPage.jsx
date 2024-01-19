@@ -165,7 +165,7 @@ function AboutPage() {
                   <a
                     href="tel:+5930984798317"
                     target="_blank"
-                    className="block text-2xl font-semibold transition hover:text-blue-600 sm:text-4xl"
+                    className="block text-xl font-semibold transition hover:text-blue-600 sm:text-3xl"
                     rel="noreferrer"
                   >
                     0984798317
@@ -179,7 +179,7 @@ function AboutPage() {
                   <a
                     href="mailto:ventas@updateec.com"
                     target="_blank"
-                    className="block text-lg font-semibold transition hover:text-blue-600 sm:text-3xl"
+                    className="block text-xl font-semibold transition hover:text-blue-600 sm:text-3xl"
                     rel="noreferrer"
                   >
                     ventas@updateec.com
@@ -193,7 +193,7 @@ function AboutPage() {
                   <a
                     target="_blank"
                     href="https://maps.app.goo.gl/UvtUpYb4yTQa2QeZ6"
-                    className="block text-lg font-semibold transition hover:text-blue-600 sm:text-3xl"
+                    className="block text-xl font-semibold transition hover:text-blue-600 sm:text-3xl"
                     rel="noreferrer"
                   >
                     Alborada, Guayaquil 090112

@@ -16,9 +16,9 @@ function ProductCard({ product }) {
     <div className="relative group animate__animated animate__fadeIn">
       <a
         href={`/shop/${product.id}`}
-        className="relative z-20 block p-2 border border-gray-100 rounded-lg shadow-xl group lg:mx-2 shadow-black/5"
+        className="relative z-20 block border border-gray-100 rounded-lg shadow-xl group lg:mx-2 shadow-black/5"
       >
-        <picture className="h-auto overflow-hidden max-h-72">
+        <picture className="h-auto overflow-hidden bg-gray-100 max-h-72">
           <img
             src={product.attributes.picture.data.attributes.url}
             alt={product.attributes.name}
@@ -28,13 +28,11 @@ function ProductCard({ product }) {
             loading="lazy"
           />
         </picture>
-        <header className="px-4 py-3 text-center">
-          <h2 className="px-4 text-sm font-bold uppercase truncate transition duration-300 group-hover:text-blue-800">
+        <header className="p-2 px-4 py-3 text-center">
+          <h2 className="px-4 text-sm font-bold uppercase truncate transition duration-300 group-hover:text-blue-700">
             {product.attributes.name}
           </h2>
-          <p className="text-sm text-blue-700 uppercase truncate group-hover:text-blue-80">
-            ${product.attributes.price}
-          </p>
+          <p className="text-sm font-semibold text-blue-700 uppercase truncate">${product.attributes.price}</p>
         </header>
       </a>
       {productQuantity === 0 && product && (
