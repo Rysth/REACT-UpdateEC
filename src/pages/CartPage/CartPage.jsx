@@ -19,7 +19,7 @@ function CartPage() {
         ]}
       />
       <TableSection cartItems={cartItems} />
-      <TotalSection cartItems={cartItems} />
+      {cartItems.length !== 0 && <TotalSection cartItems={cartItems} />}
     </article>
   )
 }

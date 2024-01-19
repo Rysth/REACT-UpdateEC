@@ -167,7 +167,7 @@ function ShopPage() {
                 </ul>
               )}
               <footer className="grid mt-8 place-items-center">
-                <Button type="button" color="blue" className="" onClick={loadMoreProducts} disabled={isFiltered}>
+                <Button type="button" color="blue" className="" onClick={loadMoreProducts} disabled={isFiltered} pill>
                   Mostrar Más
                 </Button>
               </footer>
