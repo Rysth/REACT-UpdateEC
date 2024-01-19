@@ -25,8 +25,8 @@ const debouncedSearch = debounce((newData, categoryData, brandData, dispatch) =>
 function ShopPage() {
   const dispatch = useDispatch()
   const [searchData, setSearchData] = useState('')
-  const [categoryData, setCategoryData] = useState(0)
   const [brandData, setBrandData] = useState(0)
+  const [categoryData, setCategoryData] = useState(0)
 
   const { categoriesArray } = useSelector((store) => store.category)
   const { brandsArray } = useSelector((store) => store.brand)
@@ -53,12 +53,12 @@ function ShopPage() {
   }
 
   const onBrandChange = (brandID) => {
-    setBrandData(brandID)
+    setBrandData(brandID === '' ? 0 : brandID)
     handleSearchAndFilter(searchData, categoryData, brandID !== 0 ? brandID : undefined)
   }
 
   const onCategoryChange = (categoryID) => {
-    setCategoryData(categoryID)
+    setCategoryData(categoryID === '' ? 0 : categoryID)
     handleSearchAndFilter(searchData, categoryID !== 0 ? categoryID : undefined, brandData)
   }
 
@@ -66,6 +66,7 @@ function ShopPage() {
     setSearchData('')
     setCategoryData(0)
     setBrandData(0)
+    setCurrentPage(1)
     dispatch(searchAndFilterProducts({ searchData: '', categoryID: undefined, brandID: undefined }))
   }
 
@@ -98,40 +99,55 @@ function ShopPage() {
         <article className="max-w-screen-xl min-h-screen pb-12 mx-auto">
           <main className="flex flex-col flex-1 gap-5 sm:flex-row">
             <div className="flex flex-col w-full gap-2 sm:w-1/4">
-              <TextInput
-                placeholder="Buscar..."
-                className="w-full"
-                value={searchData}
-                onValueChange={onSearchChange}
-                icon={HiMagnifyingGlass}
-              />
-              <SearchSelect
-                className="z-50"
-                placeholder="Categoría"
-                onValueChange={onCategoryChange}
-                value={categoryData}
-                icon={HiFunnel}
+              <div className="space-y-2">
+                <h3 className="text-xl">Buscar Producto</h3>
+                <TextInput
+                  placeholder=""
+                  className="w-full"
+                  value={searchData}
+                  onValueChange={onSearchChange}
+                  icon={HiMagnifyingGlass}
+                />
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center">
+                  <h3 className="w-2/4 text-xl">Categoría</h3>
+                  <SearchSelect
+                    className="z-50"
+                    placeholder=""
+                    onValueChange={onCategoryChange}
+                    value={categoryData}
+                    icon={HiFunnel}
+                  >
+                    {categoriesArray.map((category) => (
+                      <SearchSelectItem key={category.id} value={category.id}>
+                        {category.attributes.name}
+                      </SearchSelectItem>
+                    ))}
+                  </SearchSelect>
+                </div>
+                <div className="flex items-center justify-between w-full">
+                  <h3 className="w-2/4 text-xl">Marca</h3>
+                  <SearchSelect
+                    className="z-40"
+                    placeholder=""
+                    onValueChange={onBrandChange}
+                    value={brandData}
+                    icon={HiFunnel}
+                  >
+                    {brandsArray.map((brand) => (
+                      <SearchSelectItem key={brand.id} value={brand.id}>
+                        {brand.attributes.name}
+                      </SearchSelectItem>
+                    ))}
+                  </SearchSelect>
+                </div>
+              </div>
+              <Button
+                color="dark"
+                onClick={clearFilters}
+                disabled={searchData === '' && categoryData === 0 && brandData === 0}
               >
-                {categoriesArray.map((category) => (
-                  <SearchSelectItem key={category.id} value={category.id}>
-                    {category.attributes.name}
-                  </SearchSelectItem>
-                ))}
-              </SearchSelect>
-              <SearchSelect
-                className="z-40"
-                placeholder="Marca"
-                onValueChange={onBrandChange}
-                value={brandData}
-                icon={HiFunnel}
-              >
-                {brandsArray.map((brand) => (
-                  <SearchSelectItem key={brand.id} value={brand.id}>
-                    {brand.attributes.name}
-                  </SearchSelectItem>
-                ))}
-              </SearchSelect>
-              <Button color="dark" onClick={clearFilters}>
                 Limpiar Filtros
               </Button>
             </div>
