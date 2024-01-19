@@ -83,12 +83,6 @@ function ShopPage() {
     }
   }, [])
 
-  useEffect(() => {
-    return () => {
-      debouncedSearch.cancel()
-    }
-  }, [debouncedSearch])
-
   return (
     <article>
       <BreadCrumb paths={[{ name: 'Tienda', href: '/shop', active: true }]} />

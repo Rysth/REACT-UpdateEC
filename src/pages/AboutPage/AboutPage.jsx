@@ -1,4 +1,5 @@
-import { Button, TextInput, Textarea } from 'flowbite-react'
+import { Button } from 'flowbite-react'
+import { TextInput, Textarea } from '@tremor/react'
 import { useForm } from '@formspree/react'
 import { HiMail } from 'react-icons/hi'
 import { HiBuildingStorefront, HiCheckCircle, HiHandRaised, HiLightBulb, HiMapPin, HiPhone } from 'react-icons/hi2'
