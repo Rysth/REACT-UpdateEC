@@ -2,6 +2,7 @@ import { SearchSelect, SearchSelectItem, TextInput } from '@tremor/react'
 import { Button } from 'flowbite-react'
 import { debounce } from 'lodash'
 import { useEffect, useState } from 'react'
+import { HiFunnel, HiMagnifyingGlass } from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import LoadingCard from '../../components/ui/LoadingCard/LoadingCard'
@@ -10,7 +11,6 @@ import SectionLayout from '../../layouts/SectionLayout'
 import { fetchBrands } from '../../redux/slices/brandSlice'
 import { fetchCategories } from '../../redux/slices/categorySlice'
 import { fetchProducts, searchAndFilterProducts } from '../../redux/slices/productSlice'
-import { HiFunnel, HiMagnifyingGlass } from 'react-icons/hi2'
 
 function ShopPage() {
   const dispatch = useDispatch()

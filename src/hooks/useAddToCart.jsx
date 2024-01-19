@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { cartActions } from '../redux/slices/cartSlice'
 import { toast } from 'react-toastify' // Ensure you have react-toastify installed and configured
+import { cartActions } from '../redux/slices/cartSlice'
 
 function useAddToCart(product) {
   const dispatch = useDispatch()

@@ -1,6 +1,6 @@
 import { Button } from 'flowbite-react'
 import { useEffect } from 'react'
-import { HiArrowRight, HiArchiveBox, HiCheckCircle, HiBolt } from 'react-icons/hi2'
+import { HiArchiveBox, HiArrowRight, HiBolt, HiCheckCircle } from 'react-icons/hi2'
 import Carousel from 'react-multi-carousel'
 import { useDispatch, useSelector } from 'react-redux'
 import CategoryOne from '../../assets/PNG/categories/category_1.png'

@@ -1,12 +1,12 @@
-import { Button } from 'flowbite-react'
-import { TextInput, Textarea } from '@tremor/react'
 import { useForm } from '@formspree/react'
+import { TextInput, Textarea } from '@tremor/react'
+import { Button } from 'flowbite-react'
+import { useEffect } from 'react'
 import { HiMail } from 'react-icons/hi'
 import { HiBuildingStorefront, HiCheckCircle, HiHandRaised, HiLightBulb, HiMapPin, HiPhone } from 'react-icons/hi2'
+import { toast } from 'react-toastify'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import SectionLayout from '../../layouts/SectionLayout'
-import { useEffect } from 'react'
-import { toast } from 'react-toastify'
 
 function AboutPage() {
   const [state, handleSubmit] = useForm('mvonqdpy')

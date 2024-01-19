@@ -1,12 +1,12 @@
+import { Button } from 'flowbite-react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
+import { HiArrowLeft, HiOutlineShoppingCart } from 'react-icons/hi'
 import { useDispatch } from 'react-redux'
 import ConfirmModal from '../../../components/modal/ConfirmModal/ConfirmModal'
 import SectionLayout from '../../../layouts/SectionLayout'
 import { cartActions } from '../../../redux/slices/cartSlice'
 import TableItem from '../components/TableItem'
-import { Button } from 'flowbite-react'
-import { HiOutlineShoppingCart, HiArrowLeft } from 'react-icons/hi'
 
 function TableSection({ cartItems }) {
   const dispatch = useDispatch()

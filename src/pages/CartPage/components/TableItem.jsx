@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
 import { Button } from 'flowbite-react'
 import PropTypes from 'prop-types'
-import { cartActions } from '../../../redux/slices/cartSlice'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
 import { HiTrash } from 'react-icons/hi2'
+import { useDispatch } from 'react-redux'
+import { cartActions } from '../../../redux/slices/cartSlice'
 
 function TableItem({ product, showModal, setProductToRemove }) {
   const dispatch = useDispatch()

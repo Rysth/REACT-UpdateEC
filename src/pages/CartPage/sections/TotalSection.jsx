@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
-import SectionLayout from '../../../layouts/SectionLayout'
 import PropTypes from 'prop-types'
-import ButtonWrapper from '../components/ButtonWrapper'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import SectionLayout from '../../../layouts/SectionLayout'
+import ButtonWrapper from '../components/ButtonWrapper'
 
 function TotalSection({ cartItems }) {
   const [subTotal, setSubTotal] = useState(0)
