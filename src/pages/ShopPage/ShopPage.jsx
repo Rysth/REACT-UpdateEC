@@ -12,16 +12,6 @@ import { fetchCategories } from '../../redux/slices/categorySlice'
 import { fetchProducts, searchAndFilterProducts } from '../../redux/slices/productSlice'
 import { HiFunnel, HiMagnifyingGlass } from 'react-icons/hi2'
 
-const debouncedSearch = debounce((newData, categoryData, brandData, dispatch) => {
-  dispatch(
-    searchAndFilterProducts({
-      searchData: newData,
-      categoryID: categoryData !== 0 ? categoryData : undefined,
-      brandID: brandData !== 0 ? brandData : undefined,
-    }),
-  )
-}, 400)
-
 function ShopPage() {
   const dispatch = useDispatch()
   const [searchData, setSearchData] = useState('')
@@ -34,10 +24,25 @@ function ShopPage() {
   const [currentPage, setCurrentPage] = useState(1)
 
   const loadMoreProducts = () => {
-    setCurrentPage(currentPage + 1)
+    console.log(currentPage)
+    const newPage = currentPage + 1
+    setCurrentPage(newPage)
+    dispatch(fetchProducts(newPage))
   }
 
+  const debouncedSearch = debounce((newData, categoryData, brandData, dispatch) => {
+    setCurrentPage(1)
+    dispatch(
+      searchAndFilterProducts({
+        searchData: newData,
+        categoryID: categoryData !== 0 ? categoryData : undefined,
+        brandID: brandData !== 0 ? brandData : undefined,
+      }),
+    )
+  }, 1000)
+
   const handleSearchAndFilter = (searchData, categoryID, brandID) => {
+    setCurrentPage(1)
     dispatch(
       searchAndFilterProducts({
         searchData,
@@ -67,7 +72,7 @@ function ShopPage() {
     setCategoryData(0)
     setBrandData(0)
     setCurrentPage(1)
-    dispatch(searchAndFilterProducts({ searchData: '', categoryID: undefined, brandID: undefined }))
+    dispatch(fetchProducts())
   }
 
   useEffect(() => {
@@ -78,12 +83,6 @@ function ShopPage() {
     dispatch(fetchCategories())
     dispatch(fetchBrands())
   }, [dispatch])
-
-  useEffect(() => {
-    return () => {
-      debouncedSearch.cancel()
-    }
-  }, [])
 
   return (
     <article>

@@ -176,8 +176,12 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.productsArray = [...state.productsArray, ...action.payload.data]
+        const newProducts = action.payload.data.filter(
+          (newProduct) => !state.productsArray.some((existingProduct) => existingProduct.id === newProduct.id),
+        )
+        state.productsArray = [...state.productsArray, ...newProducts]
         state.filteredArray = state.productsArray
+        state.isFiltered = false
         state.loading = false
       })
       .addCase(fetchLastestProducts.fulfilled, (state, action) => {

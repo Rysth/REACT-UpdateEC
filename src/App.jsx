@@ -54,7 +54,7 @@ function App() {
       <ToastContainer position="top-right" />
       <NavigationBar />
       {isVisible && (
-        <Button onClick={scrollToTop} className="fixed shadow w-14 h-14 bottom-5 right-5 z-[5000]" color="blue" pill>
+        <Button onClick={scrollToTop} className="fixed shadow w-14 h-14 bottom-5 right-5 z-[9000]" color="blue" pill>
           <HiArrowUp className="text-lg" />
         </Button>
       )}
