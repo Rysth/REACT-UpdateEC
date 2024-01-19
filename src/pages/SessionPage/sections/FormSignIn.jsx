@@ -1,4 +1,5 @@
-import { Button, TextInput } from 'flowbite-react'
+import { Button } from 'flowbite-react'
+import { TextInput } from '@tremor/react'
 import { useForm } from 'react-hook-form'
 import { HiLockClosed, HiMail } from 'react-icons/hi'
 import { useDispatch } from 'react-redux'
