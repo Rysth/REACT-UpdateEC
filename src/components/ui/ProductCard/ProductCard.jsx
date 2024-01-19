@@ -13,7 +13,7 @@ function ProductCard({ product }) {
   }, [])
 
   return (
-    <div className="relative group">
+    <div className="relative group animate__animated animate__fadeIn">
       <a
         href={`/shop/${product.id}`}
         className="relative z-20 block p-2 border border-gray-100 rounded-lg shadow-xl group lg:mx-2 shadow-black/5"
@@ -25,6 +25,7 @@ function ProductCard({ product }) {
             className={`object-contain w-full h-full transition duration-500 sm:group-hover:scale-110 ${
               isAdding && 'pointer-events-none grayscale'
             }`}
+            loading="lazy"
           />
         </picture>
         <header className="px-4 py-3 text-center">

@@ -134,23 +134,6 @@ function HomePage() {
           </div>
         </article>
       </SectionLayout>
-      {/* =====LASTEST PRODUCTS===== */}
-      <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
-        <article className="max-w-screen-xl py-12 mx-auto">
-          <header className="flex flex-col items-center justify-between gap-2 mb-6 sm:flex-row">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Últimos Productos</h2>
-            <a href="/shop" className="flex items-center gap-1 text-sm transition duration-200 hover:translate-x-2">
-              Más Productos
-              <HiArrowRight className="text-blue-700" />
-            </a>
-          </header>
-          <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" draggable={false}>
-            {lastestProducts.map((product, index) => (
-              <ProductCard product={product} key={index} />
-            ))}
-          </Carousel>
-        </article>
-      </SectionLayout>
       {/* =====FEATURES===== */}
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow bg-purple">
         <article className="max-w-screen-xl py-12 mx-auto">
@@ -174,6 +157,23 @@ function HomePage() {
               </p>
             </div>
           </main>
+        </article>
+      </SectionLayout>
+      {/* =====LASTEST PRODUCTS===== */}
+      <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
+        <article className="max-w-screen-xl py-12 mx-auto">
+          <header className="flex flex-col items-center justify-between gap-2 mb-6 sm:flex-row">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Últimos Productos</h2>
+            <a href="/shop" className="flex items-center gap-1 text-sm transition duration-200 hover:translate-x-2">
+              Más Productos
+              <HiArrowRight className="text-blue-700" />
+            </a>
+          </header>
+          <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" draggable={false}>
+            {lastestProducts.map((product, index) => (
+              <ProductCard product={product} key={index} />
+            ))}
+          </Carousel>
         </article>
       </SectionLayout>
     </section>
