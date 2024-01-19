@@ -5,12 +5,12 @@ function Footer() {
     <footer className="text-white border-t shadow">
       <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
-          <a href="/" className="flex flex-col items-center mb-4 space-x-3 sm:mb-0">
+          <a href="/" className="flex flex-col items-center mb-4 sm:mb-0">
             <picture>
               <img src={BrandImage} className="w-24 sm:w-28" alt="UpdateEC's logo brand" />
             </picture>
           </a>
-          <ul className="flex flex-wrap items-center justify-center mb-6 space-x-2 text-sm font-medium text-gray-900 md:justify-end sm:mb-0">
+          <ul className="flex flex-wrap items-center justify-center mb-6 space-x-4 text-sm font-medium text-gray-900 md:justify-end sm:mb-0 md:space-x-8">
             <li>
               <a href="/" className="hover:underline">
                 Inicio
@@ -19,6 +19,11 @@ function Footer() {
             <li>
               <a href="/shop" className="hover:underline">
                 Tienda
+              </a>
+            </li>
+            <li>
+              <a href="/about" className="hover:underline">
+                Nosotros
               </a>
             </li>
           </ul>

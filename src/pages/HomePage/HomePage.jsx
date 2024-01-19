@@ -40,7 +40,7 @@ function HomePage() {
           <header className="flex flex-col justify-center gap-2 text-center sm:gap-0 md:text-left sm:flex-1">
             <p className="text-sm font-semibold text-blue-700 uppercase">Productos Gaming Profesionales</p>
             <h1 className="my-1 text-5xl font-bold text-black md:text-8xl md:my-4">Potencia tu Experiencia</h1>
-            <p className="max-w-sm mb-4 text-sm leading-5 text-gray-600 md:text-base">
+            <p className="max-w-sm mb-4 text-sm leading-7 text-gray-500 md:text-base">
               Productos gaming de alta gama, y calidad insuperable en un solo lugar.
             </p>
             <div className="flex flex-col gap-2.5 sm:flex-row md:justify-start">
@@ -151,8 +151,8 @@ function HomePage() {
           </Carousel>
         </article>
       </SectionLayout>
-      {/* =====LASTEST PRODUCTS===== */}
-      <SectionLayout backgroundColor="bg-purple">
+      {/* =====FEATURES===== */}
+      <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow bg-purple">
         <article className="max-w-screen-xl py-12 mx-auto">
           <main className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
             <div className="flex flex-col items-center gap-2 p-2 text-white sm:gap-4">

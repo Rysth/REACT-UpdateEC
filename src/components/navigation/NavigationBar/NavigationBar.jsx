@@ -90,6 +90,12 @@ function NavigationBar() {
           >
             Tienda
           </Navbar.Link>
+          <Navbar.Link
+            href="/about"
+            className="hover:bg-gray-900 md:hover:!text-blue-700 bg-white md:bg-transparent text-blue-700 md:text-gray-900 md:mb-0 font-semibold rounded-md border-transparent"
+          >
+            Nosotros
+          </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </header>

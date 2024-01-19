@@ -55,7 +55,7 @@ function ShopPage() {
 
   return (
     <article>
-      <BreadCrumb paths={[{ name: 'Tienda', href: '/', active: true }]} />
+      <BreadCrumb paths={[{ name: 'Tienda', href: '/shop', active: true }]} />
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
         <article className="max-w-screen-xl py-12 mx-auto">
           <header className="flex flex-col items-center justify-between gap-3 sm:flex-row">
