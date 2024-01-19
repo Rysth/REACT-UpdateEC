@@ -8,13 +8,27 @@ import LoadingCard from '../../components/ui/LoadingCard/LoadingCard'
 import ProductCard from '../../components/ui/ProductCard/ProductCard'
 import SectionLayout from '../../layouts/SectionLayout'
 import { fetchCategories } from '../../redux/slices/categorySlice'
+import { fetchBrands } from '../../redux/slices/brandSlice'
 import { fetchProducts, searchAndFilterProducts } from '../../redux/slices/productSlice'
+
+const debouncedSearch = debounce((newData, categoryData, brandData, dispatch) => {
+  dispatch(
+    searchAndFilterProducts({
+      searchData: newData,
+      categoryID: categoryData !== 0 ? categoryData : undefined,
+      brandID: brandData !== 0 ? brandData : undefined,
+    }),
+  )
+}, 400)
 
 function ShopPage() {
   const dispatch = useDispatch()
   const [searchData, setSearchData] = useState('')
   const [categoryData, setCategoryData] = useState(0)
+  const [brandData, setBrandData] = useState(0)
+
   const { categoriesArray } = useSelector((store) => store.category)
+  const { brandsArray } = useSelector((store) => store.brand)
   const { filteredArray, loading, isFiltered } = useSelector((store) => store.product)
   const [currentPage, setCurrentPage] = useState(1)
 
@@ -22,21 +36,36 @@ function ShopPage() {
     setCurrentPage(currentPage + 1)
   }
 
-  const debouncedSearch = debounce((newData) => {
-    setSearchData(newData)
+  const handleSearchAndFilter = (searchData, categoryID, brandID) => {
     dispatch(
-      searchAndFilterProducts({ searchData: newData, categoryID: categoryData !== 0 ? categoryData : undefined }),
+      searchAndFilterProducts({
+        searchData,
+        categoryID: categoryID !== 0 ? categoryID : undefined,
+        brandID: brandID !== 0 ? brandID : undefined,
+      }),
     )
-  }, 400)
+  }
 
-  const onSearchChange = (event) => {
-    const newData = event.target.value
-    debouncedSearch(newData)
+  const onSearchChange = (newData) => {
+    setSearchData(newData)
+    debouncedSearch(newData, categoryData, brandData, dispatch)
+  }
+
+  const onBrandChange = (brandID) => {
+    setBrandData(brandID)
+    handleSearchAndFilter(searchData, categoryData, brandID !== 0 ? brandID : undefined)
   }
 
   const onCategoryChange = (categoryID) => {
     setCategoryData(categoryID)
-    dispatch(searchAndFilterProducts({ searchData, categoryID: categoryID !== 0 ? categoryID : undefined }))
+    handleSearchAndFilter(searchData, categoryID !== 0 ? categoryID : undefined, brandData)
+  }
+
+  const clearFilters = () => {
+    setSearchData('')
+    setCategoryData(0)
+    setBrandData(0)
+    dispatch(searchAndFilterProducts({ searchData: '', categoryID: undefined, brandID: undefined }))
   }
 
   useEffect(() => {
@@ -45,7 +74,14 @@ function ShopPage() {
 
   useEffect(() => {
     dispatch(fetchCategories())
+    dispatch(fetchBrands())
   }, [dispatch])
+
+  useEffect(() => {
+    return () => {
+      debouncedSearch.cancel()
+    }
+  }, [])
 
   useEffect(() => {
     return () => {
@@ -67,14 +103,9 @@ function ShopPage() {
         <article className="max-w-screen-xl min-h-screen pb-12 mx-auto">
           <main className="flex flex-col flex-1 gap-5 sm:flex-row">
             <div className="flex flex-col w-full gap-2 sm:w-1/4">
-              <TextInput
-                placeholder="Buscar..."
-                className="w-full"
-                defaultValue={searchData}
-                onChange={onSearchChange}
-              />
+              <TextInput placeholder="Buscar..." className="w-full" value={searchData} onValueChange={onSearchChange} />
               <SearchSelect
-                className="z-40 rounded"
+                className="z-50"
                 placeholder="Categoría"
                 onValueChange={onCategoryChange}
                 value={categoryData}
@@ -85,6 +116,16 @@ function ShopPage() {
                   </SearchSelectItem>
                 ))}
               </SearchSelect>
+              <SearchSelect className="z-40" placeholder="Marca" onValueChange={onBrandChange} value={brandData}>
+                {brandsArray.map((brand) => (
+                  <SearchSelectItem key={brand.id} value={brand.id}>
+                    {brand.attributes.name}
+                  </SearchSelectItem>
+                ))}
+              </SearchSelect>
+              <Button color="dark" onClick={clearFilters}>
+                Limpiar Filtros
+              </Button>
             </div>
             <div className="sm:w-3/4">
               {filteredArray.length === 0 && !loading && (

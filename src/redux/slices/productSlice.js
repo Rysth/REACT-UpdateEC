@@ -97,7 +97,7 @@ export const findProduct = createAsyncThunk('product/findProduct', async (produc
 // Products - GET
 export const searchAndFilterProducts = createAsyncThunk(
   'product/searchAndFilterProducts',
-  async ({ searchData, categoryID }) => {
+  async ({ searchData, categoryID, brandID }) => {
     try {
       let params = {
         ...fetchProductsConfig.params,
@@ -107,6 +107,10 @@ export const searchAndFilterProducts = createAsyncThunk(
 
       if (categoryID && categoryID !== 0) {
         params['filters[category][id][$eq]'] = categoryID
+      }
+
+      if (brandID && brandID !== 0) {
+        params['filters[brand][id][$eq]'] = brandID
       }
 
       const response = await axios.get(`${API_URL}/products`, {
