@@ -1,6 +1,7 @@
 import { Button } from 'flowbite-react'
 import { useEffect } from 'react'
-import { HiArchiveBox, HiArrowRight, HiBolt, HiCheckCircle } from 'react-icons/hi2'
+import { HiArchiveBox, HiBuildingStorefront, HiBolt, HiCheckCircle } from 'react-icons/hi2'
+import { FaWhatsapp } from 'react-icons/fa'
 import Carousel from 'react-multi-carousel'
 import { useDispatch, useSelector } from 'react-redux'
 import CategoryOne from '../../assets/PNG/categories/category_1.png'
@@ -10,23 +11,24 @@ import ProductCard from '../../components/ui/ProductCard/ProductCard'
 import SectionLayout from '../../layouts/SectionLayout'
 import { fetchLastestProducts } from '../../redux/slices/productSlice'
 
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 5,
+  },
+  tablet: {
+    breakpoint: { max: 768, min: 640 },
+    items: 3,
+  },
+  mobile: {
+    breakpoint: { max: 640, min: 0 },
+    items: 1,
+  },
+}
+
 function HomePage() {
   const dispatch = useDispatch()
   const { lastestProducts } = useSelector((store) => store.product)
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 5,
-    },
-    tablet: {
-      breakpoint: { max: 768, min: 640 },
-      items: 3,
-    },
-    mobile: {
-      breakpoint: { max: 640, min: 0 },
-      items: 1,
-    },
-  }
 
   useEffect(() => {
     dispatch(fetchLastestProducts())
@@ -36,25 +38,27 @@ function HomePage() {
     <section>
       {/* =====HERO===== */}
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
-        <article className="flex flex-col max-w-screen-xl gap-12 py-12 mx-auto sm:gap-8 md:flex-row ">
-          <header className="flex flex-col justify-center gap-2 text-center sm:gap-0 md:text-left sm:flex-1">
-            <p className="text-sm font-semibold text-blue-700 uppercase">Productos Gaming Profesionales</p>
-            <h1 className="my-1 text-5xl font-bold text-black md:text-8xl md:my-4">Potencia tu Experiencia</h1>
-            <p className="max-w-sm mb-4 text-sm leading-7 text-gray-500 md:text-base">
-              Productos gaming de alta gama, y calidad insuperable en un solo lugar.
+        <article className="max-w-screen-xl gap-20 py-12 mx-auto space-y-4 sm:space-y-0 sm:gap-8 md:grid md:grid-cols-2">
+          <header className="flex flex-col justify-center gap-2 text-center sm:gap-0 md:text-left md:pe-40">
+            <h1 className="my-1 text-4xl font-bold text-black md:text-6xl lg:text-7xl md:my-4">
+              Experimenta Tu Juego al Máximo
+            </h1>
+            <p className="max-w-xl mb-4 text-sm text-gray-500 md:text-base">
+              Descubre la última tecnología en gaming. Experimenta una inmersión total con nuestra exclusiva selección
+              de productos
             </p>
-            <div className="flex flex-col gap-2.5 sm:flex-row md:justify-start">
-              <Button
-                href="/shop"
-                className="p-2 !text-xl transition bg-blue-700 sm:px-4 hover:bg-blue-800 hover:shadow-xl"
-                pill
-              >
+            <div className="flex gap-2">
+              <a href="/shop" className="flex-1 text-white rounded-full btn btn-primary">
+                <HiBuildingStorefront className="text-xl" />
                 Visitar
-                <HiArrowRight className="ml-1 text-xl" />
-              </Button>
+              </a>
+              <a href="tel:+5930984798317" className="flex-1 rounded-full btn btn-primary btn-outline">
+                <FaWhatsapp className="text-xl" />
+                Contactar
+              </a>
             </div>
           </header>
-          <main className="sm:flex-1 sm:h-auto">
+          <main>
             <img
               src={ProductImage}
               loading="lazy"
@@ -166,7 +170,7 @@ function HomePage() {
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Últimos Productos</h2>
             <a href="/shop" className="flex items-center gap-1 text-sm transition duration-200 hover:translate-x-2">
               Más Productos
-              <HiArrowRight className="text-blue-700" />
+              <HiBuildingStorefront className="text-blue-700" />
             </a>
           </header>
           <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" draggable={false}>
