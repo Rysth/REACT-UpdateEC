@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 
 /* Environment Variables */
 const API_URL = import.meta.env.VITE_APP_URL
@@ -62,7 +63,7 @@ const reviewSlice = createSlice({
         state.error = action.error.message
       })
       .addCase(createReview.fulfilled, (state, action) => {
-        state.reviewsArray = [...state.reviewsArray, action.payload]
+        toast.success('Reseña Envíada')
       })
   },
 })

@@ -86,16 +86,15 @@ function ProductPreview() {
               +
             </Button>
           </div>
-          <Button
+          <button
             type="button"
-            color="blue"
-            className="w-3/4 gap-1 rounded bg-violet-700"
+            className="w-3/4 btn btn-primary"
             onClick={() => handleAddToCart(quantity)}
             disabled={isAddToCartDisabled}
           >
-            <HiShoppingBag className="mr-1" />
+            <HiShoppingBag className="text-xl" />
             Añadir al Carrito
-          </Button>
+          </button>
         </footer>
       </main>
     </article>
