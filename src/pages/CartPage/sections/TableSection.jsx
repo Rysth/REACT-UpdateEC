@@ -46,14 +46,14 @@ function TableSection({ cartItems }) {
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Carrito de Compras</h2>
         </header>
         <main className="sm:min-h-[24rem]">
-          <div className="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg max-h-96">
+          <div className="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg max-h-[37rem]">
             <table className="w-full text-sm text-left text-gray-500 ">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
-                <tr>
+                <tr className="sticky top-0 z-50 bg-white border-b border-b-gray-200">
                   <th scope="col" className="px-16 py-3 w-1/6 min-w-[5rem]">
-                    <span className="sr-only">Image</span>
+                    Imagen
                   </th>
-                  <th scope="col" className="px-6 py-3 min-w-[15rem] w-2/6">
+                  <th scope="col" className="px-6 py-3 min-w-[15rem] w-[10rem]">
                     Producto
                   </th>
                   <th scope="col" className="w-1/6 px-6 py-3">
@@ -62,7 +62,7 @@ function TableSection({ cartItems }) {
                   <th scope="col" className="w-1/6 px-6 py-3">
                     Precio
                   </th>
-                  <th scope="col" className="w-1/6 px-6 py-3">
+                  <th scope="col" className="w-[10%] px-6 py-3">
                     Acción
                   </th>
                 </tr>

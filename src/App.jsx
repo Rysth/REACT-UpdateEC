@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { HiArrowUp } from 'react-icons/hi'
 import 'react-medium-image-zoom/dist/styles.css'
 import 'react-multi-carousel/lib/styles.css'
 import { useSelector } from 'react-redux'
@@ -9,18 +11,15 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Footer from './components/navigation/Footer/Footer'
 import NavigationBar from './components/navigation/NavigationBar/NavigationBar'
 import NotFound from './pages/404/NotFound'
+import AboutPage from './pages/AboutPage/AboutPage'
 import CartPage from './pages/CartPage/CartPage'
 import HomePage from './pages/HomePage/HomePage'
+import OrderPage from './pages/OrderPage/OrderPage'
 import ProductPage from './pages/ProductPage/ProductPage'
 import SessionPage from './pages/SessionPage/SessionPage'
 import FormSignIn from './pages/SessionPage/sections/FormSignIn'
 import FormSignUp from './pages/SessionPage/sections/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
-import OrderPage from './pages/OrderPage/OrderPage'
-import AboutPage from './pages/AboutPage/AboutPage'
-import { Button } from 'flowbite-react'
-import { useEffect, useState } from 'react'
-import { HiArrowUp } from 'react-icons/hi'
 
 function App() {
   const [isVisible, setIsVisible] = useState(false)
@@ -54,9 +53,13 @@ function App() {
       <ToastContainer position="top-right" />
       <NavigationBar />
       {isVisible && (
-        <Button onClick={scrollToTop} className="fixed shadow w-14 h-14 bottom-5 right-5 z-[9000]" color="blue" pill>
+        <button
+          onClick={scrollToTop}
+          className="fixed shadow w-14 h-14 bottom-5 right-5 z-[9000] btn-circle btn-primary btn text-white"
+          color="blue"
+        >
           <HiArrowUp className="text-lg" />
-        </Button>
+        </button>
       )}
       <main className="min-h-screen">
         <Routes>

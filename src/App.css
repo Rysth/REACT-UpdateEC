@@ -50,6 +50,14 @@ body {
   font-family: var(--FF-poppins);
 }
 
+p,
+button,
+input,
+label,
+textarea {
+  font-family: var(--FF-poppins);
+}
+
 h1,
 h2,
 h3,
@@ -57,14 +65,6 @@ h4,
 h5,
 h6 {
   font-family: var(--FF-ica-rubrik);
-}
-
-p,
-button,
-input,
-label,
-textarea {
-  font-family: var(--FF-poppins);
 }
 
 img,
@@ -76,57 +76,6 @@ video {
   max-width: 100%;
 }
 
-/* Display */
-.d-none {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .d-none {
-    display: unset;
-  }
-}
-
-/* Buttons */
-
-.btn {
-  padding: 0.75em 1.5em;
-  background: none;
-  border: none;
-  border-radius: 2em;
-  cursor: pointer;
-  transition: 0.15s;
-}
-
-.btn-primary {
-  background-color: var(--CL-primary-cyan);
-}
-
-.btn-primary-outline {
-  outline: 1px solid var(--CL-primary-cyan);
-  color: var(--CL-primary-cyan);
-}
-
-@media (min-width: 768px) {
-  .btn:hover {
-    background-color: var(--CL-neutral-white);
-    color: var(--CL-neutral-black);
-    outline: none;
-  }
-}
-
 .bg-purple {
   @apply bg-[var(--CL-primary-purple)];
-}
-
-.bg-cyan {
-  @apply bg-[var(--CL-primary-cyan)];
-}
-
-.active {
-  @apply text-gray-900 no-underline bg-white;
-}
-
-.bg-gradient-primary {
-  @apply from-[var(--CL-primary-purple)] to-[var(--CL-primary-cyan)];
 }

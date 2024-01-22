@@ -1,7 +1,7 @@
 import { Badge, Button, Modal, Table, TextInput } from 'flowbite-react'
 import debounce from 'lodash/debounce'
 import { useEffect, useState } from 'react'
-import { HiArrowLeft, HiDocumentSearch } from 'react-icons/hi'
+import { HiArrowLeft, HiDocumentSearch, HiEye } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import LoadingCard from '../../components/ui/LoadingCard/LoadingCard'
@@ -72,7 +72,7 @@ function OrderPage() {
         ]}
       />
       <Modal className="z-[10000]" show={openModal} onClose={() => setOpenModal(false)}>
-        <Modal.Header className="text-white bg-blue-600 rounded-t-lg ">
+        <Modal.Header className="text-white rounded-t-lg bg-violet-700 ">
           <p className="text-center text-white sm:text-left">
             {orderSelected && `Orden #${orderSelected.attributes.payment_detail.data.attributes.payment_id}`}
           </p>
@@ -120,7 +120,7 @@ function OrderPage() {
                     <a
                       href={`/shop/${productData.product.data.id}`}
                       target="_blank"
-                      className="text-left text-blue-500 underline uppercase truncate hover:text-black"
+                      className="text-left uppercase truncate link link-primary"
                       rel="noreferrer"
                     >
                       {productData.product.data.attributes.name}
@@ -200,9 +200,15 @@ function OrderPage() {
                       </Table.Cell>
                       <Table.Cell className="font-bold text-green-600">${paymentTotal}</Table.Cell>
                       <Table.Cell className="grid font-bold text-green-600 place-items-center">
-                        <Button size="xs" color="blue" onClick={() => handleOrderSelected(order.id)} id={order.id}>
-                          Ver
-                        </Button>
+                        <button
+                          size="xs"
+                          className="text-white btn btn-primary btn-sm"
+                          onClick={() => handleOrderSelected(order.id)}
+                          id={order.id}
+                        >
+                          <HiEye />
+                          <span className="sr-only">Ver</span>
+                        </button>
                       </Table.Cell>
                     </Table.Row>
                   )

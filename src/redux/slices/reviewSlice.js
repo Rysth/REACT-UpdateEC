@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 
 /* Environment Variables */
 const API_URL = import.meta.env.VITE_APP_URL
@@ -12,7 +13,7 @@ const initialState = {
   error: false,
 }
 
-// Categories - GET
+// Reviews - GET
 export const fetchReviews = createAsyncThunk('review/fetchReviews', async (productID) => {
   try {
     const response = await axios.get(`${API_URL}/reviews`, {
@@ -21,8 +22,23 @@ export const fetchReviews = createAsyncThunk('review/fetchReviews', async (produ
     })
     return response.data
   } catch (error) {
-    console.log(error)
     throw new Error(`Error: ${error.message}`)
+  }
+})
+
+// Reviews - POST
+export const createReview = createAsyncThunk('review/createReview', async (reviewData, { rejectWithValue }) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/reviews`,
+      { data: reviewData },
+      {
+        headers: { Authorization: `Bearer ${API_KEY}` },
+      },
+    )
+    return response.data
+  } catch (error) {
+    return rejectWithValue(error.response.data)
   }
 })
 
@@ -42,6 +58,9 @@ const reviewSlice = createSlice({
       .addCase(fetchReviews.rejected, (state, action) => {
         state.loading = false
         state.error = action.error.message
+      })
+      .addCase(createReview.fulfilled, () => {
+        toast.success('Reseña Envíada')
       })
   },
 })

@@ -58,7 +58,7 @@ function FormSignUp() {
       </fieldset>
       <fieldset className="flex items-center gap-1 text-xs">
         ¿Ya tienes una cuenta?
-        <a href="/sign_in" className="text-blue-600 underline transition hover:text-blue-800">
+        <a href="/sign_in" className="link link-primary">
           ¡Ingresa Ahora!
         </a>
       </fieldset>

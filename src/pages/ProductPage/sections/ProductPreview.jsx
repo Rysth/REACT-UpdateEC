@@ -36,7 +36,7 @@ function ProductPreview() {
         <header className="space-y-1 sm:space-y-4">
           <h2 className="text-lg font-bold uppercase sm:text-xl md:text-3xl">{foundProduct.attributes.name}</h2>
           <p className="text-sm">
-            Stock: <span className="text-blue-700">{foundProduct.attributes.quantity} unidades disponibles</span>
+            Stock: <span className="text-violet-700">{foundProduct.attributes.quantity} unidades disponibles</span>
           </p>
           <hr className="block h-1 bg-gray-200 rounded" />
         </header>
@@ -51,14 +51,14 @@ function ProductPreview() {
               color="blue"
             >{`Marca: ${foundProduct.attributes.brand.data.attributes.name}`}</Badge>
           </div>
-          <h2 className="my-3 text-xl font-bold text-blue-700 uppercase truncate md:text-3xl">
+          <h2 className="my-3 text-xl font-bold uppercase truncate text-violet-700 md:text-3xl">
             ${foundProduct.attributes.price}
           </h2>
           <div className="text-xs sm:text-sm max-h-[15rem] overflow-hidden">
             <Markdown>{foundProduct.attributes.description}</Markdown>
           </div>
         </main>
-        <footer className="flex items-center gap-5 mt-auto sm:flex-row">
+        <footer className="flex flex-col items-center gap-5 mt-auto sm:flex-row">
           <div className="flex items-center border border-gray-200 rounded">
             <Button
               className="w-5 h-10 leading-10 text-gray-700 transition bg-transparent border-none hover:opacity-75"
@@ -86,16 +86,15 @@ function ProductPreview() {
               +
             </Button>
           </div>
-          <Button
+          <button
             type="button"
-            color="blue"
-            className="w-3/4 gap-1 bg-blue-700 rounded"
+            className="w-4/4 sm:w-3/4 btn btn-primary"
             onClick={() => handleAddToCart(quantity)}
             disabled={isAddToCartDisabled}
           >
-            <HiShoppingBag className="mr-1" />
+            <HiShoppingBag className="text-xl" />
             Añadir al Carrito
-          </Button>
+          </button>
         </footer>
       </main>
     </article>

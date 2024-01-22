@@ -1,5 +1,4 @@
 import { SearchSelect, SearchSelectItem, TextInput } from '@tremor/react'
-import { Button } from 'flowbite-react'
 import { debounce } from 'lodash'
 import { useEffect, useState } from 'react'
 import { HiFunnel, HiMagnifyingGlass } from 'react-icons/hi2'
@@ -142,13 +141,13 @@ function ShopPage() {
                   </SearchSelect>
                 </div>
               </div>
-              <Button
-                color="dark"
+              <button
                 onClick={clearFilters}
                 disabled={searchData === '' && categoryData === 0 && brandData === 0}
+                className="w-full btn btn-accent"
               >
                 Limpiar Filtros
-              </Button>
+              </button>
             </div>
             <div className="sm:w-3/4">
               {filteredArray.length === 0 && !loading && (
@@ -167,9 +166,14 @@ function ShopPage() {
                 </ul>
               )}
               <footer className="grid mt-8 place-items-center">
-                <Button type="button" color="blue" className="" onClick={loadMoreProducts} disabled={isFiltered} pill>
+                <button
+                  type="button"
+                  className="rounded-full btn btn-primary"
+                  onClick={loadMoreProducts}
+                  disabled={isFiltered}
+                >
                   Mostrar Más
-                </Button>
+                </button>
               </footer>
             </div>
           </main>

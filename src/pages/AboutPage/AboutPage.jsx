@@ -1,6 +1,5 @@
 import { useForm } from '@formspree/react'
 import { TextInput, Textarea } from '@tremor/react'
-import { Button } from 'flowbite-react'
 import { useEffect } from 'react'
 import { HiMail } from 'react-icons/hi'
 import { HiBuildingStorefront, HiCheckCircle, HiHandRaised, HiLightBulb, HiMapPin, HiPhone } from 'react-icons/hi2'
@@ -33,7 +32,7 @@ function AboutPage() {
           </header>
           <main className="grid gap-4 mt-12 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
             <div className="flex flex-col items-center gap-2 p-4 py-8 transition md:hover:shadow-xl rounded-xl sm:gap-4">
-              <HiLightBulb className="text-blue-600 text-8xl" />
+              <HiLightBulb className="text-violet-700 text-8xl" />
               <h4 className="max-w-xs mx-auto text-sm leading-7 text-center sm:text-xl">Nuestra Visión</h4>
               <ul className="grid gap-2 text-sm">
                 <li className="flex items-center gap-2">
@@ -59,7 +58,7 @@ function AboutPage() {
               </ul>
             </div>
             <div className="flex flex-col items-center gap-2 p-4 py-8 transition md:hover:shadow-xl rounded-xl sm:gap-4">
-              <HiBuildingStorefront className="text-blue-600 text-8xl" />
+              <HiBuildingStorefront className="text-violet-700 text-8xl" />
               <h4 className="max-w-xs mx-auto text-sm leading-7 text-center sm:text-xl">Nuestra Misión</h4>
               <ul className="grid gap-2 text-sm">
                 <li className="flex items-center gap-2">
@@ -85,7 +84,7 @@ function AboutPage() {
               </ul>
             </div>
             <div className="flex flex-col items-center gap-2 p-4 py-8 transition md:hover:shadow-xl rounded-xl sm:gap-4">
-              <HiHandRaised className="text-blue-600 text-8xl" />
+              <HiHandRaised className="text-violet-700 text-8xl" />
               <h4 className="max-w-xs mx-auto text-sm leading-7 text-center sm:text-xl">Nuestro Compromiso</h4>
               <ul className="grid gap-2 text-sm">
                 <li className="flex items-center gap-2">
@@ -153,20 +152,20 @@ function AboutPage() {
                 />
               </fieldset>
               <fieldset className="flex justify-end mt-5">
-                <Button color="blue" type="submit" disabled={state.submitting} pill>
+                <button className="text-white rounded-full btn btn-primary" type="submit" disabled={state.submitting}>
                   Envíar Mensaje
-                </Button>
+                </button>
               </fieldset>
             </form>
             <ul className="flex flex-col items-center justify-center gap-10 lg:items-start lg:w-2/4">
               <li className="flex items-center gap-2 sm:gap-4">
-                <HiPhone className="text-5xl text-blue-600" />
+                <HiPhone className="text-5xl text-violet-700" />
                 <div className="space-y-1 sm:space-y-2">
                   <p className="text-sm text-gray-600">Canal de Ventas Principal</p>
                   <a
                     href="tel:+5930984798317"
                     target="_blank"
-                    className="block text-xl font-semibold transition hover:text-blue-600 sm:text-3xl"
+                    className="block text-xl font-semibold transition hover:text-violet-700 sm:text-3xl"
                     rel="noreferrer"
                   >
                     0984798317
@@ -174,13 +173,13 @@ function AboutPage() {
                 </div>
               </li>
               <li className="flex items-center gap-2 sm:gap-4">
-                <HiMail className="text-5xl text-blue-600" />
+                <HiMail className="text-5xl text-violet-700" />
                 <div className="space-y-1 sm:space-y-2">
                   <p className="text-sm text-gray-600">Contacto Directo por Email</p>
                   <a
                     href="mailto:ventas@updateec.com"
                     target="_blank"
-                    className="block text-xl font-semibold transition hover:text-blue-600 sm:text-3xl"
+                    className="block text-xl font-semibold transition hover:text-violet-700 sm:text-3xl"
                     rel="noreferrer"
                   >
                     ventas@updateec.com
@@ -188,13 +187,13 @@ function AboutPage() {
                 </div>
               </li>
               <li className="flex items-center gap-2 sm:gap-4">
-                <HiMapPin className="text-5xl text-blue-600" />
+                <HiMapPin className="text-5xl text-violet-700" />
                 <div className="space-y-1 sm:space-y-2">
                   <p className="text-sm text-gray-600">Consulta Nuestra Localidad</p>
                   <a
                     target="_blank"
                     href="https://maps.app.goo.gl/UvtUpYb4yTQa2QeZ6"
-                    className="block text-xl font-semibold transition hover:text-blue-600 sm:text-3xl"
+                    className="block text-xl font-semibold transition hover:text-violet-700 sm:text-3xl"
                     rel="noreferrer"
                   >
                     Alborada, Guayaquil 090112
