@@ -1,5 +1,4 @@
 import { TextInput } from '@tremor/react'
-import { Button } from 'flowbite-react'
 import { useForm } from 'react-hook-form'
 import { HiLockClosed, HiMail } from 'react-icons/hi'
 import { useDispatch } from 'react-redux'
@@ -42,13 +41,13 @@ function FormSignIn() {
         />
       </fieldset>
       <fieldset className="grid w-full">
-        <Button type="submit" fullSized className="transition duration-300" color="blue">
+        <button type="submit" className="text-white btn btn-primary">
           Ingresar
-        </Button>
+        </button>
       </fieldset>
       <fieldset className="flex items-center gap-1 text-xs">
         ¿Eres Nuevo/a?
-        <a href="/sign_up" className="text-blue-600 underline transition hover:text-blue-800">
+        <a href="/sign_up" className="link link-primary">
           ¡Registrate Ahora!
         </a>
       </fieldset>

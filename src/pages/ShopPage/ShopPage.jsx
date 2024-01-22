@@ -1,5 +1,4 @@
 import { SearchSelect, SearchSelectItem, TextInput } from '@tremor/react'
-import { Button } from 'flowbite-react'
 import { debounce } from 'lodash'
 import { useEffect, useState } from 'react'
 import { HiFunnel, HiMagnifyingGlass } from 'react-icons/hi2'
@@ -172,7 +171,6 @@ function ShopPage() {
                   className="rounded-full btn btn-primary"
                   onClick={loadMoreProducts}
                   disabled={isFiltered}
-                  pill
                 >
                   Mostrar Más
                 </button>

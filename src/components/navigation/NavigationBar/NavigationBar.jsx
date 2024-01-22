@@ -1,4 +1,4 @@
-import { Button, Dropdown, Navbar } from 'flowbite-react'
+import { Dropdown, Navbar } from 'flowbite-react'
 import { useState } from 'react'
 import { HiLogout } from 'react-icons/hi'
 import { HiListBullet, HiMiniBars3BottomRight, HiOutlineShoppingBag, HiOutlineUser, HiUser } from 'react-icons/hi2'

@@ -38,7 +38,7 @@ function TableItem({ product, showModal, setProductToRemove }) {
         </a>
       </td>
       <td className="px-4 py-1 font-semibold text-gray-900">
-        <a href={`/shop/${product.id}`} className="truncate max-w-[20rem] inline-block uppercase">
+        <a href={`/shop/${product.id}`} className="truncate max-w-[25rem] inline-block uppercase">
           {product.attributes.name}
         </a>
       </td>

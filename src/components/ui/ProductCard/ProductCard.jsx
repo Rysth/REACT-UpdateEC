@@ -1,4 +1,4 @@
-import { Badge, Button } from 'flowbite-react'
+import { Badge } from 'flowbite-react'
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { HiOutlineShoppingBag } from 'react-icons/hi2'
