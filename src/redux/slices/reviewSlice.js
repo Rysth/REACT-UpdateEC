@@ -59,7 +59,7 @@ const reviewSlice = createSlice({
         state.loading = false
         state.error = action.error.message
       })
-      .addCase(createReview.fulfilled, (state, action) => {
+      .addCase(createReview.fulfilled, () => {
         toast.success('Reseña Envíada')
       })
   },

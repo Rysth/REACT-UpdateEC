@@ -1,23 +1,26 @@
+import { Label, Modal, Select, Textarea } from 'flowbite-react'
 import { useEffect, useMemo, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { HiStar } from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import LoadingCard from '../../components/ui/LoadingCard/LoadingCard'
 import { findProduct } from '../../redux/slices/productSlice'
+import { createReview, fetchReviews } from '../../redux/slices/reviewSlice'
 import ProductPreview from './sections/ProductPreview'
 import ProductSimilar from './sections/ProductSimilar'
-import { createReview, fetchReviews } from '../../redux/slices/reviewSlice'
-import { useForm } from 'react-hook-form'
-import { HiStar } from 'react-icons/hi2'
-import { Button, Checkbox, Label, Modal, Select, TextInput, Textarea } from 'flowbite-react'
 
 function ProductPage() {
   const dispatch = useDispatch()
-  const [openModal, setOpenModal] = useState(false)
-  const { foundProduct } = useSelector((store) => store.product)
-  const { active, userData } = useSelector((store) => store.session)
-  const { reviewsArray } = useSelector((store) => store.review)
+  const { foundProduct, active, userData, reviewsArray } = useSelector((store) => ({
+    foundProduct: store.product.foundProduct,
+    active: store.session.active,
+    userData: store.session.userData,
+    reviewsArray: store.review.reviewsArray,
+  }))
   const { productID } = useParams()
+  const [openModal, setOpenModal] = useState(false)
   const {
     register,
     handleSubmit,
@@ -26,20 +29,11 @@ function ProductPage() {
   } = useForm()
 
   const onSubmit = (data) => {
-    // Aquí manejas la lógica para enviar la reseña
-    const reviewData = {
-      ...data,
-      product: productID,
-      user: userData.id,
-    }
+    const reviewData = { ...data, product: productID, user: userData.id }
     dispatch(createReview(reviewData))
-      .then(() => {
-        dispatch(fetchReviews(productID))
-        onCloseModal()
-      })
-      .catch((error) => {
-        console.error('Error al crear la reseña:', error)
-      })
+      .then(() => dispatch(fetchReviews(productID)))
+      .catch((error) => console.error('Error al crear la reseña:', error))
+      .finally(() => onCloseModal())
   }
 
   const averageRating = useMemo(() => {
@@ -47,7 +41,13 @@ function ProductPage() {
     return reviewsArray.length ? (totalRating / reviewsArray.length).toFixed(1) : 0
   }, [reviewsArray])
 
-  function onCloseModal() {
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, i) => (
+      <HiStar key={i} className={`${i < rating ? 'text-yellow-400' : 'text-gray-300'}`} />
+    ))
+  }
+
+  const onCloseModal = () => {
     setOpenModal(false)
     reset()
   }
@@ -59,12 +59,10 @@ function ProductPage() {
 
   useEffect(() => {}, [reviewsArray])
 
-  if (!foundProduct) {
-    return <LoadingCard />
-  }
+  if (!foundProduct) return <LoadingCard />
 
   return (
-    <section className="relative">
+    <section className="relative animate__animated animate__fadeIn animate__slow">
       <BreadCrumb
         paths={[
           { name: 'Tienda', href: '/shop', active: false },
@@ -77,7 +75,7 @@ function ProductPage() {
       />
       <ProductPreview />
       <ProductSimilar />
-      <div className="py-6 bg-white sm:py-8 lg:py-12">
+      <section className="py-6 bg-white sm:py-8 lg:py-12">
         <Modal show={openModal} size="md" onClose={onCloseModal}>
           <Modal.Header className="p-4">
             <span className="text-xl font-semibold md:text-2xl">Comparte tu Opinión</span>
@@ -114,11 +112,7 @@ function ProductPage() {
             <div className="flex flex-col gap-0.5">
               <span className="block text-xl font-bold">Calificación</span>
 
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <HiStar key={i} className={`${i < averageRating ? 'text-yellow-400' : 'text-gray-300'}`} />
-                ))}
-              </div>
+              <div className="flex gap-0.5">{renderStars(averageRating)}</div>
 
               <span className="block mt-3 text-sm text-gray-500">Basado en {reviewsArray.length} reseña/s</span>
             </div>
@@ -137,20 +131,13 @@ function ProductPage() {
                     {new Date(review.attributes.createdAt).toLocaleDateString()}
                   </p>
                 </header>
-                <div className="flex items-center gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <HiStar
-                      key={i}
-                      className={`${i < review.attributes.rating ? 'text-yellow-400' : 'text-gray-300'}`}
-                    />
-                  ))}
-                </div>
+                <div className="flex items-center gap-0.5">{renderStars(review.attributes.rating)}</div>
                 <p className="text-sm text-gray-500">{review.attributes.body}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </section>
   )
 }
