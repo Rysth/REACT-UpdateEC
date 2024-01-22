@@ -32,17 +32,12 @@ function NavigationBar() {
           <img src={BrandImage} className="w-24 sm:w-32" alt="UpdateEC's logo brand" />
         </Navbar.Brand>
         <div className="flex items-center md:order-2 ">
-          <Button
-            href="/cart"
-            color="dark"
-            size="sm"
-            className="text-gray-900 bg-transparent hover:!bg-transparent group focus:ring-0 "
-          >
-            <HiOutlineShoppingBag className="text-2xl transition group-hover:text-blue-700" />
-            <p className="absolute grid w-5 h-5 bg-red-600 text-white  rounded-full place-items-center right-2 sm:right-2 bottom-0.5 text-xs">
+          <a href="/cart" color="dark" size="sm" className="relative btn btn-ghost group">
+            <HiOutlineShoppingBag className="text-2xl transition" />
+            <p className="absolute bottom-0 grid w-5 h-5 text-xs text-white rounded-full right-2 bg-violet-600 place-items-center">
               {totalQuantity}
             </p>
-          </Button>
+          </a>
           {active ? (
             <Dropdown
               renderTrigger={() => (
@@ -51,7 +46,7 @@ function NavigationBar() {
                   size="sm"
                   className="text-gray-900   bg-transparent hover:!bg-transparent group focus:ring-0 "
                 >
-                  <HiUser className="text-2xl transition group-hover:text-blue-700" />
+                  <HiUser className="text-2xl transition" />
                 </Button>
               )}
             >
@@ -68,34 +63,22 @@ function NavigationBar() {
               </Dropdown.Item>
             </Dropdown>
           ) : (
-            <Button href="/sign_in" className="text-gray-900  bg-transparent hover:!bg-transparent group focus:ring-0">
-              <HiOutlineUser className="p-0 text-2xl transition group-hover:text-blue-700" />
-            </Button>
+            <a href="/sign_in" className="group btn btn-ghost">
+              <HiOutlineUser className="p-0 text-2xl transition " />
+            </a>
           )}
-          <Navbar.Toggle
-            barIcon={HiMiniBars3BottomRight}
-            className="text-gray-900  !bg-transparent focus:ring-0 hover:text-blue-700"
-          />
+          <Navbar.Toggle barIcon={HiMiniBars3BottomRight} className="text-gray-900  !bg-transparent focus:ring-0" />
         </div>
-        <Navbar.Collapse className="p-2 space-y-4 transition md:p-0">
-          <Navbar.Link
-            href="/"
-            className="md:hover:!text-blue-700 bg-white md:bg-transparent text-blue-700 md:text-gray-900 mb-1 md:shadow-none md:mb-0 font-semibold rounded-md md:border-transparent border shadow-md"
-          >
+        <Navbar.Collapse className="">
+          <a href="/" className="btn btn-ghost btn-sm hover:!text-violet-700">
             Inicio
-          </Navbar.Link>
-          <Navbar.Link
-            href="/shop"
-            className="md:hover:!text-blue-700 bg-white md:bg-transparent text-blue-700 md:text-gray-900 mb-1 md:shadow-none md:mb-0 font-semibold rounded-md md:border-transparent border shadow-md"
-          >
+          </a>
+          <a href="/shop" className="btn btn-ghost btn-sm hover:!text-violet-700">
             Tienda
-          </Navbar.Link>
-          <Navbar.Link
-            href="/about"
-            className="md:hover:!text-blue-700 bg-white md:bg-transparent text-blue-700 md:text-gray-900 mb-1 md:shadow-none md:mb-0 font-semibold rounded-md md:border-transparent border shadow-md"
-          >
+          </a>
+          <a href="/about" className="btn btn-ghost btn-sm hover:!text-violet-700">
             Nosotros
-          </Navbar.Link>
+          </a>
         </Navbar.Collapse>
       </Navbar>
     </header>
