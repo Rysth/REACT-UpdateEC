@@ -32,7 +32,7 @@ function NavigationBar() {
           <img src={BrandImage} className="w-24 sm:w-32" alt="UpdateEC's logo brand" />
         </Navbar.Brand>
         <div className="flex items-center md:order-2 ">
-          <a href="/cart" color="dark" size="sm" className="relative btn btn-ghost group">
+          <a href="/cart" size="sm" className="relative btn btn-ghost group">
             <HiOutlineShoppingBag className="text-2xl transition" />
             <p className="absolute bottom-0 grid w-5 h-5 text-xs text-white rounded-full right-2 bg-violet-600 place-items-center">
               {totalQuantity}
@@ -41,13 +41,9 @@ function NavigationBar() {
           {active ? (
             <Dropdown
               renderTrigger={() => (
-                <Button
-                  color="dark"
-                  size="sm"
-                  className="text-gray-900   bg-transparent hover:!bg-transparent group focus:ring-0 "
-                >
-                  <HiUser className="text-2xl transition" />
-                </Button>
+                <button size="sm" className="btn btn-ghost">
+                  <HiUser className="text-2xl transition text-violet-700" />
+                </button>
               )}
             >
               <Dropdown.Header>

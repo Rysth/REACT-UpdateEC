@@ -54,9 +54,14 @@ function App() {
       <ToastContainer position="top-right" />
       <NavigationBar />
       {isVisible && (
-        <Button onClick={scrollToTop} className="fixed shadow w-14 h-14 bottom-5 right-5 z-[9000]" color="blue" pill>
+        <button
+          onClick={scrollToTop}
+          className="fixed shadow w-14 h-14 bottom-5 right-5 z-[9000] btn-circle btn-primary btn text-white"
+          color="blue"
+          pill
+        >
           <HiArrowUp className="text-lg" />
-        </Button>
+        </button>
       )}
       <main className="min-h-screen">
         <Routes>

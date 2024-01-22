@@ -1,6 +1,5 @@
-import { Button } from 'flowbite-react'
 import { useEffect } from 'react'
-import { HiArchiveBox, HiBuildingStorefront, HiBolt, HiCheckCircle } from 'react-icons/hi2'
+import { HiArchiveBox, HiBuildingStorefront, HiBolt, HiCheckCircle, HiArrowRight } from 'react-icons/hi2'
 import { FaWhatsapp } from 'react-icons/fa'
 import Carousel from 'react-multi-carousel'
 import { useDispatch, useSelector } from 'react-redux'
@@ -78,14 +77,9 @@ function HomePage() {
                 Encuentra tus herramientas gamer. <br /> ¡Explora y juega mejor!
               </p>
             </header>
-            <Button
-              href="/shop"
-              color="blue"
-              pill
-              className="w-32 transition bg-blue-700 sm:px-4 hover:bg-blue-800 hover:shadow-xl"
-            >
+            <a href="/shop" className="text-white rounded-full btn btn-primary">
               Comenzar
-            </Button>
+            </a>
           </main>
         </article>
       </SectionLayout>
@@ -94,7 +88,7 @@ function HomePage() {
         <article className="grid max-w-screen-xl gap-8 py-12 mx-auto sm:grid-cols-2 ">
           <div
             href="/shop"
-            className="relative flex flex-col items-center gap-2 py-10 overflow-hidden bg-gray-100 h-96 group"
+            className="relative flex flex-col items-center gap-2 py-10 overflow-hidden bg-gray-100 rounded-xl h-96 group"
           >
             <img
               src={CategoryOne}
@@ -104,19 +98,14 @@ function HomePage() {
             <main className="z-20 flex flex-col items-center gap-1.5">
               <p className="text-sm uppercase">Accesorios Gaming</p>
               <h3 className="text-xl font-bold sm:text-2xl md:text-4xl">100% Profesionales</h3>
-              <Button
-                size="sm"
-                href="/shop"
-                className="p-1 transition bg-blue-700 group-hover:bg-blue-800 sm:px-4 hover:shadow-xl md:hover:scale-105"
-                pill
-              >
+              <a size="sm" href="/shop" className="text-white rounded-full btn btn-primary">
                 Comprar Ahora
-              </Button>
+              </a>
             </main>
           </div>
           <div
             href="/shop"
-            className="relative flex flex-col items-center gap-2 py-10 overflow-hidden bg-gray-100 h-96 group"
+            className="relative flex flex-col items-center gap-2 py-10 overflow-hidden bg-gray-100 rounded-xl h-96 group"
           >
             <img
               src={CategoryTwo}
@@ -126,14 +115,9 @@ function HomePage() {
             <main className="z-20 flex flex-col items-center gap-1.5">
               <p className="text-sm uppercase">Productos Gama Alta</p>
               <h3 className="text-xl font-bold sm:text-2xl md:text-4xl">Desde $39.99</h3>
-              <Button
-                size="sm"
-                href="/shop"
-                className="p-1 transition bg-blue-700 group-hover:bg-blue-800 sm:px-4 hover:shadow-xl md:hover:scale-105"
-                pill
-              >
+              <a size="sm" href="/shop" className="text-white rounded-full btn btn-primary">
                 Comprar Ahora
-              </Button>
+              </a>
             </main>
           </div>
         </article>
@@ -168,9 +152,9 @@ function HomePage() {
         <article className="max-w-screen-xl py-12 mx-auto">
           <header className="flex flex-col items-center justify-between gap-2 mb-6 sm:flex-row">
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Últimos Productos</h2>
-            <a href="/shop" className="flex items-center gap-1 text-sm transition duration-200 hover:translate-x-2">
+            <a href="/shop" className="transition btn btn-link md:hover:translate-x-2">
               Más Productos
-              <HiBuildingStorefront className="text-blue-700" />
+              <HiArrowRight />
             </a>
           </header>
           <Carousel responsive={responsive} infinite autoPlay containerClass="pb-12" draggable={false}>

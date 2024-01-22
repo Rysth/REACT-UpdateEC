@@ -29,10 +29,10 @@ function ProductCard({ product }) {
           />
         </picture>
         <header className="p-2 px-4 py-3 text-center">
-          <h2 className="px-4 text-sm font-bold uppercase truncate transition duration-300 group-hover:text-blue-700">
+          <h2 className="px-4 text-sm font-bold uppercase truncate transition duration-300 group-hover:text-violet-700">
             {product.attributes.name}
           </h2>
-          <p className="text-sm font-semibold text-blue-700 uppercase truncate">${product.attributes.price}</p>
+          <p className="text-sm font-semibold uppercase truncate text-violet-700">${product.attributes.price}</p>
         </header>
       </a>
       {productQuantity === 0 && product && (
