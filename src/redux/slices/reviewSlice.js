@@ -12,7 +12,7 @@ const initialState = {
   error: false,
 }
 
-// Categories - GET
+// Reviews - GET
 export const fetchReviews = createAsyncThunk('review/fetchReviews', async (productID) => {
   try {
     const response = await axios.get(`${API_URL}/reviews`, {
@@ -23,6 +23,24 @@ export const fetchReviews = createAsyncThunk('review/fetchReviews', async (produ
   } catch (error) {
     console.log(error)
     throw new Error(`Error: ${error.message}`)
+  }
+})
+
+// Reviews - POST
+export const createReview = createAsyncThunk('review/createReview', async (reviewData, { rejectWithValue }) => {
+  try {
+    console.log(reviewData)
+    const response = await axios.post(
+      `${API_URL}/reviews`,
+      { data: reviewData },
+      {
+        headers: { Authorization: `Bearer ${API_KEY}` },
+      },
+    )
+    return response.data
+  } catch (error) {
+    console.log(error.response)
+    return rejectWithValue(error.response.data)
   }
 })
 
@@ -42,6 +60,9 @@ const reviewSlice = createSlice({
       .addCase(fetchReviews.rejected, (state, action) => {
         state.loading = false
         state.error = action.error.message
+      })
+      .addCase(createReview.fulfilled, (state, action) => {
+        state.reviewsArray = [...state.reviewsArray, action.payload]
       })
   },
 })
