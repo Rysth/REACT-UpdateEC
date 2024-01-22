@@ -58,7 +58,7 @@ function ProductPreview() {
             <Markdown>{foundProduct.attributes.description}</Markdown>
           </div>
         </main>
-        <footer className="flex items-center gap-5 mt-auto sm:flex-row">
+        <footer className="flex flex-col items-center gap-5 mt-auto sm:flex-row">
           <div className="flex items-center border border-gray-200 rounded">
             <Button
               className="w-5 h-10 leading-10 text-gray-700 transition bg-transparent border-none hover:opacity-75"
@@ -88,7 +88,7 @@ function ProductPreview() {
           </div>
           <button
             type="button"
-            className="w-3/4 btn btn-primary"
+            className="w-4/4 sm:w-3/4 btn btn-primary"
             onClick={() => handleAddToCart(quantity)}
             disabled={isAddToCartDisabled}
           >

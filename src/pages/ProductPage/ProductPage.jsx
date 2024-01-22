@@ -9,17 +9,19 @@ import ProductSimilar from './sections/ProductSimilar'
 import { createReview, fetchReviews } from '../../redux/slices/reviewSlice'
 import { useForm } from 'react-hook-form'
 import { HiStar } from 'react-icons/hi2'
+import { Button, Checkbox, Label, Modal, Select, TextInput, Textarea } from 'flowbite-react'
 
 function ProductPage() {
   const dispatch = useDispatch()
+  const [openModal, setOpenModal] = useState(false)
   const { foundProduct } = useSelector((store) => store.product)
   const { active, userData } = useSelector((store) => store.session)
   const { reviewsArray } = useSelector((store) => store.review)
-  const [showReviewForm, setShowReviewForm] = useState(false)
   const { productID } = useParams()
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm()
 
@@ -33,6 +35,7 @@ function ProductPage() {
     dispatch(createReview(reviewData))
       .then(() => {
         dispatch(fetchReviews(productID))
+        onCloseModal()
       })
       .catch((error) => {
         console.error('Error al crear la reseña:', error)
@@ -44,12 +47,14 @@ function ProductPage() {
     return reviewsArray.length ? (totalRating / reviewsArray.length).toFixed(1) : 0
   }, [reviewsArray])
 
+  function onCloseModal() {
+    setOpenModal(false)
+    reset()
+  }
+
   useEffect(() => {
     dispatch(findProduct(productID))
     dispatch(fetchReviews(productID))
-    if (active) {
-      setShowReviewForm(true)
-    }
   }, [dispatch, productID])
 
   useEffect(() => {}, [reviewsArray])
@@ -73,7 +78,34 @@ function ProductPage() {
       <ProductPreview />
       <ProductSimilar />
       <div className="py-6 bg-white sm:py-8 lg:py-12">
-        <div className="max-w-screen-md px-4 mx-auto md:px-8">
+        <Modal show={openModal} size="md" onClose={onCloseModal}>
+          <Modal.Header className="p-4">
+            <span className="text-xl font-semibold md:text-2xl">Comparte tu Opinión</span>
+          </Modal.Header>
+          <Modal.Body>
+            <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="body" value="Escribe tu reseña" />
+                {errors.body && <span className="text-xs text-white badge badge-error">Campo Requerido</span>}
+              </div>
+              <Textarea className="resize-none" rows={3} {...register('body', { required: true })} />
+
+              <Label htmlFor="rating" value="Puntuación" className="mt-5" />
+              <Select className="w-full" {...register('rating', { required: true })}>
+                <option value={1}>1 - Malo</option>
+                <option value={2}>2 - Regular</option>
+                <option value={3}>3 - Bueno</option>
+                <option value={4}>4 - Muy Bueno</option>
+                <option value={5}>5 - Excelente</option>
+              </Select>
+              {errors.rating && <span className="badge badge-error">This field is required</span>}
+              <button type="submit" className="mt-5 btn btn-primary">
+                Envíar
+              </button>
+            </form>
+          </Modal.Body>
+        </Modal>
+        <div className="max-w-screen-xl px-4 mx-auto md:px-8">
           <h2 className="mb-4 text-2xl font-bold text-center text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">
             Reseñas de Clientes
           </h2>
@@ -90,34 +122,15 @@ function ProductPage() {
 
               <span className="block mt-3 text-sm text-gray-500">Basado en {reviewsArray.length} reseña/s</span>
             </div>
-            {active && <button className="text-white btn btn-primary">Escribir Reseña</button>}
-          </div>
-          {showReviewForm && (
-            <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2">
-              <textarea
-                className="w-full input input-bordered"
-                {...register('body', { required: true })}
-                placeholder="Write your review here"
-              />
-              {errors.body && <span>This field is required</span>}
-
-              <select className="w-full select select-bordered" {...register('rating', { required: true })}>
-                <option value={1}>1 - Poor</option>
-                <option value={2}>2 - Fair</option>
-                <option value={3}>3 - Good</option>
-                <option value={4}>4 - Very Good</option>
-                <option value={5}>5 - Excellent</option>
-              </select>
-              {errors.rating && <span>This field is required</span>}
-
-              <button type="submit" className="btn btn-primary">
-                Envíar
+            {active && (
+              <button className="text-white btn btn-primary" onClick={() => setOpenModal(true)} disabled={!active}>
+                Escribir Reseña
               </button>
-            </form>
-          )}
-          <div className="divide-y">
+            )}
+          </div>
+          <div className="overflow-auto divide-y max-h-96">
             {reviewsArray.map((review, index) => (
-              <div key={index} className="flex flex-col gap-3 py-4 md:py-8">
+              <div key={index} className="flex flex-col gap-2 py-4 md:py-8">
                 <header className="flex items-center justify-between">
                   <h4 className="block text-xl">{review.attributes.user.data.attributes.username}</h4>
                   <p className="block text-sm text-gray-500">

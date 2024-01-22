@@ -22,7 +22,6 @@ export const fetchReviews = createAsyncThunk('review/fetchReviews', async (produ
     })
     return response.data
   } catch (error) {
-    console.log(error)
     throw new Error(`Error: ${error.message}`)
   }
 })
@@ -30,7 +29,6 @@ export const fetchReviews = createAsyncThunk('review/fetchReviews', async (produ
 // Reviews - POST
 export const createReview = createAsyncThunk('review/createReview', async (reviewData, { rejectWithValue }) => {
   try {
-    console.log(reviewData)
     const response = await axios.post(
       `${API_URL}/reviews`,
       { data: reviewData },
@@ -40,7 +38,6 @@ export const createReview = createAsyncThunk('review/createReview', async (revie
     )
     return response.data
   } catch (error) {
-    console.log(error.response)
     return rejectWithValue(error.response.data)
   }
 })
