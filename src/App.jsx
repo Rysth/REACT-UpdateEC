@@ -65,7 +65,7 @@ function App() {
       <main className="min-h-screen">
         <Routes>
           <Route
-            path="/admin"
+            path="/admin/estadisticas"
             element={
               <ProtectedRoute isAllowed={active} redirectTo="/sign_in">
                 <AdminPage />
