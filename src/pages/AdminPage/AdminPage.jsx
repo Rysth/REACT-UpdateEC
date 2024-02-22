@@ -28,6 +28,26 @@ const AdminPage = () => {
     orderProductDetails.data &&
     [...orderProductDetails.data].sort((a, b) => b.attributes.quantity - a.attributes.quantity)
 
+  // Crear un objeto para almacenar la cantidad total de cada producto
+  const productQuantities = {}
+
+  // Calcular la cantidad total de cada producto
+  sortedOrderProductDetails?.forEach((detail) => {
+    const productId = detail.attributes.product.data.id
+    const quantity = detail.attributes.quantity
+
+    // Si el producto ya está en el objeto, sumar la cantidad
+    if (productQuantities[productId]) {
+      productQuantities[productId] += quantity
+    } else {
+      // Si no, establecer la cantidad
+      productQuantities[productId] = quantity
+    }
+  })
+
+  // Ordenar el objeto productQuantities por sus valores en orden descendente
+  const sortedProducts = Object.entries(productQuantities).sort(([, a], [, b]) => b - a)
+
   // Calcula la cantidad de productos por categoría
   const categoriesCount = {}
 
@@ -103,66 +123,48 @@ const AdminPage = () => {
               <Text className="font-semibold text-violet-700">Producto</Text>
               <Text className="font-semibold text-violet-700">Unidades</Text>
             </div>
-            <List className="overflow-auto max-h-72">
-              {sortedOrderProductDetails?.map((detail) => (
-                <ListItem key={detail.id} className="p-1 transition duration-300 pe-2 group hover:bg-violet-200">
-                  <div className="flex justify-between">
-                    <div className="flex items-center gap-1">
-                      <img
-                        src={detail.attributes.product.data.attributes.picture.data.attributes.url}
-                        className="block object-contain h-full w-7"
-                        alt=""
-                      />
-                      <a
-                        href={`/shop/${detail.attributes.product.data.id}`}
-                        target="_blank"
-                        className="h-full text-xs uppercase truncate transition group-hover:text-gray-900 group-hover:font-semibold  max-w-[10rem] md:max-w-xs flex items-center"
-                      >
-                        {detail.attributes.product.data.attributes.name}
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <p className="mt-1 text-xs italic font-semibold text-gray-900">{detail.attributes.quantity}</p>
-                    {detail.attributes.quantity >= 3 && <BsFire className="text-red-500" />}
-                  </div>
-                </ListItem>
-              ))}
-            </List>
+            <div className="h-80"></div>
           </Card>
 
           <Card>
-            <Title className="font-bold">Historial de Productos Vendidos</Title>
+            <Title className="font-bold">Productos Más Vendidos</Title>
             <Text>Visualice el volúmen de venta de los productos.</Text>
             <div className="flex items-center justify-between pb-2 mt-4 border-b">
               <Text className="font-semibold text-violet-700">Producto</Text>
               <Text className="font-semibold text-violet-700">Unidades</Text>
             </div>
             <List className="overflow-auto max-h-72">
-              {sortedOrderProductDetails?.map((detail) => (
-                <ListItem key={detail.id} className="p-1 transition duration-300 pe-2 group hover:bg-violet-200">
-                  <div className="flex justify-between">
-                    <div className="flex items-center gap-1">
-                      <img
-                        src={detail.attributes.product.data.attributes.picture.data.attributes.url}
-                        className="block object-contain h-full w-7"
-                        alt=""
-                      />
-                      <a
-                        href={`/shop/${detail.attributes.product.data.id}`}
-                        target="_blank"
-                        className="h-full text-xs uppercase truncate transition group-hover:text-gray-900 font-medium  max-w-[10rem] md:max-w-[15rem] flex items-center"
-                      >
-                        {detail.attributes.product.data.attributes.name}
-                      </a>
+              {sortedProducts.map(([productId, quantity]) => {
+                const productDetail = sortedOrderProductDetails.find(
+                  (detail) => detail.attributes.product.data.id === parseInt(productId),
+                )
+                const product = productDetail.attributes.product.data.attributes
+
+                return (
+                  <ListItem key={productId} className="p-1 transition duration-300 pe-2 group hover:bg-violet-200">
+                    <div className="flex justify-between">
+                      <div className="flex items-center gap-1">
+                        <img
+                          src={product.picture.data.attributes.url}
+                          className="block object-contain h-full w-7"
+                          alt=""
+                        />
+                        <a
+                          href={`/shop/${productId}`}
+                          target="_blank"
+                          className="h-full text-xs uppercase truncate transition group-hover:text-gray-900 group-hover:font-semibold  max-w-[10rem] md:max-w-[15rem] flex items-center"
+                        >
+                          {product.name}
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <p className="mt-1 text-xs italic font-semibold text-gray-900">{detail.attributes.quantity}</p>
-                    {detail.attributes.quantity >= 3 && <BsFire className="text-red-500" />}
-                  </div>
-                </ListItem>
-              ))}
+                    <div className="flex items-center gap-1">
+                      <p className="mt-1 text-xs italic font-semibold text-gray-900">{quantity}</p>
+                      {quantity >= 3 && <BsFire className="text-red-500" />}
+                    </div>
+                  </ListItem>
+                )
+              })}
             </List>
           </Card>
         </div>

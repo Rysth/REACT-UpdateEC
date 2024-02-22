@@ -51,7 +51,6 @@ export const fetchOrderPayments = createAsyncThunk('statistics/fetchOrderPayment
       },
       headers: { Authorization: `Bearer ${API_KEY}` },
     })
-    console.log(response.data)
     return response.data
   } catch (error) {
     throw new Error(`Error: ${error.message}`)
