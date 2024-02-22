@@ -33,6 +33,31 @@ export const fetchCategoryProductDetails = createAsyncThunk('statistics/fetchCat
   }
 })
 
+export const fetchOrderPayments = createAsyncThunk('statistics/fetchOrderPayments', async () => {
+  try {
+    // Calcular la fecha límite para obtener las órdenes con pagos en los últimos 30 días
+    const currentDate = new Date()
+    const thirtyDaysAgo = new Date(currentDate)
+    thirtyDaysAgo.setDate(currentDate.getDate() - 30)
+
+    // Formatear la fecha límite como cadena en el formato 'YYYY-MM-DD'
+    const formattedDate = thirtyDaysAgo.toISOString().split('T')[0]
+
+    // Realizar la solicitud para obtener las órdenes con pagos en los últimos 30 días
+    const response = await axios.get(`${API_URL}/orders`, {
+      params: {
+        populate: 'payment_detail',
+        'filters[date][$gte]': formattedDate,
+      },
+      headers: { Authorization: `Bearer ${API_KEY}` },
+    })
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    throw new Error(`Error: ${error.message}`)
+  }
+})
+
 const statisticSlice = createSlice({
   name: 'statistics',
   initialState: {
@@ -40,6 +65,7 @@ const statisticSlice = createSlice({
     categoryProductDetails: [],
     totalRevenue: 0,
     mostPurchasedProducts: [],
+    totalRevenueLast30Days: {},
   },
   reducers: {
     calculateTotalRevenue: (state, action) => {
@@ -66,8 +92,17 @@ const statisticSlice = createSlice({
         state.orderProductDetails = action.payload
       })
       .addCase(fetchCategoryProductDetails.fulfilled, (state, action) => {
-        console.log(action.payload)
         state.categoryProductDetails = action.payload
+      })
+      .addCase(fetchOrderPayments.fulfilled, (state, action) => {
+        state.totalRevenueLast30Days = {} // Reiniciar el objeto totalRevenueLast30Days
+
+        action.payload.data.forEach((order) => {
+          const paymentDate = new Date(order.attributes.date)
+          const formattedDate = paymentDate.toISOString().split('T')[0]
+          state.totalRevenueLast30Days[formattedDate] = state.totalRevenueLast30Days[formattedDate] || 0
+          state.totalRevenueLast30Days[formattedDate] += order.attributes.payment_detail.data.attributes.amount_paid
+        })
       })
   },
 })
