@@ -2,39 +2,8 @@
 import { BarChart, Card, DonutChart, LineChart, List, ListItem, Text, Title } from '@tremor/react'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchOrderProductDetails } from '../../redux/slices/statisticSlice'
+import { fetchCategoryProductDetails, fetchOrderProductDetails } from '../../redux/slices/statisticSlice'
 import { BsFire } from 'react-icons/bs'
-
-const chartdata = [
-  {
-    name: 'Amphibians',
-    'Number of threatened species': 2488,
-  },
-  {
-    name: 'Birds',
-    'Number of threatened species': 1445,
-  },
-  {
-    name: 'Crustaceans',
-    'Number of threatened species': 743,
-  },
-  {
-    name: 'Ferns',
-    'Number of threatened species': 281,
-  },
-  {
-    name: 'Arachnids',
-    'Number of threatened species': 251,
-  },
-  {
-    name: 'Corals',
-    'Number of threatened species': 232,
-  },
-  {
-    name: 'Algae',
-    'Number of threatened species': 98,
-  },
-]
 
 const datahero = [
   {
@@ -128,10 +97,12 @@ const lineChartdata = [
 
 const AdminPage = () => {
   const dispatch = useDispatch()
+  const categoryProductDetails = useSelector((state) => state.statistics.categoryProductDetails)
   const orderProductDetails = useSelector((state) => state.statistics.orderProductDetails)
 
   useEffect(() => {
     dispatch(fetchOrderProductDetails()) // Disparar la acción para obtener los productos más comprados al cargar el componente
+    dispatch(fetchCategoryProductDetails()) // Disparar la acción para obtener los productos más comprados al cargar el componente
   }, [dispatch])
 
   const dataFormatter = (number) => Intl.NumberFormat('us').format(number).toString()
@@ -141,18 +112,42 @@ const AdminPage = () => {
     orderProductDetails.data &&
     [...orderProductDetails.data].sort((a, b) => b.attributes.quantity - a.attributes.quantity)
 
+  // Calcula la cantidad de productos por categoría
+  const categoriesCount = {}
+
+  categoryProductDetails?.data?.forEach((detail) => {
+    const category = detail.attributes.product.data.attributes.category.data.attributes.name
+    console.log(category)
+    if (category) {
+      categoriesCount[category] = (categoriesCount[category] || 0) + 1
+    }
+  })
+
+  // Ordena las categorías por la cantidad de productos de forma descendente
+
+  const sortedCategories = Object.entries(categoriesCount)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 7) // Limita a las primeras 7 categorías más populares
+
+  // Formatea los datos para el BarChart
+  const chartData = sortedCategories.map(([category, count]) => ({
+    name: category,
+    Cantidad: count,
+  }))
+
   return (
     <section className="p-4">
       <article className="max-w-screen-xl py-12 mx-auto md:py-24">
         <h2 className="mb-8 text-2xl md:text-4xl">Gráficos de Rendimiento</h2>
         <div className="grid gap-4 sm:grid-cols-2 md:gap-8">
           <Card>
-            <Title>Rendimiento</Title>
+            <Title className="font-bold">Categorías con Más Ventas</Title>
+            <Text>Visualice las categorías que más ventas ha brindado.</Text>
             <BarChart
-              data={chartdata}
+              data={chartData}
               index="name"
-              categories={['Number of threatened species']}
-              colors={['blue']}
+              categories={['Cantidad']}
+              colors={['purple']}
               valueFormatter={dataFormatter}
               yAxisWidth={48}
               onValueChange={(v) => console.log(v)}

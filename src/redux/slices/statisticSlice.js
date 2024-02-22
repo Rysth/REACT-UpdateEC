@@ -19,10 +19,25 @@ export const fetchOrderProductDetails = createAsyncThunk('statistics/fetchOrderP
   }
 })
 
+export const fetchCategoryProductDetails = createAsyncThunk('statistics/fetchCategoryProductDetails', async () => {
+  try {
+    const response = await axios.get(`${API_URL}/order-product-details`, {
+      params: {
+        populate: 'product.category',
+      },
+      headers: { Authorization: `Bearer ${API_KEY}` },
+    })
+    return response.data
+  } catch (error) {
+    throw new Error(`Error: ${error.message}`)
+  }
+})
+
 const statisticSlice = createSlice({
   name: 'statistics',
   initialState: {
     orderProductDetails: [],
+    categoryProductDetails: [],
     totalRevenue: 0,
     mostPurchasedProducts: [],
   },
@@ -46,10 +61,14 @@ const statisticSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchOrderProductDetails.fulfilled, (state, action) => {
-      console.log(action.payload)
-      state.orderProductDetails = action.payload
-    })
+    builder
+      .addCase(fetchOrderProductDetails.fulfilled, (state, action) => {
+        state.orderProductDetails = action.payload
+      })
+      .addCase(fetchCategoryProductDetails.fulfilled, (state, action) => {
+        console.log(action.payload)
+        state.categoryProductDetails = action.payload
+      })
   },
 })
 
