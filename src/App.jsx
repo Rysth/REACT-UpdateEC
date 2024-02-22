@@ -20,6 +20,7 @@ import SessionPage from './pages/SessionPage/SessionPage'
 import FormSignIn from './pages/SessionPage/sections/FormSignIn'
 import FormSignUp from './pages/SessionPage/sections/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
+import AdminPage from './pages/AdminPage/AdminPage'
 
 function App() {
   const [isVisible, setIsVisible] = useState(false)
@@ -63,6 +64,14 @@ function App() {
       )}
       <main className="min-h-screen">
         <Routes>
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute isAllowed={active} redirectTo="/sign_in">
+                <AdminPage />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/sign_in"
             element={
