@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { HiLogout } from 'react-icons/hi'
 import { HiListBullet, HiMiniBars3BottomRight, HiOutlineShoppingBag, HiOutlineUser, HiUser } from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
+import { IoIosStats } from 'react-icons/io'
 import BrandImage from '../../../assets/SVG/brand.svg'
 import { sessionActions } from '../../../redux/slices/sessionSlice'
 import ConfirmModal from '../../modal/ConfirmModal/ConfirmModal'
@@ -10,7 +11,7 @@ import ConfirmModal from '../../modal/ConfirmModal/ConfirmModal'
 function NavigationBar() {
   const dispatch = useDispatch()
   const { cartItems } = useSelector((store) => store.cart)
-  const { active, userData } = useSelector((store) => store.session)
+  const { active, userData, isAdmin } = useSelector((store) => store.session)
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
   const [openModal, setOpenModal] = useState(false)
 
@@ -53,6 +54,11 @@ function NavigationBar() {
               <Dropdown.Item icon={HiListBullet} href="/orders">
                 Ordenes
               </Dropdown.Item>
+              {isAdmin && (
+                <Dropdown.Item icon={IoIosStats} href="/admin/estadisticas">
+                  Resúmen Estadístico
+                </Dropdown.Item>
+              )}
               <Dropdown.Divider />
               <Dropdown.Item icon={HiLogout} className="text-red-600" onClick={() => setOpenModal(true)}>
                 Cerrar Sesión

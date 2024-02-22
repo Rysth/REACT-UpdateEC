@@ -145,7 +145,7 @@ const AdminPage = () => {
                 categories={['Total']}
                 colors={['indigo']}
                 valueFormatter={dataFormatter}
-                yAxisWidth={20}
+                yAxisWidth={40}
               />
             </Card>
             <Card className="md:col-span-2">

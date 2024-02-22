@@ -24,7 +24,7 @@ import AdminPage from './pages/AdminPage/AdminPage'
 
 function App() {
   const [isVisible, setIsVisible] = useState(false)
-  const { active } = useSelector((store) => store.session)
+  const { active, isAdmin } = useSelector((store) => store.session)
 
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
@@ -67,7 +67,7 @@ function App() {
           <Route
             path="/admin/estadisticas"
             element={
-              <ProtectedRoute isAllowed={active} redirectTo="/sign_in">
+              <ProtectedRoute isAllowed={active && isAdmin} redirectTo="/sign_in">
                 <AdminPage />
               </ProtectedRoute>
             }

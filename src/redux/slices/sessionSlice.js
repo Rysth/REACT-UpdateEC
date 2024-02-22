@@ -14,6 +14,7 @@ const initialState = {
   loading: true,
   error: false,
   active: userData !== null,
+  isAdmin: (userData && userData.username === 'GerenteAdministrador') || false,
 }
 
 // Sessions - Sign In
@@ -67,6 +68,7 @@ const sessionSlice = createSlice({
     destroySession(state) {
       toast.info('Cerrando Sesión...')
       state.active = false
+      state.isAdmin = false
       state.userData = {}
       state.authToken = ''
       sessionStorage.removeItem('userData')
@@ -81,6 +83,7 @@ const sessionSlice = createSlice({
       .addCase(createSession.fulfilled, (state, action) => {
         state.active = true
         state.loading = false
+        state.isAdmin = action.payload.user.username === 'GerenteAdministrador'
         state.userData = action.payload.user
         state.authToken = action.payload.jwt
         sessionStorage.setItem('userData', JSON.stringify(state.userData))
