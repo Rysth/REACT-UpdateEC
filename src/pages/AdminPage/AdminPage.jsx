@@ -144,8 +144,8 @@ const AdminPage = () => {
   return (
     <section className="p-4">
       <article className="max-w-screen-xl py-12 mx-auto md:py-24">
-        <h2 className="mb-4 text-2xl md:text-4xl">Gráficos de Rendimiento</h2>
-        <div className="grid gap-4 p-4 sm:grid-cols-2 md:gap-8">
+        <h2 className="mb-8 text-2xl md:text-4xl">Gráficos de Rendimiento</h2>
+        <div className="grid gap-4 sm:grid-cols-2 md:gap-8">
           <Card>
             <Title>Rendimiento</Title>
             <BarChart
@@ -166,15 +166,20 @@ const AdminPage = () => {
               <Text className="font-semibold text-violet-700">Producto</Text>
               <Text className="font-semibold text-violet-700">Unidades</Text>
             </div>
-            <List className="overflow-auto max-h-80">
+            <List className="overflow-auto max-h-72">
               {sortedOrderProductDetails?.map((detail) => (
-                <ListItem key={detail.id} className="p-1 transition duration-300 group hover:bg-violet-200">
-                  <div className="flex justify-between ">
-                    <div className="flex">
+                <ListItem key={detail.id} className="p-1 transition duration-300 pe-2 group hover:bg-violet-200">
+                  <div className="flex justify-between">
+                    <div className="flex items-center gap-1">
+                      <img
+                        src={detail.attributes.product.data.attributes.picture.data.attributes.url}
+                        className="block object-contain h-full w-7"
+                        alt=""
+                      />
                       <a
                         href={`/shop/${detail.attributes.product.data.id}`}
                         target="_blank"
-                        className="h-full text-xs uppercase truncate inline-block transition group-hover:text-gray-900 group-hover:font-semibold  max-w-[10rem] md:max-w-xs"
+                        className="h-full text-xs uppercase truncate transition group-hover:text-gray-900 group-hover:font-semibold  max-w-[10rem] md:max-w-xs flex items-center"
                       >
                         {detail.attributes.product.data.attributes.name}
                       </a>
@@ -188,7 +193,7 @@ const AdminPage = () => {
               ))}
             </List>
           </Card>
-          <Card className="col-span-2">
+          <Card className="md:col-span-2">
             <Title>Rendimiento</Title>
             <LineChart
               data={lineChartdata}

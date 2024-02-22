@@ -7,7 +7,10 @@ const API_KEY = import.meta.env.VITE_API_KEY
 
 export const fetchOrderProductDetails = createAsyncThunk('statistics/fetchOrderProductDetails', async () => {
   try {
-    const response = await axios.get(`${API_URL}/order-product-details?populate=product`, {
+    const response = await axios.get(`${API_URL}/order-product-details`, {
+      params: {
+        populate: 'product,product.picture',
+      },
       headers: { Authorization: `Bearer ${API_KEY}` },
     })
     return response.data
