@@ -15,7 +15,7 @@ const AdminPage = () => {
   const categoryProductDetails = useSelector((state) => state.statistics.categoryProductDetails)
   const orderProductDetails = useSelector((state) => state.statistics.orderProductDetails)
   const totalRevenueLast30Days = useSelector((state) => state.statistics.totalRevenueLast30Days)
-  const totalRevenueGoal = 500 // Definir el objetivo de ventas manualmente
+  const [totalRevenueGoal, setTotalRevenueGoal] = useState(500)
   const [totalSalesThisMonth, setTotalSalesThisMonth] = useState(0)
 
   useEffect(() => {
@@ -102,7 +102,17 @@ const AdminPage = () => {
     }
 
     setTotalSalesThisMonth(totalSales)
+
+    if (totalSales >= totalRevenueGoal) {
+      setTotalRevenueGoal(totalRevenueGoal * 2) // Incrementa el objetivo en un 50%
+    }
   }, [totalRevenueLast30Days])
+
+  useEffect(() => {
+    // Calcular la cantidad en ventas del mes actual
+    // Lógica para calcular totalSalesThisMonth basado en totalRevenueLast30Days
+    // Lógica para actualizar totalRevenueGoal si es necesario
+  }, [totalSalesThisMonth, totalRevenueGoal])
 
   // Calcular el progreso hacia el objetivo de ventas
   const progress = (totalSalesThisMonth / totalRevenueGoal) * 100
@@ -124,7 +134,7 @@ const AdminPage = () => {
           <div className="grid gap-4 sm:grid-cols-2 md:gap-8 md:grid-cols-3">
             <Card>
               <Title className="font-bold">Categorías con Más Ventas</Title>
-              <Text>Visualice las categorías más cotizadas.</Text>
+              <Text>Categorías más cotizadas en todo el tiempo.</Text>
               <BarChart
                 data={chartData}
                 index="name"
@@ -137,8 +147,8 @@ const AdminPage = () => {
               />
             </Card>
             <Card className="md:col-span-2">
-              <Title className="font-bold">Monto Total Vendido</Title>
-              <Text>Visualice el total de facturación en los últimos 30 días</Text>
+              <Title className="font-bold">Monto Total en Ventas</Title>
+              <Text>Total de facturación en los últimos 30 días</Text>
               <LineChart
                 data={lineChartData}
                 index="date"
@@ -150,7 +160,7 @@ const AdminPage = () => {
             </Card>
             <Card className="md:col-span-2">
               <Title className="font-bold">Productos Más Vendidos</Title>
-              <Text>Visualice el volúmen de venta de los productos.</Text>
+              <Text>Volúmen de venta de los productos en todo el tiempo.</Text>
               <div className="flex items-center justify-between pb-2 mt-4 border-b">
                 <Text className="font-semibold text-indigo-700">Producto</Text>
                 <Text className="font-semibold text-indigo-700">Unidades</Text>
@@ -191,7 +201,7 @@ const AdminPage = () => {
             </Card>
             <Card>
               <Title className="font-bold">Objetivo de Ventas</Title>
-              <Text>Visualice el valor a lograr como meta del mes.</Text>
+              <Text>Valor a lograr como meta del mes actual.</Text>
               <div className="flex flex-col items-center justify-center gap-4 my-auto  h-[21rem] place-items-center">
                 <ProgressCircle value={progress} size="xl" color={'indigo'} showAnimation>
                   <span className="text-2xl font-medium text-slate-900">{Math.round(progress)}%</span>
