@@ -56,6 +56,11 @@ function ShopPage() {
 
   const onSearchChange = (newData) => {
     setSearchData(newData)
+
+    if (newData === '') {
+      navigate('/shop')
+    }
+
     debouncedSearch(newData, categoryData, brandData, dispatch)
   }
 
