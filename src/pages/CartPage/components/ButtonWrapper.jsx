@@ -68,8 +68,9 @@ const ButtonWrapper = ({ cartItems, totalAmount, user, isDisabled }) => {
       currency: orderDetails.purchase_units[0].amount.currency_code,
       amount_paid: orderDetails.purchase_units[0].amount.value,
     }
-    dispatch(createOrder({ orderData, paymentData }))
-    dispatch(cartActions.clearCart())
+    dispatch(createOrder({ orderData, paymentData })).then(() => {
+      dispatch(cartActions.clearCart())
+    })
   }
 
   useEffect(() => {}, [totalAmount])
