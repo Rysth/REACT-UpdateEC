@@ -15,7 +15,7 @@ const AdminPage = () => {
   const categoryProductDetails = useSelector((state) => state.statistics.categoryProductDetails)
   const orderProductDetails = useSelector((state) => state.statistics.orderProductDetails)
   const totalRevenueLast30Days = useSelector((state) => state.statistics.totalRevenueLast30Days)
-  const [totalRevenueGoal, setTotalRevenueGoal] = useState(500)
+  const [totalRevenueGoal, setTotalRevenueGoal] = useState(2000)
   const [totalSalesThisMonth, setTotalSalesThisMonth] = useState(0)
 
   useEffect(() => {
