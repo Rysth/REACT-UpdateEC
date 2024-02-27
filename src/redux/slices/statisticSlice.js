@@ -9,7 +9,7 @@ export const fetchOrderProductDetails = createAsyncThunk('statistics/fetchOrderP
   try {
     const response = await axios.get(`${API_URL}/order-product-details`, {
       params: {
-        populate: 'product,product.picture',
+        populate: 'product,product.picture,product.category',
       },
       headers: { Authorization: `Bearer ${API_KEY}` },
     })

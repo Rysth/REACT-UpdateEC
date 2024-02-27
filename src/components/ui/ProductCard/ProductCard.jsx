@@ -18,7 +18,6 @@ function ProductCard({ product }) {
 
   return (
     <div className="relative group animate__animated animate__fadeIn">
-      {console.log(product)}
       <a
         href={`/shop/${product.attributes.category.data.attributes.name.toLowerCase()}/${product.id}`}
         className="relative z-20 block border border-gray-100 rounded-lg shadow-xl group lg:mx-2 shadow-black/5"

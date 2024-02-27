@@ -181,10 +181,11 @@ const AdminPage = () => {
                             className="block object-contain h-full w-7 md:w-10"
                             alt={product.picture.data.attributes.name}
                           />
+                          {console.log(productDetail)}
                           <a
-                            href={`/shop/${productId}`}
+                            href={`/shop/${productDetail.attributes.product.data.attributes.category.data.attributes.name.toLowerCase()}/${productId}`}
                             target="_blank"
-                            className="h-full text-sm uppercase truncate transition group-hover:text-gray-900 group-hover:font-semibold  max-w-[10rem] md:max-w-md flex items-center"
+                            className="h-full text-xs uppercase truncate transition group-hover:text-gray-900 group-hover:font-semibold  max-w-[10rem] md:max-w-md flex items-center"
                           >
                             {product.name}
                           </a>
