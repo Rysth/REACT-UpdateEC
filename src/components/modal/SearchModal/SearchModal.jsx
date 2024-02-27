@@ -13,13 +13,13 @@ const SearchModal = ({ isOpen, onCloseModal }) => {
       <Modal.Body>
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <IoIosSearch className="w-16 h-16 mx-auto text-white rounded-full bg-primary" />
-            <h3 className="w-4/6 text-2xl text-center">Buscar Producto</h3>
+            <IoIosSearch className="mx-auto text-white rounded-full w-14 h-14 bg-primary" />
+            <h3 className="w-4/6 text-2xl text-center">Consultar Producto</h3>
           </div>
           <TextInput
             id="search"
             value={searchValue}
-            placeholder="Mouse.."
+            placeholder="Buscar.."
             onChange={(event) => setSearchValue(event.target.value)}
             required
           />

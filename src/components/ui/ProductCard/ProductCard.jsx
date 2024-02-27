@@ -32,7 +32,7 @@ function ProductCard({ product }) {
             loading="lazy"
           />
         </picture>
-        <header className="p-2 px-4 py-3">
+        <header className="p-2 px-4 py-3 bg-white">
           <h2 className="text-sm font-bold uppercase truncate transition duration-300 group-hover:text-violet-700">
             {getFirstThreeWords(product.attributes.name)}
           </h2>

@@ -11,6 +11,7 @@ import { fetchBrands } from '../../redux/slices/brandSlice'
 import { fetchCategories } from '../../redux/slices/categorySlice'
 import { fetchProducts, searchAndFilterProducts } from '../../redux/slices/productSlice'
 import { useParams, useNavigate } from 'react-router-dom'
+import { Button } from '@tremor/react'
 
 function ShopPage() {
   const dispatch = useDispatch()
@@ -106,7 +107,7 @@ function ShopPage() {
     <article>
       <BreadCrumb paths={[{ name: 'Tienda', href: '/shop', active: true }]} />
       <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
-        <article className="max-w-screen-xl py-12 pb-0 mx-auto">
+        <article className="max-w-screen-xl pt-12 pb-0 mx-auto">
           <header className="flex flex-col items-center justify-between gap-3 mb-4 sm:flex-row">
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl sm:w-2/4">Nuestros Productos</h2>
           </header>
@@ -116,59 +117,60 @@ function ShopPage() {
         <article className="max-w-screen-xl min-h-screen pb-12 mx-auto">
           <main className="flex flex-col flex-1 gap-5 sm:flex-row">
             <div className="flex flex-col w-full gap-2 sm:w-1/4">
-              <div className="space-y-2">
-                <h3 className="text-xl">Buscar Producto</h3>
+              <div className="flex items-start justify-between md:flex-col md:space-y-10 md:pt-5">
+                <div className="grid gap-2">
+                  <h3 className="text-xl">Categoría</h3>
+                  {categoriesArray.map((category) => (
+                    <label key={category.id} className="flex items-center !text-sm">
+                      <input
+                        type="radio"
+                        name="category"
+                        value={category.id}
+                        checked={categoryData === category.id}
+                        onChange={() => onCategoryChange(category.id)}
+                        className="mr-2 radio radio-neutral radio-xs"
+                      />
+                      {category.attributes.name}
+                    </label>
+                  ))}
+                </div>
+                <div className="grid gap-2">
+                  <h3 className="text-xl">Marca</h3>
+                  {brandsArray.map((brand) => (
+                    <label key={brand.id} className="flex items-center !text-sm">
+                      <input
+                        type="radio"
+                        name="brand"
+                        value={brand.id}
+                        checked={brandData === brand.id}
+                        onChange={() => onBrandChange(brand.id)}
+                        className="mr-2 radio radio-neutral radio-xs"
+                      />
+                      {brand.attributes.name}
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="sm:w-3/4">
+              <div className="sticky flex items-center top-0 z-[999] left-0 right-0 py-5 gap-4 bg-white">
+                <h3 className="text-xl sr-only">Buscar Producto</h3>
                 <TextInput
-                  placeholder=""
-                  className="w-full"
+                  placeholder="Buscar..."
+                  className="ml-auto md:w-max"
+                  allowClear
                   value={searchData}
                   onValueChange={onSearchChange}
                   icon={HiMagnifyingGlass}
                 />
+                <Button
+                  onClick={clearFilters}
+                  disabled={searchData === '' && categoryData === 0 && brandData === 0}
+                  className="border-transparent bg-primary"
+                >
+                  Limpiar Filtros
+                </Button>
               </div>
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <h3 className="w-2/4 text-xl">Categoría</h3>
-                  <SearchSelect
-                    className="z-50"
-                    placeholder=""
-                    onValueChange={onCategoryChange}
-                    value={categoryData}
-                    icon={HiFunnel}
-                  >
-                    {categoriesArray.map((category) => (
-                      <SearchSelectItem key={category.id} value={category.id}>
-                        {category.attributes.name}
-                      </SearchSelectItem>
-                    ))}
-                  </SearchSelect>
-                </div>
-                <div className="flex items-center justify-between w-full">
-                  <h3 className="w-2/4 text-xl">Marca</h3>
-                  <SearchSelect
-                    className="z-40"
-                    placeholder=""
-                    onValueChange={onBrandChange}
-                    value={brandData}
-                    icon={HiFunnel}
-                  >
-                    {brandsArray.map((brand) => (
-                      <SearchSelectItem key={brand.id} value={brand.id}>
-                        {brand.attributes.name}
-                      </SearchSelectItem>
-                    ))}
-                  </SearchSelect>
-                </div>
-              </div>
-              <button
-                onClick={clearFilters}
-                disabled={searchData === '' && categoryData === 0 && brandData === 0}
-                className="w-full btn btn-accent"
-              >
-                Limpiar Filtros
-              </button>
-            </div>
-            <div className="sm:w-3/4">
               {filteredArray.length === 0 && !loading && (
                 <header className="grid w-full h-20 max-w-screen-xl py-2 mx-auto bg-red-500 place-items-center">
                   <h3 className="w-full text-lg font-bold text-center text-white uppercase">
@@ -178,7 +180,7 @@ function ShopPage() {
               )}
               {loading && <LoadingCard />}
               {!loading && (
-                <ul className="grid grid-cols-2 gap-2 md:grid-cols-4">
+                <ul className="grid grid-cols-2 gap-2 gap-y-8 md:grid-cols-4">
                   {filteredArray.map((product, index) => (
                     <ProductCard product={product} key={index} />
                   ))}
