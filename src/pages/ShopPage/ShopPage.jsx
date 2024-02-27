@@ -10,6 +10,7 @@ import SectionLayout from '../../layouts/SectionLayout'
 import { fetchBrands } from '../../redux/slices/brandSlice'
 import { fetchCategories } from '../../redux/slices/categorySlice'
 import { fetchProducts, searchAndFilterProducts } from '../../redux/slices/productSlice'
+import { useParams } from 'react-router-dom'
 
 function ShopPage() {
   const dispatch = useDispatch()
@@ -22,8 +23,9 @@ function ShopPage() {
   const { filteredArray, loading, isFiltered } = useSelector((store) => store.product)
   const [currentPage, setCurrentPage] = useState(1)
 
+  const { searchParam } = useParams()
+
   const loadMoreProducts = () => {
-    console.log(currentPage)
     const newPage = currentPage + 1
     setCurrentPage(newPage)
     dispatch(fetchProducts(newPage))
@@ -75,13 +77,22 @@ function ShopPage() {
   }
 
   useEffect(() => {
-    dispatch(fetchProducts(currentPage))
+    if (!searchParam) {
+      dispatch(fetchProducts(currentPage))
+    }
   }, [currentPage, dispatch])
 
   useEffect(() => {
     dispatch(fetchCategories())
     dispatch(fetchBrands())
   }, [dispatch])
+
+  useEffect(() => {
+    if (searchParam) {
+      setSearchData(searchParam)
+      onSearchChange(searchParam)
+    }
+  }, [searchParam])
 
   return (
     <article>

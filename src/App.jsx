@@ -94,7 +94,7 @@ function App() {
           />
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/shop/:searchParam?" element={<ShopPage />} />
           <Route path="/shop/:productID" element={<ProductPage />} />
           <Route
             path="/cart"
