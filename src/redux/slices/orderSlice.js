@@ -20,7 +20,8 @@ export const fetchOrders = createAsyncThunk('order/fetchOrders', async (userID) 
     const response = await axios.get(`${API_URL}/orders`, {
       params: {
         'filters[user][id][$eq]': userID,
-        populate: 'payment_detail,order_status,order_product_details.product,user',
+        populate:
+          'payment_detail,order_status,order_product_details.product,order_product_details.product.category,user',
         sort: 'createdAt:desc',
       },
       headers: { Authorization: `Bearer ${API_KEY}` },
