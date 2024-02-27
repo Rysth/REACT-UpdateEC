@@ -10,7 +10,7 @@ import SectionLayout from '../../layouts/SectionLayout'
 import { fetchBrands } from '../../redux/slices/brandSlice'
 import { fetchCategories } from '../../redux/slices/categorySlice'
 import { fetchProducts, searchAndFilterProducts } from '../../redux/slices/productSlice'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 function ShopPage() {
   const dispatch = useDispatch()
@@ -24,6 +24,7 @@ function ShopPage() {
   const [currentPage, setCurrentPage] = useState(1)
 
   const { searchParam } = useParams()
+  const navigate = useNavigate()
 
   const loadMoreProducts = () => {
     const newPage = currentPage + 1
@@ -74,6 +75,8 @@ function ShopPage() {
     setBrandData(0)
     setCurrentPage(1)
     dispatch(fetchProducts())
+
+    navigate('/shop')
   }
 
   useEffect(() => {
