@@ -134,7 +134,7 @@ const AdminPage = () => {
           <div className="grid gap-4 sm:grid-cols-2 md:gap-8 md:grid-cols-3">
             <Card>
               <Title className="font-bold">Categorías con Más Ventas</Title>
-              <Text>Categorías más cotizadas en todo el tiempo.</Text>
+              <Text>Categorías más cotizadas de todo el tiempo.</Text>
               <BarChart
                 data={chartData}
                 index="name"
@@ -160,7 +160,7 @@ const AdminPage = () => {
             </Card>
             <Card className="md:col-span-2">
               <Title className="font-bold">Productos Más Vendidos</Title>
-              <Text>Volúmen de venta de los productos en todo el tiempo.</Text>
+              <Text>Volúmen de venta de los productos de todo el tiempo.</Text>
               <div className="flex items-center justify-between pb-2 mt-4 border-b">
                 <Text className="font-semibold text-indigo-700">Producto</Text>
                 <Text className="font-semibold text-indigo-700">Unidades</Text>
@@ -184,7 +184,7 @@ const AdminPage = () => {
                           <a
                             href={`/shop/${productId}`}
                             target="_blank"
-                            className="h-full text-xs uppercase truncate transition group-hover:text-gray-900 group-hover:font-semibold  max-w-[10rem] md:max-w-md flex items-center"
+                            className="h-full text-sm uppercase truncate transition group-hover:text-gray-900 group-hover:font-semibold  max-w-[10rem] md:max-w-md flex items-center"
                           >
                             {product.name}
                           </a>
