@@ -80,15 +80,17 @@ function NavigationBar() {
           <Navbar.Toggle barIcon={HiMiniBars3BottomRight} className="text-gray-900  !bg-transparent focus:ring-0" />
         </div>
         <Navbar.Collapse>
-          <a href="/" className="btn btn-ghost btn-sm hover:!text-violet-700">
-            Inicio
-          </a>
-          <a href="/shop" className="btn btn-ghost btn-sm hover:!text-violet-700">
-            Tienda
-          </a>
-          <a href="/about" className="btn btn-ghost btn-sm hover:!text-violet-700">
-            Nosotros
-          </a>
+          <div className="flex flex-col items-center justify-center w-full gap-2 sm:flex-row">
+            <a href="/" className="btn btn-ghost btn-sm hover:!text-violet-700 sm:w-20">
+              Inicio
+            </a>
+            <a href="/shop" className="btn btn-ghost btn-sm hover:!text-violet-700 sm:w-20">
+              Tienda
+            </a>
+            <a href="/about" className="btn btn-ghost btn-sm hover:!text-violet-700 sm:w-20">
+              Nosotros
+            </a>
+          </div>
         </Navbar.Collapse>
       </Navbar>
     </header>
