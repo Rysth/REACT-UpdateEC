@@ -124,25 +124,49 @@ const AdminPage = () => {
   // Function to calculate the average order value
   const calculateAverageOrderValue = () => {
     // Ensure that we have order details available
-    if (orderProductDetails && orderProductDetails.data) {
-      console.log(orderProductDetails)
 
+    if (orderProductDetails && orderProductDetails.data) {
       // Calculate the total value of all orders
       const totalOrderValue = orderProductDetails.data.reduce((total, order) => total + order.attributes.subtotal, 0)
 
       // Calculate the average order value
       const averageValue = totalOrderValue / orderProductDetails.data.length
 
-      console.log(averageValue)
-
       // Update the state with the calculated average order value
       setAverageOrderValue(averageValue)
+    }
+  }
+
+  // Define a state variable to store the average order value
+  const [totalSalesVolume, setTotalSalesVolume] = useState(0)
+
+  const calculateVolumeOfSales = () => {
+    // Ensure that we have order details available
+    if (orderProductDetails && orderProductDetails.data) {
+      // Get the current date
+      const currentDate = new Date()
+
+      // Calculate the date 7 days ago
+      const sevenDaysAgo = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000)
+
+      // Filter the order details to include only orders placed in the last 7 days
+      const ordersLast7Days = orderProductDetails.data.filter((order) => {
+        const orderDate = new Date(order.attributes.createdAt)
+        return orderDate >= sevenDaysAgo && orderDate <= currentDate
+      })
+
+      // Calculate the total sales volume in the last 7 days
+      const totalSalesVolume = ordersLast7Days.reduce((total, order) => total + order.attributes.subtotal, 0)
+
+      // Update the state with the calculated total sales volume
+      setTotalSalesVolume(totalSalesVolume)
     }
   }
 
   // Call the function to calculate the average order value when order details are available
   useEffect(() => {
     calculateAverageOrderValue()
+    calculateVolumeOfSales()
   }, [orderProductDetails])
 
   return (
@@ -174,7 +198,10 @@ const AdminPage = () => {
                 <Title className="font-bold">Volumen de Ventas</Title>
                 <Text>Volumen de ventas en los últimos 7 días.</Text>
                 <div className="flex justify-between mt-4">
-                  <Text className="!text-3xl md:!text-4xl font-bold text-violet-600">$2500.00</Text>
+                  <Text className="!text-3xl md:!text-4xl font-bold text-violet-600">
+                    {' '}
+                    ${totalSalesVolume.toFixed(2)}
+                  </Text>
                 </div>
               </Card>
               <Card>
