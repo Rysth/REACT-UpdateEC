@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify' // Ensure you have react-toastify installed and configured
-import { cartActions } from '../redux/slices/cartSlice'
+import { cartActions, selectCartItemQuantity } from '../redux/slices/cartSlice'
 
 function useAddToCart(product) {
   const dispatch = useDispatch()
+  const cartItemQuantity = useSelector(selectCartItemQuantity(product.id))
   const [isAdding, setIsAdding] = useState(false)
 
   const handleAddToCart = (productQuantity) => {
@@ -13,6 +14,12 @@ function useAddToCart(product) {
     setTimeout(() => {
       if (product.attributes.quantity === 0) {
         toast.error('Lo sentimos, el producto no cuenta con stock.', { theme: 'colored', autoClose: 1000 })
+        setIsAdding(false)
+        return
+      }
+
+      if (cartItemQuantity === product.attributes.quantity) {
+        toast.error('No puedes añadir más del stock máximo.', { theme: 'colored', autoClose: 1000 })
         setIsAdding(false)
         return
       }

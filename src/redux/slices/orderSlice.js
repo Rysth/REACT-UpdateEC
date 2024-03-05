@@ -88,6 +88,37 @@ export const createOrder = createAsyncThunk('order/createOrder', async ({ orderD
       )
     }
 
+    // Reduce product quantities
+    for (const detail of orderData.orderProductDetails) {
+      // Fetch current product data
+      const { data: product } = await axios.get(`${API_URL}/products/${detail.productId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${API_KEY}`,
+        },
+      })
+
+      // Calculate updated quantity
+      const updatedQuantity = product.attributes.quantity - detail.quantity
+
+      // Validate updated quantity to ensure it's not negative
+      updatedQuantity = Math.max(updatedQuantity, 0)
+
+      // Update product quantity
+      await axios.put(
+        `${API_URL}/products/${detail.productId}`,
+        {
+          quantity: updatedQuantity,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${API_KEY}`,
+          },
+        },
+      )
+    }
+
     return true
   } catch (error) {
     throw new Error(`Error: ${error.message}`)

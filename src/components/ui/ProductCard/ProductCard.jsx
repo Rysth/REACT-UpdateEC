@@ -13,8 +13,10 @@ function ProductCard({ product }) {
   }
 
   useEffect(() => {
-    setProductQuantity()
+    setProductQuantity(product.attributes.quantity)
   }, [])
+
+  const isAddToCartDisabled = productQuantity <= 0
 
   return (
     <div className="relative group animate__animated animate__fadeIn">
@@ -39,7 +41,7 @@ function ProductCard({ product }) {
           <p className="text-sm font-semibold uppercase truncate text-violet-700">${product.attributes.price}</p>
         </header>
       </a>
-      {productQuantity === 0 && product && (
+      {isAddToCartDisabled && (
         <Badge
           size="xs"
           className="absolute !z-30 mx-auto top-4 left-4"
@@ -49,7 +51,7 @@ function ProductCard({ product }) {
           Fuera de Stock
         </Badge>
       )}
-      {productQuantity !== 0 && (
+      {!isAddToCartDisabled && (
         <button
           className={`absolute !z-30 mx-auto sm:opacity-0 top-4 right-4 sm:group-hover:opacity-100 btn btn-sm btn-primary text-white btn-outline bg-white text-xs ${
             isAdding && 'pointer-events-none !opacity-50'

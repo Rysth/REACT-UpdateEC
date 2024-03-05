@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
+import { createSelector } from 'reselect'
 
 // Load cart items from sessionStorage if available
 const loadCartItems = () => {
@@ -60,5 +61,15 @@ const cartSlice = createSlice({
 })
 
 export const cartActions = cartSlice.actions
+
+// Selector to get the quantity of a specific product in the cart
+export const selectCartItemQuantity = (productId) =>
+  createSelector(
+    (state) => state.cart.cartItems,
+    (cartItems) => {
+      const product = cartItems.find((item) => item.id === productId)
+      return product ? product.quantity : 0
+    },
+  )
 
 export default cartSlice.reducer
