@@ -19,7 +19,7 @@ function ProductPreview() {
     if (quantity > 1) setQuantity(quantity - 1)
   }
 
-  const isAddToCartDisabled = quantity <= 0 || quantity > foundProduct.attributes.quantity || isAdding
+  const isAddToCartDisabled = quantity <= 0
   return (
     <article className="max-w-screen-xl gap-2 px-4 py-5 mx-auto space-y-2 sm:grid sm:grid-cols-2 sm:py-12">
       <Zoom zoomMargin={60}>
@@ -67,7 +67,7 @@ function ProductPreview() {
               className="w-5 h-10 leading-10 text-gray-700 transition bg-transparent border-none hover:opacity-75"
               color="light"
               onClick={decreaseQuantity}
-              disabled={isAddToCartDisabled}
+              disabled={isAddToCartDisabled || isAdding}
             >
               -
             </Button>
@@ -78,7 +78,7 @@ function ProductPreview() {
               onChange={(e) =>
                 setQuantity(Math.max(0, Math.min(parseInt(e.target.value, 10), foundProduct.attributes.quantity)))
               }
-              disabled={isAddToCartDisabled}
+              disabled={isAddToCartDisabled || isAdding}
               min={1}
               max={foundProduct.attributes.quantity}
               className="h-5 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
@@ -87,7 +87,7 @@ function ProductPreview() {
               className="w-5 h-10 leading-10 text-gray-700 transition bg-transparent border-none hover:opacity-75"
               color="light"
               onClick={increaseQuantity}
-              disabled={isAddToCartDisabled}
+              disabled={isAddToCartDisabled || isAdding}
             >
               +
             </Button>
@@ -96,7 +96,7 @@ function ProductPreview() {
             type="button"
             className="w-4/4 sm:w-3/4 btn btn-primary"
             onClick={() => handleAddToCart(quantity)}
-            disabled={isAddToCartDisabled}
+            disabled={isAddToCartDisabled || isAdding}
           >
             <HiShoppingBag className="text-xl" />
             Añadir al Carrito
