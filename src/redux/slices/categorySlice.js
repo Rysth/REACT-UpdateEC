@@ -21,7 +21,6 @@ export const fetchCategories = createAsyncThunk('category/fetchCategories', asyn
     })
     return response.data
   } catch (error) {
-    console.log(error)
     throw new Error(`Error: ${error.message}`)
   }
 })

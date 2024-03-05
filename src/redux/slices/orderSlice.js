@@ -88,12 +88,9 @@ export const createOrder = createAsyncThunk('order/createOrder', async ({ orderD
       )
     }
 
-    console.log(orderData.orderProductDetails)
-
     // Reduce product quantities
     for (const detail of orderData.orderProductDetails) {
       // Fetch current product data
-      console.log(detail)
 
       const response = await axios.get(`${API_URL}/products/${detail.productId}`, {
         headers: {
@@ -101,8 +98,6 @@ export const createOrder = createAsyncThunk('order/createOrder', async ({ orderD
           Authorization: `Bearer ${API_KEY}`,
         },
       })
-
-      console.log(response.data.data)
 
       // Calculate updated quantity
       const currentQuantity = parseFloat(response.data.data.attributes.quantity)

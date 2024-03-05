@@ -115,7 +115,6 @@ function OrderPage() {
             {orderSelected &&
               orderSelected.attributes.order_product_details.data.map((product) => {
                 const productData = product.attributes
-                console.log(productData)
                 return (
                   <div className="grid grid-cols-3 text-sm text-center" key={product.id}>
                     <a
