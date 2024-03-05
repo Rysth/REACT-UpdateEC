@@ -1,5 +1,5 @@
 import { Badge, Button } from 'flowbite-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HiShoppingBag } from 'react-icons/hi2'
 import Markdown from 'react-markdown'
 import Zoom from 'react-medium-image-zoom'
@@ -9,7 +9,7 @@ import useAddToCart from '../../../hooks/useAddToCart'
 function ProductPreview() {
   const { foundProduct } = useSelector((store) => store.product)
   const { isAdding, handleAddToCart } = useAddToCart(foundProduct)
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(0)
 
   const increaseQuantity = () => {
     if (quantity < foundProduct.attributes.quantity) setQuantity(quantity + 1)
@@ -19,7 +19,12 @@ function ProductPreview() {
     if (quantity > 1) setQuantity(quantity - 1)
   }
 
+  useEffect(() => {
+    setQuantity(foundProduct.attributes.quantity)
+  })
+
   const isAddToCartDisabled = quantity <= 0
+
   return (
     <article className="max-w-screen-xl gap-2 px-4 py-5 mx-auto space-y-2 sm:grid sm:grid-cols-2 sm:py-12">
       <Zoom zoomMargin={60}>
