@@ -20,7 +20,7 @@ const SearchModal = ({ isOpen, onCloseModal }) => {
       <Modal.Body className="rounded-lg bg-gradient-to-br from-violet-700 to-indigo-700">
         <div className="space-y-6 pt-7">
           <div className="flex items-center justify-center text-white">
-            <h3 className="text-2xl font-bold md:text-3xl">Consultar Producto</h3>s{' '}
+            <h3 className="text-2xl font-bold md:text-3xl">Consultar Productos</h3>
           </div>
           <TextInput
             id="search"
