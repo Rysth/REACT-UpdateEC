@@ -157,7 +157,12 @@ const AdminPage = () => {
       })
 
       // Calculate the total sales volume in the last 7 days
-      const totalSalesVolume = ordersLast7Days.reduce((total, order) => total + order.attributes.subtotal, 0)
+      const totalSalesVolume = ordersLast7Days.reduce((total, order) => {
+        // Ensure that the subtotal is a number
+        const subtotal = parseFloat(order.attributes.subtotal)
+        // Add the subtotal to the total
+        return total + subtotal
+      }, 0)
 
       // Update the state with the calculated total sales volume
       setTotalSalesVolume(totalSalesVolume)
