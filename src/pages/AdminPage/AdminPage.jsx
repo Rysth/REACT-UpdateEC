@@ -206,7 +206,7 @@ const AdminPage = () => {
             <Card className="grid gap-4 md:col-span-3 sm:grid-cols-3">
               <Card>
                 <Title className="font-bold">Promedio en Compras</Title>
-                <Text>Valor promedio en compras de clientes.</Text>
+                <Text>Valor promedio de las ordenes de clientes.</Text>
                 <div className="flex justify-between mt-4">
                   <Text className="!text-3xl md:!text-4xl font-bold text-blue-600">
                     ${averageOrderValue.toFixed(2)}
