@@ -35,7 +35,7 @@ function TableSection({ cartItems }) {
 
   return (
     <SectionLayout backgroundColor="animate__animated animate__fadeIn animate__slow">
-      <article className="max-w-screen-xl min-h-screen py-12 mx-auto space-y-4">
+      <article className="max-w-screen-xl min-h-[calc(100vh-10rem)] py-12 mx-auto space-y-4">
         <ConfirmModal
           isOpen={openModal}
           onClose={() => setOpenModal(false)}
@@ -45,8 +45,8 @@ function TableSection({ cartItems }) {
         <header className="grid gap-2">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Carrito de Compras</h2>
         </header>
-        <main className="sm:min-h-[24rem]">
-          <div className="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg max-h-[37rem]">
+        <main className="sm:min-h-96">
+          <div className="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg max-h-96">
             <table className="w-full text-sm text-left text-gray-500 ">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                 <tr className="sticky top-0 z-50 bg-white border-b border-b-gray-200">
