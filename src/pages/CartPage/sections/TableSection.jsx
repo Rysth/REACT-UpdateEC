@@ -25,7 +25,7 @@ function TableSection({ cartItems }) {
         <h3 className="w-full text-lg font-bold text-center text-gray-900 uppercase sm:text-2xl ">
           ¡Tú Carrito está Vacío!
         </h3>
-        <Button href="/shop" color="blue" size="sm">
+        <Button href="/shop" color="purple" size="sm">
           <HiArrowLeft className="mr-1" />
           Regresar
         </Button>
