@@ -118,6 +118,33 @@ const AdminPage = () => {
   // Calcular el progreso hacia el objetivo de ventas
   const progress = (totalSalesThisMonth / totalRevenueGoal) * 100
 
+  // Define a state variable to store the average order value
+  const [averageOrderValue, setAverageOrderValue] = useState(0)
+
+  // Function to calculate the average order value
+  const calculateAverageOrderValue = () => {
+    // Ensure that we have order details available
+    if (orderProductDetails && orderProductDetails.data) {
+      console.log(orderProductDetails)
+
+      // Calculate the total value of all orders
+      const totalOrderValue = orderProductDetails.data.reduce((total, order) => total + order.attributes.subtotal, 0)
+
+      // Calculate the average order value
+      const averageValue = totalOrderValue / orderProductDetails.data.length
+
+      console.log(averageValue)
+
+      // Update the state with the calculated average order value
+      setAverageOrderValue(averageValue)
+    }
+  }
+
+  // Call the function to calculate the average order value when order details are available
+  useEffect(() => {
+    calculateAverageOrderValue()
+  }, [orderProductDetails])
+
   return (
     <>
       <BreadCrumb
@@ -133,6 +160,31 @@ const AdminPage = () => {
         <article className="max-w-screen-xl py-12 mx-auto md:py-24">
           <h2 className="mb-8 text-2xl md:text-4xl">Gráficos de Rendimiento</h2>
           <div className="grid gap-4 sm:grid-cols-2 md:gap-8 md:grid-cols-3">
+            <Card className="grid gap-4 md:col-span-3 sm:grid-cols-3">
+              <Card>
+                <Title className="font-bold">Promedio en Compras</Title>
+                <Text>Valor promedio en compras de clientes.</Text>
+                <div className="flex justify-between mt-4">
+                  <Text className="!text-3xl md:!text-4xl font-bold text-blue-600">
+                    ${averageOrderValue.toFixed(2)}
+                  </Text>
+                </div>
+              </Card>
+              <Card>
+                <Title className="font-bold">Volumen de Ventas</Title>
+                <Text>Volumen de ventas en los últimos 7 días.</Text>
+                <div className="flex justify-between mt-4">
+                  <Text className="!text-3xl md:!text-4xl font-bold text-violet-600">$2500.00</Text>
+                </div>
+              </Card>
+              <Card>
+                <Title className="font-bold">Ordenes Generadas</Title>
+                <Text>Ordenes generadas en los últimos 7 días</Text>
+                <div className="flex justify-between mt-4">
+                  <Text className="!text-3xl md:!text-4xl font-bold text-indigo-600">54</Text>
+                </div>
+              </Card>
+            </Card>
             <Card>
               <Title className="font-bold">Categorías con Más Ventas</Title>
               <Text>Categorías más cotizadas de todo el tiempo.</Text>
@@ -164,8 +216,8 @@ const AdminPage = () => {
               <Text>Volúmen de venta de los productos de todo el tiempo.</Text>
               <div className="flex items-center justify-between pb-2 mt-4 border-b">
                 <Text className="font-semibold text-indigo-700">Producto</Text>
-                <div className="flex items-center gap-5 md:gap-14">
-                  <Text className="font-semibold text-indigo-700">Unidades</Text>
+                <div className="flex items-center gap-5 md:gap-16">
+                  <Text className="font-semibold text-indigo-700">Ventas</Text>
                   <Text className="font-semibold text-indigo-700 pe-4">Stock</Text>
                 </div>
               </div>
@@ -185,7 +237,6 @@ const AdminPage = () => {
                             className="block object-contain h-full w-7 md:w-10"
                             alt={product.picture.data.attributes.name}
                           />
-                          {console.log(productDetail)}
                           <a
                             href={`/shop/${productDetail.attributes.product.data.attributes.category.data.attributes.name.toLowerCase()}/${productId}`}
                             target="_blank"
