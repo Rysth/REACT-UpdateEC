@@ -180,7 +180,6 @@ const AdminPage = () => {
     const sevenDaysAgo = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000)
 
     const ordersLast7Days = ordersOriginal.filter((order) => {
-      console.log(order)
       const orderDate = new Date(order.attributes.createdAt) // Assuming createdAt field is available in your order object
       return orderDate >= sevenDaysAgo && orderDate <= currentDate
     })

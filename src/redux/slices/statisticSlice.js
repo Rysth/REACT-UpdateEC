@@ -7,13 +7,31 @@ const API_KEY = import.meta.env.VITE_API_KEY
 
 export const fetchOrderProductDetails = createAsyncThunk('statistics/fetchOrderProductDetails', async () => {
   try {
-    const response = await axios.get(`${API_URL}/order-product-details`, {
-      params: {
-        populate: 'product,product.picture,product.category',
-      },
-      headers: { Authorization: `Bearer ${API_KEY}` },
-    })
-    return response.data
+    let page = 1 // Start with page 1
+    let allData = []
+
+    while (true) {
+      const response = await axios.get(`${API_URL}/order-product-details`, {
+        params: {
+          populate: 'product,product.picture,product.category',
+          'pagination[page]': page,
+        },
+        headers: { Authorization: `Bearer ${API_KEY}` },
+      })
+
+      const data = response.data
+      allData = [...allData, ...data.data]
+
+      // If the response length is less than the page size, break the loop
+      if (data.data.length < 25) {
+        break
+      }
+
+      // Increment the page for the next iteration
+      page++
+    }
+
+    return allData
   } catch (error) {
     throw new Error(`Error: ${error.message}`)
   }
@@ -88,7 +106,8 @@ const statisticSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchOrderProductDetails.fulfilled, (state, action) => {
-        state.orderProductDetails = action.payload
+        const data = { data: action.payload }
+        state.orderProductDetails = data
       })
       .addCase(fetchCategoryProductDetails.fulfilled, (state, action) => {
         state.categoryProductDetails = action.payload
