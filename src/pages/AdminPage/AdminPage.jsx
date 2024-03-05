@@ -9,6 +9,7 @@ import {
   fetchOrderPayments,
   fetchOrderProductDetails,
 } from '../../redux/slices/statisticSlice'
+import { IoIosWarning } from 'react-icons/io'
 
 const AdminPage = () => {
   const dispatch = useDispatch()
@@ -163,7 +164,10 @@ const AdminPage = () => {
               <Text>Volúmen de venta de los productos de todo el tiempo.</Text>
               <div className="flex items-center justify-between pb-2 mt-4 border-b">
                 <Text className="font-semibold text-indigo-700">Producto</Text>
-                <Text className="font-semibold text-indigo-700">Unidades</Text>
+                <div className="flex items-center gap-5 md:gap-14">
+                  <Text className="font-semibold text-indigo-700">Unidades</Text>
+                  <Text className="font-semibold text-indigo-700 pe-4">Stock</Text>
+                </div>
               </div>
               <List className="overflow-auto max-h-72">
                 {sortedProducts.map(([productId, quantity]) => {
@@ -175,7 +179,7 @@ const AdminPage = () => {
                   return (
                     <ListItem key={productId} className="p-1 transition duration-300 pe-2 group hover:bg-violet-200">
                       <div className="flex justify-between">
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center flex-1 gap-1">
                           <img
                             src={product.picture.data.attributes.url}
                             className="block object-contain h-full w-7 md:w-10"
@@ -185,15 +189,19 @@ const AdminPage = () => {
                           <a
                             href={`/shop/${productDetail.attributes.product.data.attributes.category.data.attributes.name.toLowerCase()}/${productId}`}
                             target="_blank"
-                            className="h-full text-xs uppercase truncate transition group-hover:text-gray-900 group-hover:font-semibold  max-w-[10rem] md:max-w-md flex items-center"
+                            className="h-full text-xs uppercase truncate transition group-hover:text-gray-900 group-hover:font-semibold  max-w-[8rem] md:max-w-md flex items-center"
                           >
                             {product.name}
                           </a>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <p className="mt-1 text-xs italic font-semibold text-gray-900">{quantity}</p>
-                        {quantity >= 3 && <BsFire className="text-red-500" />}
+                      <div className="flex items-center gap-5 md:gap-20">
+                        <div className="flex items-center justify-center w-8 gap-1">
+                          <p className="mt-1 text-xs italic font-semibold text-gray-900">{quantity}</p>
+                        </div>
+                        <div className="flex items-center justify-center w-8 gap-1">
+                          <p className="mt-1 text-xs italic font-semibold text-gray-900">{product.quantity}</p>
+                        </div>
                       </div>
                     </ListItem>
                   )

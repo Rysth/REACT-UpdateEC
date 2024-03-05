@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { HiArrowUp } from 'react-icons/hi'
+import { MdSpaceDashboard } from 'react-icons/md'
 import 'react-medium-image-zoom/dist/styles.css'
 import 'react-multi-carousel/lib/styles.css'
 import { useSelector } from 'react-redux'
@@ -12,6 +13,7 @@ import Footer from './components/navigation/Footer/Footer'
 import NavigationBar from './components/navigation/NavigationBar/NavigationBar'
 import NotFound from './pages/404/NotFound'
 import AboutPage from './pages/AboutPage/AboutPage'
+import AdminPage from './pages/AdminPage/AdminPage'
 import CartPage from './pages/CartPage/CartPage'
 import HomePage from './pages/HomePage/HomePage'
 import OrderPage from './pages/OrderPage/OrderPage'
@@ -20,7 +22,6 @@ import SessionPage from './pages/SessionPage/SessionPage'
 import FormSignIn from './pages/SessionPage/sections/FormSignIn'
 import FormSignUp from './pages/SessionPage/sections/FormSignUp'
 import ShopPage from './pages/ShopPage/ShopPage'
-import AdminPage from './pages/AdminPage/AdminPage'
 
 function App() {
   const [isVisible, setIsVisible] = useState(false)
@@ -61,6 +62,15 @@ function App() {
         >
           <HiArrowUp className="text-lg" />
         </button>
+      )}
+      {isAdmin && (
+        <a
+          href="/admin/estadisticas"
+          className="fixed shadow w-14 h-14 bottom-5 left-5 z-[9000] btn-circle btn-neutral btn text-white"
+          color="blue"
+        >
+          <MdSpaceDashboard className="text-lg" />
+        </a>
       )}
       <main className="min-h-screen">
         <Routes>
