@@ -1,7 +1,6 @@
 // AdminPage.js
 import { BarChart, Card, LineChart, List, ListItem, ProgressCircle, Text, Title } from '@tremor/react'
 import React, { useEffect, useState } from 'react'
-import { BsFire } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 import BreadCrumb from '../../components/navigation/BreadCrumb/BreadCrumb'
 import {
@@ -9,17 +8,19 @@ import {
   fetchOrderPayments,
   fetchOrderProductDetails,
 } from '../../redux/slices/statisticSlice'
-import { IoIosWarning } from 'react-icons/io'
+import { fetchOrders } from '../../redux/slices/orderSlice'
 
 const AdminPage = () => {
   const dispatch = useDispatch()
   const categoryProductDetails = useSelector((state) => state.statistics.categoryProductDetails)
   const orderProductDetails = useSelector((state) => state.statistics.orderProductDetails)
+  const ordersOriginal = useSelector((state) => state.order.ordersOriginal)
   const totalRevenueLast30Days = useSelector((state) => state.statistics.totalRevenueLast30Days)
   const [totalRevenueGoal, setTotalRevenueGoal] = useState(2000)
   const [totalSalesThisMonth, setTotalSalesThisMonth] = useState(0)
 
   useEffect(() => {
+    dispatch(fetchOrders())
     dispatch(fetchOrderProductDetails()) // Disparar la acción para obtener los productos más comprados al cargar el componente
     dispatch(fetchCategoryProductDetails()) // Disparar la acción para obtener los productos más comprados al cargar el componente
     dispatch(fetchOrderPayments()) // Disparar la acción para obtener los productos más comprados al cargar el componente
@@ -169,6 +170,24 @@ const AdminPage = () => {
     calculateVolumeOfSales()
   }, [orderProductDetails])
 
+  // Define state to store the number of orders generated in the last 7 days
+  const [ordersGeneratedLast7Days, setOrdersGeneratedLast7Days] = useState(0)
+
+  // Calculate the number of orders generated in the last 7 days
+  useEffect(() => {
+    // Logic to filter orders from the last 7 days and count them
+    const currentDate = new Date()
+    const sevenDaysAgo = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000)
+
+    const ordersLast7Days = ordersOriginal.filter((order) => {
+      console.log(order)
+      const orderDate = new Date(order.attributes.createdAt) // Assuming createdAt field is available in your order object
+      return orderDate >= sevenDaysAgo && orderDate <= currentDate
+    })
+
+    setOrdersGeneratedLast7Days(ordersLast7Days.length)
+  }, [ordersOriginal])
+
   return (
     <>
       <BreadCrumb
@@ -208,7 +227,7 @@ const AdminPage = () => {
                 <Title className="font-bold">Ordenes Generadas</Title>
                 <Text>Ordenes generadas en los últimos 7 días</Text>
                 <div className="flex justify-between mt-4">
-                  <Text className="!text-3xl md:!text-4xl font-bold text-indigo-600">54</Text>
+                  <Text className="!text-3xl md:!text-4xl font-bold text-indigo-600">{ordersGeneratedLast7Days}</Text>
                 </div>
               </Card>
             </Card>
